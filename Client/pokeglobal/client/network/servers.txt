@@ -1,0 +1,5 @@
+pokeglobal.dyndns.org
+76.24.83.149
+localhost
+null
+null

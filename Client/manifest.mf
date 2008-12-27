@@ -1,0 +1,2 @@
+Main-Class: pokeglobal.client.GlobalGame
+Class-Path: lib/lwjgl.jar lib/slick.jar lib/jogg-0.0.7.jar lib/jorbis-0.0.15.jar
