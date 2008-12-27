@@ -51,7 +51,7 @@ public class ToSWindow extends Frame {
 
 	private void initGUI() {
 		options = GlobalGame.getOptions();
-		this.setTitle("Pokemon Global Rules");
+		this.setTitle("Pokemon Online Revolution Rules");
 		this.setBackground(new Color(0, 0, 0, 70));
 		this.setForeground(new Color(255, 255, 255));
 		this.setSize(360, 460);
@@ -63,10 +63,10 @@ public class ToSWindow extends Frame {
 		tostext = new TextArea();
 		tostext.setSize(355, 455);
 		tostext
-				.setText("In order to create the best Pokemon Global experience, we ask that you follow certain rules. \n"
+				.setText("In order to create the best POLR experience, we ask that you follow certain rules. \n"
 						+
 
-						"1. No swearing. Pokemon Global is a kid safe environment and we ask that you refrain from using excessive swearing. \n"
+						"1. No swearing. POLR is a kid safe environment and we ask that you refrain from using excessive swearing. \n"
 						+
 
 						"2. No spamming. Spamming is when you repeat something in chat or in a whisper to another player for no other reason than to annoy them. \n"

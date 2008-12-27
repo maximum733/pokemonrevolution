@@ -67,11 +67,11 @@ public class ServerSelector extends Frame {
 		 * i < 5; i++) { listedServers[i] = f.readLine(); } } catch (Exception
 		 * e) { e.printStackTrace(); }
 		 */
-		listedServers[0] = "polr.dyndns.org";
+		listedServers[0] = "null";
 		listedServers[1] = "null";
 		listedServers[2] = "localhost";
 		listedServers[3] = "null";
-		listedServers[4] = "pokemonproject.homeip.net";
+		listedServers[4] = "null";
 
 		server1 = new Button();
 		server1.setText("Snowpoint Temple Server");
