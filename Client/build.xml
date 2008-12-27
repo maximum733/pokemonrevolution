@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="buildandrun" name="GlobalClient">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.5"/>
+    <property name="source" value="1.5"/>
+    <path id="GlobalClient.classpath">
+        <pathelement location="build"/>
+        <pathelement location="lib/jogg-0.0.7.jar"/>
+        <pathelement location="lib/jorbis-0.0.15.jar"/>
+        <pathelement location="lib/lwjgl.jar"/>
+        <pathelement location="lib/slick.jar"/>
+		<pathelement location="lib/mina-core-1.1.7.jar"/>
+		<pathelement location="lib/slf4j-api-1.4.3.jar"/>
+		<pathelement location="lib/slf4j-jdk14-1.4.3.jar"/>
+    </path>
+    <target name="init">
+        <copy includeemptydirs="false" todir="build/res">
+            <fileset dir="res"/>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete>
+            <fileset dir="build" includes="**/*.class"/>
+        </delete>
+    </target>
+    <target depends="init" name="build">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="./build" source="${source}" target="${target}">
+            <src path="."/>
+            <classpath refid="GlobalClient.classpath"/>
+        </javac>
+    </target>
+    <target name="run">
+		<java classname="pokeglobal.client.GlobalGame"
+			classpathref="GlobalClient.classpath" fork="true"/>
+	</target>
+	<target depends="build" name="jar">
+		<jar destfile="build.jar" basedir="./build" manifest="manifest.mf"/>
+	</target>
+	<target depends="build,run" name="buildandrun"/>
+</project>
