@@ -298,7 +298,11 @@ public final class WildBattleField extends BattleField {
 				else{
 					showMessage("e," + expAmt + "," + "N" + "," + expTillLvl);
 				}
-				pokemon.setExp(pokemon.getExp() + expAmt);
+				if(m_humanPlayer.getplayerClass().equals("Thief")){
+					pokemon.setExp(pokemon.getExp() + (expAmt - (expAmt * 0.7)));
+				}else{
+					pokemon.setExp(pokemon.getExp() + expAmt);
+				}
 				int level = getMechanics().calculateLevel(pokemon);
 				if ((pokemon.getLevel() != level) && (level!=101)) {
 					POLRDataEntry moveData = m_polrDB.getPokemonData(

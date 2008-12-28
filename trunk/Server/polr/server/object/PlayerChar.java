@@ -84,6 +84,9 @@ public class PlayerChar extends Char {
 	private String m_teamTag;
 	
 	@Element(required = false)
+	private String m_playerClass;
+	
+	@Element(required = false)
 	private Pokedex m_pokedex;
 
 	@Element(required=false)
@@ -141,6 +144,7 @@ public class PlayerChar extends Char {
 	private NonPlayerChar m_talkingTo;
 	private boolean m_talking = false;
 
+	@SuppressWarnings("unused")
 	private TradeItem m_trades;
 	private List<PlayerChar> m_challenges;
 
@@ -214,6 +218,9 @@ public class PlayerChar extends Char {
 
 	public String getTeamTag() {
 		return m_teamTag;
+	}
+	public String getplayerClass() {
+		return m_playerClass;
 	}
 	
 	public void setTradeLogic(TradeLogic tL){
@@ -1145,11 +1152,15 @@ public class PlayerChar extends Char {
 		return m_target;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List getNpcList() {
 		return m_npcNames;
 	}
 
 	public void setTeamTag(String m_teamTag) {
 		this.m_teamTag = m_teamTag;
+	}
+	public void setplayerClass(String m_playerClass) {
+		this.m_playerClass = m_playerClass;
 	}
 }
