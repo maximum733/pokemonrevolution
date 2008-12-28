@@ -23,8 +23,6 @@
 
 package polr.server.mechanics.statuses;
 
-import org.simpleframework.xml.Element;
-
 import polr.server.battle.BattleTurn;
 import polr.server.battle.Pokemon;
 import polr.server.mechanics.PokemonType;
@@ -36,26 +34,6 @@ import polr.server.mechanics.moves.MoveListEntry;
  */
 public abstract class StatusEffect implements Cloneable {
 
-	public static class Sprite {
-        private String m_name;
-        private int m_gender;
-        private boolean m_shiny;
-        public Sprite(String name, int gender, boolean shiny) {
-            m_name = name;
-            m_gender = gender;
-            m_shiny = shiny;
-        }
-        public String getName() {
-            return m_name;
-        }
-        public int getGender() {
-            return m_gender;
-        }
-        public boolean isShiny() {
-            return m_shiny;
-        }
-    }
-	
     /**
      * A pokemon can have only one of freeze, burn, sleep, paralysis, and
      * poison, so we protect against this by giving this class of effects
@@ -73,11 +51,8 @@ public abstract class StatusEffect implements Cloneable {
     public static final int STATE_DEACTIVATED = 1;
     public static final int STATE_REMOVABLE = 2;
     
-    @Element
     private int m_state = STATE_ACTIVE;
-    @Element
     protected int m_lock = 0;
-    @Element
     private Pokemon m_inducer;
     
     /**
@@ -281,14 +256,6 @@ public abstract class StatusEffect implements Cloneable {
      */
     public void executeTurn(Pokemon p, BattleTurn turn) {
         
-    }
-    
-    /**
-     * Return the sprite to use for the pokemon with this effect, or null
-     * if no effect should be used.
-     */
-    public Sprite getTransformedSprite() {
-        return null;
     }
     
     /**

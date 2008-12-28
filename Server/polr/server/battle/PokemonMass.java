@@ -23,12 +23,8 @@
  */
 
 package polr.server.battle;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.HashMap;
+import java.util.*;
+import java.io.*;
 
 /**
  * Ugly hack for getting pokemon masses from a file separate from the species

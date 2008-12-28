@@ -1,3 +1,8 @@
+package polr.server.mechanics.statuses;
+
+import polr.server.battle.Pokemon;
+import polr.server.mechanics.PokemonType;
+
 /*
  * BurnEffect.java
  *
@@ -21,9 +26,6 @@
  * online at http://gnu.org.
  */
 
-package polr.server.mechanics.statuses;
-import polr.server.battle.Pokemon;
-import polr.server.mechanics.PokemonType;
 
 /**
  *

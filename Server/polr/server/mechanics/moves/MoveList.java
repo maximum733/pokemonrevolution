@@ -22,51 +22,17 @@
  */
 
 package polr.server.mechanics.moves;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
+import java.io.*;
 
-import polr.server.battle.BattleField;
-import polr.server.battle.BattleTurn;
-import polr.server.battle.Pokemon;
-import polr.server.battle.PokemonMass;
-import polr.server.battle.PokemonSpecies;
-import polr.server.mechanics.BattleMechanics;
-import polr.server.mechanics.JewelMechanics;
-import polr.server.mechanics.PokemonNature;
-import polr.server.mechanics.PokemonType;
-import polr.server.mechanics.StatMultiplier;
-import polr.server.mechanics.statuses.BurnEffect;
-import polr.server.mechanics.statuses.ChargeEffect;
-import polr.server.mechanics.statuses.ConfuseEffect;
-import polr.server.mechanics.statuses.FlinchEffect;
-import polr.server.mechanics.statuses.FreezeEffect;
-import polr.server.mechanics.statuses.MultipleStatChangeEffect;
-import polr.server.mechanics.statuses.ParalysisEffect;
-import polr.server.mechanics.statuses.PercentEffect;
-import polr.server.mechanics.statuses.PoisonEffect;
-import polr.server.mechanics.statuses.SleepEffect;
-import polr.server.mechanics.statuses.StatChangeEffect;
-import polr.server.mechanics.statuses.StatusEffect;
-import polr.server.mechanics.statuses.ToxicEffect;
-import polr.server.mechanics.statuses.abilities.IntrinsicAbility;
-import polr.server.mechanics.statuses.field.FieldEffect;
-import polr.server.mechanics.statuses.field.HailEffect;
-import polr.server.mechanics.statuses.field.RainEffect;
-import polr.server.mechanics.statuses.field.SandstormEffect;
-import polr.server.mechanics.statuses.field.SunEffect;
-import polr.server.mechanics.statuses.items.Berry;
-import polr.server.mechanics.statuses.items.ChoiceBandItem;
-import polr.server.mechanics.statuses.items.HoldItem;
+import polr.server.battle.*;
+import polr.server.mechanics.*;
+import polr.server.mechanics.statuses.*;
+import polr.server.mechanics.intelligence.*;
+import polr.server.mechanics.statuses.abilities.*;
+import polr.server.mechanics.statuses.field.*;
+import polr.server.mechanics.statuses.items.*;
+
 
 /**
  * This class contains static methods for maintaining the server's list of
@@ -74,7 +40,6 @@ import polr.server.mechanics.statuses.items.HoldItem;
  * @author Ben
  * @author Colin
  */
-
 public class MoveList {
     
     private static MoveList m_inst = new MoveList(true);
@@ -771,6 +736,13 @@ public class MoveList {
             new double[] { 0.3 }
             )));
             
+        m_moves.add(new MoveListEntry("Mud-Slap", new StatusMove(
+            PokemonType.T_GROUND, 20, 1.0, 10, new StatusEffect[] {
+                new StatChangeEffect(Pokemon.S_ACCURACY, false)
+                },
+            new boolean[] { false },
+            new double[] { 1.0 }
+            )));
             
         m_moves.add(new MoveListEntry("Needle Arm", new StatusMove(
             PokemonType.T_GRASS, 60, 1.0, 15, new StatusEffect[] {
@@ -3189,58 +3161,49 @@ public class MoveList {
             
         PokemonMove roar = new PokemonMove(PokemonType.T_NORMAL, 0, 1.0, 20) {
             public int use(BattleMechanics mech, Pokemon user, Pokemon target) {
-				try {
-					if (target.hasAbility("Suction Cups") || target.hasEffect(IngrainEffect.class)) {
-	                    user.getField().showMessage("But it failed!");
-	                    return 0;
-	                }
-	                
-	                if (target.isFainted())
-	                    return 0;
-	                
-	                ArrayList party = new ArrayList(Arrays.asList(target.getTeammates()));
-
-					if (party.size() == 0) {
-	                    user.getField().showMessage("But it failed!");
-	                    return 0;
-	                }
-
-					Iterator i = party.iterator();
-	                while (i.hasNext()) {
-	                    Pokemon p = (Pokemon)i.next();
-	                    if (p == null || p.isFainted() || (p == target)) {
-	                        i.remove();
-	                    }
-	                }
-	                
-	                Pokemon p = (Pokemon)party.get(mech.getRandom().nextInt(party.size()));
-	                p.getField().switchInPokemon(p.getParty(), p.getId());
-	                p.addStatus(user, new StatusEffect() {
-	                   public int getTier() {
-	                       return 1;
-	                   } 
-	                   public boolean tick(Pokemon p) {
-	                       p.removeStatus(this);
-	                       return true;
-	                   }
-	                   public boolean isMoveTransformer(boolean enemy) {
-	                       return !enemy;
-	                   }
-	                   public MoveListEntry getTransformedMove(Pokemon p, MoveListEntry entry) {
-	                       return null;
-	                   }
-	                   public String getDescription() {
-	                       return null;
-	                   }
-	                   public String getName() {
-	                       return null;
-	                   }
-	                });}
-				catch ( Exception e) { 
-					user.getField().showMessage("But it failed!");
+                if (target.hasAbility("Suction Cups") || target.hasEffect(IngrainEffect.class)) {
+                    user.getField().showMessage("But it failed!");
                     return 0;
-				}
-				
+                }
+                
+                if (target.isFainted())
+                    return 0;
+                
+                ArrayList party = new ArrayList(Arrays.asList(target.getTeammates()));
+                Iterator i = party.iterator();
+                while (i.hasNext()) {
+                    Pokemon p = (Pokemon)i.next();
+                    if (p.isFainted() || (p == target)) {
+                        i.remove();
+                    }
+                }
+                if (party.size() == 0) {
+                    user.getField().showMessage("But it failed!");
+                    return 0;
+                }
+                Pokemon p = (Pokemon)party.get(mech.getRandom().nextInt(party.size()));
+                p.getField().switchInPokemon(p.getParty(), p.getId());
+                p.addStatus(user, new StatusEffect() {
+                   public int getTier() {
+                       return 1;
+                   } 
+                   public boolean tick(Pokemon p) {
+                       p.removeStatus(this);
+                       return true;
+                   }
+                   public boolean isMoveTransformer(boolean enemy) {
+                       return !enemy;
+                   }
+                   public MoveListEntry getTransformedMove(Pokemon p, MoveListEntry entry) {
+                       return null;
+                   }
+                   public String getDescription() {
+                       return null;
+                   }
+                   public String getName() {
+                       return null;
+                   }
+                });
                 return 0;
             }
             public int getPriority() {
@@ -3951,42 +3914,7 @@ public class MoveList {
                     return true;
                 }
             }));
-        // TODO : actually fix these
-        m_moves.add(new MoveListEntry("Recycle",
-                new PokemonMove(PokemonType.T_NORMAL, 0, 0, 40)));
-        m_moves.add(new MoveListEntry("Transform",
-                new PokemonMove(PokemonType.T_NORMAL, 0, 0, 10) {
-                    public int use(BattleMechanics mech, Pokemon user, Pokemon target) {
-                        user.removeStatus(StatChangeEffect.class);
-                        
-                        List statuses = target.getNormalStatuses(0);
-                        Iterator i = statuses.iterator();
-                        while (i.hasNext()) {
-                            StatusEffect effect = (StatusEffect)i.next();
-                            if (effect instanceof StatChangeEffect) {
-                                StatChangeEffect effectClone = (StatChangeEffect)effect.clone();
-                                effectClone.setDescription(null);
-                                user.addStatus(target, effectClone);
-                            }
-                        }
-                        
-                        user.addStatus(user, new TransformEffect(target));
-                        user.getField().refreshActivePokemon();
-
-                        return 0;
-                    }
-                    public boolean attemptHit(BattleMechanics mech, Pokemon source, Pokemon target) {
-                        return true;
-                    }
-                }
-            ));
-        m_moves.add(new MoveListEntry("Sketch",
-                new PokemonMove(PokemonType.T_NORMAL, 0, 0, 40)));
-        m_moves.add(new MoveListEntry("Natural Gift",
-                new PokemonMove(PokemonType.T_NORMAL, 0, 0, 40)));
-        m_moves.add(new MoveListEntry("Fling",
-                new PokemonMove(PokemonType.T_NORMAL, 0, 0, 40)));
-        // END TODO
+        
         m_moves.add(new MoveListEntry("Heal Order", new StatusMove(
             PokemonType.T_BUG, 0, 1.0, 10, new StatusEffect[] {
                 new PercentEffect(0.5, false, -1, null)
@@ -5658,7 +5586,7 @@ public class MoveList {
                 }
             }
         ));
-    m_moves.add(new MoveListEntry("Focus Energy", new StatusMove(
+    /*m_moves.add(new MoveListEntry("Focus Energy", new StatusMove(
             PokemonType.T_NORMAL, 0, 1.0, 30, new StatusEffect[] {
                 new StatusEffect() {
                         public String getName() {
@@ -5674,8 +5602,8 @@ public class MoveList {
                 },
             new boolean[] { true },
             new double[] { 1.0 }
-            )));
-    
+            )));*/
+        
     m_moves.add(new MoveListEntry("Magic Coat", new PokemonMove(
             PokemonType.T_PSYCHIC, 0, 1.0, 15) {
                 public int getPririty() {
@@ -7523,147 +7451,6 @@ public class MoveList {
             return !((eff instanceof BurnEffect) || (eff instanceof FreezeEffect) || 
                     (eff instanceof ParalysisEffect) || (eff instanceof PoisonEffect) ||
                     (eff instanceof SleepEffect) || (eff instanceof ConfuseEffect));
-        }
-    }
-    public static class TransformEffect extends StatusEffect {
-        private Pokemon m_target;
-        private int[] m_ivs, m_evs, m_base, m_pp, m_maxPp;
-        private int m_gender;
-        private String m_targetSpecies;
-        private String m_species;
-        private boolean m_shiny;
-        private boolean m_sprite;
-        private MoveListEntry[] m_entry;
-        private PokemonType[] m_types;
-        private PokemonNature m_nature;
-
-        public TransformEffect(Pokemon target) {
-            m_target = target;
-        }
-
-        public String getName() {
-            return "Transform";
-        }
-
-        public boolean isPassable() {
-            return false;
-        }
-
-        public boolean apply(Pokemon p) {
-            if ((m_target == null) || m_target.isFainted()) {
-                return false;
-            }
-            BattleField field = p.getField();
-            if (m_target.getSpeciesName().equals("Ditto")
-                    && !m_target.hasEffect(TransformEffect.class)) {
-                field.showMessage("But it failed!");
-                return false;
-            }
-        
-            // Copy stats of the target.
-            m_nature = p.getNature();
-            p.setNature(m_target.getNature());
-            int[] ivs = new int[6];
-            int[] evs = new int[6];
-            int[] base = new int[6];
-            m_ivs = new int[ivs.length];
-            m_evs = new int[evs.length];
-            m_base = p.getBaseStats();
-            System.arraycopy(m_target.getBaseStats(), 0, base, 0, base.length);
-            for (int i = 0; i < ivs.length; ++i) {
-                m_ivs[i] = p.getIv(i);
-                m_evs[i] = p.getEv(i);
-                ivs[i] = m_target.getIv(i);
-                evs[i] = m_target.getEv(i);
-            }
-            int hp = p.getStat(Pokemon.S_HP);
-            p.calculateStats(base, ivs, evs);
-            p.setRawStat(Pokemon.S_HP, hp);
-            
-            /** Record species of target for purposes of displaying a sprite. */
-            m_species = p.getSpeciesName();
-            m_targetSpecies = m_target.getSpeciesName();
-            p.setSpeciesName(m_targetSpecies);
-            m_shiny = p.isShiny();
-            m_gender = p.getGender();
-            
-            /** Unapply and then reapply held item in case it is one of
-             *  Ditto's unique held items.
-             */
-            HoldItem item = p.getItem();
-            if ((item != null) && item.isActive()) {
-                item.unapply(p);
-                item.apply(p);
-            }
-            
-            // Set ability.
-            p.setAbility(m_target.getAbility(), true);
-            
-            // Update pokemon's moves.
-            String[] moves = new String[4];
-            m_entry = new MoveListEntry[moves.length];
-            m_pp = new int[moves.length];
-            m_maxPp = new int[moves.length];
-            for (int i = 0; i < moves.length; ++i) {
-                m_pp[i] = p.getPp(i);
-                m_maxPp[i] = p.getMaxPp(i);
-                p.setPp(i, 5);
-                p.setMaxPp(i, m_target.getMaxPp(i) * (5 + p.getPpUpCount(i)) / 5);
-                moves[i] = m_target.getMoveName(i);
-                m_entry[i] = p.getMove(i);
-                p.setMove(i, m_target.getMove(i));
-            }
-            field.updateMoveNames(p.getParty(), p.getId(), moves);
-            
-            // Update type.
-            m_types = p.getTypes();
-            p.setType(m_target.getTypes());
-            
-            // Handle moves such as Hidden Power for new IVs.
-            p.switchInMoves();
-            
-            // Redraw the pokemon's sprite.
-            m_sprite = true;
-            
-            // Display a message.
-            field.showMessage(p.getName() + " transformed into " + m_target.getName() + "!");
-            return true;
-        }
-        
-        public void unapply(Pokemon p) {
-            p.setSpeciesName(m_species);
-            p.setNature(m_nature);
-            p.calculateStats(m_base, m_ivs, m_evs);
-            p.switchInMoves();
-            HoldItem item = p.getItem();
-            if ((item != null) && item.isActive()) {
-                item.deactivate();
-                item.activate();
-            }
-            String[] moves = new String[4];
-            for (int i = 0; i < moves.length; ++i) {
-                p.setPp(i, m_pp[i]);
-                p.setMaxPp(i, m_maxPp[i]);
-                p.setMove(i, m_entry[i]);
-                moves[i] = p.getMoveName(i);
-            }
-            p.setType(m_types);
-            BattleField field = p.getField();
-            field.updateMoveNames(p.getParty(), p.getId(), moves);
-            m_sprite = false;
-            field.refreshActivePokemon();
-        }
-        
-        public StatusEffect.Sprite getTransformedSprite() {
-            if (!m_sprite)
-                return null;
-            return new StatusEffect.Sprite(
-                    m_targetSpecies, m_gender, m_shiny
-                );
-        }
-        
-        public int getTier() {
-            return -1;
         }
     }
     

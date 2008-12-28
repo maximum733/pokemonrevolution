@@ -492,8 +492,8 @@ public class PersistenceManager implements Runnable {
 				species,
 				PokemonNature.getNature(random.nextInt(PokemonNature
 						.getNatureNames().length)),
-				species.getPossibleAbilities(GameServer.getSpeciesData())[random
-						.nextInt(species.getPossibleAbilities(GameServer.getSpeciesData()).length)],
+						(String) species.getPossibleAbilities(GameServer.getSpeciesData()).toArray()
+						[random.nextInt(species.getPossibleAbilities(GameServer.getSpeciesData()).toArray().length - 1)],
 				null, (random.nextInt(100) > 87 ? Pokemon.GENDER_FEMALE
 						: Pokemon.GENDER_MALE), 5, new int[] {
 						random.nextInt(32), // IVs

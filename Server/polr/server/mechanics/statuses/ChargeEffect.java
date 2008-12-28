@@ -1,3 +1,8 @@
+package polr.server.mechanics.statuses;
+
+import polr.server.battle.Pokemon;
+import polr.server.mechanics.moves.MoveListEntry;
+
 /*
  * ChargeEffect.java
  *
@@ -17,9 +22,6 @@
  * GNU General Public License for more details.
  */
 
-package polr.server.mechanics.statuses;
-import polr.server.battle.Pokemon;
-import polr.server.mechanics.moves.MoveListEntry;
 
 /**
  *

@@ -23,34 +23,19 @@
  */
 
 package polr.server.mechanics.moves;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+import java.io.*;
+import java.util.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-
-import org.simpleframework.xml.ElementArray;
-import org.simpleframework.xml.Root;
 
 /**
  *
  * @author Colin
  */
-@Root
 public class MoveSetData {
     
     /**
      * Set of all move sets.
      */
-	@ElementArray
     private MoveSet[] m_movesets = null;
     
     /**
@@ -155,7 +140,7 @@ public class MoveSetData {
     /**
      * Merge the full advance and d/p move databases together.
      */
-    public static void main(String[] args) throws Exception {
+    /*public static void main(String[] args) throws Exception {
         class Pair {
             public String first, second;
             Pair(String f, String s) {
@@ -217,7 +202,7 @@ public class MoveSetData {
         moves.saveToFile(new File("dpmovesets.db"));
         
         if (Math.abs(0) == 0)
-            return;*/
+            return;
         
         Pair[] changes = {
             new Pair("Ancient Power", "Ancientpower"),
@@ -235,10 +220,9 @@ public class MoveSetData {
             new Pair("Mud-slap", "Mud-Slap")
         };
         
-        //Properties props = shoddybattle.Main.getProperties("server.properties");
-        //shoddybattle.Main.initialise(props);
-        polr.server.battle.ModData data = 
-        	polr.server.battle.ModData.getDefaultData();
+        Properties props = shoddybattle.Main.getProperties("server.properties");
+        shoddybattle.Main.initialise(props);
+        shoddybattle.ModData data = shoddybattle.ModData.getDefaultData();
         //data.getMoveSetData().loadFromFile("dpmovesets.db");
         data.applyPatch(new FileInputStream(new File("movesetfixes.patch")), 1);
         //data.applyPatch(new FileInputStream(new File("nypc.patch")));
@@ -273,7 +257,7 @@ public class MoveSetData {
             }
         }
         data.getMoveSetData().saveToFile(new File("dpmovesets.db"));
-    }
+    }*/
     
     /**
      * Get the move set identified by the parameter.

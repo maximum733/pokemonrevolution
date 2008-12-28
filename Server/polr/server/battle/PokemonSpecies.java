@@ -27,9 +27,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementArray;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import polr.server.mechanics.PokemonType;
 import polr.server.mechanics.moves.MoveSet;
@@ -51,9 +50,7 @@ public class PokemonSpecies implements Serializable {
      * removing pokemon from the database without breaking existing teams,
      * although it is somewhat slow.
      */
-    @Element
     /*serializable*/ protected int m_species;
-    @Element
     /*serializable*/ protected String m_name;
     
     /**
@@ -64,18 +61,12 @@ public class PokemonSpecies implements Serializable {
     public static final int GENDER_BOTH = GENDER_MALE | GENDER_FEMALE;
     public static final int GENDER_NONE = 0;
     
-    @ElementArray
     transient protected int[] m_base;
-    
-    @ElementArray
     transient protected PokemonType[] m_type;
-    
-    @Element
     transient protected int m_genders; // Possible genders.
     
     private static PokemonSpeciesData m_default = new PokemonSpeciesData();
     
-    public PokemonSpecies() { }
     /**
      * Return the possible genders for this species.
      */
@@ -134,7 +125,7 @@ public class PokemonSpecies implements Serializable {
     /**
      * Return a TreeSet of possible abilities.
      */
-    public String[] getPossibleAbilities(PokemonSpeciesData data) {
+    public SortedSet getPossibleAbilities(PokemonSpeciesData data) {
         return data.getPossibleAbilities(m_name);
     }
     
@@ -264,7 +255,7 @@ public class PokemonSpecies implements Serializable {
     /**
      * Return a TreeSet of moves that the pokemon can learn.
      */
-    public String[] getLearnableMoves(PokemonSpeciesData data) {
+    public TreeSet getLearnableMoves(PokemonSpeciesData data) {
         return data.getLearnableMoves(m_species);
     }
     
@@ -273,10 +264,6 @@ public class PokemonSpecies implements Serializable {
      */
     public boolean canLearn(PokemonSpeciesData data, String move) {
         return data.canLearn(m_species, move);
-    }
-    
-    public PokemonSpecies getSpecies() {
-    	return this;
     }
 
 }
