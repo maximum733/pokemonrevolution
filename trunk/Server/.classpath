@@ -5,9 +5,9 @@
 	<classpathentry kind="lib" path="lib/slf4j-api-1.4.3.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-jdk14-1.4.3.jar"/>
 	<classpathentry kind="lib" path="lib/stax-1.2.0.jar"/>
-	<classpathentry kind="lib" path="ini4j-0.3.2-jdk14.jar"/>
+	<classpathentry kind="lib" path="lib/ini4j-0.3.2-jdk14.jar"/>
 	<classpathentry kind="lib" path="lib/mina-core-1.1.7.jar"/>
-	<classpathentry kind="lib" path="lib/tiled.jar"/>
+	<classpathentry kind="lib" path="lib/tiled-core.jar"/>
 	<classpathentry kind="lib" path="lib/stax-api-1.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/simple-xml-2.0.2.jar"/>
 	<classpathentry kind="output" path=""/>

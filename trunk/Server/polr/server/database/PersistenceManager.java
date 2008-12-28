@@ -191,7 +191,7 @@ public class PersistenceManager implements Runnable {
 			PlayerChar newPlayer = new PlayerChar();
 
 			newPlayer.setSprite(spriteName);
-			newPlayer.setMap(m_maps.getMap(-49, -47));
+			newPlayer.setMap(m_maps.getMap(0, 0));
 			newPlayer.setX(640);
 			newPlayer.setY(536 + 32);
 			newPlayer.setName(username);
