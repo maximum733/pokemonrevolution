@@ -284,9 +284,6 @@ public final class WildBattleField extends BattleField {
 					GameServer.getMechanics().calculateExpGain(
 							this.getParty(1)[0],
 							participatingPokemon.size(), false);
-				if (!(pokemon.getOriginalNo() == m_humanPlayer.getNo()) && m_humanPlayer.getName().equalsIgnoreCase(pokemon.getOriginalTrainer())){
-					expAmt = expAmt * 1.5;
-				}
 				double expTillLvl = 
 					getMechanics().getExpForLevel(
 					pokemon, pokemon.getLevel() + 1) 
@@ -464,7 +461,6 @@ public final class WildBattleField extends BattleField {
 	   /**
 	    * Clears all moves queued for execution
 		*/
-	@Override
 	public void clearQueue() {
 		m_queuedTurns[0] = null;
 		m_queuedTurns[1] = null;

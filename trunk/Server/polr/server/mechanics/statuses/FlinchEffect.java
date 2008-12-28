@@ -22,6 +22,7 @@
  */
 
 package polr.server.mechanics.statuses;
+
 import polr.server.battle.Pokemon;
 
 /**

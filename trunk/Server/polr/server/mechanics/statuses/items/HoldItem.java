@@ -23,9 +23,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementArray;
-
 import polr.server.battle.BattleField;
 import polr.server.battle.Pokemon;
 import polr.server.mechanics.JewelMechanics;
@@ -45,14 +42,12 @@ import polr.server.mechanics.statuses.StatusListener;
 import polr.server.mechanics.statuses.ToxicEffect;
 import polr.server.mechanics.statuses.abilities.IntrinsicAbility;
 import polr.server.mechanics.statuses.field.FieldEffect;
-import polr.server.object.PlayerChar;
 
 /**
  * A hold item that cures a status effect.
  */
 class StatusCureItem extends HoldItem implements StatusListener, Berry {
-    @Element
-	private Class m_effect;
+    private Class m_effect;
     
     public StatusCureItem(String name, Class eff) {
         super(name);
@@ -121,7 +116,6 @@ class WhiteHerbItem extends StatusCureItem {
  * particular kind of nature; if he does then the item also confuses.
  */
 class HealthBoostItem extends HoldItem implements Berry {
-	@Element
     private int m_stat;
     
     public HealthBoostItem(String name, int stat) {
@@ -164,7 +158,6 @@ class HealthBoostItem extends HoldItem implements Berry {
  * A hold item that boosts a stat once health falls below 25%.
  */
 class StatBoostItem extends HoldItem implements Berry {
-	@Element
     private int m_stat;
     
     public StatBoostItem(String name, int stat) {
@@ -212,7 +205,6 @@ class StatBoostItem extends HoldItem implements Berry {
  * A berry that restores a fixed amount of health.
  */
 class ConstantHealthBoostItem extends HoldItem implements Berry {
-	@Element
     private int m_change;
     public ConstantHealthBoostItem(String name, int change) {
         super(name);
@@ -239,11 +231,8 @@ class ConstantHealthBoostItem extends HoldItem implements Berry {
  * @author Colin
  */
 class ArceusPlate extends HoldItem {
-	@ElementArray
     private PokemonType[] m_oldType;
-	@Element
     private PokemonType m_type;
-	@Element
     private double m_factor = 1.1;
     
     public ArceusPlate(String name, PokemonType type) {
@@ -295,9 +284,8 @@ class ArceusPlate extends HoldItem {
  * @author Colin
  */
 class TypeBoostItem extends HoldItem {
-    @Element
+    
     protected PokemonType m_type;
-    @Element
     protected double m_factor = 1.1;
     
     /** Creates a new instance of TypeBoostItem */
@@ -331,7 +319,6 @@ class TypeBoostItem extends HoldItem {
  * Raises the power of STAB moves for a particular pokemon.
  */
 class StabOrbItem extends HoldItem {
-	@Element
     private String m_pokemon;
     
     public StabOrbItem(String name, String pokemon) {
@@ -362,9 +349,7 @@ class StabOrbItem extends HoldItem {
  * switches in.
  */
 class SwitchInBoostItem extends HoldItem {
-	@Element
     private int m_stat;
-	@Element
     private double m_mul;
     
     public SwitchInBoostItem(String name, int stat, double mul) {
@@ -411,7 +396,6 @@ class SpecialnessBoostItem extends HoldItem {
  * Item that applies a special effect to the user.
  */
 class SpecialEffectItem extends HoldItem {
-	@Element
     private StatusEffect m_effect;
     
     public SpecialEffectItem(String name, StatusEffect effect) {
@@ -453,9 +437,7 @@ class DestinyKnotItem extends HoldItem implements StatusListener {
  * Weakens the super-effective moves of one type used against the holder.
  */
 class EffectiveMoveWeakener extends HoldItem implements Berry {
-	@Element
     private PokemonType m_type;
-	@Element
     private boolean m_suitable;
     public EffectiveMoveWeakener(String name, PokemonType type) {
         super(name);
@@ -497,7 +479,6 @@ class EffectiveMoveWeakener extends HoldItem implements Berry {
  * Raises one of Clamperl's stats.
  */
 class DeepSeaItem extends HoldItem {
-	@Element
     private int m_stat;
     public DeepSeaItem(String name, int stat) {
         super(name);
@@ -529,6 +510,7 @@ class DeepSeaItem extends HoldItem {
  * @author Colin
  */
 public class HoldItem extends IntrinsicAbility {
+    
     private static HoldItemData m_default = new HoldItemData();
     
     static {
@@ -970,12 +952,7 @@ public class HoldItem extends IntrinsicAbility {
             }
         };
     }
-    public boolean useInBattle(PlayerChar user, BattleField field) {
-    	return false;
-    }
-    public boolean useInOverworld(PlayerChar user) {
-    	return false;
-    }
+    
     protected void registerAbility() {
         super.registerAbility();
         m_default.m_items.add(getName());

@@ -22,12 +22,7 @@
  */
 
 package polr.server.mechanics.moves;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-
-import org.simpleframework.xml.Element;
+import java.io.*;
 
 /**
  * This class represents an entry in a pokemon's move list.
@@ -37,15 +32,9 @@ public class MoveListEntry implements Serializable, Cloneable {
     
     private static final long serialVersionUID = 873410794589044553L;
     
-    @Element
     private String m_name;
-    
-    @Element
     transient private PokemonMove m_move;
     
-    public MoveListEntry() {
-    	// don't use outside of loading data!!1
-    }
     public Object clone() {
         try {
             MoveListEntry ret = (MoveListEntry)super.clone();

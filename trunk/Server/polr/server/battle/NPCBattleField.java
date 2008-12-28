@@ -313,10 +313,7 @@ public class NPCBattleField extends BattleField {
                                                                participatingPokemon.size(), false);
                                        showMessage(pokemon.getName() + " gained " + (int)expAmt +
                                        " experience points.");
-                                       double expTillLvl =
-                                               getMechanics().getExpForLevel(
-                                               pokemon, pokemon.getLevel() + 1)
-                                               - (pokemon.getExp() + expAmt);
+                                       double expTillLvl = GameServer.getMechanics().getExpForLevel(pokemon, pokemon.getLevel() + 1) - (pokemon.getExp() + expAmt);
                                        // No more negatives
                                        if (expTillLvl < 0){
                                                expTillLvl = 0;
@@ -479,7 +476,6 @@ public class NPCBattleField extends BattleField {
                System.out.println(m_humanPlayer.getName() + " " + m_queuedTurns[0] + " " + enemyName + " " + m_queuedTurns[1]);
        }
        
-       @Override
        public void clearQueue() {
                m_queuedTurns[0] = null;
                m_queuedTurns[1] = null;

@@ -22,7 +22,7 @@
  */
 
 package polr.server.mechanics.moves;
-import org.simpleframework.xml.Element;
+import java.io.Externalizable;
 
 import polr.server.battle.BattleField;
 import polr.server.battle.BattleTurn;
@@ -36,20 +36,12 @@ import polr.server.mechanics.PokemonType;
  */
 public class PokemonMove implements Cloneable {
     
-	@Element
     protected PokemonType m_type;
-	@Element
     protected int m_power;
-	@Element
     protected double m_accuracy;
-	@Element
     protected int m_pp;
-	@Element
     protected MoveListEntry m_entry;
     
-	public PokemonMove() {
-		
-	}
     /**
      * Initialise a typical attacking move.
      */

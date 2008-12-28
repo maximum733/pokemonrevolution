@@ -25,6 +25,7 @@ import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Random;
 
+import polr.server.GameServer;
 import polr.server.battle.Pokemon;
 import polr.server.battle.PokemonSpecies;
 import polr.server.battle.PokemonSpeciesData;
@@ -175,8 +176,8 @@ public class ServerMap {
 				species,
 				PokemonNature.getNature(random.nextInt(PokemonNature
 						.getNatureNames().length)),
-				species.getPossibleAbilities(speciesData)[random
-						.nextInt(species.getPossibleAbilities(speciesData).length)],
+						(String) species.getPossibleAbilities(GameServer.getSpeciesData()).toArray()
+						[random.nextInt(species.getPossibleAbilities(GameServer.getSpeciesData()).toArray().length - 1)],
 				null, species.getPossibleGenders(), level, new int[] {
 						random.nextInt(32), // IVs
 						random.nextInt(32), random.nextInt(32),
@@ -244,8 +245,8 @@ public class ServerMap {
 				species,
 				PokemonNature.getNature(random.nextInt(PokemonNature
 						.getNatureNames().length)),
-				species.getPossibleAbilities(speciesData)[random
-						.nextInt(species.getPossibleAbilities(speciesData).length)],
+						(String) species.getPossibleAbilities(GameServer.getSpeciesData()).toArray()
+						[random.nextInt(species.getPossibleAbilities(GameServer.getSpeciesData()).toArray().length - 1)],
 				null, species.getPossibleGenders(), level, new int[] {
 						random.nextInt(32), // IVs
 						random.nextInt(32), random.nextInt(32),

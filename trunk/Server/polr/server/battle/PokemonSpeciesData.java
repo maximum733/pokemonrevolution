@@ -32,17 +32,12 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.SortedSet;
 import java.util.TreeSet;
-
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementArray;
-import org.simpleframework.xml.ElementMap;
-import org.simpleframework.xml.Root;
 
 import polr.server.mechanics.PokemonType;
 import polr.server.mechanics.moves.MoveList;
@@ -54,22 +49,12 @@ import polr.server.mechanics.statuses.abilities.IntrinsicAbility;
  *
  * @author Colin
  */
-/**
-*
-* @author Colin
-*/
-@Root
 public class PokemonSpeciesData {
-	@ElementMap
-	private HashMap<String, String[]> m_abilities =
-		new HashMap<String, String[]>();
-	@ElementMap
-	private HashMap<String, String[]> m_ablNames = 
-		new HashMap<String, String[]>();
-	
-	private ArrayList<String> m_unimplemented = new ArrayList<String>();
-	@Element
-	private long m_lastModified;
+    
+    private HashMap m_abilities = new HashMap();
+    private HashMap m_ablNames = new HashMap();
+    private TreeSet m_unimplemented = new TreeSet();
+    private long m_lastModified;
     
     /**
      * A cache of movesets for each species where the origin of the move
@@ -77,13 +62,11 @@ public class PokemonSpeciesData {
      * of validating pokemon. To speed the latter operation up, this cache
      * is useful. Call cacheMoveSets() to create this cache.
      */
-    @ElementArray
-    private String[][] m_movesets;
+    private TreeSet[] m_movesets = null;
     
     /**
      * Database of all pokemon species.
      */
-    @ElementArray
     private PokemonSpecies[] m_database;
     
     /**
@@ -115,9 +98,9 @@ public class PokemonSpeciesData {
             stream.writeObject(s.m_base);
             stream.writeInt(s.m_genders);
             if (requireImplementation) {
-                String[] set = m_abilities.get(s.m_name);
-                //String[] abilities = (String[])set.toArray(new String[set.size()]);
-                //stream.writeObject(abilities);
+                TreeSet set = (TreeSet)m_abilities.get(s.m_name);
+                String[] abilities = (String[])set.toArray(new String[set.size()]);
+                stream.writeObject(abilities);
             } else {
                 stream.writeObject((String[])m_ablNames.get(s.m_name));
             }
@@ -154,7 +137,7 @@ public class PokemonSpeciesData {
         int size = stream.readInt();
         m_abilities = new HashMap();
         m_ablNames = new HashMap();
-        m_unimplemented = new ArrayList();
+        m_unimplemented = new TreeSet();
         m_database = new PokemonSpecies[size];
         for (int i = 0; i < size; ++i) {
             try {
@@ -190,7 +173,7 @@ public class PokemonSpeciesData {
         TreeSet unimplemented = new TreeSet();
         HashSet implemented = new HashSet();
         
-        m_movesets = new String[m_database.length][];
+        m_movesets = new TreeSet[m_database.length];
         for (int i = 0; i < m_database.length; ++i) {
             MoveSet set = null;
             try {
@@ -201,7 +184,7 @@ public class PokemonSpeciesData {
                 continue;
             }
             String[][] moves = set.getMoves();
-            ArrayList<String> list = new ArrayList<String>();
+            TreeSet list = new TreeSet();
             for (int j = 0; j < moves.length; ++j) {
                 if (!requireImplementation) {
                     list.addAll(Arrays.asList(moves[j]));
@@ -236,8 +219,7 @@ public class PokemonSpeciesData {
                     }
                 }
             }
-            m_movesets[i] = new String[1];
-            m_movesets[i] = list.toArray(m_movesets[i]);
+            m_movesets[i] = list;
         }
         
         // Print out moves that were unimplemented.
@@ -263,8 +245,8 @@ public class PokemonSpeciesData {
      * Add a pokemon's abilities to the HashMap.
      */
     public void setAbilities(String name, String[] abilities, boolean impl) {
-    	m_ablNames.put(name, abilities);
-        String[] set = new String[2];
+        m_ablNames.put(name, abilities);
+        SortedSet set = new TreeSet();
         if (abilities == null) {
             abilities = new String[0];
         }
@@ -275,7 +257,7 @@ public class PokemonSpeciesData {
                     m_unimplemented.add(ability);
                 }
             } else {
-                set[i] = ability;
+                set.add(ability);
             }
         }
         m_abilities.put(name, set);
@@ -298,17 +280,11 @@ public class PokemonSpeciesData {
         if (ability == null) {
             return false;
         }
-        String[] set = m_abilities.get(name);
+        SortedSet set = (SortedSet)m_abilities.get(name);
         if (set == null) {
             return false;
         }
-        if (set[1] == null) {
-        	return set[0].equals(ability);
-        }
-        if (set[0] == null) {
-        	return set[1].equals(ability);
-        }
-        return set[0].equals(ability) || set[1].equals(ability);
+        return set.contains(ability);
     }
     
     /**
@@ -324,8 +300,8 @@ public class PokemonSpeciesData {
      * Return a TreeSet of possible abilities. This only includes abilities
      * that are actually implemented.
      */
-    public String[] getPossibleAbilities(String name) {
-        return m_abilities.get(name);
+    public SortedSet getPossibleAbilities(String name) {
+        return (SortedSet)m_abilities.get(name);
     }
     
     /**
@@ -378,7 +354,7 @@ public class PokemonSpeciesData {
     /**
      * Return a TreeSet of moves that the pokemon can learn.
      */
-    public String[] getLearnableMoves(int i) {
+    public TreeSet getLearnableMoves(int i) {
         return m_movesets[i];
     }
     
@@ -386,15 +362,11 @@ public class PokemonSpeciesData {
      * Return whether this species can learn a particular move.
      */
     public boolean canLearn(int i, String move) {
-        String[] set = m_movesets[i];
+        TreeSet set = m_movesets[i];
         if (set == null) {
             return false;
         }
-        return (Arrays.binarySearch(set, move) >= 0);
+        return set.contains(move);
     }
     
 }
-
-
-    
-

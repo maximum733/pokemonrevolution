@@ -22,6 +22,8 @@
  */
 
 package polr.server.mechanics.statuses;
+import java.util.*;
+
 import polr.server.battle.BattleField;
 import polr.server.battle.Pokemon;
 import polr.server.battle.StatException;

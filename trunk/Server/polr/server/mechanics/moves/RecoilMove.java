@@ -22,6 +22,7 @@
  */
 
 package polr.server.mechanics.moves;
+
 import polr.server.battle.Pokemon;
 import polr.server.mechanics.BattleMechanics;
 import polr.server.mechanics.PokemonType;

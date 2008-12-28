@@ -299,7 +299,6 @@ public final class PvPBattleField extends BattleField {
 		}
 	}
 
-	@Override
 	public void clearQueue() {
 		for (int i = 0;	i < queuedTurns.length; i++)
 			queuedTurns[i] = null;

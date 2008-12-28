@@ -21,6 +21,7 @@ package polr.server.mechanics.statuses.abilities;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import polr.server.battle.BattleField;
@@ -100,14 +101,13 @@ class SynchronizeAbility extends IntrinsicAbility implements StatusListener {
  */
 public class IntrinsicAbility extends StatusEffect implements Comparable {
     
-    protected static HashMap<String, IntrinsicAbility> m_map = 
-    	new HashMap<String, IntrinsicAbility>();
+    protected static HashMap m_map = new HashMap();
     private String m_name = null;
     
     /**
      * List of abilities nullified by Mold Breaker.
      */
-    private static final HashSet<String> m_moldBreaker = new HashSet<String>(Arrays.asList(new String[] {
+    private static final HashSet m_moldBreaker = new HashSet(Arrays.asList(new String[] {
         "Battle Armor",
         "Clear Body",
         "Damp",
@@ -154,7 +154,7 @@ public class IntrinsicAbility extends StatusEffect implements Comparable {
     /**
      * List of moves that count as physical ("contact") attacks.
      */
-    private static final HashSet m_physical = new HashSet<String>(Arrays.asList(
+    private static final HashSet m_physical = new HashSet(Arrays.asList(new String[] {
         "Aerial Ace",
         "Ancientpower",
         "Arm Thrust",
@@ -266,7 +266,7 @@ public class IntrinsicAbility extends StatusEffect implements Comparable {
         "Waterfall",
         "Wing Attack",
         "Wrap"
-    ));
+    }));
     
     /**
      * Return whether a move is a physical attack.
@@ -275,6 +275,22 @@ public class IntrinsicAbility extends StatusEffect implements Comparable {
         return m_physical.contains(entry.getName());
     }
     
+    public static Set<String> getAbilityNames() {
+    	Set<String> result = new HashSet<String>();
+    	Iterator it = m_physical.iterator();
+    	while(it.hasNext()) {
+    		result.add((String) it.next());
+    	}
+    	it = m_moldBreaker.iterator();
+    	while(it.hasNext()) {
+    		result.add((String) it.next());
+    	}
+    	it = m_map.keySet().iterator();
+    	while(it.hasNext()) {
+    		result.add((String) it.next());
+    	}
+    	return result;
+    }
     /**
      * Initialise the HaspMap of abilities.
      */
@@ -469,10 +485,7 @@ public class IntrinsicAbility extends StatusEffect implements Comparable {
         new IntrinsicAbility("Inner Focus");
         new IntrinsicAbility("Insomnia");
         new IntrinsicAbility("Forecast");
-        //todo: implement
-        new IntrinsicAbility("Stall");
-        // todo: implement
-        new IntrinsicAbility("Simple");
+        
         new IntrinsicAbility("Intimidate") {
             public void switchIn(Pokemon a) {
                 Pokemon b = a.getOpponent();
@@ -1291,7 +1304,6 @@ public class IntrinsicAbility extends StatusEffect implements Comparable {
         return (IntrinsicAbility)m_map.get(ability);
     }
     
-    public IntrinsicAbility() { }
     /**
      * Intrinsic abilities generally do not tick.
      */
@@ -1355,9 +1367,6 @@ public class IntrinsicAbility extends StatusEffect implements Comparable {
         return ability.m_name.equals(m_name);
     }
     
-    public static Set<String> getAbilityNames() {
-    	return m_map.keySet();
-    }
     /**
      * Compare this object to another IntrinsicAbility.
      */

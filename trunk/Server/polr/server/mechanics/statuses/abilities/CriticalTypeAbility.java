@@ -35,8 +35,6 @@ public class CriticalTypeAbility extends IntrinsicAbility {
         m_type = type;
     }
     
-    // don't use
-    public CriticalTypeAbility() { super(); }
     public boolean isMoveTransformer(boolean enemy) {
         return !enemy;
     }

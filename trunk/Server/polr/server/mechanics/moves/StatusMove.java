@@ -44,11 +44,6 @@ public class StatusMove extends PokemonMove {
     // Is this is a personal enhancement move?
     private boolean m_personal = true;
     
-    public StatusMove() {
-    	super(
-    			PokemonType.T_NORMAL, 0, 0, 0);
-    	// do not use
-    }
     /**
      * Creates a new instance of StatusMove
      */

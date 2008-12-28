@@ -20,6 +20,8 @@
 
 package polr.server;
 
+import java.io.File;
+import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
 import java.util.concurrent.Executors;
@@ -130,7 +132,8 @@ public class GameServer {
 			Persister stream = new Persister();
 
 			MoveList ml = new MoveList(true);
-			MoveSetData ms;
+			MoveSetData ms = new MoveSetData();
+			p = new PokemonSpeciesData();
 			m = new JewelMechanics(5);
 			//Load all required databases
 			JewelMechanics.loadMoveTypes("res/movetypes.txt");

@@ -100,9 +100,7 @@ public abstract class BattleField {
     /** Creates a new instance of BattleField */
     public BattleField(BattleMechanics mech, Pokemon[][] pokemon) {
         m_mechanics = mech;
-        m_pokemon = pokemon;
-        attachField();
-        setPokemon(m_pokemon);
+        setPokemon(pokemon);
     }
     
     protected BattleField(BattleMechanics mech) {
@@ -157,8 +155,7 @@ public abstract class BattleField {
     public void attachField(int i) {
         Pokemon[] team = m_pokemon[i];
         for (int j = 0; j < team.length; ++j) {
-        	if (team[j] != null)
-        		team[j].attachToField(this, i, j);
+            team[j].attachToField(this, i, j);
         }
     }
     
@@ -532,7 +529,7 @@ public abstract class BattleField {
         int alive = 0;
         Pokemon[] pokemon = m_pokemon[idx];
         for (int i = 0; i < pokemon.length; ++i) {
-            if (pokemon[i] != null && !pokemon[i].isFainted()) {
+            if (!pokemon[i].isFainted()) {
                 ++alive;
             }
         }
@@ -641,8 +638,6 @@ public abstract class BattleField {
         }
     }
     
-    public abstract void clearQueue();
-    
     /**
      * Execute a turn.
      */
@@ -691,16 +686,14 @@ public abstract class BattleField {
         // Synchronise FieldEffects.
         synchroniseFieldEffects();
         
-        //showMessage("---");
+        showMessage("---");
         
-        clearQueue();
         if (request) {
             requestMoves();
         }
     }
 
-	 public void updateMoveNames(int party, int idx, String[] moves) {
-        
-    }
+	public void clearQueue() {
+	}
     
 }
