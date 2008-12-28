@@ -1,4 +1,0 @@
-opening:Opening 1.ogg
-robotchristmas:ChironBetaPrime.ogg
-battle:wildbattle.ogg
-route:route30.ogg
