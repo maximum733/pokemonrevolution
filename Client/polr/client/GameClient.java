@@ -47,6 +47,7 @@ import org.newdawn.slick.SlickException;
 import polr.client.engine.Animator;
 import polr.client.engine.GameMap;
 import polr.client.engine.GameMapMatrix;
+import polr.client.engine.MapLoader;
 import polr.client.logic.OurPlayer;
 import polr.client.logic.Player;
 import polr.client.logic.Player.Dirs;
@@ -94,8 +95,9 @@ public class GameClient extends BasicGame {
 	
 	public static PacketGenerator packetGen;
 	private GameMapMatrix mapMatrix;
+	private MapLoader m_mapLoader;
 	private LoadingScreen loading;
-	
+	private Settings m_settings;
 	
 	PartyInfo teamInfo;
 	public static final String CHARSEP = new String(new char[] { 27 });
@@ -104,17 +106,27 @@ public class GameClient extends BasicGame {
 	private static boolean updateTeamGUI = false;
 	private static boolean updateBattle = false;
 	
-	public GameClient() {
+	/**
+	 * Default constructor
+	 * @param settings
+	 */
+	public GameClient(Settings settings) {
 		super("Pokemon Online Revolution - Beta 1");
+		m_settings = settings;
 	}
 	
 	public static void main(String args[]) {
 		try {
-			// Load the options HashMap under the Slick Muffin framework.
-			// TODO: When packaging for webstart, turn this into a WebstartMuffin
-			//		 (no filename required for it, and Files don't work in WS)
-			AppGameContainer container = new AppGameContainer(new GameClient());
-			container.setDisplayMode(width, height, false);
+			//Load the user's settings (Create settings file if first time)
+			Settings settings = new Settings();
+			
+			//Check for map updates (Download maps if first time)
+			MapUpdater updater = new MapUpdater(settings.getMapRevision());
+			updater.checkSVN();
+			settings.setMapRevision(updater.getMapRevision());
+			
+			AppGameContainer container = new AppGameContainer(new GameClient(settings));
+			container.setDisplayMode(settings.getScreenWidth(), settings.getScreenHeight(), false);
 			container.start();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "An error occurred! \n"+ e.getLocalizedMessage());
@@ -146,14 +158,10 @@ public class GameClient extends BasicGame {
 		Player.loadSprites();
 		loadDPFont();
 		
-		// out login window, gets shown now
 		login = new LoginScreen(packetGen);
 		login.setVisible(true);
 		display.add(login);
 		
-		
-		/*intro = new IntroScreen();
-		display.add(intro);*/
 		g.getInput().enableKeyRepeat(100, 400);
 	}
 	
@@ -170,54 +178,8 @@ public class GameClient extends BasicGame {
 		}
 		if(newMap && isPlaying && loading.isVisible()) {		
 			//Load the current map first
-			GameMap map;
-			try {
-				map = new GameMap("res/maps/" + (mapX) + "." + (mapY) + ".tmx","res/maps");
-				map.setGraphics(g.getGraphics());
-                map.setPosition(1, 1, mapMatrix);
-                map.setCurrent(true);
-				mapMatrix.setMap(map, 1, 1);
-			} catch (SlickException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			//Load the other maps
-			int x = 0;
-			if(mapX > -30 && mapY > -30) {
-				//Only load surrounding maps if outdoors. All maps from -50,-50 to -31,-31 are indoors.
-				for(int y = -1; y < 2; y++) {
-					for(x = -1; x < 2; x++) {
-						try {
-							if(!(x == 0 && y == 0)) {
-								map = new GameMap("res/maps/" + String.valueOf(mapX + x) + "." + String.valueOf(mapY + y) + ".tmx","res/maps");
-								map.setGraphics(g.getGraphics());
-				                map.setPosition(x + 1, y + 1, mapMatrix);
-								mapMatrix.setMap(map, x + 1, y + 1);
-							}
-						} catch (Exception e) {
-							mapMatrix.setMap(null, x + 1, y + 1);
-							System.out.println("Map Load Failure: (" + (mapX + x) + ", " + (mapY + y) + ")");
-						}
-					}
-				}
-			} else {
-				mapMatrix.setMap(null, 0, 0);
-				mapMatrix.setMap(null, 1, 0);
-				mapMatrix.setMap(null, 2, 0);
-				mapMatrix.setMap(null, 0, 1);
-				mapMatrix.setMap(null, 2, 1);
-				mapMatrix.setMap(null, 0, 2);
-				mapMatrix.setMap(null, 1, 2);
-				mapMatrix.setMap(null, 2, 2);
-			}
-			map = mapMatrix.getMap(1, 1);
-			map.setXOffset(map.getXOffset());
-			map.setYOffset(map.getYOffset());
-			//Tell the server the maps are loaded
-			packetGen.write("um");
-			
-            //Reopen interface
-			loading.setVisible(false);
+			m_mapLoader = new MapLoader(mapMatrix, mapX, mapY, g.getGraphics(), loading);
+			new Thread(m_mapLoader).start();
 			newMap = false;
 		}
 		if (thisPlayer != null)
