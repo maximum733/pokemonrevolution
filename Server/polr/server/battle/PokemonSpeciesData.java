@@ -36,8 +36,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.SortedSet;
 import java.util.TreeSet;
+
+import org.simpleframework.xml.ElementArray;
+import org.simpleframework.xml.ElementMap;
+import org.simpleframework.xml.Root;
 
 import polr.server.mechanics.PokemonType;
 import polr.server.mechanics.moves.MoveList;
@@ -49,10 +52,14 @@ import polr.server.mechanics.statuses.abilities.IntrinsicAbility;
  *
  * @author Colin
  */
+@Root
 public class PokemonSpeciesData {
-    
-    private HashMap m_abilities = new HashMap();
-    private HashMap m_ablNames = new HashMap();
+	@ElementMap
+    private HashMap<String, String[]> m_abilities =
+            new HashMap<String, String[]>();
+    @ElementMap
+    private HashMap<String, String[]> m_ablNames = 
+            new HashMap<String, String[]>();
     private TreeSet m_unimplemented = new TreeSet();
     private long m_lastModified;
     
@@ -67,6 +74,7 @@ public class PokemonSpeciesData {
     /**
      * Database of all pokemon species.
      */
+    @ElementArray
     private PokemonSpecies[] m_database;
     
     /**
@@ -98,9 +106,9 @@ public class PokemonSpeciesData {
             stream.writeObject(s.m_base);
             stream.writeInt(s.m_genders);
             if (requireImplementation) {
-                TreeSet set = (TreeSet)m_abilities.get(s.m_name);
-                String[] abilities = (String[])set.toArray(new String[set.size()]);
-                stream.writeObject(abilities);
+                String [] set = m_abilities.get(s.m_name);
+                //String[] abilities = (String[])set.toArray(new String[set.size()]);
+                //stream.writeObject(abilities);
             } else {
                 stream.writeObject((String[])m_ablNames.get(s.m_name));
             }
@@ -246,7 +254,7 @@ public class PokemonSpeciesData {
      */
     public void setAbilities(String name, String[] abilities, boolean impl) {
         m_ablNames.put(name, abilities);
-        SortedSet set = new TreeSet();
+        String[] set = new String[2];
         if (abilities == null) {
             abilities = new String[0];
         }
@@ -257,7 +265,7 @@ public class PokemonSpeciesData {
                     m_unimplemented.add(ability);
                 }
             } else {
-                set.add(ability);
+                set[i] = ability;
             }
         }
         m_abilities.put(name, set);
@@ -277,14 +285,20 @@ public class PokemonSpeciesData {
      * Return whether a pokemon can have a particular ability.
      */
     public boolean canUseAbility(String name, String ability) {
-        if (ability == null) {
+    	if (ability == null) {
             return false;
         }
-        SortedSet set = (SortedSet)m_abilities.get(name);
+        String[] set = m_abilities.get(name);
         if (set == null) {
             return false;
         }
-        return set.contains(ability);
+        if (set[1] == null) {
+                return set[0].equals(ability);
+        }
+        if (set[0] == null) {
+                return set[1].equals(ability);
+        }
+        return set[0].equals(ability) || set[1].equals(ability);
     }
     
     /**
@@ -300,8 +314,8 @@ public class PokemonSpeciesData {
      * Return a TreeSet of possible abilities. This only includes abilities
      * that are actually implemented.
      */
-    public SortedSet getPossibleAbilities(String name) {
-        return (SortedSet)m_abilities.get(name);
+    public String[] getPossibleAbilities(String name) {
+        return m_abilities.get(name);
     }
     
     /**

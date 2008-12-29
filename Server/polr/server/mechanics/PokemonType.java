@@ -1,9 +1,32 @@
-package polr.server.mechanics;
+/*
+ * PokemonType.java
+ *
+ * Created on December 15, 2006, 1:50 PM
+ *
+ * This file is a part of Shoddy Battle.
+ * Copyright (C) 2006  Colin Fitzpatrick
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, visit the Free Software Foundation, Inc.
+ * online at http://gnu.org.
+ */
 
+package polr.server.mechanics;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.simpleframework.xml.Element;
+
 /**
  * This class represents the type of a pokemon or of a move.
  * @author Colin
@@ -11,11 +34,10 @@ import org.simpleframework.xml.Element;
 public class PokemonType implements Serializable {
     
     private static final long serialVersionUID = 328662720352042529L;
+    
     @Element
     private int m_type;
-    
-    private static ArrayList<PokemonType> m_typeList = 
-    	new ArrayList<PokemonType>();
+    private static ArrayList m_typeList = new ArrayList();
 
     /**
      * Constants representing each of the types.
@@ -109,6 +131,9 @@ public class PokemonType implements Serializable {
         return (PokemonType[])m_typeList.toArray(new PokemonType[m_typeList.size()]);
     }
     
+    /** Constructor used for serialization */
+    public PokemonType() {}
+    
     /**
      * Creates a new instance of PokemonType.
      * Note: this must be invoked in sequential order!
@@ -118,7 +143,6 @@ public class PokemonType implements Serializable {
         m_typeList.add(i, this);
     }
     
-    public PokemonType() { }
     /**
      * Get a PokemonType object by its id.
      */

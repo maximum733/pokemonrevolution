@@ -27,17 +27,22 @@ import java.io.*;
 import java.util.*;
 import java.net.URL;
 
+import org.simpleframework.xml.ElementArray;
+import org.simpleframework.xml.Root;
+
 /**
  *
  * @author Colin
  */
+@Root
 public class MoveSetData {
     
     /**
      * Set of all move sets.
      */
+	@ElementArray
     private MoveSet[] m_movesets = null;
-    
+	
     /**
      * Save the move sets to a file.
      */
@@ -47,9 +52,9 @@ public class MoveSetData {
             saveToFile(file);
             file.close();
         } catch (FileNotFoundException e) {
-            
+            e.printStackTrace();
         } catch (IOException e) {
-            
+            e.printStackTrace();
         }
     }
     
@@ -98,7 +103,7 @@ public class MoveSetData {
             loadFromFile(input);
             input.close();
         } catch (IOException e) {
-            
+            e.printStackTrace();
         }
     }
     
@@ -140,7 +145,7 @@ public class MoveSetData {
     /**
      * Merge the full advance and d/p move databases together.
      */
-    /*public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
         class Pair {
             public String first, second;
             Pair(String f, String s) {
@@ -202,7 +207,7 @@ public class MoveSetData {
         moves.saveToFile(new File("dpmovesets.db"));
         
         if (Math.abs(0) == 0)
-            return;
+            return;*/
         
         Pair[] changes = {
             new Pair("Ancient Power", "Ancientpower"),
@@ -220,7 +225,7 @@ public class MoveSetData {
             new Pair("Mud-slap", "Mud-Slap")
         };
         
-        Properties props = shoddybattle.Main.getProperties("server.properties");
+        /*Properties props = shoddybattle.Main.getProperties("server.properties");
         shoddybattle.Main.initialise(props);
         shoddybattle.ModData data = shoddybattle.ModData.getDefaultData();
         //data.getMoveSetData().loadFromFile("dpmovesets.db");
@@ -256,8 +261,8 @@ public class MoveSetData {
                 //}
             }
         }
-        data.getMoveSetData().saveToFile(new File("dpmovesets.db"));
-    }*/
+        data.getMoveSetData().saveToFile(new File("dpmovesets.db"));*/
+    }
     
     /**
      * Get the move set identified by the parameter.

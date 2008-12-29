@@ -176,8 +176,8 @@ public class ServerMap {
 				species,
 				PokemonNature.getNature(random.nextInt(PokemonNature
 						.getNatureNames().length)),
-						(String) species.getPossibleAbilities(GameServer.getSpeciesData()).toArray()
-						[random.nextInt(species.getPossibleAbilities(GameServer.getSpeciesData()).toArray().length - 1)],
+						species.getPossibleAbilities(species.getDefaultData())[random
+						                          						     .nextInt(species.getPossibleAbilities(species.getDefaultData()).length)],
 				null, species.getPossibleGenders(), level, new int[] {
 						random.nextInt(32), // IVs
 						random.nextInt(32), random.nextInt(32),
@@ -245,8 +245,8 @@ public class ServerMap {
 				species,
 				PokemonNature.getNature(random.nextInt(PokemonNature
 						.getNatureNames().length)),
-						(String) species.getPossibleAbilities(GameServer.getSpeciesData()).toArray()
-						[random.nextInt(species.getPossibleAbilities(GameServer.getSpeciesData()).toArray().length - 1)],
+						species.getPossibleAbilities(species.getDefaultData())[random
+						        .nextInt(species.getPossibleAbilities(species.getDefaultData()).length)],
 				null, species.getPossibleGenders(), level, new int[] {
 						random.nextInt(32), // IVs
 						random.nextInt(32), random.nextInt(32),
