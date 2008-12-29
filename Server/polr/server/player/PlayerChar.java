@@ -1146,5 +1146,4 @@ public class PlayerChar extends Char {
 	public void setTeamTag(String m_teamTag) {
 		this.m_teamTag = m_teamTag;
 	}
-
 }

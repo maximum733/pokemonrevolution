@@ -49,7 +49,7 @@ public abstract class Char implements Battleable, Positionable {
 	@Attribute
 	private String name;
 	@Element
-	private String sprite = "normal";
+	private int sprite = 0;
 	@Element
 	protected Directions facing = Directions.down;
 	
@@ -109,7 +109,7 @@ public abstract class Char implements Battleable, Positionable {
 		return name;
 	}
 
-	public String getSprite() {
+	public int getSprite() {
 		return sprite;
 	}
 
@@ -193,7 +193,7 @@ public abstract class Char implements Battleable, Positionable {
 		this.name = name;
 	}
 
-	public void setSprite(String sprite) {
+	public void setSprite(int sprite) {
 		this.sprite = sprite;
 	}
 

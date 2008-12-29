@@ -24,7 +24,7 @@ import polr.server.GameServer;
 import polr.server.battle.Pokemon;
 import polr.server.database.POLRDataEntry;
 import polr.server.database.POLRDatabase;
-import polr.server.database.PersistenceManager;
+import polr.server.database.PlayerDataManager;
 import polr.server.database.POLREvolution.EvoTypes;
 import polr.server.player.PlayerChar;
 
@@ -187,8 +187,8 @@ public class TradeLogic {
 		acceptedTrade[idx] = true;
 		if (acceptedTrade[0] == true && acceptedTrade[1] == true) {
         trade();
-				PersistenceManager.getDefault().save(players[0]);
-				PersistenceManager.getDefault().save(players[1]);
+				PlayerDataManager.getDefault().attemptSave(players[0]);
+				PlayerDataManager.getDefault().attemptSave(players[1]);
 				try {
 					players[0].endTrade(1);
 				}

@@ -137,6 +137,8 @@ public class Pokemon extends PokemonSpecies {
     private String [] m_moveNames;
     @Element
     private String m_originalTrainer;
+    @Element
+    private long m_originalNo;
     
     // Battle mechanics.
     private BattleMechanics m_mech;
@@ -1617,20 +1619,62 @@ public class Pokemon extends PokemonSpecies {
         return getStat(i, m_multiplier[i].getMultiplier());
     }
     
+    /**
+     * Returns an arraylist of moves waiting to be learned
+     * 
+     * @return
+     */
     public ArrayList<String> getMovesLearning() {
     	return m_movesLearning;
     }
 
-	public void reinitialise(JewelMechanics mechanics) {
-		
+    /**
+     * Reinitialises the Pokemon
+     * 
+     * @param b
+     */
+	public void reinitialise(BattleMechanics b) {
+		m_move = new MoveListEntry[4];
+        for (int i = 0; i < 4; i++) {
+                m_move[i] = MoveList.getDefaultData().getMove(
+                                m_moveNames[i]);
+        }
+        // Ryan really screwed up the EV check,
+        // so we'll just 0 them out if there's a negative
+        boolean hasNeg = false;
+        for (int i = 0; i < 6; i++) {
+                if (getEv(i) < 0) hasNeg = true;
+        }
+        if (hasNeg || getEvTotal() > 510) {
+                for (int i = 0; i < 6; i++) {
+                        setEv(i, 0);
+                }
+        }
+        m_accuracy = new StatMultiplier(true);
+        m_evasion = new StatMultiplier(true);
+        m_statuses = new ArrayList<StatusEffect>();
+        m_movesLearning = new ArrayList<String>();
+        m_mech = b;
 	}
+	
+
+    /**
+     * Get EV total.
+     */
+    public int getEvTotal() {
+            int total = 0;
+            for (int i = 0; i < 6; i++) {
+                    total += getEv(i);
+            }
+            return total;
+    }
 
 	public void setOriginalTrainer(String name) {
-	
+		m_originalTrainer = name;
 	}
 
 	public void setOriginalNo(long m_no) {
-		
+		m_originalNo = m_no;
 	}
 
 	public Pokemon evolve(Pokemon newPoke, PokemonSpecies species) {
@@ -1674,6 +1718,12 @@ public class Pokemon extends PokemonSpecies {
 		return m_baseExp;
 	}
 
+	/**
+	 * Learn a new move.
+	 * 
+	 * @param idx
+	 * @param moveName
+	 */
 	public void learnMove(int idx, String moveName) {
 		if (idx >= 0 && idx <= 3) {
             m_moveNames[idx] = moveName;

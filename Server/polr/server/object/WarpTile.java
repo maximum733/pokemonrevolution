@@ -32,7 +32,7 @@ public abstract class WarpTile extends NonPlayerChar {
 		this.x = x;
 		this.y = y;
 		this.setMap(serverMap);
-		this.setSprite("Invisible");
+		this.setSprite(0);
 		this.setName("");
 	}
 	
