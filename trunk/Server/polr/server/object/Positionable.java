@@ -31,12 +31,12 @@ public interface Positionable {
 	public int getY();
 
 	public String getName();
-	public String getSprite();
+	public int getSprite();
 
 	public Directions getFacing();
 	public ServerMap getMap();
 
-	public void setSprite(String sprite);
+	public void setSprite(int sprite);
 
 	public int getMapX();
 	public int getMapY();
