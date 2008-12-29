@@ -153,10 +153,10 @@ public class ClientHandler extends IoHandlerAdapter {
 		mapReader = new XMLMapTransformer();
 		
 		
-		mapMatrix.setMap(new ServerMap(mapReader.readMap("res/maps/0.0.tmx"), 0, 0), 0, 0); 
+		//mapMatrix.setMap(new ServerMap(mapReader.readMap("res/maps/0.0.tmx"), 0, 0), 0, 0); 
 		
-		persistor = new PersistenceManager("", mapMatrix, moveList);
-		new Thread(persistor).start();
+		//persistor = new PersistenceManager("", mapMatrix, moveList);
+		//new Thread(persistor).start();
 
 		loadIPBans();
 	}

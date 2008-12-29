@@ -27,8 +27,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.SortedSet;
 import java.util.TreeSet;
+
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementArray;
 
 import polr.server.mechanics.PokemonType;
 import polr.server.mechanics.moves.MoveSet;
@@ -50,8 +52,10 @@ public class PokemonSpecies implements Serializable {
      * removing pokemon from the database without breaking existing teams,
      * although it is somewhat slow.
      */
-    /*serializable*/ protected int m_species;
-    /*serializable*/ protected String m_name;
+    @Element
+    protected int m_species;
+    @Element
+    protected String m_name;
     
     /**
      * Gender constants.
@@ -61,8 +65,11 @@ public class PokemonSpecies implements Serializable {
     public static final int GENDER_BOTH = GENDER_MALE | GENDER_FEMALE;
     public static final int GENDER_NONE = 0;
     
+    @ElementArray
     transient protected int[] m_base;
+    @ElementArray
     transient protected PokemonType[] m_type;
+    @Element
     transient protected int m_genders; // Possible genders.
     
     private static PokemonSpeciesData m_default = new PokemonSpeciesData();
@@ -125,7 +132,7 @@ public class PokemonSpecies implements Serializable {
     /**
      * Return a TreeSet of possible abilities.
      */
-    public SortedSet getPossibleAbilities(PokemonSpeciesData data) {
+    public String[] getPossibleAbilities(PokemonSpeciesData data) {
         return data.getPossibleAbilities(m_name);
     }
     
@@ -200,6 +207,9 @@ public class PokemonSpecies implements Serializable {
         m_type = i.m_type;
         m_genders = i.m_genders;
     }
+    
+    /** Constructor used for serialization */
+    public PokemonSpecies() {}
     
     /**
      * Construct by name.

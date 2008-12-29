@@ -392,12 +392,10 @@ public class Pokemon extends PokemonSpecies {
         }
         
         String ability = null;
-        SortedSet set = species.getPossibleAbilities(speciesData);
-        if ((set != null) && (set.size() != 0)) {
-            String[] items =
-                    (String[])set.toArray(
-                        new String[set.size()]);
-            ability = items[random.nextInt(items.length)];
+        SortedSet set;
+        String[] itemes = species.getPossibleAbilities(speciesData);
+        if ((itemes != null)) {
+            ability = itemes[random.nextInt(itemes.length)];
         }
         
         set = data.getHoldItemData().getItemSet(species.getName());
@@ -598,9 +596,9 @@ public class Pokemon extends PokemonSpecies {
         }
         
         if (!canUseAbility(speciesData, m_abilityName)) {
-            SortedSet possibilities = getPossibleAbilities(speciesData);
-            if ((possibilities != null) && (possibilities.size() != 0)) {
-                m_abilityName = (String)possibilities.first();
+            String[] possibilities = getPossibleAbilities(speciesData);
+            if ((possibilities != null)) {
+                m_abilityName = (String)possibilities[0];
             }
         }
         

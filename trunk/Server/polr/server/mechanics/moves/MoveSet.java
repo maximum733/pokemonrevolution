@@ -18,9 +18,11 @@
  */
 
 package polr.server.mechanics.moves;
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.HashSet;
+
+import org.simpleframework.xml.ElementArray;
 
 /**
  *
@@ -36,12 +38,14 @@ public class MoveSet implements Serializable {
      * 3 - learned from an hm
      * 4 - egg moves
      */
+	@ElementArray
     private String[][] m_moves = null;
     
     /**
      * The level at which each natural move is learned. Each index corresponds
      * to a move in m_moves[].
      */
+	@ElementArray
     private int[] m_level = null;
     
     /**
@@ -110,4 +114,6 @@ public class MoveSet implements Serializable {
         m_moves = new String[][] { natural, tutor, tm, hm, egg };
     }
     
+    /** Constructor used for serialization */
+    public MoveSet() {}
 }
