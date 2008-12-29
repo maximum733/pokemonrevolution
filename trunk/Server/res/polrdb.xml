@@ -48234,15 +48234,15 @@
             </entry>
             <entry>
                <integer>28</integer>
-               <string>Aurora Beam</string>
+               <string>Ice Fang</string>
             </entry>
             <entry>
                <integer>33</integer>
-               <string>Bonemerang</string>
+               <string>Double Hit</string>
             </entry>
             <entry>
                <integer>20</integer>
-               <string>Bone Club</string>
+               <string>Mud Bomb</string>
             </entry>
             <entry>
                <integer>25</integer>
@@ -48311,7 +48311,7 @@
             </entry>
             <entry>
                <integer>34</integer>
-               <string>Memento</string>
+               <string>Embargo</string>
             </entry>
             <entry>
                <integer>62</integer>
@@ -48323,11 +48323,11 @@
             </entry>
             <entry>
                <integer>40</integer>
-               <string>Thunderpunch</string>
+               <string>Discharge</string>
             </entry>
             <entry>
                <integer>23</integer>
-               <string>Snatch</string>
+               <string>Magnet Rise</string>
             </entry>
             <entry>
                <integer>67</integer>
@@ -48355,11 +48355,11 @@
             </entry>
          </moves>
          <starterMoves>
-            <string>Role Play</string>
+            <string>Trick Room</string>
             <string>Conversion 2</string>
             <string>Tackle</string>
             <string>Conversion</string>
-            <string>Tail Glow</string>
+            <string>Nasty Plot</string>
          </starterMoves>
          <eggMoves/>
          <evolutions/>
@@ -48420,7 +48420,7 @@
             </entry>
             <entry>
                <integer>53</integer>
-               <string>Superpower</string>
+               <string>Close Combat</string>
             </entry>
             <entry>
                <integer>6</integer>
@@ -48432,7 +48432,7 @@
             </entry>
             <entry>
                <integer>31</integer>
-               <string>Psybeam</string>
+               <string>Psycho Cut</string>
             </entry>
             <entry>
                <integer>25</integer>
@@ -48440,7 +48440,7 @@
             </entry>
             <entry>
                <integer>39</integer>
-               <string>Uproar</string>
+               <string>Feint</string>
             </entry>
             <entry>
                <integer>10</integer>
@@ -48513,11 +48513,11 @@
          <moves>
             <entry>
                <integer>73</integer>
-               <string>Shadow Ball</string>
+               <string>Earth Power</string>
             </entry>
             <entry>
                <integer>13</integer>
-               <string>Shadow Punch</string>
+               <string>Magnet Bomb</string>
             </entry>
             <entry>
                <integer>19</integer>
@@ -48525,7 +48525,7 @@
             </entry>
             <entry>
                <integer>55</integer>
-               <string>Cross Chop</string>
+               <string>Stone Edge</string>
             </entry>
             <entry>
                <integer>43</integer>
@@ -48557,15 +48557,15 @@
             </entry>
             <entry>
                <integer>49</integer>
-               <string>Thunderpunch</string>
+               <string>Discharge</string>
             </entry>
          </moves>
          <starterMoves>
-            <string>Snatch</string>
-            <string>Role Play</string>
+            <string>Magnet Rise</string>
+            <string>Gravity</string>
             <string>Tackle</string>
             <string>Iron Defense</string>
-            <string>Shadow Punch</string>
+            <string>Magnet Bomb</string>
             <string>Block</string>
          </starterMoves>
          <eggMoves/>
@@ -48621,7 +48621,7 @@
             </entry>
             <entry>
                <integer>51</integer>
-               <string>Thief</string>
+               <string>Payback</string>
             </entry>
             <entry>
                <integer>30</integer>
@@ -48661,14 +48661,14 @@
             </entry>
             <entry>
                <integer>22</integer>
-               <string>Quick Attack</string>
+               <string>Shadow Sneak</string>
             </entry>
          </moves>
          <starterMoves>
             <string>Fire Punch</string>
             <string>Ice Punch</string>
             <string>Thunderpunch</string>
-            <string>Role Play</string>
+            <string>Gravity</string>
             <string>Bind</string>
             <string>Leer</string>
             <string>Night Shade</string>
@@ -48741,15 +48741,15 @@
             </entry>
             <entry>
                <integer>28</integer>
-               <string>Revenge</string>
+               <string>Wake-up Slap</string>
             </entry>
             <entry>
                <integer>31</integer>
-               <string>Tickle</string>
+               <string>Captivate</string>
             </entry>
             <entry>
                <integer>37</integer>
-               <string>Powder Snow</string>
+               <string>Ice Shard</string>
             </entry>
             <entry>
                <integer>10</integer>
@@ -48761,7 +48761,7 @@
             </entry>
             <entry>
                <integer>22</integer>
-               <string>Silver Wind</string>
+               <string>Omnious wind Wind</string>
             </entry>
          </moves>
          <starterMoves>
@@ -48835,11 +48835,11 @@
             </entry>
             <entry>
                <integer>50</integer>
-               <string>Thunderpunch</string>
+               <string>Discharge</string>
             </entry>
             <entry>
                <integer>29</integer>
-               <string>Silver Wind</string>
+               <string>Omnious Wind</string>
             </entry>
             <entry>
                <integer>22</integer>
@@ -48910,7 +48910,7 @@
             </entry>
             <entry>
                <integer>21</integer>
-               <string>Confusion</string>
+               <string>Swift</string>
             </entry>
             <entry>
                <integer>6</integer>
@@ -48934,7 +48934,7 @@
             </entry>
             <entry>
                <integer>66</integer>
-               <string>Hidden Power</string>
+               <string>Natural Gift</string>
             </entry>
             <entry>
                <integer>76</integer>
@@ -49009,11 +49009,11 @@
             </entry>
             <entry>
                <integer>61</integer>
-               <string>Helping Hand</string>
+               <string>Copycat</string>
             </entry>
             <entry>
                <integer>31</integer>
-               <string>Conversion</string>
+               <string>Lucky Chant</string>
             </entry>
             <entry>
                <integer>16</integer>
@@ -49025,11 +49025,11 @@
             </entry>
             <entry>
                <integer>66</integer>
-               <string>Hidden Power</string>
+               <string>Natural Gift</string>
             </entry>
             <entry>
                <integer>76</integer>
-               <string>Role Play</string>
+               <string>Healing Wish</string>
             </entry>
          </moves>
          <starterMoves>
@@ -49092,7 +49092,7 @@
             </entry>
             <entry>
                <integer>21</integer>
-               <string>Confusion</string>
+               <string>Swift</string>
             </entry>
             <entry>
                <integer>6</integer>
@@ -49100,7 +49100,7 @@
             </entry>
             <entry>
                <integer>61</integer>
-               <string>Double-edge</string>
+               <string>Last Resort</string>
             </entry>
             <entry>
                <integer>31</integer>
@@ -49112,11 +49112,11 @@
             </entry>
             <entry>
                <integer>46</integer>
-               <string>Tail Glow</string>
+               <string>Nasty Plot</string>
             </entry>
             <entry>
                <integer>66</integer>
-               <string>Hidden Power</string>
+               <string>Natural Gift</string>
             </entry>
             <entry>
                <integer>76</integer>
@@ -49175,7 +49175,7 @@
          <moves>
             <entry>
                <integer>90</integer>
-               <string>Aerial Ace</string>
+               <string>Aura Sphere</string>
             </entry>
             <entry>
                <integer>30</integer>
@@ -49183,7 +49183,7 @@
             </entry>
             <entry>
                <integer>40</integer>
-               <string>Blast Burn</string>
+               <string>Roar of Time</string>
             </entry>
             <entry>
                <integer>70</integer>
@@ -49191,11 +49191,11 @@
             </entry>
             <entry>
                <integer>60</integer>
-               <string>Shadow Ball</string>
+               <string>Earth Power</string>
             </entry>
             <entry>
                <integer>50</integer>
-               <string>Trick</string>
+               <string>Heal Block</string>
             </entry>
             <entry>
                <integer>20</integer>
@@ -49203,7 +49203,7 @@
             </entry>
             <entry>
                <integer>80</integer>
-               <string>Shadow Ball</string>
+               <string>Flash Cannon</string>
             </entry>
             <entry>
                <integer>10</integer>
@@ -49263,7 +49263,7 @@
          <moves>
             <entry>
                <integer>90</integer>
-               <string>Aerial Ace</string>
+               <string>Aura Sphere</string>
             </entry>
             <entry>
                <integer>30</integer>
@@ -49271,7 +49271,7 @@
             </entry>
             <entry>
                <integer>40</integer>
-               <string>Crabhammer</string>
+               <string>Spacial Rand</string>
             </entry>
             <entry>
                <integer>70</integer>
@@ -49279,11 +49279,11 @@
             </entry>
             <entry>
                <integer>60</integer>
-               <string>Shadow Ball</string>
+               <string>Earth Power</string>
             </entry>
             <entry>
                <integer>50</integer>
-               <string>Trick</string>
+               <string>Heal Block</string>
             </entry>
             <entry>
                <integer>20</integer>
@@ -49291,7 +49291,7 @@
             </entry>
             <entry>
                <integer>80</integer>
-               <string>Crabhammer</string>
+               <string>Aqua Tail</string>
             </entry>
             <entry>
                <integer>10</integer>
@@ -49351,11 +49351,11 @@
          <moves>
             <entry>
                <integer>17</integer>
-               <string>Fire Punch</string>
+               <string>Fire Fang</string>
             </entry>
             <entry>
                <integer>73</integer>
-               <string>Shadow Ball</string>
+               <string>Earth Power</string>
             </entry>
             <entry>
                <integer>41</integer>
@@ -49363,7 +49363,7 @@
             </entry>
             <entry>
                <integer>96</integer>
-               <string>Fire Blast</string>
+               <string>Magma Storm</string>
             </entry>
             <entry>
                <integer>9</integer>
@@ -49371,7 +49371,7 @@
             </entry>
             <entry>
                <integer>65</integer>
-               <string>Hyper Fang</string>
+               <string>Iron Head</string>
             </entry>
             <entry>
                <integer>33</integer>
@@ -49391,11 +49391,11 @@
             </entry>
             <entry>
                <integer>49</integer>
-               <string>Fire Punch</string>
+               <string>Lava Plume</string>
             </entry>
             <entry>
                <integer>88</integer>
-               <string>Cross Chop</string>
+               <string>Stone Edge</string>
             </entry>
          </moves>
          <starterMoves>
@@ -49448,26 +49448,26 @@
          <moves>
             <entry>
                <integer>100</integer>
-               <string>Hyper Beam</string>
+               <string>Giga Impact</string>
             </entry>
             <entry>
                <integer>75</integer>
-               <string>Endeavor</string>
+               <string>Crush Grip</string>
             </entry>
             <entry>
                <integer>50</integer>
-               <string>Extrasensory</string>
+               <string>Zen Headbutt</string>
             </entry>
             <entry>
                <integer>25</integer>
-               <string>Superpower</string>
+               <string>Revenge</string>
             </entry>
          </moves>
          <starterMoves>
             <string>Fire Punch</string>
             <string>Ice Punch</string>
             <string>Thunderpunch</string>
-            <string>Mega Punch</string>
+            <string>Dizzy Punch</string>
             <string>Knock Off</string>
             <string>Confuse Ray</string>
             <string>Stomp</string>
@@ -49521,7 +49521,7 @@
          <moves>
             <entry>
                <integer>90</integer>
-               <string>Aerial Ace</string>
+               <string>Aura Sphere</string>
             </entry>
             <entry>
                <integer>30</integer>
@@ -49529,7 +49529,7 @@
             </entry>
             <entry>
                <integer>40</integer>
-               <string>Superpower</string>
+               <string>Shadow Force</string>
             </entry>
             <entry>
                <integer>70</integer>
@@ -49537,11 +49537,11 @@
             </entry>
             <entry>
                <integer>60</integer>
-               <string>Shadow Ball</string>
+               <string>Earth Power</string>
             </entry>
             <entry>
                <integer>50</integer>
-               <string>Trick</string>
+               <string>Heal Block</string>
             </entry>
             <entry>
                <integer>20</integer>
@@ -49549,11 +49549,11 @@
             </entry>
             <entry>
                <integer>80</integer>
-               <string>Slash</string>
+               <string>Shadow Claw</string>
             </entry>
             <entry>
                <integer>10</integer>
-               <string>Silver Wind</string>
+               <string>Omnious Wind</string>
             </entry>
          </moves>
          <starterMoves>
@@ -49613,7 +49613,7 @@
             </entry>
             <entry>
                <integer>75</integer>
-               <string>Trick</string>
+               <string>Psycho Shift</string>
             </entry>
             <entry>
                <integer>38</integer>
@@ -49625,7 +49625,7 @@
             </entry>
             <entry>
                <integer>84</integer>
-               <string>Skill Swap</string>
+               <string>Lunar Dance</string>
             </entry>
             <entry>
                <integer>93</integer>
@@ -49645,7 +49645,7 @@
             </entry>
             <entry>
                <integer>66</integer>
-               <string>Psybeam</string>
+               <string>Psycho Cut</string>
             </entry>
          </moves>
          <starterMoves>
@@ -49727,7 +49727,7 @@
             </entry>
             <entry>
                <integer>54</integer>
-               <string>Water Sport</string>
+               <string>Aqua Ring</string>
             </entry>
             <entry>
                <integer>69</integer>
@@ -49809,7 +49809,7 @@
             </entry>
             <entry>
                <integer>76</integer>
-               <string>Skill Swap</string>
+               <string>Heart Swap</string>
             </entry>
             <entry>
                <integer>39</integer>
@@ -49817,7 +49817,7 @@
             </entry>
             <entry>
                <integer>54</integer>
-               <string>Water Sport</string>
+               <string>Aqua Ring</string>
             </entry>
             <entry>
                <integer>69</integer>
@@ -49880,7 +49880,7 @@
             </entry>
             <entry>
                <integer>75</integer>
-               <string>Memento</string>
+               <string>Nasty Plot</string>
             </entry>
             <entry>
                <integer>38</integer>
@@ -49896,7 +49896,7 @@
             </entry>
             <entry>
                <integer>93</integer>
-               <string>Waterfall</string>
+               <string>Dark Pulse</string>
             </entry>
             <entry>
                <integer>57</integer>
@@ -49904,7 +49904,7 @@
             </entry>
             <entry>
                <integer>29</integer>
-               <string>Pursuit</string>
+               <string>Faint Attack</string>
             </entry>
             <entry>
                <integer>20</integer>
@@ -49912,7 +49912,7 @@
             </entry>
             <entry>
                <integer>66</integer>
-               <string>Sleep Powder</string>
+               <string>Dark Void</string>
             </entry>
          </moves>
          <starterMoves>
@@ -49931,7 +49931,7 @@
          <kind>Gratitude</kind>
          <pokedex>It lives in flower patches and avoids detection by curling up to look like a flowering plant.</pokedex>
          <type1>Grass</type1>
-         <type2></type2>
+         <type2>Flying</type2>
          <baseStats length="6">
             <int>100</int>
             <int>100</int>
@@ -49968,7 +49968,7 @@
          <moves>
             <entry>
                <integer>100</integer>
-               <string>Solarbeam</string>
+               <string>Seed Flare</string>
             </entry>
             <entry>
                <integer>64</integer>
@@ -49976,7 +49976,7 @@
             </entry>
             <entry>
                <integer>73</integer>
-               <string>Psychic</string>
+               <string>Energy Ball</string>
             </entry>
             <entry>
                <integer>19</integer>
@@ -49984,11 +49984,11 @@
             </entry>
             <entry>
                <integer>82</integer>
-               <string>Grasswhistle</string>
+               <string>Sweet Kiss</string>
             </entry>
             <entry>
                <integer>55</integer>
-               <string>Leech Seed</string>
+               <string>Worry Seed</string>
             </entry>
             <entry>
                <integer>28</integer>
@@ -49996,11 +49996,11 @@
             </entry>
             <entry>
                <integer>46</integer>
-               <string>Hidden Power</string>
+               <string>Natural Gift</string>
             </entry>
             <entry>
                <integer>91</integer>
-               <string>Conversion</string>
+               <string>Healing Wish</string>
             </entry>
             <entry>
                <integer>37</integer>
@@ -50012,7 +50012,7 @@
             </entry>
          </moves>
          <starterMoves>
-            <string>Defense Curl</string>
+            <string>Growth</string>
          </starterMoves>
          <eggMoves/>
          <evolutions/>
@@ -50024,7 +50024,7 @@
          <name>Arceus</name>
          <internalName>Arceus</internalName>
          <kind>Alpha</kind>
-         <pokedex>It is described in mythology as the PokÈmon that shaped the universe with its 1,000 arms.</pokedex>
+         <pokedex>It is described in mythology as the Pokémon that shaped the universe with its 1,000 arms.</pokedex>
          <type1>Normal</type1>
          <type2></type2>
          <baseStats length="6">
@@ -50061,7 +50061,7 @@
          <moves>
             <entry>
                <integer>100</integer>
-               <string>Skull Bash</string>
+               <string>Judgement</string>
             </entry>
             <entry>
                <integer>90</integer>
@@ -50089,7 +50089,7 @@
             </entry>
             <entry>
                <integer>20</integer>
-               <string>Shadow Ball</string>
+               <string>Earth Power</string>
             </entry>
             <entry>
                <integer>80</integer>
@@ -50097,14 +50097,14 @@
             </entry>
             <entry>
                <integer>10</integer>
-               <string>Role Play</string>
+               <string>Gravity</string>
             </entry>
          </moves>
          <starterMoves>
             <string>Seismic Toss</string>
             <string>Cosmic Power</string>
-            <string>Hidden Power</string>
-            <string>Dragon Rage</string>
+            <string>Natural Gift</string>
+            <string>Punishement</string>
          </starterMoves>
          <eggMoves/>
          <evolutions/>
