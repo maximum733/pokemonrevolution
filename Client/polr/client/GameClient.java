@@ -312,9 +312,7 @@ public class GameClient extends BasicGame {
 	public boolean closeRequested() {
 		try {
 			packetGen.logout();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		} catch (Exception e) {}
 		return true;
 	}
 	
