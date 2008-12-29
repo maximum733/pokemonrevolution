@@ -125,15 +125,24 @@ public class ClientHandler extends IoHandlerAdapter {
 	public void messageReceived(IoSession session, Object msg) throws Exception {
 		//TODO: Add Ip ban check here
 		String line = msg.toString().trim();
+		String [] details;
 		PlayerChar player = null;
 		if (session.containsAttribute("player"))
 			player = (PlayerChar) session.getAttribute("player");
 		switch(line.charAt(0)) {
 		case 'l':
 			//User is logging in
+			details = line.substring(1).split(",");
+			m_persistor.attemptLogin(details[0], details[1], session);
 			break;
 		case 'r':
 			//User is registering
+			details = line.substring(1).split(",");
+			if(m_persistor.register(details[0], details[1], details[2], 
+					Integer.parseInt(details[3]), Integer.parseInt(details[4]))) {
+				session.write("rs");
+			} else
+				session.write("re");
 			break;
 		case 'U':
 			//User is moving up
