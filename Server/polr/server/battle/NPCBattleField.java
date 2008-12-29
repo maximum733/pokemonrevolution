@@ -35,8 +35,8 @@ import polr.server.mechanics.statuses.FreezeEffect;
 import polr.server.mechanics.statuses.PoisonEffect;
 import polr.server.mechanics.statuses.SleepEffect;
 import polr.server.mechanics.statuses.StatusEffect;
-import polr.server.object.PlayerChar;
 import polr.server.object.TrainerNonPlayerChar;
+import polr.server.player.PlayerChar;
 
 public class NPCBattleField extends BattleField {
        private Pokemon [] enemyParty;

@@ -40,7 +40,7 @@ import polr.server.map.MapMatrix;
 import polr.server.map.ServerMap;
 import polr.server.mechanics.moves.MoveList;
 import polr.server.mechanics.moves.MoveSetData;
-import polr.server.object.PlayerChar;
+import polr.server.player.PlayerChar;
 import polr.server.trade.TradeLogic;
 import tiled.io.xml.XMLMapTransformer;
 

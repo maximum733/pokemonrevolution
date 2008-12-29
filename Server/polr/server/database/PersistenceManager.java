@@ -15,7 +15,6 @@ import org.simpleframework.xml.graph.CycleStrategy;
 
 import polr.server.ClientHandler;
 import polr.server.GameServer;
-import polr.server.bag.Bag;
 import polr.server.battle.Pokemon;
 import polr.server.battle.PokemonSpecies;
 import polr.server.exception.DeleteException;
@@ -25,7 +24,8 @@ import polr.server.map.MapMatrix;
 import polr.server.mechanics.PokemonNature;
 import polr.server.mechanics.moves.MoveList;
 import polr.server.mechanics.moves.MoveListEntry;
-import polr.server.object.PlayerChar;
+import polr.server.player.Bag;
+import polr.server.player.PlayerChar;
 
 public class PersistenceManager implements Runnable {
 	private String m_path;
@@ -165,8 +165,6 @@ public class PersistenceManager implements Runnable {
 	public void registerUser(String username, String encpass, String email,
 			int sprite, int starter) throws RegisterException {
 		try {
-			// Throws a RegisterException if the server is in lockdown mode
-			if (GameServer.getLockdown() > 0) throw new RegisterException(RegisterException.Types.LOCKDOWN);
 			// Throws a RegisterException if the player is using a word with an odd symbol, or is too short or too long.
 			Pattern pattern = Pattern.compile("^[0-9a-zA-Z]{1,20}$");
 			Matcher matcher = pattern.matcher(username);
@@ -330,12 +328,6 @@ public class PersistenceManager implements Runnable {
 						throw new LoginException(LoginException.Types.BANNED);
 					if (ClientHandler.isIPBanned(session.getRemoteAddress().toString().substring(1).split(":")[0]))
 						throw new LoginException(LoginException.Types.BANNED);
-					if (GameServer.getLockdown() > 1) {
-						if ((GameServer.getLockdown() == 2) && !player.isPOK() && !player.isGM() && !player.isMod() && !player.isPMod())
-							throw new LoginException(LoginException.Types.OTHER);
-						if ((GameServer.getLockdown() == 3) && !player.isGM() && !player.isMod())
-							throw new LoginException(LoginException.Types.OTHER);
-					}
 					player.setIoSession(session);
 					session.setAttribute("player", player);
 					player.reinitialise();

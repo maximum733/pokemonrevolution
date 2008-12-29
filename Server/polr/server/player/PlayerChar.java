@@ -18,7 +18,7 @@
  along with Pokemon Global.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package polr.server.object;
+package polr.server.player;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,7 +33,6 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import polr.server.GameServer;
-import polr.server.bag.Bag;
 import polr.server.battle.NPCBattleField;
 import polr.server.battle.Pokemon;
 import polr.server.battle.PvPBattleField;
@@ -41,6 +40,12 @@ import polr.server.battle.WildBattleField;
 import polr.server.database.POLRDatabase;
 import polr.server.database.POLREvolution.EvoTypes;
 import polr.server.map.ServerMap.Directions;
+import polr.server.object.Char;
+import polr.server.object.NonPlayerChar;
+import polr.server.object.Pokedex;
+import polr.server.object.PokesBox;
+import polr.server.object.TrainerNonPlayerChar;
+import polr.server.player.PlayerClass.ClassType;
 import polr.server.trade.TradeItem;
 import polr.server.trade.TradeLogic;
 
@@ -52,11 +57,8 @@ public class PlayerChar extends Char {
 	@Element
 	private boolean m_isMod = false;
 	
-	@Element(required=false)
-	private boolean m_isGM = false;
-	
-	@Element(required=false)
-	private boolean m_isPMod = false;
+	@Element
+	private PlayerClass m_class;
 	
 	@Element
 	private long m_money = 0;
@@ -468,6 +470,8 @@ public class PlayerChar extends Char {
 		}
 		if (m_badges == null)
 			m_badges = new ArrayList<String>();
+		if(m_class == null)
+			m_class = new PlayerClass(ClassType.NONE);
 		for (Pokemon p : getParty()) {
 			if (p != null) {
 				p.reinitialise(GameServer.getMechanics());
@@ -854,22 +858,6 @@ public class PlayerChar extends Char {
 
 	public void setMod(boolean setMod) {
 		m_isMod = setMod;
-	}
-	
-	public boolean isGM() {
-		return m_isGM;
-	}
-	
-	public void setGM(boolean setGM) {
-		m_isGM = setGM;
-	}
-	
-	public boolean isPMod() {
-		return m_isPMod;
-	}
-	
-	public void setPMod(boolean setPMod) {
-		m_isPMod = setPMod;
 	}
 	
 	public void initialiseClientBag() {

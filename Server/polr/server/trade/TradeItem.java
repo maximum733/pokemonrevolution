@@ -20,7 +20,7 @@
 
 package polr.server.trade;
 
-import polr.server.object.PlayerChar;
+import polr.server.player.PlayerChar;
 
 public class TradeItem {
 	private PlayerChar trader;

@@ -29,7 +29,7 @@ import polr.server.mechanics.statuses.FreezeEffect;
 import polr.server.mechanics.statuses.ParalysisEffect;
 import polr.server.mechanics.statuses.PoisonEffect;
 import polr.server.mechanics.statuses.SleepEffect;
-import polr.server.object.PlayerChar;
+import polr.server.player.PlayerChar;
 /*
  * This handles item application serverside 
  */

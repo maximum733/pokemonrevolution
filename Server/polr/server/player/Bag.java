@@ -18,11 +18,12 @@
  along with Pokemon Global.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package polr.server.bag;
+package polr.server.player;
 
 import java.util.ArrayList;
 
 import org.simpleframework.xml.ElementList;
+
 
 public class Bag {
 	@ElementList

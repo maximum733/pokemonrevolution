@@ -26,7 +26,7 @@ import polr.server.database.POLRDataEntry;
 import polr.server.database.POLRDatabase;
 import polr.server.database.PersistenceManager;
 import polr.server.database.POLREvolution.EvoTypes;
-import polr.server.object.PlayerChar;
+import polr.server.player.PlayerChar;
 
 public class TradeLogic {
 	PlayerChar[] players;

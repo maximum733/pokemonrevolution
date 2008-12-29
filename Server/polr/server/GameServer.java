@@ -33,30 +33,6 @@ public class GameServer {
 	private static PokemonSpeciesData p;
 	private static POLRDatabase polr;
 	private static JewelMechanics m;
-	private static int lockdownState = 0;
-	private static boolean silenceState = false;
-
-	/* Returns lock down state server is in
-	 * 0 - None
-	 * 1 - New Registrations
-	 * 2 - All users except one flagged POK
-	 * 3 - All users except GMs/Mods
-	 */
-	public static void setLockdown(int i) {
-		lockdownState = i;
-	}
-	
-	public static int getLockdown() {
-		return lockdownState;
-	}
-	
-	public static void setSilence(boolean silence) {
-		silenceState = silence;
-	}
-	
-	public static boolean isSilent() {
-		return silenceState;
-	}
 	
    /**
     * Returns PokemonSpeciesData Database

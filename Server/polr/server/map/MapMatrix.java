@@ -20,7 +20,7 @@
 
 package polr.server.map;
 
-import polr.server.object.PlayerChar;
+import polr.server.player.PlayerChar;
 
 
 public class MapMatrix {

@@ -18,7 +18,7 @@
  along with Pokemon Global.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package polr.server.bag;
+package polr.server.player;
 
 import org.simpleframework.xml.Element;
 
