@@ -66,7 +66,6 @@ public class PlayerDataManager implements Runnable {
 	/**
 	 * Login and saving thread. NOTE: Only create one instance of this.
 	 */
-	@Override
 	public void run() {
 		String username, password;
 		IoSession session;
