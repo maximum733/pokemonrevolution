@@ -51,7 +51,7 @@ public class ProtocolHandler extends IoHandlerAdapter {
         // Print out total number of bytes read from the remote peer.
         System.err.println("Total " + session.getReadBytes() + " byte(s)");
         thisGame.setIsPlaying(false);
-        thisGame.returnToServerSelect();
+        //thisGame.returnToServerSelect();
     }
 
     /** 

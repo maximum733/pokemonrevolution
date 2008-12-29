@@ -38,7 +38,6 @@ import polr.client.ui.base.event.ActionListener;
 import polr.client.ui.base.event.MouseAdapter;
 import polr.client.ui.base.event.MouseEvent;
 import polr.client.ui.base.skin.simple.SimpleArrowButton;
-import polr.client.ui.window.MainInterface;
 /*
  * Displays information on pokemon currently in your party.
  */
@@ -52,15 +51,13 @@ public class PartyInfo extends Container {
 	Button[] switchUp = new Button[6];
 	Button[] switchDown = new Button[6];
 	Font dpFont;
-	MainInterface UI;	
 	
 	OurPokemon[] m_pokes;
 	
 	private PacketGenerator packetGen;
 	
-	public PartyInfo(OurPokemon[] ourPokes, PacketGenerator out, MainInterface gui){
-		packetGen = out;
-		UI = gui;
+	public PartyInfo(OurPokemon[] ourPokes, PacketGenerator out){
+		packetGen = out;;
 		m_pokes = ourPokes;
 		loadImages(ourPokes);
 		initGUI();
@@ -98,8 +95,7 @@ public class PartyInfo extends Container {
 					@Override
 					public void mouseReleased(MouseEvent e) {
 						super.mouseReleased(e);
-						PokeInfoPane info = new PokeInfoPane(m_pokes[j], UI);
-						UI.hide();
+						PokeInfoPane info = new PokeInfoPane(m_pokes[j]);
 						info.setAlwaysOnTop(true);
 						info.setLocationRelativeTo(null);
 						getDisplay().add(info);
