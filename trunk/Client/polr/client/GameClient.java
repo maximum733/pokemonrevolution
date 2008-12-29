@@ -20,20 +20,9 @@
 
 package polr.client;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.InetSocketAddress;
-import java.net.Proxy;
-import java.net.Socket;
-import java.net.SocketAddress;
-import java.net.SocketException;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
-import java.util.HashMap;
 import java.util.concurrent.Executors;
 
 import javax.swing.JOptionPane;
@@ -54,30 +43,22 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.muffin.FileMuffin;
 
 import polr.client.engine.Animator;
 import polr.client.engine.GameMap;
 import polr.client.engine.GameMapMatrix;
 import polr.client.logic.OurPlayer;
-import polr.client.logic.OurPokemon;
 import polr.client.logic.Player;
 import polr.client.logic.Player.Dirs;
 import polr.client.network.PacketGenerator;
 import polr.client.network.ProtocolHandler;
-import polr.client.network.ProxiedProtocolHandler;
 import polr.client.network.security.diskUtilities;
-import polr.client.ui.ChatWindow;
 import polr.client.ui.PartyInfo;
 import polr.client.ui.base.Container;
 import polr.client.ui.base.Display;
 import polr.client.ui.base.MessageBox;
-import polr.client.ui.speech.NPCSpeechPopup;
-import polr.client.ui.window.Battle;
-import polr.client.ui.window.IntroScreen;
 import polr.client.ui.window.LoadingScreen;
 import polr.client.ui.window.LoginScreen;
-import polr.client.ui.window.MainInterface;
 
 /**
  * GlobalGame launches the game client.
@@ -93,9 +74,7 @@ public class GameClient extends BasicGame {
 	private boolean isConnected;
 	public static final int width = 800;
 	public static final int height = 600;
-	private ProxiedProtocolHandler proxyHandle;
 
-	private ArrayList<Player> playerQueue;
 	private static Font dpFont;
 	private static Font dpFontSmall;
 
@@ -103,8 +82,7 @@ public class GameClient extends BasicGame {
 	
 	/** Stores user's screen name. */
 	public static String user;
-	public int mapX;
-	public int mapY;
+	public int mapX, mapY;
 	public boolean newMap;
 	/** Stores the Player object which the user is playing as. */
 	public OurPlayer thisPlayer;
@@ -113,14 +91,10 @@ public class GameClient extends BasicGame {
 	private Animator animator;
 	private Display display;
 	private static LoginScreen login;
-	private Battle battle;
-	private MainInterface mainInterface;
-	private LoadingScreen loading;
-	private static ChatWindow chat;
 	
 	public static PacketGenerator packetGen;
 	private GameMapMatrix mapMatrix;
-	private NPCSpeechPopup speechPopup;
+	private LoadingScreen loading;
 	
 	
 	PartyInfo teamInfo;
@@ -168,26 +142,9 @@ public class GameClient extends BasicGame {
 		animator = new Animator(mapMatrix, this);
 		isConnected = false;
 		newMap = false;
-		playerQueue = new ArrayList<Player>();
 
 		Player.loadSprites();
 		loadDPFont();
-		
-		loading = new LoadingScreen();
-		loading.setVisible(false);
-		display.add(loading);
-
-		/*
-		 * title = new TitleScreen(this); title.setVisible(true);
-		 * display.add(title);
-		 */
-		
-		
-		mainInterface = new MainInterface(this);
-		chat = new ChatWindow(packetGen);
-		mainInterface.setAlwaysOnTop(true);
-		teamInfo = new PartyInfo(new OurPokemon[]{null, null, null, null, null, null}, packetGen, mainInterface);
-		display.add(mainInterface);
 		
 		// out login window, gets shown now
 		login = new LoginScreen(packetGen);
@@ -210,13 +167,6 @@ public class GameClient extends BasicGame {
 	public void update(GameContainer g, int delta) {
 		if(!isConnected && SERVER.length() > 0) {
 			connect();
-		}
-		if (thisPlayer != null && thisPlayer.map != null && playerQueue.size() > 0) {
-			for(int i = 0; i < playerQueue.size(); i++) {
-				thisPlayer.map.addPlayer(playerQueue.get(i));
-			}
-			playerQueue.clear();
-			playerQueue.trimToSize();
 		}
 		if(newMap && isPlaying && loading.isVisible()) {		
 			//Load the current map first
@@ -267,44 +217,17 @@ public class GameClient extends BasicGame {
 			packetGen.write("um");
 			
             //Reopen interface
-			mainInterface.setVisible(true);
 			loading.setVisible(false);
 			newMap = false;
 		}
 		if (thisPlayer != null)
 			animator.animate();
-		if (battle != null && battle.isVisible() && dimmingColor != null && dimmingColor.getAlphaByte() < 150)
+		/*if (battle != null && battle.isVisible() && dimmingColor != null && dimmingColor.getAlphaByte() < 150)
 			dimmingColor = new Color(0, 0, 0, dimmingColor.getAlphaByte() + 2);
 		if (battle != null && !battle.isVisible()) {
 			//battle = null;
 			showHUD = true;
-		}
-		if (speechPopup != null && !speechPopup.isVisible()) {
-			showHUD = true;
-			speechPopup = null;
-		}
-		if (updateTeamGUI){
-			for (int i = 0; i < 6; i++){
-				try{
-					thisPlayer.getTeam()[i].setSprite();
-					thisPlayer.getTeam()[i].resizeSprite();
-					thisPlayer.getTeam()[i].setBackSprite();
-				} catch (NullPointerException e){}
-			}
-			updateTeam(thisPlayer.getTeam());
-			setTeamUpdate(false);
-		}
-		if (updateBattle){
-			for (int i = 0; i < 6; i++){
-				try{
-					getBattle().getEnemyPokes()[i].setSprite();
-					getBattle().getEnemyPokes()[i].resizeSprite();
-					getBattle().setEnemyDisplay(true);
-			    	getBattle().addEnemyDisplay();
-				} catch (NullPointerException e){}
-			}
-			setBattleUpdate(false);
-		}
+		}*/
 		try {
 			synchronized (display) {
 				display.update(g, delta);
@@ -313,12 +236,6 @@ public class GameClient extends BasicGame {
 		catch (NullPointerException e) { 
 			e.printStackTrace();
 		}
-	}
-	
-	public void setWildEnemy(String a, String b, String c, String d, String e){
-		getBattle().addEnemyPokemon(a, 0, Integer.parseInt(b), Integer.parseInt(c),
-				Integer.parseInt(d), e);
-    	setBattleUpdate(true);
 	}
 	
 	/**
@@ -346,10 +263,10 @@ public class GameClient extends BasicGame {
 			
 			arg1.resetTransform();
 			
-			if (battle != null && battle.isVisible() && dimmingColor != null) {
+			/*if (battle != null && battle.isVisible() && dimmingColor != null) {
 				arg1.setColor(dimmingColor);
 				arg1.fillRect(0, 0, arg0.getWidth(), arg0.getHeight());
-			}
+			}*/
 		}
 		try {
 			display.render(arg0, arg1);}
@@ -358,74 +275,11 @@ public class GameClient extends BasicGame {
 		} catch (ConcurrentModificationException e) { }	
 	}
 	
-	/**
-	 * Update player's party.
-	 * @param pokes The player's pokemon team
-	 */
-	public void updateTeam(OurPokemon[] pokes){
-		PartyInfo info = new PartyInfo(pokes, packetGen, mainInterface);
-		teamInfo = info;
-		for (int i = 0; i < 6; i++){
-			try{
-				thisPlayer.getTeam()[i].setBackSprite();
-			} catch (NullPointerException e){}
-		}
-		getInterface().setPartyInfo(info);
-		updateBagInfo();
-		setTeamUpdate(false);
-	}
-
-	public void updateBattle(){
-		setBattleUpdate(false);
-	}
-	
-	public void queuePlayer(Player newPlayer) {
-		playerQueue.add(newPlayer);
-	}
-	
 	public static void loadDPFont() throws SlickException {
 		dpFont = new AngelCodeFont("res/fonts/dp.fnt",
 		"res/fonts/dp.png");	
 		dpFontSmall = new AngelCodeFont("res/fonts/dp-small.fnt",
 		"res/fonts/dp-small.png");
-	}
-	
-	public void updateBagInfo() {
-		//if (getBattle() != null)
-			//getBattle().updateBagInfo();
-		this.getInterface().updateBag(thisPlayer);
-	}
-	public Battle getBattle() {
-		return battle;
-	}
-	
-	public void beginBattle(String enemyName, char type, int index) {
-		/*TempPokemon[] enemyPokes = new TempPokemon[6];
-		
-		String[] pokemonStats = battleData.split(";");
-		enemyPokes[0] = new TempPokemon();
-		enemyPokes[0].setName(pokemonStats[0]);
-		enemyPokes[0].setSpecies(Enums.Pokenum.values()
-				[Integer.parseInt(pokemonStats[1])]);
-		enemyPokes[0].setType1(Enums.Poketype.valueOf(
-				pokemonStats[2]));
-		try {
-			enemyPokes[0].setType2(Enums.Poketype.valueOf(
-					pokemonStats[3]));
-		} catch (Exception ex) {
-		}
-		enemyPokes[0].setGender(Integer.parseInt(pokemonStats[4]));
-		enemyPokes[0].setCurHP(Integer.parseInt(pokemonStats[5]));
-		enemyPokes[0].setMaxHP(Integer.parseInt(pokemonStats[6]));
-		enemyPokes[0].setLevel(Integer.parseInt(pokemonStats[7]));*/
-		
-		dimmingColor = new Color(0, 0, 0, 0);
-		battle = new Battle(enemyName, packetGen, thisPlayer.getTeam(), index, this);
-		if(type == 'p')
-			battle.getRun().setEnabled(false);
-		
-		showHUD=false;
-		getDisplay().add(battle);
 	}
 
 	/**
@@ -466,56 +320,10 @@ public class GameClient extends BasicGame {
 		        packetGen = new PacketGenerator(cf.getSession());
 			} else {
 				//Player requires a proxy
-				System.getProperties().put( "proxySet", "true" );
-				System.getProperties().put( "socksProxyHost", PROXY );
-				System.getProperties().put( "socksProxyPort", PROXYPORT );
-				/*Connect to proxy and then to server */
-				SocketAddress addr = new InetSocketAddress(PROXY, PROXYPORT);
-				Proxy proxy = new Proxy(Proxy.Type.SOCKS, addr);
-				Socket gameSocket = new Socket(proxy);
-				InetSocketAddress dest = new InetSocketAddress(SERVER, PORT);
-				try {
-					gameSocket.connect(dest);
-					
-					//Use input and output streams instead of apache mina
-	                BufferedReader netIn = new BufferedReader(new InputStreamReader(
-	                                gameSocket.getInputStream()));
-	                final PrintWriter netOut = new PrintWriter(new OutputStreamWriter(
-	                                gameSocket.getOutputStream()));
-	                int i = 0;
-	                while(!gameSocket.isConnected()) {
-			        	i++;
-			        	//Connection attempt times out and a dialog appears
-			        	if(i >= 10000) {
-			        		JOptionPane.showMessageDialog(null,
-									"Connection timed out.\n"
-									+ "The server may be offline.\n"
-									+ "Contact an administrator for assistance.");
-							SERVER = "";
-							return;
-			        	}
-			        }
-	                packetGen = new PacketGenerator(netOut);
-	                proxyHandle = new ProxiedProtocolHandler(this, netIn, netOut);
-	                new Thread(proxyHandle);
-				} catch (SocketException e) {
-					e.printStackTrace();
-					JOptionPane.showMessageDialog(null,
-							"Connection to port " + PORT + " not allowed by proxy.");
-					SERVER = "";
-					return;
-				} catch (Exception e) {
-					e.printStackTrace();
-					JOptionPane.showMessageDialog(null,
-							"Unknown network error occured.");
-					SERVER = "";
-					return;
-				}
 			}
 	        isConnected = true;
 	        login.setPacketGenerator(packetGen);
 	        login.goToLogin();
-	        mainInterface.setPacketGenerator(packetGen);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -526,18 +334,15 @@ public class GameClient extends BasicGame {
 		return loading;
 	}
 
-	public void setBattle(Battle b) {
-		battle = b;
-	}
-
 	public static void messageBox(String message, Container container) {
 		new MessageBox(message.replace('~','\n'), container);
 	}
+	
 	@Override
 	public boolean closeRequested() {
 		try {
-			finish();
-		} catch (IOException e) {
+			packetGen.logout();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return true;
@@ -551,28 +356,12 @@ public class GameClient extends BasicGame {
 		return dpFontSmall;
 	}
 	
-	private void finish() throws IOException {
-		try {
-			packetGen.logout();
-		} catch (Exception e)  {
-		}
-		//netOut.close();
-		System.exit(0);
-	}
-	
-	/*
-	 * public GlobalGame() { xOffset = 0; yOffset = 0; user = "hi";
-	 * startRendering(); }
-	 */
 	public GameMapMatrix getMapMatrix() {
 		return mapMatrix;
 	}
 	
 	public void talkToNPC(String speech) throws SlickException {
-		speechPopup = new NPCSpeechPopup(speech);
 		
-		showHUD = false;
-		getDisplay().add(speechPopup);
 	}
 	
 	public PartyInfo getPartyInfo(){
@@ -591,7 +380,7 @@ public class GameClient extends BasicGame {
 	@Override
 	public void mouseClicked(int button, int x, int y, int clickCount) {
 		super.mouseClicked(button, x, y, clickCount);
-		if (speechPopup != null && 
+		/*if (speechPopup != null && 
 				speechPopup.getAbsoluteBounds().contains(x, y)) {
 			try {
 			speechPopup.advance();
@@ -601,19 +390,6 @@ public class GameClient extends BasicGame {
 				speechPopup = null;
 				packetGen.write("TF");
 			}
-		/*} else if (getBattle() != null && getBattle().isVisible() &&
-				getBattle().getBattleSpeech() != null &&
-				getBattle().getBattleSpeech().getAbsoluteBounds().contains(x, y)) {
-			getBattle().getBattleSpeech().advance(); */
-		/*} else if (getLogin() != null && 
-				getLogin().getSpeechy() != null &&
-				getLogin().getSpeechy().getAbsoluteBounds().contains(x, y)) {
-			getLogin().getSpeechy().advance();*/
-		}
-		//TODO: RELEASE FOCUS OF INTERFACE
-		/*if (this.getChat() != null && this.getChat().getChatBox().hasFocus() && 
-				!this.getChat().getAbsoluteBounds().contains(x, y)) {
-			this.getChat().getChatBox().releaseFocus();
 		}*/
 	}
 
@@ -634,29 +410,6 @@ public class GameClient extends BasicGame {
 		user = s;
 	}
 	
-	public static void setTeamUpdate(boolean flag){
-		updateTeamGUI = flag;
-	}
-	
-	public static void setBattleUpdate(boolean flag){
-		updateBattle = flag;
-	}
-	
-	public MainInterface getInterface() {
-		return mainInterface;
-	}
-	
-	public void returnToServerSelect() {
-		login = new LoginScreen(packetGen);
-		login.setVisible(true);
-		login.goToServerSelect();
-		user = "";
-		SERVER = "";
-		thisPlayer = null;
-		isConnected = false;
-		packetGen = null;
-	}
-	
 	public void setIsPlaying(Boolean playing) {
 		isPlaying = playing;
 	}
@@ -670,9 +423,9 @@ public class GameClient extends BasicGame {
 	public void keyPressed(int key, char c) {
 		if (key == (Input.KEY_ESCAPE)) {
 			try {
-				finish();
+				packetGen.logout();
 				System.exit(0);
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -680,16 +433,10 @@ public class GameClient extends BasicGame {
 				&& thisPlayer.svrX == thisPlayer.x 
 				&& thisPlayer.svrY == thisPlayer.y
 				&& (loading != null && !loading.isVisible())
-				&& (battle == null || !battle.isVisible())
-				&& !newMap && (playerQueue.size() == 0 && thisPlayer.map.getMapPlayers().size() > 0)) {
-			if (!mainInterface.isChatting() && (key == (Input.KEY_RSHIFT))) {
-				//SURF TESTING
-				packetGen.write("S");
-			}
-			else if (key == (Input.KEY_DOWN)) {
+				&& !newMap && (thisPlayer.map.getMapPlayers().size() > 0)) {
+			if (key == (Input.KEY_DOWN)) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Down)) {
 					loading.setVisible(true);
-					mainInterface.setVisible(false);
 					packetGen.write("D");
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Down)) {
 					//thisPlayer.moveDown();
@@ -699,12 +446,10 @@ public class GameClient extends BasicGame {
 						packetGen.write("D");
 					}
 				}
-				//getReqWindow().clear();
 			}
 			else if (key == (Input.KEY_UP)) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Up)) {
 					loading.setVisible(true);
-					mainInterface.setVisible(false);
 					packetGen.write("U");
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Up)) {
 					//thisPlayer.moveUp();
@@ -714,12 +459,10 @@ public class GameClient extends BasicGame {
 						packetGen.write("U");
 					}
 				}
-				//getReqWindow().clear();
 			}
 			else if (key == (Input.KEY_LEFT)) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Left)) {
 					loading.setVisible(true);
-					mainInterface.setVisible(false);
 					packetGen.write("L");
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Left)) {
 					//thisPlayer.moveLeft();
@@ -729,12 +472,10 @@ public class GameClient extends BasicGame {
 						packetGen.write("L");
 					}
 				}
-				//getReqWindow().clear();
 			}
 			else if (key == (Input.KEY_RIGHT)) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Right)) {
 					loading.setVisible(true);
-					mainInterface.setVisible(false);
 					packetGen.write("R");
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Right)) {
 					//thisPlayer.moveRight();
@@ -744,42 +485,34 @@ public class GameClient extends BasicGame {
 						packetGen.write("R");
 					}
 				}
-				//getReqWindow().clear();
 			}
-			else if(!mainInterface.isChatting() && (key == (Input.KEY_S))) {
+			else if(/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_S))) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Down)) {
 					loading.setVisible(true);
-					mainInterface.setVisible(false);
 					packetGen.write("D");
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Down)) {
-					//thisPlayer.moveDown();
 					packetGen.write("D");
 				} else {
 					if (thisPlayer.facing != Dirs.Down) {
 						packetGen.write("D");
 					}
 				}
-				//getReqWindow().clear();
 			}
-			else if (!mainInterface.isChatting() && (key == (Input.KEY_W))) {
+			else if (/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_W))) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Up)) {
 					loading.setVisible(true);
-					mainInterface.setVisible(false);
 					packetGen.write("U");
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Up)) {
-					//thisPlayer.moveUp();
 					packetGen.write("U");
 				} else {
 					if (thisPlayer.facing != Dirs.Up) {
 						packetGen.write("U");
 					}
 				}
-				//getReqWindow().clear();
 			}
-			else if (!mainInterface.isChatting() && (key == (Input.KEY_A))) {
+			else if (/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_A))) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Left)) {
 					loading.setVisible(true);
-					mainInterface.setVisible(false);
 					packetGen.write("L");
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Left)) {
 					//thisPlayer.moveLeft();
@@ -789,12 +522,10 @@ public class GameClient extends BasicGame {
 						packetGen.write("L");
 					}
 				}
-				//getReqWindow().clear();
 			}
-			else if (!mainInterface.isChatting() && (key == (Input.KEY_D))) {
+			else if (/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_D))) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Right)) {
 					loading.setVisible(true);
-					mainInterface.setVisible(false);
 					packetGen.write("R");
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Right)) {
 					//thisPlayer.moveRight();
@@ -804,10 +535,9 @@ public class GameClient extends BasicGame {
 						packetGen.write("R");
 					}
 				}
-				//getReqWindow().clear();
 			}
-			else if ((key == (Input.KEY_SPACE) || key == (Input.KEY_RCONTROL)) && !thisPlayer.isAnimating() &&
-					(speechPopup == null || !speechPopup.isVisible())) {
+			else if ((key == (Input.KEY_SPACE) || key == (Input.KEY_RCONTROL)) && !thisPlayer.isAnimating()
+					/*(speechPopup == null || !speechPopup.isVisible())*/) {
 				int facingX = thisPlayer.x;
 				int facingY = thisPlayer.y;
 				
@@ -847,30 +577,26 @@ public class GameClient extends BasicGame {
 				
 			}
 			// Opens up and closes also the pokemon window
-			else if (!mainInterface.isChatting() && (key == (Input.KEY_P))){
+			/*else if (!mainInterface.isChatting() && (key == (Input.KEY_P))){
 				if (mainInterface.isHidden()){
 					mainInterface.goToPokemon();
 				}else{
 					mainInterface.hide();
 				}
-			}
+			}*/
 		}
 		if ((key == (Input.KEY_SPACE) || key == (Input.KEY_RCONTROL))) {
-			if ((speechPopup != null && speechPopup.isVisible())) {
+			/*if ((speechPopup != null && speechPopup.isVisible())) {
 				try {
 					speechPopup.advance();
 				} catch (Exception e) { getDisplay().remove(speechPopup);
 				speechPopup = null;
-				packetGen.write("TF"); }
+				packetGen.write("TF"); }*/
 			/*} else if (getLogin().getSpeechy() != null) {
 				getLogin().getSpeechy().advance();*/
-			} /*else if (battle != null && battle.getBattleSpeech() != null) {
+			/*} else if (battle != null && battle.getBattleSpeech() != null) {
 				battle.getBattleSpeech().advance();
 			}*/
 		}
-	}
-
-	public static ChatWindow getChat(){
-		return chat;
 	}
 }

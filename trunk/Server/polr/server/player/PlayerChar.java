@@ -151,6 +151,10 @@ public class PlayerChar extends Char {
 
 	private Object m_target;
 	
+	public PlayerClass getPlayerClass() {
+		return m_class;
+	}
+	
 	public String getPasswordHash() {
 		return m_passwordHash;
 	}

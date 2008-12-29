@@ -26,7 +26,6 @@ import org.newdawn.slick.loading.LoadingList;
 import polr.client.logic.OurPokemon;
 import polr.client.ui.base.Frame;
 import polr.client.ui.base.Label;
-import polr.client.ui.window.MainInterface;
 /*
  * This displays more detailed information on a single pokemon.
  * Currently only called by the PartyInfo dialog, but should be called by storage/boxes for easier viewing of boxed pokemon.
@@ -35,13 +34,7 @@ public class PokeInfoPane extends Frame{
 	private Label icon = new Label();
 	private Label data[] = new Label[14];
 	private Label labels[] = new Label[14];
-	
-	public PokeInfoPane(OurPokemon poke, MainInterface gui){
-		gui.hide();
-		loadImage(poke);
-		initGUI(poke);
-	}
-	
+
 	public PokeInfoPane(OurPokemon poke){
 		loadImage(poke);
 		initGUI(poke);
