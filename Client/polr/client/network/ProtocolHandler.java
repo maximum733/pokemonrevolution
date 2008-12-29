@@ -62,10 +62,38 @@ public class ProtocolHandler extends IoHandlerAdapter {
 	public void messageReceived(IoSession session, Object m) {
     	Player p;
         String message = (String) m;
+        String [] details;
         System.out.println(message);
         // Print out read buffer content.
         switch(message.charAt(0)) {
-        
+        case 'l':
+        	//Login information
+        	switch(message.charAt(1)) {
+        	case 's':
+        		//Successful login
+        		break;
+        	case '0':
+        		//Account does not exist
+        		break;
+        	case '1':
+        		//Account is banned
+        		break;
+        	case '2':
+        		//Password is wrong
+        		break;
+        	}
+        	break;
+        case 'r':
+        	//Registration information
+        	switch(message.charAt(1)) {
+        	case 's':
+        		//Successful Registration
+        		break;
+        	case 'e':
+        		//An error occurred
+        		break;
+        	}
+        	break;
         }
 	}
     
