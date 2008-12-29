@@ -58,6 +58,8 @@ import polr.client.ui.PartyInfo;
 import polr.client.ui.base.Container;
 import polr.client.ui.base.Display;
 import polr.client.ui.base.MessageBox;
+import polr.client.ui.base.Sui;
+import polr.client.ui.base.theme.RedTheme;
 import polr.client.ui.screen.LoadingScreen;
 import polr.client.ui.screen.StartScreen;
 
@@ -164,6 +166,12 @@ public class GameClient extends BasicGame {
 		display.add(login);
 		
 		g.getInput().enableKeyRepeat(100, 400);
+		
+		//sets the skin and updates the display
+		  RedTheme skin = new RedTheme();
+		  Sui.setTheme(skin);
+		  Sui.updateComponentTreeSkin(display); //<-- updates the skin
+
 	}
 	
 	/**
