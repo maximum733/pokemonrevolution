@@ -47570,7 +47570,7 @@
             </entry>
             <entry>
                <integer>67</integer>
-               <string>Hyper Beam</string>
+               <string>Giga Impact</string>
             </entry>
             <entry>
                <integer>16</integer>
@@ -47582,7 +47582,7 @@
             </entry>
             <entry>
                <integer>37</integer>
-               <string>Thunderpunch</string>
+               <string>Discharge</string>
             </entry>
             <entry>
                <integer>25</integer>
@@ -47681,7 +47681,7 @@
             </entry>
             <entry>
                <integer>37</integer>
-               <string>Fire Punch</string>
+               <string>Lava Plume</string>
             </entry>
             <entry>
                <integer>25</integer>
@@ -47754,8 +47754,8 @@
          <starterMoves>
             <string>Sky Attack</string>
             <string>Extremespeed</string>
-            <string>Aerial Ace</string>
-            <string>Rock Slide</string>
+            <string>Aura Sphere</string>
+            <string>Air Slash</string>
          </starterMoves>
          <eggMoves/>
          <evolutions/>
@@ -47814,15 +47814,19 @@
             </entry>
             <entry>
                <integer>43</integer>
-               <string>Screech</string>
+               <string>Slash</string>
             </entry>
             <entry>
                <integer>49</integer>
-               <string>Rock Slide</string>
+               <string>U-turn</string>
             </entry>
             <entry>
                <integer>54</integer>
-               <string>Shadow Ball</string>
+               <string>Air Slash</string>
+            </entry>
+			<entry>
+               <integer>57</integer>
+               <string>Bug Buzz</string>
             </entry>
             <entry>
                <integer>22</integer>
@@ -47842,7 +47846,7 @@
             </entry>
             <entry>
                <integer>38</integer>
-               <string>Slash</string>
+               <string>Feint</string>
             </entry>
             <entry>
                <integer>6</integer>
@@ -47850,7 +47854,7 @@
             </entry>
             <entry>
                <integer>46</integer>
-               <string>Signal Beam</string>
+               <string>Screech</string>
             </entry>
             <entry>
                <integer>14</integer>
@@ -47858,8 +47862,8 @@
             </entry>
          </moves>
          <starterMoves>
-            <string>Leaf Blade</string>
-            <string>Silver Wind</string>
+            <string>Night Slash</string>
+            <string>Bug Bite</string>
             <string>Tackle</string>
             <string>Foresight</string>
             <string>Quick Attack</string>
@@ -47932,7 +47936,7 @@
             </entry>
             <entry>
                <integer>50</integer>
-               <string>Double-edge</string>
+               <string>Last Resort</string>
             </entry>
             <entry>
                <integer>57</integer>
@@ -47945,6 +47949,10 @@
             <entry>
                <integer>71</integer>
                <string>Leaf Blade</string>
+            </entry>
+			<entry>
+               <integer>78</integer>
+               <string>Swords Dance</string>
             </entry>
             <entry>
                <integer>22</integer>
@@ -48011,7 +48019,7 @@
             </entry>
             <entry>
                <integer>36</integer>
-               <string>Powder Snow</string>
+               <string>Ice Shard</string>
             </entry>
             <entry>
                <integer>8</integer>
@@ -48019,11 +48027,11 @@
             </entry>
             <entry>
                <integer>43</integer>
-               <string>Aurora Beam</string>
+               <string>Ice Fang</string>
             </entry>
             <entry>
                <integer>50</integer>
-               <string>Double-edge</string>
+               <string>Last Resort</string>
             </entry>
             <entry>
                <integer>57</integer>
@@ -48036,6 +48044,10 @@
             <entry>
                <integer>71</integer>
                <string>Blizzard</string>
+            </entry>
+			<entry>
+               <integer>78</integer>
+               <string>Barrier</string>
             </entry>
             <entry>
                <integer>22</integer>
@@ -48113,11 +48125,11 @@
             </entry>
             <entry>
                <integer>38</integer>
-               <string>Signal Beam</string>
+               <string>U-turn</string>
             </entry>
             <entry>
                <integer>31</integer>
-               <string>Leaf Blade</string>
+               <string>Night Slash</string>
             </entry>
             <entry>
                <integer>16</integer>
@@ -48129,7 +48141,7 @@
             </entry>
             <entry>
                <integer>42</integer>
-               <string>Strength</string>
+               <string>X-scissors</string>
             </entry>
             <entry>
                <integer>12</integer>
@@ -48145,10 +48157,10 @@
             </entry>
          </moves>
          <starterMoves>
-            <string>Spark</string>
-            <string>Aurora Beam</string>
-            <string>Fire Punch</string>
-            <string>Sludge Bomb</string>
+            <string>Thunder Fang</string>
+            <string>Ice Fang</string>
+            <string>Fire Fang</string>
+            <string>Poison Jab</string>
             <string>Sand-Attack</string>
             <string>Harden</string>
             <string>Knock Off</string>
