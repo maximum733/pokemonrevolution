@@ -41,6 +41,8 @@ public class MapUpdater {
 			StringTokenizer map = new StringTokenizer(maps);
 			int currentVersion = Integer.parseInt(map.nextToken());
 			if(m_version < currentVersion) {
+				JOptionPane.showMessageDialog(null,"POLR is about to update maps, this may take a few minutes. \n"+
+						"A window will appear once it has finished.");
 				String filename;
 				URL nextMap;
 				PrintWriter output;

@@ -18,7 +18,7 @@
  along with Pokemon Global.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package polr.client.ui.window;
+package polr.client.ui.screen;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;

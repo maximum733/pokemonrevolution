@@ -58,8 +58,8 @@ import polr.client.ui.PartyInfo;
 import polr.client.ui.base.Container;
 import polr.client.ui.base.Display;
 import polr.client.ui.base.MessageBox;
-import polr.client.ui.window.LoadingScreen;
-import polr.client.ui.window.LoginScreen;
+import polr.client.ui.screen.LoadingScreen;
+import polr.client.ui.screen.StartScreen;
 
 /**
  * GlobalGame launches the game client.
@@ -91,7 +91,7 @@ public class GameClient extends BasicGame {
 	/** The top-level Sui display. */
 	private Animator animator;
 	private Display display;
-	private static LoginScreen login;
+	private static StartScreen login;
 	
 	public static PacketGenerator packetGen;
 	private GameMapMatrix mapMatrix;
@@ -124,6 +124,7 @@ public class GameClient extends BasicGame {
 			MapUpdater updater = new MapUpdater(settings.getMapRevision());
 			updater.checkSVN();
 			settings.setMapRevision(updater.getMapRevision());
+			settings.saveSettings();
 			
 			AppGameContainer container = new AppGameContainer(new GameClient(settings));
 			container.setDisplayMode(settings.getScreenWidth(), settings.getScreenHeight(), false);
@@ -158,7 +159,7 @@ public class GameClient extends BasicGame {
 		Player.loadSprites();
 		loadDPFont();
 		
-		login = new LoginScreen(packetGen);
+		login = new StartScreen(packetGen);
 		login.setVisible(true);
 		display.add(login);
 		
@@ -285,7 +286,6 @@ public class GameClient extends BasicGame {
 			}
 	        isConnected = true;
 	        login.setPacketGenerator(packetGen);
-	        login.goToLogin();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -334,7 +334,7 @@ public class GameClient extends BasicGame {
 		return display;
 	}
 
-	public static LoginScreen getLogin() {
+	public static StartScreen getLogin() {
 		return login;
 	}
 

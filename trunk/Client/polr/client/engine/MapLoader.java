@@ -4,7 +4,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 import polr.client.GameClient;
-import polr.client.ui.window.LoadingScreen;
+import polr.client.ui.screen.LoadingScreen;
 
 public class MapLoader implements Runnable {
 	private GameMapMatrix m_mapMatrix;
