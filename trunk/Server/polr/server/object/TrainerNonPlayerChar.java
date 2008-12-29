@@ -21,6 +21,7 @@
 package polr.server.object;
 
 import polr.server.battle.Pokemon;
+import polr.server.player.PlayerChar;
 
 public abstract class TrainerNonPlayerChar extends NonPlayerChar {
 	private String [] pokeData;

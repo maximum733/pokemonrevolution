@@ -21,6 +21,7 @@
 package polr.server.object;
 
 import polr.server.map.ServerMap;
+import polr.server.player.PlayerChar;
 
 public abstract class WarpTile extends NonPlayerChar {
 	private int mapX, mapY, x, y;

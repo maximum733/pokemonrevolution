@@ -21,6 +21,7 @@
 package polr.server.object;
 
 import polr.server.map.ServerMap.Directions;
+import polr.server.player.PlayerChar;
 
 public abstract class NonPlayerChar extends Char {
 	private long index;
