@@ -21,7 +21,6 @@
 package polr.server.battle;
 
 import java.util.LinkedHashSet;
-import java.util.Random;
 import java.util.Set;
 
 import polr.server.mechanics.BattleMechanics;
@@ -218,23 +217,11 @@ public final class PvPBattleField extends BattleField {
 		endBattle(3);
 		//Reward winner
 		if(this.getTrainerName(winner) == players[0].getName()) {
-			if(players[0].getplayerClass().equals("Thief")){
-				Random generator = new Random();
-				int steal = generator.nextInt(7) + 1;
-				players[0].addPokemon(players[1].getParty()[steal]);
-				players[1].removePokemon(players[1].getParty()[steal]);
-			}
 			players[0].setMoney(players[0].getMoney() + prizeMoney);
 			players[1].setMoney(players[1].getMoney() - prizeMoney);
 			players[1].lostBattle();
 		}
 		else {
-			if(players[1].getplayerClass().equals("Thief")){
-				Random generator = new Random();
-				int steal = generator.nextInt(7) + 1;
-				players[1].addPokemon(players[0].getParty()[steal]);
-				players[0].removePokemon(players[0].getParty()[steal]);
-			}
 			players[0].setMoney(players[0].getMoney() - prizeMoney);
 			players[1].setMoney(players[1].getMoney() + prizeMoney);
 			players[0].lostBattle();
