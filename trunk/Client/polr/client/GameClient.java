@@ -197,7 +197,7 @@ public class GameClient extends BasicGame {
 		
 		/*intro = new IntroScreen();
 		display.add(intro);*/
-		g.getInput().enableKeyRepeat(200, 100);
+		g.getInput().enableKeyRepeat(100, 400);
 	}
 	
 	/**
