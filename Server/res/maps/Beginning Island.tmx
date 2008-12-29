@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="40" height="30" tilewidth="16" tileheight="16">
- <tileset name="1" firstgid="1" tilewidth="16" tileheight="16">
-  <image source="normal1.png" trans="000000"/>
- </tileset>
- <tileset name="3" firstgid="1025" tilewidth="16" tileheight="16">
-  <image source="normal3.png" trans="000000"/>
- </tileset>
- <tileset name="2" firstgid="2049" tilewidth="16" tileheight="16">
-  <image source="normal2.png" trans="000000"/>
- </tileset>
- <tileset name="5" firstgid="3073" tilewidth="16" tileheight="16">
-  <image source="normal5.png" trans="000000"/>
- </tileset>
- <tileset name="X" firstgid="4097" tilewidth="16" tileheight="16">
-  <image source="normal18.png" trans="000000"/>
- </tileset>
+ <tileset name="1" firstgid="1" source="normal1.tsx"/>
+ <tileset name="3" firstgid="1025" source="normal3.tsx"/>
+ <tileset name="2" firstgid="2049" source="normal2.tsx"/>
+ <tileset name="5" firstgid="3073" source="normal5.tsx"/>
+ <tileset name="X" firstgid="4097" source="normal8.tsx"/>
  <layer name="Walkable" width="40" height="30">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3XWw5AMBCF4Um9d0vYCTbiEkuxEpuxDZVoSKOtSxsnzUj+98/UCIKIRIBqVWNUSfp8hbBt9aphbwL0Xc2SfWn7tnLpr3DcR2zfnVxzjuHTu6z3GM33dI5/+a7eiUg+m9X0Ivh8Z2/bZxSf7bzZ9+15/Mvnmif72Me+tH1zZg/Bd26JZNKVqhHUZ9re+GLm+69H8bXyqAPzIX6fpuJbAXbh+iXAEgAA
