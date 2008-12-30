@@ -50,6 +50,7 @@ import polr.client.ui.base.Window;
 import polr.client.ui.base.event.ActionEvent;
 import polr.client.ui.base.event.ActionListener;
 import polr.client.ui.window.LoginFrame;
+import polr.client.ui.window.ServerFrame;
 
 
 public class StartScreen extends Window {
@@ -57,6 +58,7 @@ public class StartScreen extends Window {
        private PacketGenerator packetGen;
        private LoginFrame loginFrame;
        private Label m_background;
+       private ServerFrame serverSelector;
 
        public StartScreen(PacketGenerator out) {
                super();
@@ -78,9 +80,12 @@ public class StartScreen extends Window {
         	   LoadingList.setDeferredLoading(false);
         	   loginFrame = new LoginFrame();
         	   this.add(loginFrame);
+        	   serverSelector = new ServerFrame(loginFrame);
+        	   this.add(serverSelector);
            } catch (Exception e) {
         	   e.printStackTrace();
            }
+           this.setVisible(true);
        }
        
        /*private void authDeleteActionPerformed(ActionEvent evt) {

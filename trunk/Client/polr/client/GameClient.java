@@ -125,6 +125,7 @@ public class GameClient extends BasicGame {
 			//Check for map updates (Download maps if first time)
 			MapUpdater updater = new MapUpdater(settings.getMapRevision());
 			updater.checkSVN();
+			while(updater != null && updater.isVisible());
 			settings.setMapRevision(updater.getMapRevision());
 			settings.saveSettings();
 			
