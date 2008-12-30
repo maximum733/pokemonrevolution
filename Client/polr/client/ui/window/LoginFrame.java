@@ -26,5 +26,6 @@ public class LoginFrame extends Frame {
 		this.setLocation(550, 210);
 		this.getTitleBar().getCloseButton().setVisible(false);
 		this.setBackground(new Color(0, 0, 0, 70));
+		this.setVisible(false);
 	}
 }

@@ -1,25 +1,53 @@
 package polr.client;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-public class MapUpdater {
+public class MapUpdater extends JFrame implements ActionListener {
+	private static final long serialVersionUID = 1L;
 	private int m_version;
+	private JLabel m_logo;
+	private JLabel m_info;
+	private JButton m_continue;
 	
 	/**
 	 * Default constructor
 	 * @param version
 	 */
 	public MapUpdater(int version) {
+		super("POLR Updater");
+		this.setSize(196, 196);
+		this.getContentPane().setLayout(null);
+		
+		//TODO: Add logo
+		
+		m_info = new JLabel("Status: Updating...");
+		m_info.setSize(128, 24);
+		m_info.setLocation(36, 96);
+		this.getContentPane().add(m_info);
+		
+		m_continue = new JButton("Continue");
+		m_continue.setEnabled(false);
+		m_continue.setSize(96, 32);
+		m_continue.setLocation(48, 128);
+		m_continue.addActionListener(this);
+		this.getContentPane().add(m_continue);
+		
+		this.setLocation(32, 32);
+		this.setResizable(false);
+		this.setVisible(true);
 		m_version = version;
 	}
 	
@@ -41,8 +69,6 @@ public class MapUpdater {
 			StringTokenizer map = new StringTokenizer(maps);
 			int currentVersion = Integer.parseInt(map.nextToken());
 			if(m_version < currentVersion) {
-				JOptionPane.showMessageDialog(null,"POLR is about to update maps, this may take a few minutes. \n"+
-						"A window will appear once it has finished.");
 				String filename;
 				URL nextMap;
 				PrintWriter output;
@@ -63,17 +89,21 @@ public class MapUpdater {
 					output.close();
 				}
 				m_version = currentVersion;
-				JOptionPane.showMessageDialog(null,
-						"Maps Updated.");
 			}
+			m_info.setText("Status: Complete");
+			m_continue.setEnabled(true);
 		} catch (Exception e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null,
-			"Error in updating maps.");
+			m_info.setText("Status: Error!");
+			m_continue.setEnabled(true);
 		}
 	}
 	
 	public int getMapRevision() {
 		return m_version;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		this.dispose();
 	}
 }
