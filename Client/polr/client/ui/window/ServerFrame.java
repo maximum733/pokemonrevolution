@@ -2,7 +2,6 @@ package polr.client.ui.window;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -19,25 +18,34 @@ import polr.client.ui.base.TextField;
 import polr.client.ui.base.event.ActionEvent;
 import polr.client.ui.base.event.ActionListener;
 
+/**
+ * A server selector.
+ * 
+ * @author shinobi
+ *
+ */
 public class ServerFrame extends Frame {
-	private LoginFrame m_login;
 	private TextField m_privateHost, m_privatePort, m_proxyHost, m_proxyPort;
 	private Button m_privateConnect, m_setProxy;
 	
-	public ServerFrame(LoginFrame l) {
+	/**
+	 * Default constructor
+	 */
+	public ServerFrame() {
 		super();
-		m_login = l;
 		this.setSize(600, 520);
 		this.setLocation(100, 20);
 		this.setTitle("Welcome");
 		this.setDraggable(false);
 		this.setResizable(false);
 		this.getTitleBar().getCloseButton().setVisible(false);
-		this.getServers();
 		
 		this.setVisible(true);
 	}
 	
+	/**
+	 * Sets up the UI
+	 */
 	private void initGUI() {
 		Color white = new Color(255, 255, 255, 90);
 		Color black = new Color(0, 0, 0);
@@ -128,6 +136,9 @@ public class ServerFrame extends Frame {
 		this.add(m_privateConnect);
 	}
 	
+	/**
+	 * Gets the latest list of servers
+	 */
 	public void getServers() {
 		for(int i = 0; i < this.getChildCount(); i++) {
 			this.remove(this.getChild(i));

@@ -123,11 +123,11 @@ public class GameClient extends BasicGame {
 			Settings settings = new Settings();
 			
 			//Check for map updates (Download maps if first time)
-			MapUpdater updater = new MapUpdater(settings.getMapRevision());
+			/*MapUpdater updater = new MapUpdater(settings.getMapRevision());
 			updater.checkSVN();
 			while(updater != null && updater.isVisible());
 			settings.setMapRevision(updater.getMapRevision());
-			settings.saveSettings();
+			settings.saveSettings();*/
 			
 			AppGameContainer container = new AppGameContainer(new GameClient(settings));
 			container.setDisplayMode(settings.getScreenWidth(), settings.getScreenHeight(), false);

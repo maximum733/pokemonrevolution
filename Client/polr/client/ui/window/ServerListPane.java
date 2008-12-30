@@ -2,7 +2,8 @@ package polr.client.ui.window;
 
 import java.util.ArrayList;
 
-import polr.client.GameClient;
+import org.newdawn.slick.Color;
+
 import polr.client.ui.base.Button;
 import polr.client.ui.base.Container;
 import polr.client.ui.base.Label;
@@ -10,17 +11,29 @@ import polr.client.ui.base.event.ActionEvent;
 import polr.client.ui.base.event.ActionListener;
 import polr.client.ui.base.event.ServerEvent;
 
+/**
+ * Displays a list of servers available to connect to
+ * 
+ * @author shinobi
+ *
+ */
 public class ServerListPane extends Container {
 	private int index;
 	private Button scrollUp;
 	private Button scrollDown;
 	private ArrayList<Button> serverConnect;
 	private ArrayList<Label> serverName;
+	private Color black;
 	
+	/**
+	 * Default constructor. Requires arrays of server info to be passed in.
+	 * @param servers
+	 */
 	public ServerListPane(String [] servers) {
 		super();
 		this.setSize(400, 128);
 		index = 0;
+		black = new Color(0, 0, 0);
 		serverConnect = new ArrayList<Button>();
 		serverName = new ArrayList<Label>();
 		for(int i = 0; i < servers.length; i++) {
@@ -33,8 +46,9 @@ public class ServerListPane extends Container {
 			serverConnect.add(b);
 			
 			Label l = new Label(details[0]);
-			l.setSize(96, 24);
 			l.setVisible(true);
+			l.pack();
+			l.setForeground(black);
 			serverName.add(l);
 		}
 		scrollUp = new Button("");
@@ -61,12 +75,15 @@ public class ServerListPane extends Container {
 		this.setVisible(true);
 	}
 	
+	/**
+	 * Handles scrolling through the list
+	 */
 	public void scroll() {
 		this.removeAll();
 		this.add(scrollUp);
 		this.add(scrollDown);
 		for(int i = index; i < index + 3 && i < serverConnect.size(); i++) {
-			serverName.get(i).setLocation(16, i * 24);
+			serverName.get(i).setLocation(36, (i * 24) + 4);
 			this.add(serverName.get(i));
 			serverConnect.get(i).setLocation(320, i * 24);
 			this.add(serverConnect.get(i));

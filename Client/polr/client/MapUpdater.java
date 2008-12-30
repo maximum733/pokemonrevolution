@@ -1,5 +1,6 @@
 package polr.client;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -10,6 +11,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,7 +33,10 @@ public class MapUpdater extends JFrame implements ActionListener {
 		this.setSize(196, 196);
 		this.getContentPane().setLayout(null);
 		
-		//TODO: Add logo
+		m_logo = new JLabel(new ImageIcon("res/pokeball.png"));
+		m_logo.setSize(96, 96);
+		m_logo.setLocation(38, 4);
+		this.getContentPane().add(m_logo);
 		
 		m_info = new JLabel("Status: Updating...");
 		m_info.setSize(128, 24);
@@ -69,6 +74,7 @@ public class MapUpdater extends JFrame implements ActionListener {
 			StringTokenizer map = new StringTokenizer(maps);
 			int currentVersion = Integer.parseInt(map.nextToken());
 			if(m_version < currentVersion) {
+				//Client is out of date, download latest maps
 				String filename;
 				URL nextMap;
 				PrintWriter output;
