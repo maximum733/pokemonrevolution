@@ -73,7 +73,7 @@ public class GameClient extends BasicGame {
 	private static String SERVER = "";
 	private static String PROXY = "";
 	private static int PROXYPORT = 1080;
-	private static final int PORT = 3724;
+	private static final int PORT = 2401;
 	private boolean isConnected;
 	public static final int width = 800;
 	public static final int height = 600;

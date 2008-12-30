@@ -29,7 +29,7 @@ import polr.server.mechanics.moves.MoveSetData;
  * 
  */
 public class GameServer {
-	public static final int PORT = 3724;
+	public static final int PORT = 2401;
 	private static PokemonSpeciesData p;
 	private static POLRDatabase polr;
 	private static JewelMechanics m;
