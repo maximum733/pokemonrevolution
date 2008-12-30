@@ -48,10 +48,16 @@ public class ProtocolHandler extends IoHandlerAdapter {
 	    * Called once the session is closed
 	    */
     public void sessionClosed(IoSession session) {
-        // Print out total number of bytes read from the remote peer.
-        System.err.println("Total " + session.getReadBytes() + " byte(s)");
-        thisGame.setIsPlaying(false);
-        //thisGame.returnToServerSelect();
+    	try {
+			super.sessionClosed(session);
+	        thisGame.setIsPlaying(false);
+	        thisGame.setIsConnected(false);
+    		GameClient.setServer("");
+	        GameClient.getStartScreen().getLoginFrame().setVisible(false);
+	        GameClient.getStartScreen().getServerSelector().setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 
     /** 
@@ -91,6 +97,40 @@ public class ProtocolHandler extends IoHandlerAdapter {
         		break;
         	case 'e':
         		//An error occurred
+        		break;
+        	}
+        	break;
+        case 'U':
+        	//A player is moving up
+        	break;
+        case 'D':
+        	//A player is moving down
+        	break;
+        case 'L':
+        	//A player is moving left
+        	break;
+        case 'R':
+        	//A player is moving right
+        	break;
+        case 'C':
+        	//A player is changing direction
+        	switch(message.charAt(1)) {
+        	case 'U':
+        		break;
+        	case 'D':
+        		break;
+        	case 'L':
+        		break;
+        	case 'R':
+        		break;
+        	}
+        	break;
+        case '!':
+        	//Server message
+        	switch(message.charAt(1)) {
+        	case '0':
+        		//Server has gone into lockdown
+        		sessionClosed(session);
         		break;
         	}
         	break;

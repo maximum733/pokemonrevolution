@@ -1,4 +1,4 @@
-package polr.client;
+package polr.server.map;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,19 +15,23 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import polr.server.ServerManager;
+
 public class MapUpdater extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private int m_version;
 	private JLabel m_logo;
 	private JLabel m_info;
 	private JButton m_continue;
+	private ServerManager m_serverManager;
 	
 	/**
 	 * Default constructor
 	 * @param version
 	 */
-	public MapUpdater(int version) {
+	public MapUpdater(ServerManager manager) {
 		super("POLR Updater");
+		m_serverManager = manager;
 		this.setSize(196, 196);
 		this.getContentPane().setLayout(null);
 		
@@ -51,7 +55,6 @@ public class MapUpdater extends JFrame implements ActionListener {
 		this.setLocation(32, 32);
 		this.setResizable(false);
 		this.setVisible(true);
-		m_version = version;
 	}
 	
 	/**
@@ -106,8 +109,8 @@ public class MapUpdater extends JFrame implements ActionListener {
 		return m_version;
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		m_serverManager.enable();
 		this.dispose();
 	}
 }

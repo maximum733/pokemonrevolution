@@ -33,36 +33,14 @@ public class GameServer {
 	private static PokemonSpeciesData p;
 	private static POLRDatabase polr;
 	private static JewelMechanics m;
+	private IoAcceptor acceptor;
+	private ClientHandler clientHandler;
 	
-   /**
-    * Returns PokemonSpeciesData Database
-    * @return PokemonSpeciesData
-    */
-	public static PokemonSpeciesData getSpeciesData() {
-		return  p;
-	}
-	
-   /**
-    * Returns the POLR Database which contains information on move learning, pokedex, etc.
-    * @return POLRDatabase
-	*/
-	public static POLRDatabase getPOLRDB() {
-		return polr;
-	}
-	
-   /**
-    * Returns the POLR Database which contains information on move learning, pokedex, etc.
-    * @return POLRDatabase
-	*/
-	public static JewelMechanics getMechanics() {
-		return m;
-	}
-	
-	public static void main(String[] args) {
+	public GameServer() {
 		ByteBuffer.setUseDirectBuffers(false);
 		ByteBuffer.setAllocator(new SimpleByteBufferAllocator());
 
-		IoAcceptor acceptor = new SocketAcceptor(6, Executors
+		acceptor = new SocketAcceptor(6, Executors
 				.newCachedThreadPool());
 
 		SocketAcceptorConfig cfg = new SocketAcceptorConfig();
@@ -104,10 +82,54 @@ public class GameServer {
                                     "res/polrdb.xml"));
 			
 			//Start client acceptor
-			acceptor.bind(new InetSocketAddress(PORT), new ClientHandler(ms, ml), cfg);
+			clientHandler = new ClientHandler(ms, ml);
+			acceptor.bind(new InetSocketAddress(PORT), clientHandler, cfg);
 			System.out.println("Server started.");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+	}
+	
+   /**
+    * Returns PokemonSpeciesData Database
+    * @return PokemonSpeciesData
+    */
+	public static PokemonSpeciesData getSpeciesData() {
+		return  p;
+	}
+	
+   /**
+    * Returns the POLR Database which contains information on move learning, pokedex, etc.
+    * @return POLRDatabase
+	*/
+	public static POLRDatabase getPOLRDB() {
+		return polr;
+	}
+	
+   /**
+    * Returns the POLR Database which contains information on move learning, pokedex, etc.
+    * @return POLRDatabase
+	*/
+	public static JewelMechanics getMechanics() {
+		return m;
+	}
+	
+	/**
+	 * Allows for running without a gui
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		GameServer g = new GameServer();
+	}
+
+	/**
+	 * Shuts down the game server. Returns true when completed.
+	 */
+	public boolean shutdown() {
+		if(clientHandler.logoutAll()) {
+			acceptor.unbindAll();
+			return true;
+		}
+		return false;
 	}
 } // end of class

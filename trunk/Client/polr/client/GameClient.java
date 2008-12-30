@@ -344,7 +344,7 @@ public class GameClient extends BasicGame {
 		return display;
 	}
 
-	public static StartScreen getLogin() {
+	public static StartScreen getStartScreen() {
 		return login;
 	}
 
@@ -388,6 +388,10 @@ public class GameClient extends BasicGame {
 	
 	public void setIsPlaying(Boolean playing) {
 		isPlaying = playing;
+	}
+	
+	public void setIsConnected(Boolean b) {
+		isConnected = b;
 	}
 	
 	/**

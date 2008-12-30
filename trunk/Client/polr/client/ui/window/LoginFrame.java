@@ -64,7 +64,7 @@ public class LoginFrame extends Frame {
 		
 		m_login = new Button("Login");
 		m_login.setSize(64, 24);
-		m_login.setLocation(48, 200);
+		m_login.setLocation(52, 200);
 		m_login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(m_logo.isVisible()) {
@@ -81,7 +81,7 @@ public class LoginFrame extends Frame {
 		
 		m_register = new Button("Register");
 		m_register.setSize(64, 24);
-		m_register.setLocation(48, 224);
+		m_register.setLocation(52, 226);
 		m_register.setVisible(true);
 		m_register.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -93,6 +93,7 @@ public class LoginFrame extends Frame {
 				}
 			}
 		});
+		this.add(m_register);
 		
 		this.setResizable(false);
 		this.setTitle("Login");
@@ -107,6 +108,9 @@ public class LoginFrame extends Frame {
 	 */
 	private void goToLogin() {
 		m_logo.setVisible(true);
+		m_login.setText("Login");
+		m_login.setLocation(52, 200);
+		m_register.setLocation(52, 226);
 	}
 	
 	/**
@@ -114,5 +118,8 @@ public class LoginFrame extends Frame {
 	 */
 	private void goToRegistration() {
 		m_logo.setVisible(false);
+		m_login.setText("Cancel");
+		m_login.setLocation(52, 226);
+		m_register.setLocation(52, 200);
 	}
 }

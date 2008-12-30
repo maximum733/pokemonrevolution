@@ -187,7 +187,7 @@ public abstract class Char implements Battleable, Positionable {
 		return map;
 	}
 
-	public abstract void move(Directions dir);
+	public abstract boolean move(Directions dir);
 
 	public void setName(String name) {
 		this.name = name;
