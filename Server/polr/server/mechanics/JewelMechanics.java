@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 import org.simpleframework.xml.ElementMap;
 
+import polr.server.map.ServerMap.Directions;
 import polr.server.mechanics.moves.MoveListEntry;
 import polr.server.mechanics.moves.PokemonMove;
 
@@ -28,6 +29,25 @@ public class JewelMechanics extends AdvanceMechanics {
         super(bytes);
     }
     
+    /**
+     * Returns a random direction
+     * @return
+     */
+    public Directions getRandomDirection() {
+		switch(this.getRandom().nextInt(4)) {
+		case 0:
+			return Directions.up;
+		case 1:
+			return Directions.down;
+		case 2:
+			return Directions.left;
+		case 3:
+			return Directions.right;
+		default:
+			return Directions.down;
+		}
+	}
+
     /**
      * Load the move types from the given file.
      */

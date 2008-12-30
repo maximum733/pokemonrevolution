@@ -58,8 +58,8 @@ public class StartFrame extends Frame {
 		b.setVisible(true);
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GameClient.getLogin().getServerSelector().setVisible(true);
-				GameClient.getLogin().getServerSelector().getServers();
+				GameClient.getStartScreen().getServerSelector().setVisible(true);
+				GameClient.getStartScreen().getServerSelector().getServers();
 				m_default.getCloseButton().press();
 			}
 		});

@@ -33,50 +33,52 @@ public abstract class NonPlayerChar extends Char {
 		return index;
 	}
 	
-	public void move(Directions dir) {
-		if (getMap().canMove(dir, this)) {
-			getMap().getNPCs().remove(new int[] {x, y});
+	public boolean move(Directions dir) {
+		if(facing != dir) {
+			switch (dir) {
+			case up:
+				facing = Directions.up;
+				getMap().sendToAll("CU" + index);
+				return true;
+			case down:
+				facing = Directions.down;
+				getMap().sendToAll("CD" + index);
+				return true;
+			case left:
+				facing = Directions.left;
+				getMap().sendToAll("CL" + index);
+				return true;
+			case right:
+				facing = Directions.right;
+				getMap().sendToAll("CR" + index);
+				return true;
+			}
+			return true;
+		} else if (getMap().canMove(dir, this)) {
 			switch (dir) {
 			case up:
 				y -= 32;
 				facing = Directions.up;
-				getMap().sendToAll("CU" + x + "." + y);
-				break;
+				getMap().sendToAll("U" + index);
+				return true;
 			case down:
 				y += 32;
 				facing = Directions.down;
-				getMap().sendToAll("CD" + x + "." + y);
-				break;
+				getMap().sendToAll("D" + index);
+				return true;
 			case left:
 				x -= 32;
 				facing = Directions.left;
-				getMap().sendToAll("CL" + x + "." + y);
-				break;
+				getMap().sendToAll("L" + index);
+				return true;
 			case right:
 				x += 32;
 				facing = Directions.right;
-				getMap().sendToAll("CR" + x + "." + y);
-			}
-			getMap().getNPCs().put(new int[] {x, y}, this);
-		} else {
-			switch (dir) {
-			case up:
-				facing = Directions.up;
-				getMap().sendToAll("JCU" + x + "." + y);
-				break;
-			case down:
-				facing = Directions.down;
-				getMap().sendToAll("JCD" + x + "." + y);
-				break;
-			case left:
-				facing = Directions.left;
-				getMap().sendToAll("JCL" + x + "." + y);
-				break;
-			case right:
-				facing = Directions.right;
-				getMap().sendToAll("JCR" + x + "." + y);
+				getMap().sendToAll("R" + index);
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	protected void sendSpeech(String speech, PlayerChar target) {

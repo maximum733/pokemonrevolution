@@ -23,6 +23,7 @@ package polr.server.map;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Random;
 
 import polr.server.GameServer;
@@ -43,12 +44,10 @@ import tiled.core.MapLayer;
 import tiled.core.TileLayer;
 
 public class ServerMap {
-	//private Map m_map;
-
 	private MapMatrix m_mapMatrix;
 
 	private ArrayList<PlayerChar> m_players;
-	private HashMap<int[], NonPlayerChar> m_npcs;
+	private ArrayList<NonPlayerChar> m_npcs;
 	private ArrayList<WarpTile> m_warpTiles;
 	private MapItem m_mapItem;
 
@@ -103,8 +102,12 @@ public class ServerMap {
 		return m_players;
 	}
 
-	public HashMap<int[], NonPlayerChar> getNPCs() {
+	public ArrayList<NonPlayerChar> getNPCs() {
 		return m_npcs;
+	}
+	
+	public NonPlayerChar getRandomNPC() {
+		return m_npcs.get(GameServer.getMechanics().getRandom().nextInt(m_npcs.size() - 1));
 	}
 	
 	public void placeItem(int x, int y, int id) {
@@ -325,15 +328,15 @@ public class ServerMap {
 	}
 	
 	public void addNPC(NonPlayerChar npc) {
-		npc.setIndex(-1 - m_npcs.values().size());
-		m_npcs.put(new int[] {npc.getX(), npc.getY()}, npc);
+		npc.setIndex(-1 - m_npcs.size());
+		m_npcs.add(npc);
 	}
 
 	public ServerMap(Map map, int x, int y) {
 		width = map.getWidth();
 		height = map.getHeight();
 		m_players = new ArrayList<PlayerChar>();
-		m_npcs = new HashMap<int[], NonPlayerChar>();
+		m_npcs = new ArrayList<NonPlayerChar>();
 		m_warpTiles = new ArrayList<WarpTile>();
 
 		this.x = x;
@@ -459,17 +462,16 @@ public class ServerMap {
 		return false;
 	}
 
-	private String getNPCData(PlayerChar p2) {
-		StringBuilder users = new StringBuilder("N" + CHARSEP + x + CHARSEP + y);
-
-		for (NonPlayerChar p : m_npcs.values()) {
-			synchronized (m_npcs) {
+	private void getNPCData(PlayerChar p2) {
+		NonPlayerChar p;
+		synchronized (m_npcs) {
+			for (int i = 0; i < m_npcs.size(); i++) {
+				p = m_npcs.get(i);
 				p2.getIoSession().write("A" + p.getIndex() + "," + p.getName() + ","
 						+ p.getFacing().toString() + "," + p.getSprite() + "," +
 						p.getX() + "," + p.getY());
 			}
 		}
-		return users.toString();
 	}
 
 	public void propagateMapData(PlayerChar p) {
@@ -493,11 +495,14 @@ public class ServerMap {
 	}
 
 	public NonPlayerChar getNPCAt(int x, int y) {
-		for (NonPlayerChar n : m_npcs.values()) {
+		NonPlayerChar n;
+		for(int i = 0; i < m_npcs.size(); i++) {
+			n = m_npcs.get(i);
 			if (n.getX() == x && n.getY() == y)
 				return n;
 		}
-		return null;
+		n = null;
+		return n;
 	}
 	
 	public boolean isBlocked(int tileX, int tileY, Directions directions) {

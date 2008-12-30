@@ -21,6 +21,7 @@
 package polr.server;
 
 //import java.sql.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +33,7 @@ import org.apache.mina.transport.socket.nio.SocketSessionConfig;
 
 import polr.server.battle.PvPBattleField;
 import polr.server.database.PlayerDataManager;
+import polr.server.map.MapLoader;
 import polr.server.map.MapMatrix;
 import polr.server.mechanics.moves.MoveList;
 import polr.server.mechanics.moves.MoveSetData;
@@ -58,6 +60,7 @@ public class ClientHandler extends IoHandlerAdapter {
 
 	private static Map<String, PlayerChar> m_playerList;
 	private ApplyItem m_applyItem;
+	private boolean m_lockdown;
 
 	static { 
 		m_playerList = new HashMap<String, PlayerChar>();
@@ -81,6 +84,7 @@ public class ClientHandler extends IoHandlerAdapter {
 		*/
 	public ClientHandler(MoveSetData ms, MoveList ml)
 	throws Exception {
+		m_lockdown = false;
 		m_moveSets = ms;
 		m_moveList = ml;
 
@@ -88,11 +92,25 @@ public class ClientHandler extends IoHandlerAdapter {
 		m_mapMatrix = new MapMatrix();
 		m_mapReader = new XMLMapTransformer();
 		
+		//Load all the maps
+		int initialThreadCount = Thread.activeCount();
+		File map;
+		for(int x = -50; x < 50; x++) {
+			for(int y = -50; y < 50; y++) {
+				map = new File("res/maps/" + String.valueOf(x) + "." + String.valueOf(y) + ".tmx");
+				if(map.exists()) {
+					new Thread(new MapLoader(m_mapMatrix, m_mapReader, x, y));
+				}
+			}
+		}
+		while(initialThreadCount != Thread.activeCount());
 		
-		//mapMatrix.setMap(new ServerMap(mapReader.readMap("res/maps/0.0.tmx"), 0, 0), 0, 0); 
-		
+		//Start the Player Data Manager
 		m_persistor = new PlayerDataManager(m_mapMatrix, m_moveList);
 		new Thread(m_persistor).start();
+		
+		//Start moving the NPCs
+		new Thread(m_mapMatrix).start();
 	}
 	
 	   /**
@@ -123,39 +141,41 @@ public class ClientHandler extends IoHandlerAdapter {
 		*/
 	@SuppressWarnings("unchecked")
 	public void messageReceived(IoSession session, Object msg) throws Exception {
-		//TODO: Add Ip ban check here
-		String line = msg.toString().trim();
-		String [] details;
-		PlayerChar player = null;
-		if (session.containsAttribute("player"))
-			player = (PlayerChar) session.getAttribute("player");
-		switch(line.charAt(0)) {
-		case 'l':
-			//User is logging in
-			details = line.substring(1).split(",");
-			m_persistor.attemptLogin(details[0], details[1], session);
-			break;
-		case 'r':
-			//User is registering
-			details = line.substring(1).split(",");
-			if(m_persistor.register(details[0], details[1], details[2], 
-					Integer.parseInt(details[3]), Integer.parseInt(details[4]))) {
-				session.write("rs");
-			} else
-				session.write("re");
-			break;
-		case 'U':
-			//User is moving up
-			break;
-		case 'D':
-			//User is moving down
-			break;
-		case 'L':
-			//User is moving left
-			break;
-		case 'R':
-			//User is moving right
-			break;
+		if(!m_lockdown) {
+			//TODO: Add Ip ban check here
+			String line = msg.toString().trim();
+			String [] details;
+			PlayerChar player = null;
+			if (session.containsAttribute("player"))
+				player = (PlayerChar) session.getAttribute("player");
+			switch(line.charAt(0)) {
+			case 'l':
+				//User is logging in
+				details = line.substring(1).split(",");
+				m_persistor.attemptLogin(details[0], details[1], session);
+				break;
+			case 'r':
+				//User is registering
+				details = line.substring(1).split(",");
+				if(m_persistor.register(details[0], details[1], details[2], 
+						Integer.parseInt(details[3]), Integer.parseInt(details[4]))) {
+					session.write("rs");
+				} else
+					session.write("re");
+				break;
+			case 'U':
+				//User is moving up
+				break;
+			case 'D':
+				//User is moving down
+				break;
+			case 'L':
+				//User is moving left
+				break;
+			case 'R':
+				//User is moving right
+				break;
+			}
 		}
 	}
 
@@ -164,13 +184,16 @@ public class ClientHandler extends IoHandlerAdapter {
 	    * @param IoSession session - A client session
 		*/
 	public void sessionCreated(IoSession session) throws Exception {
-		System.out.println("Session created...");
+		if(!m_lockdown) {
+			System.out.println("Session created...");
 
-		if (session.getTransportType() == TransportType.SOCKET)
-			((SocketSessionConfig) session.getConfig())
-			.setReceiveBufferSize(2048);
-
-		//session.setIdleTime(IdleStatus.BOTH_IDLE, 10);
+			if (session.getTransportType() == TransportType.SOCKET)
+				((SocketSessionConfig) session.getConfig())
+				.setReceiveBufferSize(2048);
+		} else {
+			session.write("!0");
+			session.close();
+		}
 	}
 	
 	   /**
@@ -196,5 +219,22 @@ public class ClientHandler extends IoHandlerAdapter {
 			m_playerList.remove(player.getName());
 			m_persistor.attemptSave(player);
 		} catch (Exception e) {}
+	}
+
+	/**
+	 * Logs every player out of the game. Returns true when completed.
+	 * @return
+	 */
+	public boolean logoutAll() {
+		m_lockdown = true;
+		for(PlayerChar p: m_playerList.values()) {
+			try {
+				p.getIoSession().write("!0");
+				sessionClosed(p.getIoSession());
+			} catch (Exception e) {
+				System.err.println("Error saving " + p.getName() + "'s account.");
+			}
+		}
+		return true;
 	}
 }

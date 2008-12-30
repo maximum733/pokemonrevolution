@@ -724,7 +724,7 @@ public class PlayerChar extends Char {
 		return m_boxes.length;
 	}
 	
-	public void move(Directions dir) {
+	public boolean move(Directions dir) {
 		if (!isBlocked()) {
 			if(facing != dir) {
 				switch (dir) {
@@ -744,6 +744,7 @@ public class PlayerChar extends Char {
 					facing = Directions.right;
 					getMap().sendToAll("CR" + m_no);
 				}
+				return true;
 			} else if (getMap().canMove(dir, this)) {
 				switch (dir) {
 				case up:
@@ -774,8 +775,10 @@ public class PlayerChar extends Char {
 					clearChallenges();
 				if(m_tradeReq.size() > 0)
 					clearTradeRequests();
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	public void clearTradeRequests() {
