@@ -1,30 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="30" height="15" tilewidth="16" tileheight="16">
- <properties>
-  <property name="surfSpecies" value=""/>
-  <property name="surfLevels" value=""/>
-  <property name="surfProbability" value="0"/>
-  <property name="wildLevels" value=""/>
-  <property name="wildProbability" value="0"/>
-  <property name="wildSpecies" value=""/>
-  <property name="xOffsetModifier" value="0"/>
-  <property name="yOffsetModifier" value="0"/>
- </properties>
- <tileset name="1" firstgid="1" source="normal1.tsx"/>
- <tileset name="3" firstgid="1025" source="normal2.tsx"/>
+<map version="1.0" orientation="orthogonal" width="40" height="30" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" source="normal1.tsx"/>
+ <tileset name="3" firstgid="1025" source="normal3.tsx"/>
  <tileset name="2" firstgid="2049" source="normal2.tsx"/>
- <tile id="350">
-   <properties>
-    <property name="anim" value="347, 350, 347, 350"/>
-    <property name="anim_speed" value="10"/>
-   </properties>
-  </tile>
- </tileset>
- <tileset name="X" firstgid="4097" tilewidth="16" tileheight="16">
-  <image source="normal18.png" trans="000000"/>
- </tileset>
- <layer name="Walkablez" width="40" height="30">
+ <tileset name="5" firstgid="3073" source="normal5.tsx"/>
+ <tileset name="X" firstgid="4097" source="normal18.tsx"/>
+ <layer name="Walkable" width="40" height="30">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3XzQ3CMAwF4Ki5ZwcmATYBFuFHjMIkLMMa5NCIyood2wlODqn0VAES+vpsCizOuUWYc8wpOJNDapu+6RvBd4nZhzY5ENeq8d1jHkReq58bahYaH9fPdVr74B6M6tvuAdVlLx9mhd4RfKXZY59nK49fg/mweVt2NqIP9pbC3ceWBo88lwu1j1xf6T25Vk6nGh9nTq06r/VR2QnP0PlvnweG0mNrn7Y/q/lye4RG7H7I8b09Hk2PW2suNf19CJOmV/j6MebZ0UftH7RJfJL7v7bX3Pdwr98HuWtPvmv45TaAL6X0X3X66nxfC/Gk7sASAAA=
   </data>
