@@ -16,14 +16,14 @@ public class LoginFrame extends Frame {
 		this.setSize(224, 280);
 		m_username = new TextField();
 		m_username.setSize(128, 24);
-		m_username.setLocation(32, 64);
+		m_username.setLocation(20, 20);
 		m_username.setVisible(true);
 		this.add(m_username);
 		
 		this.setDraggable(false);
 		this.setResizable(false);
 		this.setTitle("Login");
-		this.setLocation(530, 96);
+		this.setLocation(550, 210);
 		this.getTitleBar().getCloseButton().setVisible(false);
 		this.setBackground(new Color(0, 0, 0, 70));
 	}
