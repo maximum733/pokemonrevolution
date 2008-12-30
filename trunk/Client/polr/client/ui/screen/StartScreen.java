@@ -51,8 +51,14 @@ import polr.client.ui.base.event.ActionEvent;
 import polr.client.ui.base.event.ActionListener;
 import polr.client.ui.window.LoginFrame;
 import polr.client.ui.window.ServerFrame;
+import polr.client.ui.window.StartFrame;
 
-
+/**
+ * The starting screen, handles the server selector and login.
+ * 
+ * @author shinobi
+ *
+ */
 public class StartScreen extends Window {
        static final long serialVersionUID = -261619500525051531L;
        private PacketGenerator packetGen;
@@ -80,8 +86,10 @@ public class StartScreen extends Window {
         	   LoadingList.setDeferredLoading(false);
         	   loginFrame = new LoginFrame();
         	   this.add(loginFrame);
-        	   serverSelector = new ServerFrame(loginFrame);
+        	   serverSelector = new ServerFrame();
         	   this.add(serverSelector);
+        	   StartFrame start = new StartFrame();
+        	   this.add(start);
            } catch (Exception e) {
         	   e.printStackTrace();
            }
