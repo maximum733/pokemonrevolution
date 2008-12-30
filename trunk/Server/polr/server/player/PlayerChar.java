@@ -83,7 +83,7 @@ public class PlayerChar extends Char {
 	private long m_no;
 
 	@Element(required = false)
-	private String m_teamTag;
+	private String m_teamName;
 	
 	@Element(required = false)
 	private Pokedex m_pokedex;
@@ -219,8 +219,8 @@ public class PlayerChar extends Char {
 		return m_talking;
 	}
 
-	public String getTeamTag() {
-		return m_teamTag;
+	public String getTeamName() {
+		return m_teamName;
 	}
 	
 	public void setTradeLogic(TradeLogic tL){
@@ -1143,7 +1143,7 @@ public class PlayerChar extends Char {
 		return m_npcNames;
 	}
 
-	public void setTeamTag(String m_teamTag) {
-		this.m_teamTag = m_teamTag;
+	public void setTeamName(String m_teamName) {
+		this.m_teamName = m_teamName;
 	}
 }
