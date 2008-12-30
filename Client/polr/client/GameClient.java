@@ -73,7 +73,7 @@ public class GameClient extends BasicGame {
 	private static String SERVER = "";
 	private static String PROXY = "";
 	private static int PROXYPORT = 1080;
-	private static final int PORT = 2401;
+	private static int PORT = 2401;
 	private boolean isConnected;
 	public static final int width = 800;
 	public static final int height = 600;
@@ -261,6 +261,7 @@ public class GameClient extends BasicGame {
 		try {
 			 // Create TCP/IP connector.
 			if(PROXY.equalsIgnoreCase("")) {
+				System.out.println("Attempting to connect to " + SERVER + " on port " + PORT);
 				SocketConnector connector = new SocketConnector();
 			      
 		        SocketConnectorConfig cfg = new SocketConnectorConfig();
@@ -295,6 +296,8 @@ public class GameClient extends BasicGame {
 			}
 	        isConnected = true;
 	        login.setPacketGenerator(packetGen);
+	        login.getServerSelector().setVisible(false);
+	        login.getLoginFrame().setVisible(true);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -369,6 +372,10 @@ public class GameClient extends BasicGame {
 	public static void setProxy(String proxyName, int port) {
 		PROXY = proxyName;
 		PROXYPORT = port;
+	}
+	
+	public static void setPort(int m_port) {
+		PORT = m_port;
 	}
 	
 	public static PacketGenerator getPacketGenerator() {
