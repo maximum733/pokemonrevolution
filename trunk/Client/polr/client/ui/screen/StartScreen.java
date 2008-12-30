@@ -88,6 +88,14 @@ public class StartScreen extends Window {
            this.setVisible(true);
        }
        
+       public LoginFrame getLoginFrame() {
+    	   return loginFrame;
+       }
+       
+       public ServerFrame getServerSelector() {
+    	   return serverSelector;
+       }
+       
        /*private void authDeleteActionPerformed(ActionEvent evt) {
                if (authUser.getText() == "") {
                        GameClient.messageBox("You must enter a username.", this);
