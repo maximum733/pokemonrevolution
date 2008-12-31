@@ -45697,11 +45697,11 @@
          <moves>
             <entry>
                <integer>47</integer>
-               <string>Dragon Claw</string>
+               <string>Dragon Pulse</string>
             </entry>
             <entry>
                <integer>15</integer>
-               <string>Uproar</string>
+               <string>Feint</string>
             </entry>
             <entry>
                <integer>51</integer>
@@ -45717,7 +45717,7 @@
             </entry>
             <entry>
                <integer>11</integer>
-               <string>Revenge</string>
+               <string>Force Palm</string>
             </entry>
             <entry>
                <integer>6</integer>
@@ -45725,15 +45725,15 @@
             </entry>
             <entry>
                <integer>29</integer>
-               <string>Mimic</string>
+               <string>Me First</string>
             </entry>
             <entry>
                <integer>42</integer>
-               <string>Superpower</string>
+               <string>Close Combat</string>
             </entry>
             <entry>
                <integer>37</integer>
-               <string>Aerial Ace</string>
+               <string>Aura Sphere</string>
             </entry>
             <entry>
                <integer>24</integer>
@@ -45741,7 +45741,7 @@
             </entry>
          </moves>
          <starterMoves>
-            <string>Waterfall</string>
+            <string>Dark Pulse</string>
             <string>Quick Attack</string>
             <string>Foresight</string>
             <string>Detect</string>
@@ -45926,9 +45926,9 @@
             </entry>
          </moves>
          <starterMoves>
-            <string>Aurora Beam</string>
-            <string>Fire Punch</string>
-            <string>Spark</string>
+            <string>Ice Fang</string>
+            <string>Fire Fang</string>
+            <string>Thunder Fang</string>
             <string>Tackle</string>
             <string>Sand-Attack</string>
             <string>Bite</string>
@@ -45987,27 +45987,27 @@
             </entry>
             <entry>
                <integer>34</integer>
-               <string>Nature Power</string>
+               <string>Bug Bite</string>
             </entry>
             <entry>
                <integer>17</integer>
-               <string>Swords Dance</string>
+               <string>Acupressure</string>
             </entry>
             <entry>
                <integer>23</integer>
-               <string>Knock Off</string>
-            </entry>
-            <entry>
-               <integer>28</integer>
                <string>Scary Face</string>
             </entry>
             <entry>
+               <integer>28</integer>
+               <string>Toxic Spikes</string>
+            </entry>
+            <entry>
                <integer>6</integer>
-               <string>Leer</string>
+               <string>Knock Off</string>
             </entry>
             <entry>
                <integer>50</integer>
-               <string>Poison Tail</string>
+               <string>Coss Poison</string>
             </entry>
             <entry>
                <integer>39</integer>
@@ -46021,6 +46021,7 @@
          <starterMoves>
             <string>Bite</string>
             <string>Poison Sting</string>
+            <string>Leer</string>
          </starterMoves>
          <eggMoves>
             <string>Faint Attack</string>
@@ -46087,27 +46088,27 @@
          <moves>
             <entry>
                <integer>34</integer>
-               <string>Nature Power</string>
+               <string>Bug Bite</string>
             </entry>
             <entry>
                <integer>17</integer>
-               <string>Swords Dance</string>
+               <string>Acupressure</string>
             </entry>
             <entry>
                <integer>58</integer>
-               <string>Poison Tail</string>
+               <string>Cross Poison</string>
             </entry>
             <entry>
                <integer>23</integer>
-               <string>Knock Off</string>
-            </entry>
-            <entry>
-               <integer>28</integer>
                <string>Scary Face</string>
             </entry>
             <entry>
+               <integer>28</integer>
+               <string>Toxic Spikes</string>
+            </entry>
+            <entry>
                <integer>6</integer>
-               <string>Leer</string>
+               <string>Knock Off</string>
             </entry>
             <entry>
                <integer>39</integer>
@@ -46123,9 +46124,9 @@
             </entry>
          </moves>
          <starterMoves>
-            <string>Spark</string>
-            <string>Aurora Beam</string>
-            <string>Fire Punch</string>
+            <string>Thunder Fang</string>
+            <string>Ice Fang</string>
+            <string>Fire Fang</string>
             <string>Bite</string>
             <string>Poison Sting</string>
             <string>Leer</string>
@@ -46182,7 +46183,7 @@
             </entry>
             <entry>
                <integer>36</integer>
-               <string>Tail Glow</string>
+               <string>Nasty Plot</string>
             </entry>
             <entry>
                <integer>8</integer>
@@ -46194,7 +46195,7 @@
             </entry>
             <entry>
                <integer>31</integer>
-               <string>Crunch</string>
+               <string>Sucker Punch</string>
             </entry>
             <entry>
                <integer>3</integer>
@@ -46214,11 +46215,11 @@
             </entry>
             <entry>
                <integer>38</integer>
-               <string>Sludge Bomb</string>
+               <string>Poison Jab</string>
             </entry>
             <entry>
                <integer>29</integer>
-               <string>Bone Club</string>
+               <string>Mud Bomb</string>
             </entry>
             <entry>
                <integer>24</integer>
@@ -46301,7 +46302,7 @@
             </entry>
             <entry>
                <integer>36</integer>
-               <string>Tail Glow</string>
+               <string>Nasty Plot</string>
             </entry>
             <entry>
                <integer>8</integer>
@@ -46309,7 +46310,7 @@
             </entry>
             <entry>
                <integer>31</integer>
-               <string>Crunch</string>
+               <string>Sucker Punch</string>
             </entry>
             <entry>
                <integer>3</integer>
@@ -46333,11 +46334,11 @@
             </entry>
             <entry>
                <integer>41</integer>
-               <string>Sludge Bomb</string>
+               <string>Poison Jab</string>
             </entry>
             <entry>
                <integer>29</integer>
-               <string>Bone Club</string>
+               <string>Mud Bomb</string>
             </entry>
             <entry>
                <integer>24</integer>
@@ -46406,11 +46407,11 @@
             </entry>
             <entry>
                <integer>47</integer>
-               <string>Hydro Pump</string>
+               <string>Power Whip</string>
             </entry>
             <entry>
                <integer>41</integer>
-               <string>Endeavor</string>
+               <string>Wring Oout</string>
             </entry>
             <entry>
                <integer>21</integer>
@@ -46421,6 +46422,10 @@
                <string>Vine Whip</string>
             </entry>
             <entry>
+               <integer>31</integer>
+               <string>Stockpile</string>
+            </entry>
+			<entry>
                <integer>31</integer>
                <string>Swallow</string>
             </entry>
@@ -46511,7 +46516,7 @@
             </entry>
             <entry>
                <integer>26</integer>
-               <string>Tickle</string>
+               <string>Captivate</string>
             </entry>
             <entry>
                <integer>38</integer>
@@ -46519,7 +46524,7 @@
             </entry>
             <entry>
                <integer>33</integer>
-               <string>Water Sport</string>
+               <string>Aqua Ring</string>
             </entry>
             <entry>
                <integer>6</integer>
@@ -46531,7 +46536,7 @@
             </entry>
             <entry>
                <integer>42</integer>
-               <string>Signal Beam</string>
+               <string>U-turn</string>
             </entry>
             <entry>
                <integer>10</integer>
@@ -46625,7 +46630,7 @@
             </entry>
             <entry>
                <integer>26</integer>
-               <string>Tickle</string>
+               <string>Captivate</string>
             </entry>
             <entry>
                <integer>6</integer>
@@ -46633,7 +46638,7 @@
             </entry>
             <entry>
                <integer>48</integer>
-               <string>Signal Beam</string>
+               <string>U-Turn</string>
             </entry>
             <entry>
                <integer>29</integer>
@@ -46641,7 +46646,7 @@
             </entry>
             <entry>
                <integer>35</integer>
-               <string>Water Sport</string>
+               <string>Aqua RIng</string>
             </entry>
             <entry>
                <integer>42</integer>
@@ -46739,7 +46744,7 @@
             </entry>
             <entry>
                <integer>46</integer>
-               <string>Water Sport</string>
+               <string>Aqua Ring</string>
             </entry>
             <entry>
                <integer>37</integer>
@@ -46847,7 +46852,7 @@
             </entry>
             <entry>
                <integer>26</integer>
-               <string>Powder Snow</string>
+               <string>Ice Shard</string>
             </entry>
             <entry>
                <integer>21</integer>
@@ -46943,7 +46948,7 @@
             </entry>
             <entry>
                <integer>36</integer>
-               <string>Solarbeam</string>
+               <string>Wood Hammer</string>
             </entry>
             <entry>
                <integer>58</integer>
@@ -46955,7 +46960,7 @@
             </entry>
             <entry>
                <integer>26</integer>
-               <string>Powder Snow</string>
+               <string>Ice Shard</string>
             </entry>
             <entry>
                <integer>21</integer>
@@ -47031,7 +47036,7 @@
             </entry>
             <entry>
                <integer>38</integer>
-               <string>Dragon Rage</string>
+               <string>Fling</string>
             </entry>
             <entry>
                <integer>28</integer>
@@ -47043,7 +47048,7 @@
             </entry>
             <entry>
                <integer>35</integer>
-               <string>Leaf Blade</string>
+               <string>Night Slash</string>
             </entry>
             <entry>
                <integer>14</integer>
@@ -47055,7 +47060,7 @@
             </entry>
             <entry>
                <integer>24</integer>
-               <string>Tail Glow</string>
+               <string>Nasty Plot</string>
             </entry>
             <entry>
                <integer>10</integer>
@@ -47063,13 +47068,13 @@
             </entry>
             <entry>
                <integer>49</integer>
-               <string>Waterfall</string>
+               <string>Dark Pulse</string>
             </entry>
          </moves>
          <starterMoves>
-            <string>Memento</string>
+            <string>Embargo</string>
             <string>Revenge</string>
-            <string>Thief</string>
+            <string>Assurance</string>
             <string>Scratch</string>
             <string>Leer</string>
             <string>Taunt</string>
@@ -47125,11 +47130,11 @@
          <moves>
             <entry>
                <integer>30</integer>
-               <string>Shadow Punch</string>
+               <string>Magnet Bomb</string>
             </entry>
             <entry>
                <integer>40</integer>
-               <string>Thunderpunch</string>
+               <string>Discharge</string>
             </entry>
             <entry>
                <integer>11</integer>
@@ -47137,11 +47142,11 @@
             </entry>
             <entry>
                <integer>50</integer>
-               <string>Snatch</string>
+               <string>Magnet Rise</string>
             </entry>
             <entry>
                <integer>54</integer>
-               <string>Endeavor</string>
+               <string>Gyro Ball</string>
             </entry>
             <entry>
                <integer>22</integer>
@@ -47169,7 +47174,7 @@
             </entry>
             <entry>
                <integer>46</integer>
-               <string>Steel Wing</string>
+               <string>Mirror Shot</string>
             </entry>
             <entry>
                <integer>14</integer>
@@ -47234,7 +47239,7 @@
          <moves>
             <entry>
                <integer>49</integer>
-               <string>Hydro Pump</string>
+               <string>Power Whip</string>
             </entry>
             <entry>
                <integer>17</integer>
@@ -47258,7 +47263,7 @@
             </entry>
             <entry>
                <integer>53</integer>
-               <string>Endeavor</string>
+               <string>Wring Out</string>
             </entry>
             <entry>
                <integer>21</integer>
@@ -47270,7 +47275,7 @@
             </entry>
             <entry>
                <integer>57</integer>
-               <string>Endeavor</string>
+               <string>Gyro Ball</string>
             </entry>
             <entry>
                <integer>29</integer>
@@ -47282,7 +47287,7 @@
             </entry>
             <entry>
                <integer>37</integer>
-               <string>Mimic</string>
+               <string>Me First</string>
             </entry>
             <entry>
                <integer>5</integer>
@@ -47341,7 +47346,7 @@
          <moves>
             <entry>
                <integer>45</integer>
-               <string>Cross Chop</string>
+               <string>Stone Edge</string>
             </entry>
             <entry>
                <integer>13</integer>
@@ -47361,7 +47366,7 @@
             </entry>
             <entry>
                <integer>61</integer>
-               <string>Hyper Beam</string>
+               <string>Rock Wrecker</string>
             </entry>
             <entry>
                <integer>57</integer>
@@ -47369,7 +47374,7 @@
             </entry>
             <entry>
                <integer>42</integer>
-               <string>Hi Jump Kick</string>
+               <string>Hammer Arm</string>
             </entry>
             <entry>
                <integer>37</integer>
@@ -47385,7 +47390,7 @@
             </entry>
          </moves>
          <starterMoves>
-            <string>Sludge Bomb</string>
+            <string>Poison Jab</string>
             <string>Horn Attack</string>
             <string>Tail Whip</string>
             <string>Stomp</string>
@@ -47464,7 +47469,7 @@
             </entry>
             <entry>
                <integer>40</integer>
-               <string>Hidden Power</string>
+               <string>Natural Gift</string>
             </entry>
             <entry>
                <integer>43</integer>
@@ -47472,11 +47477,11 @@
             </entry>
             <entry>
                <integer>50</integer>
-               <string>Endeavor</string>
+               <string>Wring Out</string>
             </entry>
             <entry>
                <integer>54</integer>
-               <string>Hydro Pump</string>
+               <string>Power Whip</string>
             </entry>
             <entry>
                <integer>12</integer>
