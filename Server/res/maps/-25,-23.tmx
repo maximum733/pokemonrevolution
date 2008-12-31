@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="24" height="22" tilewidth="16"<properties>
+  <property name="surfSpecies" value=""/>
+  <property name="surfLevels" value=""/>
+  <property name="surfProbability" value="0"/>
+  <property name="wildLevels" value="2-3;2-3;2-3;3-3;2-3"/>
+  <property name="wildProbability" value="28"/>
+  <property name="wildSpecies" value="Pidgey,50;Rattata,45;Sentret,4;Hoppip,5;Hoothoot,55"/>
+  <property name="xOffsetModifier" value="0"/>
+  <property name="yOffsetModifier" value="0"/>
+ </properties> tileheight="16">
+ <tileset name="1" firstgid="1" source="normal1.tsx"/>
+ <tileset name="2" firstgid="1025" source="normal2.tsx"/>
+ <tileset name="2" firstgid="2049" source="normal6.tsx"/>
+ <layer name="Walkable" width="24" height="22">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWUAKaBdsAoGI0DIgAojFQYkfiMOJVS1c6RDGjt/5EevqNg4AEA2uBTt0AIAAA=
+  </data>
+ </layer>
+ <layer name="Walkable" width="24" height="22">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAN2S6wmAMAyEk1oH8TWIOok4mTifO5iAgVBr8RUEC/er5EvuEgcA7qHCd7YOESDD5/2PVBC7Mubnhh6YXxp6+AvfagfCt/JgwddP81ku0J3MUNU3pE6pDvrlF/sw2x9ksvi9n3KboU/wB/obcc8WPnNj+xBvKTZrov+Z1EZykPmlx1v7ll6Sr8hfmPvrO/0DH1XuFvzYvb/JT93sWa1A+XekQAgAAA==
+  </data>
+ </layer>
+ <layer name="Collisions" width="24" height="22">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAALWUZwrCQBCF54+KuYcFLLfQCJZzCJZbWcByCwtYbmEByxl8YgJh3HV2SHzwsZCYly/sjj4RNUAN1CMrTwqkDasfPG9bC6AIciAfWXn4/fA5aQ3fI/nz+5K3zd+WpPxtiesvhfu7fkf4Hinc3/U7XP3fmWWJ5mABltnPNY3/KEM0BhMwzXz379C5BwdwDPo1/it0rsEGbA39N3TewQM8g35pH6L+J3SewQVcDf2mSPshnXttuL907rXh/q7pOv6O+yedOOf/VzTzW/KIyqACqp65j8+KZn6b6GyBNuhY+vmsaPx76OyDARha+vmsSP5x90Hy155Xnn/5S/+fL+i7cl9ACAAA
+  </data>
+ </layer>
+ <layer name="WalkBehind" width="24" height="22">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNggAB2IOZAoocaIOTu4eK/oep+EOjmZGDoAeJeIO7jJF1/K9Dz7VDcwU59942CUUAqoFZ+JMUcbi4GBh4g5gViPi7sakZaXhnK5SIlYKDrBQCch2uIQAgAAA==
+  </data>
+ </layer>
+</map>
