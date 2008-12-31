@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="24" height="22" tilewidth="16"<properties>
+  <property name="surfSpecies" value=""/>
+  <property name="surfLevels" value=""/>
+  <property name="surfProbability" value="0"/>
+  <property name="wildLevels" value="2-3;2-3;2-3"/>
+  <property name="wildProbability" value="28"/>
+  <property name="wildSpecies" value="Wurmple,45;Poochyena,45;Zigzagoon,10"/>
+  <property name="xOffsetModifier" value="0"/>
+  <property name="yOffsetModifier" value="0"/>
+ </properties> tileheight="16">
+ <tileset name="1" firstgid="1" source="normal1.tsx"/>
+ <tileset name="2" firstgid="1025" source="normal2.tsx"/>
+ <layer name="Walkable" width="24" height="22">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNiYGBgIgIrMjIwKAGxMiNx6knFjkBznYDYmUbmj+JRPNQxIzBvMNMof4DMZqFx/laBliGk+gHkNiYi9MHsINYPMHNZSCjbHEkoo5D9rEqjsm203BzFA4kBC2RYP0AIAAA=
+  </data>
+ </layer>
+ <layer name="Grass" width="24" height="22">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAW0BIpQTCtzSTWfWPXo5pOrj1rmD4R6QoCcOKBVehiMgF5pn9p2DIT51LSDEvMpKR8Gyj24zCfFH8QCWqYLdPOHAgAAM75eQkAIAAA=
+  </data>
+ </layer>
+ <layer name="LedgesDown" width="24" height="22">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBQMFHjExMDwFAkfY6LMvGVo5j2j0LxRMApAYBkV0+goGD4AAF8H6SBACAAA
+  </data>
+ </layer>
+ <layer name="Collisions" width="24" height="22">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAMWT3QnAIAyEfWk36c8irR2l+0/QPPRAQk+jUXpwHIgxn0FjCOEST+I51OsQn0k9Mr7nbuJdvIjXTGqV9uNc9AEHS8bNkvG3ysrfqtH80Ch+iPH3luavkWWWnvljBrkaz/xxbq6mB39OjD/tcxv7fYnx93qnFn6P/uLvJe//ZXVY9/zflI+ta/7ae+g6lrpfLX8prRz6ftb9D3dCRvFACAAA
+  </data>
+ </layer>
+ <layer name="WalkBehind" width="24" height="22">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgQAXsQMyBhUYHhOTpDSh1x0D7h1r2Dpb4GEhAThjQS89Qcwu97Bl1/9AChOoFegNy7R3och8d4Kp/B4v70AEAPRZChkAIAAA=
+  </data>
+ </layer>
+</map>
