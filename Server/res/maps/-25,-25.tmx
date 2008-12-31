@@ -10,12 +10,8 @@
   <property name="xOffsetModifier" value="0"/>
   <property name="yOffsetModifier" value="0"/>
  </properties>tileheight="16">
- <tileset name="1" firstgid="1" tilewidth="16" tileheight="16">
-  <image source="POLR tilesets/normal1.png" trans="000000"/>
- </tileset>
- <tileset name="2" firstgid="1025" tilewidth="16" tileheight="16">
-  <image source="POLR tilesets/normal2.png" trans="203038"/>
- </tileset>
+ <tileset name="1" firstgid="1" source="normal1.tsx"/>
+ <tileset name="2" firstgid="1025" source="normal2.tsx"/>
  <layer name="Walkable" width="24" height="22">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNiYGBgGsWjeAThtyzEiVHLbGS5RiDdBMTNRJiFSy0h95PjF5geaoXDKB7FuDAojZGaF8gxfzQt0x4DAO5BiEtACAAA
