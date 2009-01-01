@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="25" height="30" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="surfLevels" value=""/>
+  <property name="surfProbability" value="0"/>
+  <property name="surfSpecies" value=""/>
+  <property name="wildLevels" value="4-5;4-5;2-5;2-5;2-4;2-5;2-6"/>
+  <property name="wildProbability" value="28"/>
+  <property name="wildSpecies" value="Pikachu,1;Eevee,1;Plusle,50;Minun,50;Starly,60;Pachirisu,50;Munchlax,1;"/>
+  <property name="xOffsetModifier" value="0"/>
+  <property name="yOffsetModifier" value="0"/>
+ </properties>
  <tileset name="1" firstgid="1" source="normal1.tsx"/>
  <tileset name="2" firstgid="1025" source="normal2.tsx"/>
  <layer name="Walkable" width="25" height="30">
