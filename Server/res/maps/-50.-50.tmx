@@ -29,7 +29,7 @@
    H4sIAAAAAAAAAGNgGAXDGQAAjcO6++ABAAA=
   </data>
  </layer>
- <layer name="Collision" width="12" height="10">
+ <layer name="Collisions" width="12" height="10">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAABNiYGAQIhH7cxKHYerzuBgY8oE4F0RzQnAmkJ0F5XsDaR8uhHpiAbXV8wHdwM9FvHo9oFp9EtTjco8BFyGVEDWkxhMIAwC0cs9Z4AEAAA==
   </data>
