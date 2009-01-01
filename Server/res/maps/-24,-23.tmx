@@ -14,9 +14,7 @@
  <tileset firstgid="1" source="normal1.tsx"/>
  <tileset firstgid="1025" source="normal2.tsx"/>
  <tileset firstgid="2049" source="normal6.tsx"/>
- <tileset name="Untitled" firstgid="3073" tilewidth="16" tileheight="16">
-  <image source="../../../../../Desktop/mapping/POLR tilesets/normal5.png" trans="000000"/>
- </tileset>
+ <tileset firstgid="3073" source="normal5.tsx"/>
  <layer name="Walkable" width="50" height="23">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2V6w3DIAyEeXUQWmWQtPvP0hVKpSJZlgvYMYGqRPr+5GHufAR7Y4xfLP4MfGnXt9YYB/D293y8PYTEFXAh/LgPtXrP0O5Dyw/lAXJDuTgEx0NPHzHp3BL3LzwE+2tEHpHoOey95v6V+MD5O3Q/v7cTPS/tm5moadTUT/Wz9o9xanPXPuqhd7808uMA51Q+08/0czSbrD8QZ/qI/5G7HqWfmk3cuhqeOWtGQv+GZpM0jzPOipxFKOiX5KCdTcu3sUH/DDOqpmMfrJ8zr0rPtedeL38czTPoX8h5AZQ9Gpr4EQAA
