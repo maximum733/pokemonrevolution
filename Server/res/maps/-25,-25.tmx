@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="24" height="22" tilewidth="16" <properties>
-  <property name="surfSpecies" value=""/>
+<map version="1.0" orientation="orthogonal" width="24" height="22" tilewidth="16" tileheight="16">
+ <properties>
   <property name="surfLevels" value=""/>
   <property name="surfProbability" value="0"/>
+  <property name="surfSpecies" value=""/>
   <property name="wildLevels" value="2-3;2-3;2-3;3-3;2-3"/>
   <property name="wildProbability" value="28"/>
   <property name="wildSpecies" value="Pidgey,50;Rattata,45;Sentret,4;Hoppip,5;Hoothoot,55"/>
   <property name="xOffsetModifier" value="0"/>
   <property name="yOffsetModifier" value="0"/>
- </properties>tileheight="16">
- <tileset name="1" firstgid="1" source="normal1.tsx"/>
- <tileset name="2" firstgid="1025" source="normal2.tsx"/>
+ </properties>
+ <tileset firstgid="1" source="normal1.tsx"/>
+ <tileset firstgid="1025" source="normal2.tsx"/>
  <layer name="Walkable" width="24" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNiYGBgGsWjeAThtyzEiVHLbGS5RiDdBMTNRJiFSy0h95PjF5geaoXDKB7FuDAojZGaF8gxfzQt0x4DAO5BiEtACAAA
+   H4sIAAAAAAAAAGNiYGBgGsWjeAThtyz4xYLYiTcLXS02s5HlGoF0ExA3E2E2LrWE3I/PDYTChBy9o3j44q8k5AViMSiNkZoXyDF/NC3THgMAK4JFs0AIAAA=
   </data>
  </layer>
  <layer name="Collisions" width="24" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAN3TOW7CQBTG8Wls1wFyBJaW7QgJtAS4g89DFjgHa84BZLkGi4GSf/MkNPLM2LJpeNJP0zw+fzDGU0r58BKeMkn3y6ikOGVce1XU8ILXFKeMa6+D7s1z9H5ZR3LlOXq/rKP3l9lxKXsccETkx3/etav3l3kKlCqgiBKeA3O+bdfUv85OA0200Lbk23ZN/XvsvKGPAYYIY7JDw66rf15j6p/XPHL/Eff0jg984gtjTAzvUtz92/pPyZlhjgWWWOHb8q6m6b8mZ4MtfvCLP/ynyLf135NzwBERTjjjklN/mbjf1TWSd6/3R/L0/ln/B3qO3j/r99BzTP3zPq9t/6s3QAgAAA==
+   H4sIAAAAAAAAAN2TSU7DQBREe2N7DYEjBNhm4AgMWxS4g8+TQJJzBBI4B4ThGrHNsOQt/KWo1YNb7mxS0tPflKvL/u1EKZVC0nCKmvq7cBIwRT7fKZzBBVwGTJHPdwXXW+fo/dpKcuUcvV9b6f1FG5ZSQAkVfKfm531evb/oIFPqEDpwBMeZPd/ltfXv4enDAIZw7sh3eW39b2rPiHkLd5AbsnOL19c/lmz9Y2mf+4/Z0wTu4QGmMIO55S6Z9u/qvyDnEZ5gCSt4hhfHXQ3p/0rOG6zhHT7gE74C8l39C3JKqOq8H+Yv/EXqLzJ9V58kb1f3R/L0/m3/Az1H79/2PfQcW//Y8x92Z3YAQAgAAA==
   </data>
  </layer>
  <layer name="WalkBehind" width="24" height="22">

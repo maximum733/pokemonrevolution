@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="24" height="22" tilewidth="16"<properties>
+<map version="1.0" orientation="orthogonal" width="24" height="22" tilewidth="16" tileheight="16">
+<properties>
   <property name="surfSpecies" value=""/>
   <property name="surfLevels" value=""/>
   <property name="surfProbability" value="0"/>
@@ -9,7 +10,7 @@
   <property name="wildSpecies" value="Wurmple,45;Poochyena,45;Zigzagoon,10"/>
   <property name="xOffsetModifier" value="0"/>
   <property name="yOffsetModifier" value="0"/>
- </properties> tileheight="16">
+ </properties> 
  <tileset name="1" firstgid="1" source="normal1.tsx"/>
  <tileset name="2" firstgid="1025" source="normal2.tsx"/>
  <layer name="Walkable" width="24" height="22">
