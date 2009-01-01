@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="40" height="30" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="surfLevels" value=""/>
+  <property name="surfProbability" value="0"/>
+  <property name="surfSpecies" value=""/>
+  <property name="wildLevels" value="3-5"/>
+  <property name="wildProbability" value="28"/>
+  <property name="wildSpecies" value="Psyduck,40;"/>
+  <property name="xOffsetModifier" value="0"/>
+  <property name="yOffsetModifier" value="0"/>
+ </properties>
  <tileset firstgid="1" source="normal1.tsx"/>
  <tileset name="3" firstgid="1025" source="normal3.tsx"/>
  <tileset name="2" firstgid="2049" source="normal2.tsx"/>
