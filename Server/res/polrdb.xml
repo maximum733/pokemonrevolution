@@ -40241,6 +40241,7 @@
                <integer>7</integer>
                <string>Ember</string>
             </entry>
+         </moves>
          <starterMoves>
             <string>Scratch</string>
             <string>Leer</string>
@@ -41130,7 +41131,7 @@
                <integer>16</integer>
                <string>Bug Bite</string>
             </entry>
-         <moves/>
+         </moves>
          <starterMoves>
             <string>Growl</string>
             <string>Bide</string>
@@ -42557,7 +42558,7 @@
                <integer>13</integer>
                <string>Bug Bite</string>
             </entry>
-         <moves/>
+         </moves>
          <starterMoves>
             <string>Sweet Scent</string>
             <string>Gust</string>
