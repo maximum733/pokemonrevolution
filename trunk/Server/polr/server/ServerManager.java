@@ -30,6 +30,7 @@ public class ServerManager extends JFrame {
 				m_updateMaps.setEnabled(false);
 				m_stop.setEnabled(true);
 				m_server = new GameServer();
+				m_server.start();
 			}
 		});
 		this.add(m_start);
@@ -39,7 +40,7 @@ public class ServerManager extends JFrame {
 		m_stop.setLocation(4, 32);
 		m_stop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(m_server.shutdown()) {
+				if(m_server.stop()) {
 					enable();
 					m_server = null;
 					System.out.println("Server stopped");

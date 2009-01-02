@@ -20,10 +20,11 @@ import polr.server.database.POLRDatabase;
 import polr.server.mechanics.JewelMechanics;
 import polr.server.mechanics.moves.MoveList;
 import polr.server.mechanics.moves.MoveSetData;
+import polr.server.time.WorldClock;
 
-//import java.sql.*;
 /**
- * @author Pivot
+ * @author TMKCodes
+ * @author shinobi
  * 
  * GameSever class initialises a server and all databases needed
  * 
@@ -35,8 +36,44 @@ public class GameServer {
 	private static JewelMechanics m;
 	private IoAcceptor acceptor;
 	private ClientHandler clientHandler;
+	private static WorldClock m_worldClock;
 	
-	public GameServer() {
+   /**
+    * Returns PokemonSpeciesData Database
+    * @return PokemonSpeciesData
+    */
+	public static PokemonSpeciesData getSpeciesData() {
+		return  p;
+	}
+	
+   /**
+    * Returns the POLR Database which contains information on move learning, pokedex, etc.
+    * @return POLRDatabase
+	*/
+	public static POLRDatabase getPOLRDB() {
+		return polr;
+	}
+	
+   /**
+    * Returns the POLR Database which contains information on move learning, pokedex, etc.
+    * @return POLRDatabase
+	*/
+	public static JewelMechanics getMechanics() {
+		return m;
+	}
+	
+	/**
+	 * Returns the game world clock
+	 * @return
+	 */
+	public static WorldClock getWorldClock() {
+		return m_worldClock;
+	}
+	
+	/**
+	 * Starts the Game Server
+	 */
+	public void start() {
 		ByteBuffer.setUseDirectBuffers(false);
 		ByteBuffer.setAllocator(new SimpleByteBufferAllocator());
 
@@ -84,34 +121,14 @@ public class GameServer {
 			//Start client acceptor
 			clientHandler = new ClientHandler(ms, ml);
 			acceptor.bind(new InetSocketAddress(PORT), clientHandler, cfg);
+			
+			//Start the world clock
+			m_worldClock = new WorldClock();
+			new Thread(m_worldClock).start();
 			System.out.println("Server started.");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-	}
-	
-   /**
-    * Returns PokemonSpeciesData Database
-    * @return PokemonSpeciesData
-    */
-	public static PokemonSpeciesData getSpeciesData() {
-		return  p;
-	}
-	
-   /**
-    * Returns the POLR Database which contains information on move learning, pokedex, etc.
-    * @return POLRDatabase
-	*/
-	public static POLRDatabase getPOLRDB() {
-		return polr;
-	}
-	
-   /**
-    * Returns the POLR Database which contains information on move learning, pokedex, etc.
-    * @return POLRDatabase
-	*/
-	public static JewelMechanics getMechanics() {
-		return m;
 	}
 	
 	/**
@@ -120,12 +137,13 @@ public class GameServer {
 	 */
 	public static void main(String[] args) {
 		GameServer g = new GameServer();
+		g.start();
 	}
 
 	/**
 	 * Shuts down the game server. Returns true when completed.
 	 */
-	public boolean shutdown() {
+	public boolean stop() {
 		if(clientHandler.logoutAll()) {
 			acceptor.unbindAll();
 			return true;

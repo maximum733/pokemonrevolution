@@ -23,7 +23,7 @@ package polr.server.map;
 import java.util.Random;
 
 import polr.server.GameServer;
-import polr.server.object.NonPlayerChar;
+import polr.server.npc.NonPlayerChar;
 import polr.server.player.PlayerChar;
 
 /**

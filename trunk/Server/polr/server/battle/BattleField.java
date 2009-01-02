@@ -30,6 +30,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import polr.server.GameServer;
 import polr.server.mechanics.BattleMechanics;
 import polr.server.mechanics.PokemonType;
 import polr.server.mechanics.clauses.Clause;
@@ -39,6 +40,7 @@ import polr.server.mechanics.moves.PokemonMove;
 import polr.server.mechanics.moves.MoveList.SpeedSwapEffect;
 import polr.server.mechanics.statuses.StatusEffect;
 import polr.server.mechanics.statuses.field.FieldEffect;
+import polr.server.player.PlayerChar;
 
 /**
  *
@@ -51,7 +53,7 @@ public abstract class BattleField {
      * later, but for now it will always be two.
      */
     protected final int m_participants = 2;
-    
+	private ArrayList<PlayerChar> m_spectators = new ArrayList<PlayerChar>();
     protected ArrayList m_effects = new ArrayList();
     protected Pokemon[][] m_pokemon;
     protected int[] m_active = { 0, 0 };
@@ -63,6 +65,22 @@ public abstract class BattleField {
     
     public static MoveListEntry getStruggle() {
         return m_struggle;
+    }
+    
+    /**
+     * Adds a spectator to the battle
+     * @param p
+     */
+    public void addSpectator(PlayerChar p) {
+    	m_spectators.add(p);
+    }
+    
+    /**
+     * Removes a spectator from the battle
+     * @param p
+     */
+    public void removeSpectator(PlayerChar p) {
+    	m_spectators.remove(p);
     }
     
     /**
@@ -101,6 +119,7 @@ public abstract class BattleField {
     public BattleField(BattleMechanics mech, Pokemon[][] pokemon) {
         m_mechanics = mech;
         setPokemon(pokemon);
+        this.applyEffect(GameServer.getWorldClock().getWeatherEffect());
     }
     
     protected BattleField(BattleMechanics mech) {
@@ -180,35 +199,38 @@ public abstract class BattleField {
      * the same object.
      */
     public boolean applyEffect(FieldEffect eff) {
-        Iterator i = m_effects.iterator();
-        while (i.hasNext()) {
-            FieldEffect j = (FieldEffect)i.next();
-            if (j.isRemovable()) continue;
-            if (eff.equals(j)) return false;
+    	if(eff != null) {
+    		Iterator i = m_effects.iterator();
+            while (i.hasNext()) {
+                FieldEffect j = (FieldEffect)i.next();
+                if (j.isRemovable()) continue;
+                if (eff.equals(j)) return false;
+                
+                if (eff.isExclusiveWith(j)) {
+                    // FieldEffects overwrite each other rather than failing if
+                    // another in their class is present.
+                    removeEffect(j);
+                    // We know that no other statuses can possibly be in this
+                    // category, so it is safe to skip the rest of this loop.
+                    break;
+                }
+            }
+
+            FieldEffect applied = eff.getFieldCopy();
+            if (!applied.applyToField(this)) return false;
+
+            m_effects.add(applied);
             
-            if (eff.isExclusiveWith(j)) {
-                // FieldEffects overwrite each other rather than failing if
-                // another in their class is present.
-                removeEffect(j);
-                // We know that no other statuses can possibly be in this
-                // category, so it is safe to skip the rest of this loop.
-                break;
+            // Apply to each pokemon in the field.
+            Pokemon[] active = getActivePokemon();
+            if (active != null) {
+                for (int j = 0; j < active.length; ++j) {
+                    active[j].addStatus(null, applied);
+                }
             }
-        }
-
-        FieldEffect applied = eff.getFieldCopy();
-        if (!applied.applyToField(this)) return false;
-
-        m_effects.add(applied);
-        
-        // Apply to each pokemon in the field.
-        Pokemon[] active = getActivePokemon();
-        if (active != null) {
-            for (int j = 0; j < active.length; ++j) {
-                active[j].addStatus(null, applied);
-            }
-        }
-        return true;
+            return true;
+    	}
+    	return false;
     }
     
     /**

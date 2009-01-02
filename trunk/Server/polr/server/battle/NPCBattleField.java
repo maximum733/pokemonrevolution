@@ -35,14 +35,14 @@ import polr.server.mechanics.statuses.FreezeEffect;
 import polr.server.mechanics.statuses.PoisonEffect;
 import polr.server.mechanics.statuses.SleepEffect;
 import polr.server.mechanics.statuses.StatusEffect;
-import polr.server.object.TrainerNonPlayerChar;
+import polr.server.npc.NonPlayerChar;
 import polr.server.player.PlayerChar;
 
 public class NPCBattleField extends BattleField {
        private Pokemon [] enemyParty;
        private String enemyName;
        private PlayerChar m_humanPlayer;
-       private TrainerNonPlayerChar opponent;
+       private NonPlayerChar opponent;
        BattleTurn[] m_queuedTurns = new BattleTurn[2];
 
        Set<Pokemon> participatingPokemon
@@ -52,7 +52,7 @@ public class NPCBattleField extends BattleField {
 
        private boolean m_isDone = false;
 
-       public NPCBattleField(BattleMechanics mech, Pokemon[] party, String name, PlayerChar player, TrainerNonPlayerChar t) {
+       public NPCBattleField(BattleMechanics mech, Pokemon[] party, String name, PlayerChar player, NonPlayerChar t) {
                super(mech, new Pokemon[][] {
                                player.getParty(),
                                 party});
@@ -391,7 +391,7 @@ public class NPCBattleField extends BattleField {
                                        }
                                }
                                m_humanPlayer.updateClientParty();
-                       opponent.battleWon(m_humanPlayer);
+                       //opponent.battleWon(m_humanPlayer);
                } else {
                        int moneyGain = m_humanPlayer.getHighestLevel() + 2;
                        m_humanPlayer.setMoney(m_humanPlayer.getMoney() - moneyGain);
