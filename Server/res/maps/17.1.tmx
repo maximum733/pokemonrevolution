@@ -2,6 +2,7 @@
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="81" height="20" tilewidth="16" tileheight="16">
  <properties>
+  <property name="pvp" value="yes"/>
   <property name="surfLevels" value=""/>
   <property name="surfProbability" value="0"/>
   <property name="surfSpecies" value=""/>
