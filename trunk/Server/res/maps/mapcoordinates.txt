@@ -10,8 +10,10 @@ Interiors
 -50.-48 Valecia cave
 
 Hoenn
--25.-25 Litteroot
--25.-24 route 101
--25.-23 oldaletown
--25.-22 route 103
--24.-23 route 102
+17.-2 Litteroot
+17.-1 route 101
+17.0 oldaletown
+17.1 route 103
+16.0 route 102
+15.0 petalburg city
+14.0 route 104
