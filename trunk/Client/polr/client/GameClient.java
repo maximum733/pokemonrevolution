@@ -20,6 +20,8 @@
 
 package polr.client;
 
+import java.io.File;
+import java.lang.reflect.Field;
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
 import java.util.ConcurrentModificationException;
@@ -43,6 +45,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+
 
 import polr.client.engine.Animator;
 import polr.client.engine.GameMap;
@@ -578,5 +581,35 @@ public class GameClient extends BasicGame {
 				battle.getBattleSpeech().advance();
 			}*/
 		}
+		
 	}
+	/**
+	 * Slick Native library finder.
+	 */
+	  static {
+	      String s = File.separator;
+	      // Modify this to point to the location of the native libraries.
+	      String newLibPath = System.getProperty("user.dir") + s + "lib" + s + "native";
+	      System.setProperty("java.library.path", newLibPath);
+
+	      Field fieldSysPath = null;
+	      try {
+	          fieldSysPath = ClassLoader.class.getDeclaredField("sys_paths");
+	      } catch (SecurityException e) {
+	          e.printStackTrace();
+	      } catch (NoSuchFieldException e) {
+	          e.printStackTrace();
+	      }
+
+	      if (fieldSysPath != null) {
+	          try {
+	         fieldSysPath.setAccessible(true);
+	         fieldSysPath.set(System.class.getClassLoader(), null);
+	          } catch (IllegalArgumentException e) {
+	         e.printStackTrace();
+	          } catch (IllegalAccessException e) {
+	         e.printStackTrace();
+	          }
+	      }
+	    } 
 }
