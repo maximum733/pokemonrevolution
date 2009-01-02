@@ -20,38 +20,74 @@
 
 package polr.server.object;
 
+import polr.server.map.MapMatrix;
 import polr.server.map.ServerMap;
 import polr.server.player.PlayerChar;
 
-public abstract class WarpTile extends NonPlayerChar {
-	private int mapX, mapY, x, y;
+/**
+ * Handles warp tiles
+ * @author shinobi
+ *
+ */
+public class WarpTile {
+	private int m_mapX, m_mapY, m_x, m_y, m_warpMapX, m_warpMapY, m_warpX, m_warpY;
 	
 	public WarpTile(int mapX, int mapY, int x, int y, ServerMap serverMap) {
-		this.mapX = mapX;
-		this.mapY = mapY;
-		this.x = x;
-		this.y = y;
-		this.setMap(serverMap);
-		this.setSprite(0);
-		this.setName("");
+		this.m_mapX = mapX;
+		this.m_mapY = mapY;
+		this.m_x = x;
+		this.m_y = y;
 	}
 	
-	@Override
-	public abstract void speakTo(PlayerChar target);
+	public void warpPlayer(PlayerChar p) {
+		MapMatrix m_mapMatrix = p.getMap().getMapMatrix();
+		m_mapMatrix.getMap(p.getMapX(), p.getMapY()).removePlayer(p);
+		p.setX(m_warpX);
+		p.setY(m_warpY);
+		m_mapMatrix.getMap(m_warpMapX, m_warpMapY).addPlayer(p);
+	}
+	
+	public void warpChar() {
+		
+	}
 	
 	public int getWarpMapX() {
-		return mapX;
+		return m_warpMapX;
 	}
 	
 	public int getWarpMapY() {
-		return mapY;
+		return m_warpMapY;
 	}
 	
 	public int getWarpX() {
-		return x;
+		return m_warpX;
 	}
 	
 	public int getWarpY() {
-		return y;
+		return m_warpY;
+	}
+
+	public int getMapX() {
+		return m_mapX;
+	}
+
+	public int getMapY() {
+		return m_mapY;
+	}
+
+	public String getName() {
+		return "";
+	}
+
+	public int getSprite() {
+		return 0;
+	}
+
+	public int getX() {
+		return m_x;
+	}
+
+	public int getY() {
+		return m_y;
 	}
 }

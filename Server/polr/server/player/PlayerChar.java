@@ -40,11 +40,10 @@ import polr.server.battle.WildBattleField;
 import polr.server.database.POLRDatabase;
 import polr.server.database.POLREvolution.EvoTypes;
 import polr.server.map.ServerMap.Directions;
+import polr.server.npc.NonPlayerChar;
 import polr.server.object.Char;
-import polr.server.object.NonPlayerChar;
 import polr.server.object.Pokedex;
 import polr.server.object.PokesBox;
-import polr.server.object.TrainerNonPlayerChar;
 import polr.server.player.PlayerClass.ClassType;
 import polr.server.trade.TradeItem;
 import polr.server.trade.TradeLogic;
@@ -957,10 +956,6 @@ public class PlayerChar extends Char {
 	public NonPlayerChar getTalkingTo() {
 		return m_talkingTo;
 	}
-	
-	public TrainerNonPlayerChar getTrainerTalkingTo() {
-		return (TrainerNonPlayerChar) m_talkingTo;
-	}
 
 	public void setRegisterTime(Date m_registerTime) {
 		this.m_registerTime = m_registerTime;
@@ -1082,7 +1077,7 @@ public class PlayerChar extends Char {
 		this.m_disableExpiration = disableExpiration;
 	}
 	
-	public void startTrainerBattle(TrainerNonPlayerChar opponent) {
+	public void startTrainerBattle(NonPlayerChar opponent) {
 		clearChallenges();
 		this.getIoSession().write("bi" + opponent.getName() + ",n,0");
 		if(!m_npcNames.contains(opponent.getName())) {

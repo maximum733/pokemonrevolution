@@ -113,15 +113,22 @@ public class ProtocolHandler extends IoHandlerAdapter {
         	//A player is moving right
         	break;
         case 'C':
-        	//A player is changing direction
+        	//A player is changing sometime
         	switch(message.charAt(1)) {
         	case 'U':
+        		//Direction - Up
         		break;
         	case 'D':
+        		//Direction - Down
         		break;
         	case 'L':
+        		//Direction - Left
         		break;
         	case 'R':
+        		//Direction - Right
+        		break;
+        	case 'S':
+        		//Sprite
         		break;
         	}
         	break;
@@ -131,6 +138,9 @@ public class ProtocolHandler extends IoHandlerAdapter {
         	case '0':
         		//Server has gone into lockdown
         		sessionClosed(session);
+        		break;
+        	case '1':
+        		//You cannot challenge this trainer
         		break;
         	}
         	break;

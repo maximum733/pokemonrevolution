@@ -92,7 +92,7 @@ public class ClientHandler extends IoHandlerAdapter {
 		m_mapMatrix = new MapMatrix();
 		m_mapReader = new XMLMapTransformer();
 		
-		//Load all the maps
+		//Load all the maps. Limit the map loading threads to ~20
 		int initialThreadCount = Thread.activeCount();
 		File map;
 		for(int x = -50; x < 50; x++) {
@@ -101,8 +101,10 @@ public class ClientHandler extends IoHandlerAdapter {
 				if(map.exists()) {
 					new Thread(new MapLoader(m_mapMatrix, m_mapReader, x, y));
 				}
+				while(Thread.activeCount() > 20);
 			}
 		}
+		//Wait for all the maps to finish loading
 		while(initialThreadCount != Thread.activeCount());
 		
 		//Start the Player Data Manager

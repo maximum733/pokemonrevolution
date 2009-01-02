@@ -1,21 +1,21 @@
 /*
- Pokemon Global. A Pokemon MMO based on the series of games made by Nintendo.
- Copyright � 2007-2008 Pokemon Global Team
+ Pokemon Online Revolution. A Pokemon MMO based on the series of games made by Nintendo.
+ Copyright � 2007-2008 Pokemon Online Revolution Team
 
- This file is part of Pokemon Global.
+ This file is part of Pokemon Online Revolution.
 
- Pokemon Global is free software: you can redistribute it and/or modify
+ Pokemon Online Revolution is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation, either version 3 of the License, or
  (at your option) any later version.
 
- Pokemon Global is distributed in the hope that it will be useful,
+ Pokemon Online Revolution is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
 
  You should have received a copy of the GNU General Public License
- along with Pokemon Global.  If not, see <http://www.gnu.org/licenses/>.
+ along with Pokemon Online Revolution.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 package polr.server.map;
@@ -23,7 +23,6 @@ package polr.server.map;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Random;
 
 import polr.server.GameServer;
@@ -35,8 +34,8 @@ import polr.server.mechanics.BattleMechanics;
 import polr.server.mechanics.PokemonNature;
 import polr.server.mechanics.moves.MoveList;
 import polr.server.mechanics.moves.MoveListEntry;
+import polr.server.npc.NonPlayerChar;
 import polr.server.object.Char;
-import polr.server.object.NonPlayerChar;
 import polr.server.object.WarpTile;
 import polr.server.player.PlayerChar;
 import tiled.core.Map;
@@ -556,11 +555,8 @@ public class ServerMap {
 								return false;
 							}
 						} else {
-							WarpTile w = getWarpTileAt(playerX, playerY - 32);
-							if(w != null) {
-								w.speakTo((PlayerChar) p);
-							} else
-								return true;
+							//TODO: Add warp tile check
+							return true;
 						}
 					}
 				} else {
@@ -600,11 +596,8 @@ public class ServerMap {
 								return false;
 							}
 						} else {
-							WarpTile w = getWarpTileAt(playerX , playerY + 32);
-							if(w != null) {
-								w.speakTo((PlayerChar) p);
-							} else
-								return true;
+							//TODO: Add warp tile check
+							return true;
 						}
 					}
 				} else {
@@ -644,11 +637,8 @@ public class ServerMap {
 								return false;
 							}
 						} else {
-							WarpTile w = getWarpTileAt(playerX - 32, playerY);
-							if(w != null) {
-								w.speakTo((PlayerChar) p);
-							} else
-								return true;
+							//TODO: Add warp tile check
+							return true;
 						}
 					}
 				} else {
@@ -688,11 +678,8 @@ public class ServerMap {
 								return false;
 							}
 						} else {
-							WarpTile w = getWarpTileAt(playerX + 32, playerY);
-							if(w != null) {
-								w.speakTo((PlayerChar) p);
-							} else
-								return true;
+							//TODO: Add warp tile check
+							return true;
 						}
 					}
 				} else {

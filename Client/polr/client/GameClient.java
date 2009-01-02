@@ -266,7 +266,6 @@ public class GameClient extends BasicGame {
 			if(PROXY.equalsIgnoreCase("")) {
 				System.out.println("Attempting to connect to " + SERVER + " on port " + PORT);
 				SocketConnector connector = new SocketConnector();
-			      
 		        SocketConnectorConfig cfg = new SocketConnectorConfig();
 		        ((SocketSessionConfig) cfg.getSessionConfig()).setTcpNoDelay(true);
 		        cfg.getFilterChain().addLast(

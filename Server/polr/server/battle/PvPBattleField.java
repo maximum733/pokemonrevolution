@@ -20,6 +20,7 @@
 
 package polr.server.battle;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -57,8 +58,6 @@ public final class PvPBattleField extends BattleField {
 
 	public void beginBattle() {
 		try {
-			//validateTeam(getParty(0), 0);
-			//validateTeam(getParty(1), 1);
 			healthCheck();
 			participatingPokemon.add(getParty(0)[0]);
 			participatingPokemon.add(getParty(1)[0]);
