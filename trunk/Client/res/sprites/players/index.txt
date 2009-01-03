@@ -192,4 +192,4 @@ Karen.png
 RocketCassidy.png
 Will.png
 swim.png
-npc/ProfessorIvy.png
+ProfessorIvy.png
