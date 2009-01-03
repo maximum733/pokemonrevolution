@@ -101,7 +101,7 @@ public class GameMap extends TiledMap {
 		}
 		int colTileID =
 			getLayer("Collisions").getTileID(
-					newX / 32, (newY + 8) / 32);
+					(newX + 32) / 32, (newY + 8) / 32);
 		int watTileID;
 		//Not all maps have a water layer
 		/*try {
