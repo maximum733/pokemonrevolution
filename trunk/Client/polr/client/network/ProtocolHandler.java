@@ -29,7 +29,6 @@ import org.apache.mina.common.IoSession;
 import polr.client.GameClient;
 import polr.client.logic.OurPlayer;
 import polr.client.logic.Player;
-import polr.client.logic.Player.Dirs;
 
 /** 
  * This handles all messages received from the server
