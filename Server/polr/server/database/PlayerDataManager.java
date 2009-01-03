@@ -23,6 +23,7 @@ import polr.server.mechanics.moves.MoveList;
 import polr.server.mechanics.moves.MoveListEntry;
 import polr.server.player.Bag;
 import polr.server.player.PlayerChar;
+import polr.server.player.PlayerClass.ClassType;
 
 public class PlayerDataManager implements Runnable {
 	private Serializer m_serializer;
@@ -151,8 +152,8 @@ public class PlayerDataManager implements Runnable {
 					session.setAttribute("player", player);
 					player.reinitialise();
 					m_playerList.put(player.getName(), player);
-					player.setMap(m_mapMatrix.getMap(player.getMapX(), player
-							.getMapY()));
+					session.write("ls");
+					m_mapMatrix.getMap(player.getMapX(), player.getMapY()).addPlayer(player);
 				} else {
 					//Tell the user the password was wrong
 					session.write("l2");
@@ -162,7 +163,7 @@ public class PlayerDataManager implements Runnable {
 				session.write("l1");
 			}
 		} catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 	}
 	
@@ -201,24 +202,25 @@ public class PlayerDataManager implements Runnable {
 	 * @param sprite
 	 * @param starter
 	 */
-	public boolean register(String username, String password, String email,
-			int sprite, int starter) {
+	public boolean register(String username, String password,
+			int sprite, IoSession session) {
+		File userfile = new File("accounts/" + username + ".usr.xml");
 		try {
-			File userfile = new File("accounts/" + username + ".usr.xml");
-			if(!userfile.createNewFile()) {
+			if(username.length() < 4 || username.length() > 12) {
 				return false;
 			} else {
-				//Check if username contains invalid characters or is too long
-				if(!Pattern.matches("^[0-9a-zA-Z]{1,20}$", username) && username.length() < 10) {
+				//Now check the username contains no curse words or otherwise
+				Pattern pattern = Pattern.compile("(admin|mod|gm|sysop|" +
+						"fuck|shit|ass|piss|vagina|nigger|" +
+						"arse|bitch|PWO|PokemonWorldOnline)"
+						, Pattern.CASE_INSENSITIVE);
+				Matcher matcher = pattern.matcher(username);
+				if(matcher.find()) {
+					session.write("r1");
 					return false;
 				} else {
-					//Now check the username contains no curse words or otherwise
-					Pattern pattern = Pattern.compile("(admin|mod|gm|sysop|" +
-							"fuck|shit|ass|piss|vagina|" +
-							"arse|bitch|PWO|PokemonWorldOnline)"
-							, Pattern.CASE_INSENSITIVE);
-					Matcher matcher = pattern.matcher(username);
-					if(matcher.find()) {
+					if(!userfile.createNewFile()) {
+						session.write("r2");
 						return false;
 					} else {
 						//Everything is okay, generate a new player account
@@ -229,68 +231,25 @@ public class PlayerDataManager implements Runnable {
 						p.setParty(new Pokemon[6]);
 						p.setX(0);
 						p.setY(0);
-						p.setMap(m_mapMatrix.getMap(0, 0));
+						p.setMap(m_mapMatrix.getMap(25, -25));
 						p.setBag(new Bag(true));
-						p.setEmail(email);
 						p.setMoney(10);
-						//Generate their starter Pokemon
-						switch(starter) {
-						case 1: // Bulbasaur
-							starter = GameServer.getSpeciesData().getPokemonByName("Bulbasaur");
-							break;
-						case 2: // Charmander
-							starter = GameServer.getSpeciesData().getPokemonByName("Charmander");
-							break;
-						case 3: // Squirtle
-							starter = GameServer.getSpeciesData().getPokemonByName("Squirtle");
-							break;
-						case 4: // Chikorita
-							starter = GameServer.getSpeciesData().getPokemonByName("Chikorita");
-							break;
-						case 5: // Cyndaquil
-							starter = GameServer.getSpeciesData().getPokemonByName("Cyndaquil");
-							break;
-						case 6: // Totodile
-							starter = GameServer.getSpeciesData().getPokemonByName("Totodile");
-							break;
-						case 7: // Treecko
-							starter = GameServer.getSpeciesData().getPokemonByName("Treecko");
-							break;
-						case 8: // Torchic
-							starter = GameServer.getSpeciesData().getPokemonByName("Torchic");
-							break;
-						case 9: // Mudkip
-							starter = GameServer.getSpeciesData().getPokemonByName("Mudkip");
-							break;
-						case 10: // Turtwig
-							starter = GameServer.getSpeciesData().getPokemonByName("Turtwig");
-							break;
-						case 11: // Chimchar
-							starter = GameServer.getSpeciesData().getPokemonByName("Chimchar");
-							break;
-						case 12: // Piplup
-							starter = GameServer.getSpeciesData().getPokemonByName("Piplup");
-							break;
-						default:
-							return false;
-						}
-						Pokemon starterPkmn = createStarter(starter);
-						p.setSeen(starter);
-						p.setCaught(starter);
-						p.getParty()[0] = starterPkmn;
 						p.setNo(m_playerAmount);
-						starterPkmn.setOriginalTrainer(p.getName());
-						starterPkmn.setOriginalNo(p.getNo());
+						p.setPlayerClass(ClassType.NONE);
+						p.initBoxes();
+						p.initPokedex();
 						//Save the user account and increment the total amount of players
 						m_serializer.write(p, userfile);
 						m_playerAmount++;
+						return true;
 					}
 				}
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
+			session.write("re");
 			return false;
 		}
-		return false;
 	}
 	
 	/**

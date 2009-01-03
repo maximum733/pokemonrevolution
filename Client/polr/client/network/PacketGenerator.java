@@ -69,14 +69,14 @@ public class PacketGenerator {
 
         // send the hash to the server
         if(output == null)
-        	gameSession.write("l" + username.trim() + new String(new char[] {(char) 27}) + hashedStr);
+        	gameSession.write("l" + username.trim() + "," + hashedStr);
         else {
-        	output.write("l" + username.trim() + new String(new char[] {(char) 27}) + hashedStr);
+        	output.write("l" + username.trim() + "," + hashedStr);
         	output.flush();
         }
 	}
        // begin generating a Whirlpool password hash	
-	public void register(String username, String password, int starterPokemon, int characterAppearance, String email) {
+	public void register(String username, String password, int characterAppearance) {
 		Whirlpool hasher = new Whirlpool();
         hasher.NESSIEinit();
 
@@ -98,15 +98,11 @@ public class PacketGenerator {
         }
         
         if(output == null)
-        	gameSession.write("r" + username.trim() + new String(new char[] {(char) 27}) +
-                hashedStr + new String(new char[] {(char) 27}) + starterPokemon +
-				   new String(new char[] {(char) 27}) + characterAppearance +
-                new String(new char[] {(char) 27}) + email);
+        	gameSession.write("r" + username.trim() + "," +
+                hashedStr + "," + characterAppearance);
         else {
-        	output.write("r" + username.trim() + new String(new char[] {(char) 27}) +
-                    hashedStr + new String(new char[] {(char) 27}) + starterPokemon +
-    				   new String(new char[] {(char) 27}) + characterAppearance +
-                    new String(new char[] {(char) 27}) + email);
+        	output.write("r" + username.trim() + "," +
+                    hashedStr + "," + characterAppearance);
         	output.flush();
         }
 	}

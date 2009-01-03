@@ -30,7 +30,7 @@ public class MapLoader implements Runnable {
 	
 	public MapLoader(MapMatrix mapMatrix, XMLMapTransformer mapReader, int x, int y) {
 		m_mapMatrix = mapMatrix;
-		m_mapReader = mapReader;
+		m_mapReader = new XMLMapTransformer();
 		m_mapX = x;
 		m_mapY = y;
 	}
@@ -39,7 +39,9 @@ public class MapLoader implements Runnable {
 		String mapName = "res/maps/" + String.valueOf(m_mapX) + "." + String.valueOf(m_mapY) + ".tmx";
 		try {
 			m_mapMatrix.setMap(new ServerMap(m_mapReader.readMap(mapName), m_mapX, m_mapY), m_mapX, m_mapY);
-		} catch (Exception e) {				
+			System.out.println(mapName + " loaded");
+		} catch (Exception e) {
+			e.printStackTrace();
 			System.err.println(mapName + " could not be loaded");
 		}
 	}

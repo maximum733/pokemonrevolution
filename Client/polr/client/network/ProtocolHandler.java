@@ -21,11 +21,15 @@
 package polr.client.network;
 
 
+import javax.swing.JOptionPane;
+
 import org.apache.mina.common.IoHandlerAdapter;
 import org.apache.mina.common.IoSession;
 
 import polr.client.GameClient;
+import polr.client.logic.OurPlayer;
 import polr.client.logic.Player;
+import polr.client.logic.Player.Dirs;
 
 /** 
  * This handles all messages received from the server
@@ -66,7 +70,7 @@ public class ProtocolHandler extends IoHandlerAdapter {
     
 	@SuppressWarnings("static-access")
 	public void messageReceived(IoSession session, Object m) {
-    	Player p;
+    	Player p = null;
         String message = (String) m;
         String [] details;
         System.out.println(message);
@@ -77,15 +81,22 @@ public class ProtocolHandler extends IoHandlerAdapter {
         	switch(message.charAt(1)) {
         	case 's':
         		//Successful login
+        		thisGame.setUser(thisGame.getStartScreen().getUser());
+        		thisGame.setIsPlaying(true);
+        		thisGame.getStartScreen().setVisible(false);
+        		thisGame.getLoading().setVisible(true);
         		break;
         	case '0':
         		//Account does not exist
+        		JOptionPane.showMessageDialog(null, "Account does not exist.");
         		break;
         	case '1':
         		//Account is banned
+        		JOptionPane.showMessageDialog(null, "Account is banned.");
         		break;
         	case '2':
         		//Password is wrong
+        		JOptionPane.showMessageDialog(null, "Password is incorrect.");
         		break;
         	}
         	break;
@@ -94,9 +105,20 @@ public class ProtocolHandler extends IoHandlerAdapter {
         	switch(message.charAt(1)) {
         	case 's':
         		//Successful Registration
+        		JOptionPane.showMessageDialog(null, "Registration successful, you may now login.");
+        		thisGame.getStartScreen().getLoginFrame().goToLogin();
         		break;
         	case 'e':
         		//An error occurred
+        		JOptionPane.showMessageDialog(null, "An error occurred in registration.");
+        		break;
+        	case '1':
+        		//Banned username
+        		JOptionPane.showMessageDialog(null, "Banned username, please choose another.");
+        		break;
+        	case '2':
+        		//Username exists
+        		JOptionPane.showMessageDialog(null, "Username already exists.");
         		break;
         	}
         	break;
@@ -144,6 +166,49 @@ public class ProtocolHandler extends IoHandlerAdapter {
         		break;
         	}
         	break;
+        case 'm':
+        	//Map information
+        	switch(message.charAt(1)) {
+        	case 'S':
+        		//Set map
+        		details = message.substring(2).split(",");
+            	thisGame.mapX = Integer.parseInt(details[0]);
+            	thisGame.mapY = Integer.parseInt(details[1]);
+            	thisGame.newMap = true;
+            	thisGame.getLoading().setVisible(true);
+        		break;
+        	case 'A':
+        		//Add a player
+        		details = message.substring(2).split(",");
+        		if(details[1].equals(thisGame.user)) {
+    				p = new OurPlayer();
+    				OurPlayer pl = (OurPlayer) p;
+        			if(thisGame.thisPlayer != null) {
+        				pl.transfer(thisGame.thisPlayer);
+        			}
+        			pl.map = thisGame.getMapMatrix().getCurrentMap();
+    				thisGame.thisPlayer = pl;
+        		} else {
+       				p = new Player();
+        		}
+        		p.svrX = Short.parseShort(details[4]);
+        		p.svrY = Short.parseShort(details[5]);
+        		p.x = p.svrX;
+				p.y = p.svrY;
+				p.index = Integer.parseInt(details[0]);
+				p.username = details[1];
+				p.spriteType = Integer.parseInt(details[3]);
+				p.setFacing(p.dirValue(details[2]));
+        		thisGame.thisPlayer.map.addPlayer(p);
+        		break;
+        	case 'R':
+        		//Remove a player
+        		details = message.substring(2).split(",");
+        		break;
+        	}
+        	break;
+        case 'A':
+        	//Add a player
         }
 	}
     

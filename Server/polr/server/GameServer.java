@@ -125,7 +125,9 @@ public class GameServer {
 			//Start the world clock
 			m_worldClock = new WorldClock();
 			new Thread(m_worldClock).start();
-			System.out.println("Server started.");
+			System.out.println("INFO: World Clock started");
+			
+			System.out.println("INFO: Server startup completed");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

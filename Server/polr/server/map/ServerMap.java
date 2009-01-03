@@ -43,23 +43,25 @@ import tiled.core.MapLayer;
 import tiled.core.TileLayer;
 
 public class ServerMap {
+	public enum MapPvPType { NONPVP, PVP, PVPENFORCED }
 	private MapMatrix m_mapMatrix;
 
 	private ArrayList<PlayerChar> m_players;
 	private ArrayList<NonPlayerChar> m_npcs;
 	private ArrayList<WarpTile> m_warpTiles;
 	private MapItem m_mapItem;
+	private MapPvPType m_pvpType;
 
-	private int x;
-	private int y;
-	private int height;
-	private int width;
+	private int m_x;
+	private int m_y;
+	private int m_height;
+	private int m_width;
 
-	private int xOffsetModifier;
-	private int yOffsetModifier;
+	private int m_xOffsetModifier;
+	private int m_yOffsetModifier;
 
-	private int wildProbability;
-	private int surfProbability;
+	private int m_wildProbability;
+	private int m_surfProbability;
 
 	private HashMap<String, Integer> wildPokemonChances;
 	private HashMap<String, int[]> wildLevels;
@@ -81,38 +83,80 @@ public class ServerMap {
 		up, down, left, right
 	}
 	
+	/**
+	 * Get the width of this map.
+	 * @return
+	 */
 	public int getWidth() {
-		return width;
+		return m_width;
 	}
 	
+	/**
+	 * Get the height of this map.
+	 * @return
+	 */
 	public int getHeight() {
-		return height;
+		return m_height;
 	}
 
+	/**
+	 * Gets the mapMatrix.
+	 * @return
+	 */
 	public MapMatrix getMapMatrix() {
 		return m_mapMatrix;
 	}
 
+	/**
+	 * Sets the mapMatrix.
+	 * @param m
+	 */
 	public void setMapMatrix(MapMatrix m) {
 		m_mapMatrix = m;
 	}
 
+	/**
+	 * Returns the arraylist of Players.
+	 * @return
+	 */
 	public ArrayList<PlayerChar> getPlayers() {
 		return m_players;
 	}
 
+	/**
+	 * Returns the arraylist of NPCs.
+	 * @return
+	 */
 	public ArrayList<NonPlayerChar> getNPCs() {
 		return m_npcs;
 	}
 	
+	/**
+	 * Returns a random NPC. Used for NPC movements.
+	 * @return
+	 */
 	public NonPlayerChar getRandomNPC() {
-		return m_npcs.get(GameServer.getMechanics().getRandom().nextInt(m_npcs.size() - 1));
+		if(m_npcs != null && m_npcs.size() > 0)
+			return m_npcs.get(GameServer.getMechanics().getRandom().nextInt(m_npcs.size()));
+		else
+			return null;
 	}
 	
+	/**
+	 * Drop an item
+	 * @param x
+	 * @param y
+	 * @param id
+	 */
 	public void placeItem(int x, int y, int id) {
 		m_mapItem = new MapItem(x, y, id);
 	}
 	
+	/**
+	 * Pick up an item
+	 * @param p
+	 * @return
+	 */
 	public int takeItem(PlayerChar p) {
 		if(m_mapItem != null) {
 			int id = m_mapItem.id;
@@ -124,10 +168,23 @@ public class ServerMap {
 		}
 	}
 	
+	/**
+	 * Returns true if there is an item hidden at that location
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public boolean itemAt(int x, int y) {
 		return m_mapItem == null ? false : m_mapItem.x == x && m_mapItem.y == y;
 	}
 
+	/**
+	 * Generates a new wild Pokemon (land)
+	 * @param mech
+	 * @param polrData
+	 * @param speciesData
+	 * @return
+	 */
 	public Pokemon generateWildPokemon(BattleMechanics mech,
 			POLRDatabase polrData, PokemonSpeciesData speciesData) {
 		String speciesName = getWildSpecies();
@@ -194,6 +251,14 @@ public class ServerMap {
 		wildPokemon.setHappiness(polrData.getPokemonData(speciesIndex).getHappiness());
 		return wildPokemon;
 	}
+	
+	/**
+	 * Generates a new wild Pokemon (surfing)
+	 * @param mech
+	 * @param polrData
+	 * @param speciesData
+	 * @return
+	 */
 	public Pokemon generateSurfPokemon(BattleMechanics mech,
 						POLRDatabase polrData, PokemonSpeciesData speciesData) {
 		System.out.println("Attempting to send battle info") ;
@@ -265,6 +330,11 @@ public class ServerMap {
 		return surfPokemon;
 
 	}
+	
+	/**
+	 * Returns a string of possible wild pokemons
+	 * @return
+	 */
 	private String getWildSpecies() {
 		ArrayList<String> potentialSpecies = new ArrayList<String>();
 		do {
@@ -276,12 +346,21 @@ public class ServerMap {
 		return potentialSpecies.get(random.nextInt(potentialSpecies.size()));
 	}
 
+	/**
+	 * Returns a level for wild pokemon. NOTE: It's possible levels are preset.
+	 * @param speciesName
+	 * @return
+	 */
 	private int getWildLevel(String speciesName) {
 		int[] range = wildLevels.get(speciesName);
 		int unshiftedLevel = random.nextInt((range[1] - range[0]) + 1);
 		return unshiftedLevel + range[0];
 	}
 
+	/**
+	 * Returns a string of potential species that appear while surfing
+	 * @return
+	 */
 	private String getSurfSpecies() {
 		ArrayList<String> potentialSpecies = new ArrayList<String>();
 		do {
@@ -293,30 +372,53 @@ public class ServerMap {
 		return potentialSpecies.get(random.nextInt(potentialSpecies.size()));
 	}
 
+	/**
+	 * Returns a level of pokemon while surfing. NOTE: Possible levels are preset.
+	 * @param speciesName
+	 * @return
+	 */
 	private int getSurfLevel(String speciesName) {
 		int[] range = surfLevels.get(speciesName);
 		int unshiftedLevel = random.nextInt((range[1] - range[0]) + 1);
 		return unshiftedLevel + range[0];
 	}
 
+	/**
+	 * Add a player to the map
+	 * @param p
+	 */
 	public void addPlayer(PlayerChar p) {
 		getPlayers().add(p);
 		sendToAllBut("A" + p.getNo() + "," + p.getName() + ","
 				+ p.getFacing().toString() + "," + (p.isSurfing() ? "swim":p.getSprite()) + "," +
 				p.getX() + "," + p.getY(), p);
 		p.setMap(this);
-		p.getIoSession().write("m" + String.valueOf(this.x) + "," + String.valueOf(this.y));
+		p.getIoSession().write("mS" + String.valueOf(this.m_x) + "," + String.valueOf(this.m_y));
 	}
 
+	/**
+	 * Remove a player from the map
+	 * @param p
+	 */
 	public void removePlayer(PlayerChar p) {
 		sendToAllBut("PR" + p.getNo(), p);
 		getPlayers().remove(p);
 	}
 	
+	/**
+	 * Add a warp tile
+	 * @param w
+	 */
 	public void addWarpTile(WarpTile w) {
 		m_warpTiles.add(w);
 	}
 	
+	/**
+	 * Get the warp tile at co-ordinates (x,y)
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public WarpTile getWarpTileAt(int x, int y) {
 		for(int i = 0; i < m_warpTiles.size(); i++) {
 			WarpTile w = m_warpTiles.get(i);
@@ -326,21 +428,33 @@ public class ServerMap {
 		return null;
 	}
 	
+	/**
+	 * Add an NPC to the map
+	 * @param npc
+	 */
 	public void addNPC(NonPlayerChar npc) {
 		npc.setIndex(-1 - m_npcs.size());
 		m_npcs.add(npc);
 	}
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param map
+	 * @param x
+	 * @param y
+	 */
 	public ServerMap(Map map, int x, int y) {
-		width = map.getWidth();
-		height = map.getHeight();
+		m_width = map.getWidth();
+		m_height = map.getHeight();
 		m_players = new ArrayList<PlayerChar>();
 		m_npcs = new ArrayList<NonPlayerChar>();
 		m_warpTiles = new ArrayList<WarpTile>();
 
-		this.x = x;
-		this.y = y;
+		this.m_x = x;
+		this.m_y = y;
 
+		//Load in all the collisions, water tiles, etc.
 		for (int i = 0; i < map.getTotalLayers(); i++) {
 			MapLayer l = map.getLayer(i);
 			if (l.getName().equalsIgnoreCase("Collisions"))
@@ -358,24 +472,42 @@ public class ServerMap {
 		
 		}
 		
-		xOffsetModifier = Integer.parseInt(map.getProperties().getProperty(
-				"xOffsetModifier"));
-		yOffsetModifier = Integer.parseInt(map.getProperties().getProperty(
-				"yOffsetModifier"));
+		//Set the map's PvP property
 		try {
-			wildProbability = Integer.parseInt(map.getProperties().getProperty(
+			String pvpType = map.getProperties().getProperty("pvp");
+			if(pvpType.equalsIgnoreCase("enforced")) {
+				m_pvpType = MapPvPType.PVPENFORCED;
+			} else if(pvpType.equalsIgnoreCase("no")) {
+				m_pvpType = MapPvPType.NONPVP;
+			} else {
+				m_pvpType = MapPvPType.PVP;
+			}
+		} catch (Exception e) {
+			m_pvpType = MapPvPType.PVP;
+		}
+		
+		//Set the map offset
+		m_xOffsetModifier = Integer.parseInt(map.getProperties().getProperty(
+				"xOffsetModifier"));
+		m_yOffsetModifier = Integer.parseInt(map.getProperties().getProperty(
+				"yOffsetModifier"));
+		//Set the probability of wild pokemon
+		try {
+			m_wildProbability = Integer.parseInt(map.getProperties().getProperty(
 			"wildProbability"));
 		} catch (Exception e) {
 			System.err.println("wildProbability variable missing for " + this.getX() + "," + this.getY());
-			wildProbability = 0;
+			m_wildProbability = 0;
 		}
+		//Set the probability of water pokemon
 		try {
-			surfProbability = Integer.parseInt(map.getProperties().getProperty(
+			m_surfProbability = Integer.parseInt(map.getProperties().getProperty(
 			"surfProbability"));
 		} catch (Exception e) {
 			System.err.println("surfProbability variable missing for " + this.getX() + "," + this.getY());
-			surfProbability = 0;
+			m_surfProbability = 0;
 		}
+		//Set the possible pokemons & levels for them
 		wildPokemonChances = new HashMap<String, Integer>();
 		wildLevels = new HashMap<String, int[]>();
 		String[] species;
@@ -440,44 +572,70 @@ public class ServerMap {
 				// (clientHandler)handlers.elementAt(i);
 				// if (handler.authed) {
 				
-				p2.getIoSession().write("A" + p.getNo() + "," + p.getName() + ","
+				p2.getIoSession().write("mA" + p.getNo() + "," + p.getName() + ","
 						+ p.getFacing().toString() + "," + (p.isSurfing() ? "swim":p.getSprite()) + "," +
 						p.getX() + "," + p.getY());
 			}
 		}
 	}
 
+	/**
+	 * Returns true if a wild Pokemon appeared.
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public boolean isWildEncounter(int x, int y) {
-		if (random.nextInt(2874) < wildProbability * 16)
+		if (random.nextInt(2874) < m_wildProbability * 16)
 			if (grass != null && grass.getTileAt(x / 32, y / 32) != null)
 				return true;
 		return false;
 	}
+	
+	/**
+	 * Returns true if a wild Pokemon appeared (surfing).
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public boolean isSurfEncounter(int x, int y) {
-		
-		if (random.nextInt(2874) < surfProbability * 16)
+		if (random.nextInt(2874) < m_surfProbability * 16)
 			if (surf != null && surf.getTileAt(x / 32, y / 32) != null)
 				return true;
 		return false;
 	}
 
+	/**
+	 * Sends all NPC data
+	 * @param p2
+	 */
 	private void getNPCData(PlayerChar p2) {
 		NonPlayerChar p;
 		synchronized (m_npcs) {
 			for (int i = 0; i < m_npcs.size(); i++) {
 				p = m_npcs.get(i);
-				p2.getIoSession().write("A" + p.getIndex() + "," + p.getName() + ","
+				p2.getIoSession().write("mA" + p.getIndex() + "," + p.getName() + ","
 						+ p.getFacing().toString() + "," + p.getSprite() + "," +
 						p.getX() + "," + p.getY());
 			}
 		}
 	}
 
+	/**
+	 * Sends all map information to a player
+	 * @param p
+	 */
 	public void propagateMapData(PlayerChar p) {
-		getPlayerData(p);
-		getNPCData(p);
+		if(!p.isPropagated()) {
+			getPlayerData(p);
+			getNPCData(p);
+		}
 	}
 
+	/**
+	 * Sends the string to every player
+	 * @param s
+	 */
 	public void sendToAll(String s) {
 		try {
 			for (PlayerChar p : m_players) {
@@ -486,6 +644,11 @@ public class ServerMap {
 		} catch (ConcurrentModificationException e) {}
 	}
 	
+	/**
+	 * Sends the string to every player on the map except for the player passed into the method
+	 * @param s
+	 * @param player
+	 */
 	public void sendToAllBut(String s, PlayerChar player) {
 		for (PlayerChar p : m_players) {
 			if (p != player)
@@ -493,6 +656,12 @@ public class ServerMap {
 		}
 	}
 
+	/**
+	 * Returns the NPC at (x, y)
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public NonPlayerChar getNPCAt(int x, int y) {
 		NonPlayerChar n;
 		for(int i = 0; i < m_npcs.size(); i++) {
@@ -504,6 +673,13 @@ public class ServerMap {
 		return n;
 	}
 	
+	/**
+	 * Returns true there is a collision at (x, y)
+	 * @param tileX
+	 * @param tileY
+	 * @param directions
+	 * @return
+	 */
 	public boolean isBlocked(int tileX, int tileY, Directions directions) {
 		if (blocked.getTileAt(tileX, tileY) != null)
 			return true;
@@ -523,6 +699,13 @@ public class ServerMap {
 		}
 		return false;
 	}
+	
+	/**
+	 * Returns true if the char can move
+	 * @param dir
+	 * @param p
+	 * @return
+	 */
 	public boolean canMove(Directions dir, Char p) {
 		int playerX = p.getX();
 		int playerY = p.getY();
@@ -563,14 +746,14 @@ public class ServerMap {
 					return false;
 				}
 			} else {
-				ServerMap newMap = m_mapMatrix.getMap(x, y - 1);
+				ServerMap newMap = m_mapMatrix.getMap(m_x, m_y - 1);
 				if (newMap != null) {
 					m_mapMatrix.moveBetweenMaps((PlayerChar) p, this, newMap);
 				}
 			}
 			break;
 		case down:
-			if (playerY + 40 < height * 32) {
+			if (playerY + 40 < m_height * 32) {
 				if (!isBlocked(playerX / 32, ((playerY + 8) + 32) / 32, Directions.down)
 						&& (getNPCAt(playerX, playerY + 32) == null)) {
 					if(p.isSurfing()) {
@@ -604,7 +787,7 @@ public class ServerMap {
 					return false;
 				}
 			} else {
-				ServerMap newMap = m_mapMatrix.getMap(x, y + 1);
+				ServerMap newMap = m_mapMatrix.getMap(m_x, m_y + 1);
 				if (newMap != null) {
 					m_mapMatrix.moveBetweenMaps((PlayerChar) p, this, newMap);
 				}
@@ -645,14 +828,14 @@ public class ServerMap {
 					return false;
 				}
 			} else {
-				ServerMap newMap = m_mapMatrix.getMap(x - 1, y);
+				ServerMap newMap = m_mapMatrix.getMap(m_x - 1, m_y);
 				if (newMap != null) {
 					m_mapMatrix.moveBetweenMaps((PlayerChar) p, this, newMap);
 				}
 			}
 			break;
 		case right:
-			if (playerX + 32 < width * 32) {
+			if (playerX + 32 < m_width * 32) {
 				if (!isBlocked((playerX + 32) / 32, (playerY + 8) / 32, Directions.right)
 						&& (getNPCAt(playerX + 32, playerY) == null)) {
 					if(p.isSurfing()) {
@@ -686,7 +869,7 @@ public class ServerMap {
 					return false;
 				}
 			} else {
-				ServerMap newMap = m_mapMatrix.getMap(x + 1, y);
+				ServerMap newMap = m_mapMatrix.getMap(m_x + 1, m_y);
 				if (newMap != null) {
 					m_mapMatrix.moveBetweenMaps((PlayerChar) p, this, newMap);
 				}
@@ -696,19 +879,35 @@ public class ServerMap {
 		return false;
 	}
 
+	/**
+	 * Returns the x co-ordinate of this map in the map matrix
+	 * @return
+	 */
 	public int getX() {
-		return x;
+		return m_x;
 	}
 
+	/**
+	 * Returns the y co-ordinate of this map in the map matrix
+	 * @return
+	 */
 	public int getY() {
-		return y;
+		return m_y;
 	}
 
+	/**
+	 * Returns the x offset of the map
+	 * @return
+	 */
 	public int getXOffsetModifier() {
-		return xOffsetModifier;
+		return m_xOffsetModifier;
 	}
 
+	/**
+	 * Returns the y offset of the map
+	 * @return
+	 */
 	public int getYOffsetModifier() {
-		return yOffsetModifier;
+		return m_yOffsetModifier;
 	}
 }

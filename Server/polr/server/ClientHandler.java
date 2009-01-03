@@ -35,6 +35,7 @@ import polr.server.battle.PvPBattleField;
 import polr.server.database.PlayerDataManager;
 import polr.server.map.MapLoader;
 import polr.server.map.MapMatrix;
+import polr.server.map.ServerMap;
 import polr.server.mechanics.moves.MoveList;
 import polr.server.mechanics.moves.MoveSetData;
 import polr.server.player.PlayerChar;
@@ -99,20 +100,23 @@ public class ClientHandler extends IoHandlerAdapter {
 			for(int y = -50; y < 50; y++) {
 				map = new File("res/maps/" + String.valueOf(x) + "." + String.valueOf(y) + ".tmx");
 				if(map.exists()) {
-					new Thread(new MapLoader(m_mapMatrix, m_mapReader, x, y));
+					new Thread(new MapLoader(m_mapMatrix, m_mapReader, x, y)).start();
 				}
 				while(Thread.activeCount() > 20);
 			}
 		}
 		//Wait for all the maps to finish loading
 		while(initialThreadCount != Thread.activeCount());
+		System.out.println("INFO: Maps Loaded");
 		
 		//Start the Player Data Manager
 		m_persistor = new PlayerDataManager(m_mapMatrix, m_moveList);
 		new Thread(m_persistor).start();
+		System.out.println("INFO: Player Data Manager started.");
 		
 		//Start moving the NPCs
 		new Thread(m_mapMatrix).start();
+		System.out.println("INFO: NPC Movement Engine started.");
 	}
 	
 	   /**
@@ -146,6 +150,7 @@ public class ClientHandler extends IoHandlerAdapter {
 		if(!m_lockdown) {
 			//TODO: Add Ip ban check here
 			String line = msg.toString().trim();
+			System.out.println(line);
 			String [] details;
 			PlayerChar player = null;
 			if (session.containsAttribute("player"))
@@ -159,11 +164,18 @@ public class ClientHandler extends IoHandlerAdapter {
 			case 'r':
 				//User is registering
 				details = line.substring(1).split(",");
-				if(m_persistor.register(details[0], details[1], details[2], 
-						Integer.parseInt(details[3]), Integer.parseInt(details[4]))) {
+				if(m_persistor.register(details[0], details[1], Integer.parseInt(details[2]), session))
 					session.write("rs");
-				} else
-					session.write("re");
+				break;
+			case 'u':
+				//User is requesting an update
+				switch(line.charAt(1)) {
+				case 'm':
+					//Map data
+					player.getMap().propagateMapData(player);
+					player.setIsPropagated(true);
+					break;
+				}
 				break;
 			case 'U':
 				//User is moving up
