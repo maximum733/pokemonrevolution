@@ -103,60 +103,12 @@ public class StartScreen extends Window {
        public ServerFrame getServerSelector() {
     	   return serverSelector;
        }
-       
-       /*private void authDeleteActionPerformed(ActionEvent evt) {
-               if (authUser.getText() == "") {
-                       GameClient.messageBox("You must enter a username.", this);
-               }
-               else if(authPass.getText() == "") {
-                       GameClient.messageBox("You must enter a password.", this);
-               }
-       }
-
-       private boolean isEmailValid(String email){
-               //Initialize reg ex for email.
-               String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-
-               Pattern pattern = Pattern.compile(expression,Pattern.CASE_INSENSITIVE);
-               if (pattern.matcher(email).matches())
-                       return true;
-               else
-                       return false;
-       }
-       
-       private boolean validData() {
-               if (starterChoices.getChoice() != -1) {
-                       if (!authPass.getText().equals("") &&
-                                       authPass.getText().equals(
-                                               regConfirmPass.getText())) {
-                                       if (isEmailValid(regEmail.getText())) {
-                                               if (!authUser.getText().equals("")) {
-                                                       if (!authUser.getText().contains(" ")) {
-                                                               return true;
-                                                       } else {
-                                                               GameClient.messageBox("You may not have spaces in your username.", this);
-                                                       }
-                                               } else {
-                                                       GameClient.messageBox("Type in your username.", this);
-                                               }
-                                       } else {
-                                               GameClient.messageBox("Invalid e-mail address.", this);
-                                       }
-                       } else {
-                               GameClient.messageBox("Your password must be typed in both boxes.", this);
-                       }
-               } else {
-                       GameClient.messageBox("Make sure your Pokemon is selected correctly.", this);
-               }
-               return false;
-       }*/
- 
       
-	public void setPacketGenerator(PacketGenerator packetGen2) {
-		packetGen = packetGen2;
-	}
+       public void setPacketGenerator(PacketGenerator packetGen2) {
+    	   packetGen = packetGen2;
+       }
 	
-	public String getUser() {
-		return loginFrame.getUsername();
-	}
+       public String getUser() {
+    	   return loginFrame.getUsername();
+       }
 }

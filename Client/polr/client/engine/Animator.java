@@ -26,6 +26,7 @@ import java.util.TimerTask;
 
 import polr.client.GameClient;
 import polr.client.logic.Player;
+import polr.client.logic.Player.Dirs;
 
 public class Animator {
 	private GameMapMatrix mapMatrix;
@@ -40,12 +41,6 @@ public class Animator {
 
 	// Sets up calls
 	public Animator(GameMapMatrix maps, GameClient g) {
-		animTimer = new Timer();
-		animTask = new TimerTask() {
-			public void run() {
-				animate();
-			}
-		};
 		setThisGame(g);
 		mapMatrix = maps;
 	}
@@ -56,9 +51,7 @@ public class Animator {
 			for (Player p : mapMatrix.getPlayerList().values()) {
 				animatePlayer(p);
 			}
-		} catch (ConcurrentModificationException e) {
-
-		}
+		} catch (ConcurrentModificationException e) {}
 	}
 
 	// moves player and animates sprite
@@ -98,11 +91,6 @@ public class Animator {
 			p.setFacing(p.facing);
 			p.setAnimating(false);
 		}
-	}
-
-	// executes animation
-	public void execute(int interval) {
-		animTimer.schedule(animTask, 0, interval);
 	}
 
 	// sets client as game

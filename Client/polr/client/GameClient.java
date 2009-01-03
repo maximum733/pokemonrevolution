@@ -122,15 +122,19 @@ public class GameClient extends BasicGame {
 	
 	public static void main(String args[]) {
 		try {
+			System.getProperties().put("proxySet", "true");
+			System.getProperties().put("proxyHost", "proxy.dcu.ie");
+			System.getProperties().put("proxyPort", "8080");
+			
 			//Load the user's settings (Create settings file if first time)
 			Settings settings = new Settings();
 			
 			//Check for map updates (Download maps if first time)
-			MapUpdater updater = new MapUpdater(settings.getMapRevision());
+			/*MapUpdater updater = new MapUpdater(settings.getMapRevision());
 			updater.checkSVN();
 			while(updater != null && updater.isVisible());
 			settings.setMapRevision(updater.getMapRevision());
-			settings.saveSettings();
+			settings.saveSettings();*/
 			
 			AppGameContainer container = new AppGameContainer(new GameClient(settings));
 			container.setDisplayMode(settings.getScreenWidth(), settings.getScreenHeight(), false);
@@ -153,8 +157,7 @@ public class GameClient extends BasicGame {
 		String hdserial = diskUtilities.getSerialNumber("C");
 		System.out.println("HDS: " + hdserial);
 		
-		// read the game map using XML transformer
-		g.setTargetFrameRate(30);
+		g.setTargetFrameRate(40);
 		g.setShowFPS(false);
 		display = new Display(g);
 		mapMatrix = new GameMapMatrix();
@@ -429,7 +432,7 @@ public class GameClient extends BasicGame {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Down)) {
 					loading.setVisible(true);
 					packetGen.write("D");
-				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Down) && thisPlayer.x % 32 == 0 && thisPlayer.y % 32 == 0) {
+				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Down)) {
 					packetGen.write("D");
 				} else if (thisPlayer.facing != Dirs.Down) {
 						packetGen.write("D");
@@ -439,7 +442,7 @@ public class GameClient extends BasicGame {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Up)) {
 					loading.setVisible(true);
 					packetGen.write("U");
-				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Up) && thisPlayer.x % 32 == 0 && thisPlayer.y % 32 == 0) {
+				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Up)) {
 					//thisPlayer.moveUp();
 					packetGen.write("U");
 				} else {
@@ -452,7 +455,7 @@ public class GameClient extends BasicGame {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Left)) {
 					loading.setVisible(true);
 					packetGen.write("L");
-				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Left) && thisPlayer.x % 32 == 0 && thisPlayer.y % 32 == 0) {
+				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Left)) {
 					//thisPlayer.moveLeft();
 					packetGen.write("L");
 				} else {
@@ -465,7 +468,7 @@ public class GameClient extends BasicGame {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Right)) {
 					loading.setVisible(true);
 					packetGen.write("R");
-				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Right) && thisPlayer.x % 32 == 0 && thisPlayer.y % 32 == 0) {
+				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Right)) {
 					//thisPlayer.moveRight();
 					packetGen.write("R");
 				} else {
@@ -478,7 +481,7 @@ public class GameClient extends BasicGame {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Down)) {
 					loading.setVisible(true);
 					packetGen.write("D");
-				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Down) && thisPlayer.x % 32 == 0 && thisPlayer.y % 32 == 0) {
+				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Down)) {
 					packetGen.write("D");
 				} else {
 					if (thisPlayer.facing != Dirs.Down) {
@@ -490,7 +493,7 @@ public class GameClient extends BasicGame {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Up)) {
 					loading.setVisible(true);
 					packetGen.write("U");
-				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Up) && thisPlayer.x % 32 == 0 && thisPlayer.y % 32 == 0) {
+				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Up)) {
 					packetGen.write("U");
 				} else {
 					if (thisPlayer.facing != Dirs.Up) {
@@ -502,7 +505,7 @@ public class GameClient extends BasicGame {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Left)) {
 					loading.setVisible(true);
 					packetGen.write("L");
-				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Left) && thisPlayer.x % 32 == 0 && thisPlayer.y % 32 == 0) {
+				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Left)) {
 					//thisPlayer.moveLeft();
 					packetGen.write("L");
 				} else {
@@ -515,7 +518,7 @@ public class GameClient extends BasicGame {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Right)) {
 					loading.setVisible(true);
 					packetGen.write("R");
-				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Right) && thisPlayer.x % 32 == 0 && thisPlayer.y % 32 == 0) {
+				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Right)) {
 					//thisPlayer.moveRight();
 					packetGen.write("R");
 				} else {

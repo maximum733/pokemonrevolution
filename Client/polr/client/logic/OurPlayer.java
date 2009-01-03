@@ -23,6 +23,9 @@ package polr.client.logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import polr.client.GameClient;
+import polr.client.engine.GameMap;
+
 // loads the player data
 public class OurPlayer extends Player {
 	private OurPokemon[] m_pokemons;
@@ -114,5 +117,11 @@ public class OurPlayer extends Player {
 		m_pokemons[Integer.parseInt(pdata[2])].setSprite();
 		m_pokemons[Integer.parseInt(pdata[2])].setIcon();
 		m_pokemons[Integer.parseInt(pdata[2])].setBackSprite();
+	}
+	
+	public void setMap(GameMap currentMap) {
+		this.map = currentMap;
+		this.map.setXOffset(GameClient.width / 2 - this.x);
+		this.map.setYOffset(GameClient.height / 2 - this.y);
 	}
 }

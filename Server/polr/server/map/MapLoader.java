@@ -28,7 +28,7 @@ public class MapLoader implements Runnable {
 	private int m_mapX;
 	private int m_mapY;
 	
-	public MapLoader(MapMatrix mapMatrix, XMLMapTransformer mapReader, int x, int y) {
+	public MapLoader(MapMatrix mapMatrix, int x, int y) {
 		m_mapMatrix = mapMatrix;
 		m_mapReader = new XMLMapTransformer();
 		m_mapX = x;
