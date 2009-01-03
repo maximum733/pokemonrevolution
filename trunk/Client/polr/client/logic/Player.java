@@ -25,7 +25,7 @@ import org.newdawn.slick.Image;
 import polr.client.engine.GameMap;
 
 public class Player {
-	private static SpriteFactory spriteFactory;
+	public static SpriteFactory spriteFactory;
 	
 	// Foot to place for walking animation
 	public boolean      leftorright;
@@ -110,8 +110,8 @@ public class Player {
 	public void moveUp() {
 		svrY -= 32;
 		facing = Dirs.Up;
-		curImg = spriteFactory.getSprite(Dirs.Up, true, leftorright, spriteType);
 		leftorright = !leftorright;
+		curImg = spriteFactory.getSprite(Dirs.Up, true, leftorright, spriteType);
 		setAnimating(true);
 	}
 
@@ -119,17 +119,17 @@ public class Player {
 	public void moveDown() {
 		svrY += 32;
 		facing = Dirs.Down;
-		curImg = spriteFactory.getSprite(Dirs.Down, true, leftorright, spriteType);
 		leftorright = !leftorright;
-		setAnimating(true);	
+		curImg = spriteFactory.getSprite(Dirs.Down, true, leftorright, spriteType);
+		setAnimating(true);
 	}
 
 	// Move Left
 	public void moveLeft() {
 		svrX -= 32;
 		facing = Dirs.Left;
-		curImg = spriteFactory.getSprite(Dirs.Left, true, leftorright, spriteType);
 		leftorright = !leftorright;
+		curImg = spriteFactory.getSprite(Dirs.Left, true, leftorright, spriteType);
 		setAnimating(true);
 	}
 
@@ -137,8 +137,8 @@ public class Player {
 	public void moveRight() {
 		svrX += 32;
 		facing = Dirs.Right;
-		curImg = spriteFactory.getSprite(Dirs.Right, true, leftorright, spriteType);
 		leftorright = !leftorright;
+		curImg = spriteFactory.getSprite(Dirs.Right, true, leftorright, spriteType);
 		setAnimating(true);
 	}
 

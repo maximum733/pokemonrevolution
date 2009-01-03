@@ -29,6 +29,7 @@ import org.apache.mina.common.IoSession;
 import polr.client.GameClient;
 import polr.client.logic.OurPlayer;
 import polr.client.logic.Player;
+import polr.client.logic.Player.Dirs;
 
 /** 
  * This handles all messages received from the server
@@ -123,33 +124,59 @@ public class ProtocolHandler extends IoHandlerAdapter {
         	break;
         case 'U':
         	//A player is moving up
+        	try {
+            	thisGame.getMapMatrix().findPlayer(message.substring(1)).moveUp();
+        	} catch (Exception e) {}
         	break;
         case 'D':
         	//A player is moving down
+        	try {
+            	thisGame.getMapMatrix().findPlayer(message.substring(1)).moveDown();
+        	} catch (Exception e) {}
         	break;
         case 'L':
         	//A player is moving left
+        	try {
+            	thisGame.getMapMatrix().findPlayer(message.substring(1)).moveLeft();
+        	} catch (Exception e) {}
         	break;
         case 'R':
         	//A player is moving right
+        	try {
+            	thisGame.getMapMatrix().findPlayer(message.substring(1)).moveRight();
+        	} catch (Exception e) {}
         	break;
         case 'C':
         	//A player is changing sometime
         	switch(message.charAt(1)) {
         	case 'U':
         		//Direction - Up
+        		try {
+                	thisGame.getMapMatrix().findPlayer(message.substring(2)).setFacing(Dirs.Up);
+            	} catch (Exception e) {}
         		break;
         	case 'D':
         		//Direction - Down
+        		try {
+                	thisGame.getMapMatrix().findPlayer(message.substring(2)).setFacing(Dirs.Down);
+            	} catch (Exception e) {}
         		break;
         	case 'L':
         		//Direction - Left
+        		try {
+                	thisGame.getMapMatrix().findPlayer(message.substring(2)).setFacing(Dirs.Left);
+            	} catch (Exception e) {}
         		break;
         	case 'R':
         		//Direction - Right
+        		try {
+                	thisGame.getMapMatrix().findPlayer(message.substring(2)).setFacing(Dirs.Right);
+            	} catch (Exception e) {}
         		break;
         	case 'S':
         		//Sprite
+        		try {
+            	} catch (Exception e) {}
         		break;
         	}
         	break;
@@ -182,11 +209,13 @@ public class ProtocolHandler extends IoHandlerAdapter {
         		if(details[1].equals(thisGame.user)) {
     				p = new OurPlayer();
     				OurPlayer pl = (OurPlayer) p;
+        			pl.thisPlayer = true;
         			if(thisGame.thisPlayer != null) {
         				pl.transfer(thisGame.thisPlayer);
         			}
-        			pl.map = thisGame.getMapMatrix().getCurrentMap();
     				thisGame.thisPlayer = pl;
+    				thisGame.getMapMatrix().getCurrentMap().setCurrent(true);
+        			thisGame.getMapMatrix().setCurrentPlayer(p);
         		} else {
        				p = new Player();
         		}
@@ -198,7 +227,9 @@ public class ProtocolHandler extends IoHandlerAdapter {
 				p.username = details[1];
 				p.spriteType = Integer.parseInt(details[3]);
 				p.setFacing(p.dirValue(details[2]));
-        		thisGame.thisPlayer.map.addPlayer(p);
+				if(p instanceof OurPlayer)
+        			thisGame.thisPlayer.setMap(thisGame.getMapMatrix().getCurrentMap());
+        		thisGame.getMapMatrix().getCurrentMap().addPlayer(p);
         		break;
         	case 'R':
         		//Remove a player

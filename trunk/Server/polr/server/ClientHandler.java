@@ -36,6 +36,8 @@ import polr.server.database.PlayerDataManager;
 import polr.server.map.MapLoader;
 import polr.server.map.MapMatrix;
 import polr.server.map.ServerMap;
+import polr.server.map.ServerMap.Directions;
+import polr.server.mechanics.MovementController;
 import polr.server.mechanics.moves.MoveList;
 import polr.server.mechanics.moves.MoveSetData;
 import polr.server.player.PlayerChar;
@@ -57,7 +59,6 @@ public class ClientHandler extends IoHandlerAdapter {
 	private static ArrayList<String> m_ipbans = new ArrayList<String>();
 
 	private PlayerDataManager m_persistor;
-	private XMLMapTransformer m_mapReader;
 
 	private static Map<String, PlayerChar> m_playerList;
 	private ApplyItem m_applyItem;
@@ -91,7 +92,6 @@ public class ClientHandler extends IoHandlerAdapter {
 
 		m_applyItem = new ApplyItem();
 		m_mapMatrix = new MapMatrix();
-		m_mapReader = new XMLMapTransformer();
 		
 		//Load all the maps. Limit the map loading threads to ~20
 		int initialThreadCount = Thread.activeCount();
@@ -100,7 +100,7 @@ public class ClientHandler extends IoHandlerAdapter {
 			for(int y = -50; y < 50; y++) {
 				map = new File("res/maps/" + String.valueOf(x) + "." + String.valueOf(y) + ".tmx");
 				if(map.exists()) {
-					new Thread(new MapLoader(m_mapMatrix, m_mapReader, x, y)).start();
+					new Thread(new MapLoader(m_mapMatrix, x, y)).start();
 				}
 				while(Thread.activeCount() > 20);
 			}
@@ -117,6 +117,10 @@ public class ClientHandler extends IoHandlerAdapter {
 		//Start moving the NPCs
 		new Thread(m_mapMatrix).start();
 		System.out.println("INFO: NPC Movement Engine started.");
+		
+		//Start the movement controller
+		new Thread(new MovementController()).start();
+		System.out.println("INFO: Player Movement Engine starter.");
 	}
 	
 	   /**
@@ -179,15 +183,19 @@ public class ClientHandler extends IoHandlerAdapter {
 				break;
 			case 'U':
 				//User is moving up
+				player.queueMovement(Directions.up);
 				break;
 			case 'D':
 				//User is moving down
+				player.queueMovement(Directions.down);
 				break;
 			case 'L':
 				//User is moving left
+				player.queueMovement(Directions.left);
 				break;
 			case 'R':
 				//User is moving right
+				player.queueMovement(Directions.right);
 				break;
 			}
 		}

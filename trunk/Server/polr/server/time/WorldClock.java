@@ -99,7 +99,7 @@ public class WorldClock implements Runnable {
 				m_lastDaylightUpdate = System.currentTimeMillis();
 			}
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(900000);
 			} catch (Exception e) {}
 		}
 	}

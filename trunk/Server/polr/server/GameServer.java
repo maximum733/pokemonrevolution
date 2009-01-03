@@ -77,7 +77,7 @@ public class GameServer {
 		ByteBuffer.setUseDirectBuffers(false);
 		ByteBuffer.setAllocator(new SimpleByteBufferAllocator());
 
-		acceptor = new SocketAcceptor(6, Executors
+		acceptor = new SocketAcceptor(4, Executors
 				.newCachedThreadPool());
 
 		SocketAcceptorConfig cfg = new SocketAcceptorConfig();

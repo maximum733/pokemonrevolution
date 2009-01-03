@@ -145,6 +145,8 @@ public class PlayerChar extends Char {
 	private List<PlayerChar> m_challenges;
 
 	private IoSession m_session;
+	//Stores the player's next request movement
+	private Directions m_movements = null;
 
 	private Object m_target;
 	
@@ -741,6 +743,27 @@ public class PlayerChar extends Char {
 		return m_boxes.length;
 	}
 	
+	/**
+	 * Set the player's next request movement.
+	 * @param dir
+	 */
+	public void queueMovement(Directions dir) {
+		m_movements = dir;
+	}
+	
+	/**
+	 * Execute the next movement.
+	 */
+	public void move() {
+		if(m_movements != null) {
+			this.move(m_movements);
+			m_movements = null;
+		}
+	}
+	
+	/**
+	 * Move the player.
+	 */
 	public boolean move(Directions dir) {
 		if (!isBlocked()) {
 			if(facing != dir) {
