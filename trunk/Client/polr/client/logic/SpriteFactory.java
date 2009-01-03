@@ -31,11 +31,11 @@ import org.newdawn.slick.SpriteSheet;
 import polr.client.logic.Player.Dirs;
 
 public class SpriteFactory {
-	private HashMap<String, SpriteSheet> spriteSheets;
+	private HashMap<Integer, SpriteSheet> spriteSheets;
 	
 	//gets overworld sprite data
 	public Image getSprite(Dirs dir, boolean isMoving, 
-			boolean isLeftFoot, String sprite) {
+			boolean isLeftFoot, int sprite) {
 		SpriteSheet sheet = spriteSheets.get(sprite);
 		if (isMoving) {
 			if (isLeftFoot) {
@@ -78,7 +78,7 @@ public class SpriteFactory {
 	
 	//gets available sprites
 	public SpriteFactory() {
-		spriteSheets = new HashMap<String, SpriteSheet>();
+		spriteSheets = new HashMap<Integer, SpriteSheet>();
 			
 		try {
 				BufferedReader is = new BufferedReader(new InputStreamReader(getClass().getClassLoader().
@@ -99,7 +99,7 @@ public class SpriteFactory {
 								(1, 1,
 										sheet.getWidth() - 2,
 										sheet.getHeight() - 2);*/
-							spriteSheets.put(f.replace(".png", ""),
+							spriteSheets.put(Integer.parseInt(f.replace(".png", "")),
 									new SpriteSheet("res/sprites/players/" + f, 41, 51));
 
 						}

@@ -155,4 +155,8 @@ public class StartScreen extends Window {
 	public void setPacketGenerator(PacketGenerator packetGen2) {
 		packetGen = packetGen2;
 	}
+	
+	public String getUser() {
+		return loginFrame.getUsername();
+	}
 }

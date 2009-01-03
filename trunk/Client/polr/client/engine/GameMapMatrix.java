@@ -36,7 +36,7 @@ public class GameMapMatrix {
 		return m_players;
 	}
 	public GameMap getCurrentMap() {
-		return currentPlayer.map;
+		return m_maps[1][1];
 	}
 	public GameMapMatrix() {
 		m_maps = new GameMap[3][3];
@@ -57,7 +57,7 @@ public class GameMapMatrix {
 		if (m_players.get(p.username) != null){
 			m_players.remove(p.username);
 		}
-			m_players.put(p.username, p);
+		m_players.put(p.username, p);
 	}
 	public Player findPlayer(String playerID) {
 		for(int i = 0; i < getMap(1,1).getMapPlayers().size(); i++) {

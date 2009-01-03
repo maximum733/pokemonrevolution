@@ -90,6 +90,7 @@ public class MapMatrix  implements Runnable {
 			character.setY(-8);
 			character.setX((character.getX() - dest.getXOffsetModifier()) + origin.getXOffsetModifier());
 		}
+		character.setIsPropagated(false);
 		dest.addPlayer(character);
 	}
 
@@ -107,10 +108,12 @@ public class MapMatrix  implements Runnable {
 				} catch(Exception e){}
 			}
 			NonPlayerChar npc = map.getRandomNPC();
-			while(!npc.move(GameServer.getMechanics().getRandomDirection()));
+			if(npc != null)
+				while(!npc.move(GameServer.getMechanics().getRandomDirection()));
 			try {
 				Thread.sleep(500);
 			} catch(Exception e){}
+			map = null;
 		}
 	} 
 }

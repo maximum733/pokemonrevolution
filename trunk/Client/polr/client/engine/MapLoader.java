@@ -6,7 +6,7 @@ import org.newdawn.slick.SlickException;
 import polr.client.GameClient;
 import polr.client.ui.screen.LoadingScreen;
 
-public class MapLoader implements Runnable {
+public class MapLoader {
 	private GameMapMatrix m_mapMatrix;
 	private int m_mapX;
 	private int m_mapY;
@@ -20,9 +20,16 @@ public class MapLoader implements Runnable {
 		this.g = g;
 		m_loading = loading;
 	}
+	
+	public void setMapX(int x) {
+		m_mapX = x;
+	}
+	
+	public void setMapY(int y) {
+		m_mapY = y;
+	}
 
-	@Override
-	public void run() {
+	public void load() {
 		GameMap map;
 		try {
 			map = new GameMap("res/maps/" + (m_mapX) + "." + (m_mapY) + ".tmx","res/maps");

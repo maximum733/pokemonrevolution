@@ -97,8 +97,9 @@ public class MapUpdater extends JFrame implements ActionListener {
 			m_info.setText("Status: Complete");
 			m_continue.setEnabled(true);
 		} catch (Exception e) {
+			e.printStackTrace();
 			m_info.setText("Status: Error!");
-			m_continue.setEnabled(true);
+			m_continue.setEnabled(false);
 		}
 	}
 	

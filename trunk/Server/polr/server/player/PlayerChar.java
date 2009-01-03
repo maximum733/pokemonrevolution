@@ -57,13 +57,10 @@ public class PlayerChar extends Char {
 	private boolean m_isMod = false;
 	
 	@Element
-	private PlayerClass m_class;
+	private ClassType m_class;
 	
 	@Element
 	private long m_money = 0;
-
-	@Element
-	private String m_email;
 
 	@ElementArray
 	private PokesBox[] m_boxes = new PokesBox[18];
@@ -130,7 +127,8 @@ public class PlayerChar extends Char {
 	private boolean m_POK = false;
 	
 	private boolean m_bagInitialised = false;
-
+	private boolean m_isPropagated = false;
+	
 	private int tradeID = -1;
 	private PlayerChar tradingWith;
 	private TradeLogic tLogic;
@@ -150,8 +148,36 @@ public class PlayerChar extends Char {
 
 	private Object m_target;
 	
-	public PlayerClass getPlayerClass() {
+	/**
+	 * Returns if the player has received all the map information. Stops players constantly requesting information.
+	 * @return
+	 */
+	public boolean isPropagated() {
+		return m_isPropagated;
+	}
+	
+	/**
+	 * Set if the user has received map information
+	 * @param b
+	 */
+	public void setIsPropagated(boolean b) {
+		m_isPropagated = b;
+	}
+	
+	/**
+	 * Returns the player's class
+	 * @return
+	 */
+	public ClassType getPlayerClass() {
 		return m_class;
+	}
+	
+	/**
+	 * Sets the player's class
+	 * @param c
+	 */
+	public void setPlayerClass(ClassType c) {
+		m_class = c;
 	}
 	
 	public String getPasswordHash() {
@@ -204,14 +230,6 @@ public class PlayerChar extends Char {
 	
 	public int getBadgeCount() {
 		return m_badges.size();
-	}
-
-	public String getEmail() {
-		return m_email;
-	}
-
-	public void setEmail(String email) {
-		m_email = email;
 	}
 
 	public boolean isTalking() {
@@ -474,7 +492,7 @@ public class PlayerChar extends Char {
 		if (m_badges == null)
 			m_badges = new ArrayList<String>();
 		if(m_class == null)
-			m_class = new PlayerClass(ClassType.NONE);
+			m_class = ClassType.NONE;
 		for (Pokemon p : getParty()) {
 			if (p != null) {
 				p.reinitialise(GameServer.getMechanics());

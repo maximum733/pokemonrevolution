@@ -54,7 +54,7 @@ public class Player {
 	private boolean     animating;
 
 	// type of sprite
-	public String spriteType;
+	public int spriteType;
 	
 	// the game map
 	public GameMap      map;
@@ -75,7 +75,7 @@ public class Player {
 			curImg = Player.spriteFactory.getSprite(facing,
 					false, leftorright, spriteType);
 		} catch (Exception e) {
-			spriteType = "Invisible";
+			spriteType = 0;
 		}
 		this.facing = facing;
 	}
