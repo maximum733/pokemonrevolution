@@ -685,6 +685,8 @@ public class ServerMap {
 			return true;
 		if(m_mapItem != null && m_mapItem.x == tileX && m_mapItem.y == tileY)
 			return true;
+		if(getNPCAt(tileX, tileY) != null)
+			return true;
 		if(ledgesRight != null && ledgesRight.getTileAt(tileX, tileY) != null) {
 			if(directions == Directions.left || directions == Directions.up || directions == Directions.down)
 				return true;
@@ -709,14 +711,17 @@ public class ServerMap {
 	public boolean canMove(Directions dir, Char p) {
 		int playerX = p.getX();
 		int playerY = p.getY();
+		int newX;
+		int newY;
 
-		switch (dir) {
+		switch(dir) {
 		case up:
+			newX = playerX / 32;
+			newY = ((playerY + 8) - 32) / 32;
 			if (playerY >= 1) {
-				if (!isBlocked(playerX / 32, ((playerY + 8) - 32) / 32, Directions.up)
-						&& (getNPCAt(playerX, playerY - 32) == null)) {
+				if (!isBlocked(newX, newY, Directions.up)) {
 					if(p.isSurfing()) {
-						if(surf != null && surf.getTileAt(playerX / 32, ((playerY + 8) - 32) / 32) != null)
+						if(surf != null && surf.getTileAt(newX, newY) != null)
 							return true;
 						else {
 							//The player can move but is no longer surfing
@@ -724,7 +729,7 @@ public class ServerMap {
 							return true;
 						}
 					} else {
-						if(surf != null && surf.getTileAt(playerX / 32, ((playerY + 8) - 32) / 32) != null) {
+						if(surf != null && surf.getTileAt(newX, newY) != null) {
 							if(p instanceof PlayerChar) {
 								PlayerChar p1 = (PlayerChar) p;
 								if(p1.getBadgeCount() > 5) {
@@ -753,11 +758,12 @@ public class ServerMap {
 			}
 			break;
 		case down:
+			newX = playerX / 32;
+			newY = ((playerY + 8) + 32) / 32;
 			if (playerY + 40 < m_height * 32) {
-				if (!isBlocked(playerX / 32, ((playerY + 8) + 32) / 32, Directions.down)
-						&& (getNPCAt(playerX, playerY + 32) == null)) {
+				if (!isBlocked(newX, newY, Directions.down)) {
 					if(p.isSurfing()) {
-						if(surf != null && surf.getTileAt(playerX / 32, ((playerY + 8) + 32) / 32) != null)
+						if(surf != null && surf.getTileAt(newX, newY) != null)
 							return true;
 						else {
 							//The player can move but is no longer surfing
@@ -765,7 +771,7 @@ public class ServerMap {
 							return true;
 						}
 					} else {
-						if(surf != null && surf.getTileAt(playerX / 32, ((playerY + 8) + 32) / 32) != null) {
+						if(surf != null && surf.getTileAt(newX, newY) != null) {
 							if(p instanceof PlayerChar) {
 								PlayerChar p1 = (PlayerChar) p;
 								if(p1.getBadgeCount() > 5) {
@@ -794,11 +800,12 @@ public class ServerMap {
 			}
 			break;
 		case left:
+			newX = (playerX - 32) / 32;
+			newY = (playerY + 8) / 32;
 			if (playerX >= 32) {
-				if (!isBlocked((playerX - 32) / 32, (playerY + 8) / 32, Directions.left)
-						&& (getNPCAt(playerX - 32, playerY) == null)) {
+				if (!isBlocked(newX, newY, Directions.left)) {
 					if(p.isSurfing()) {
-						if(surf != null && surf.getTileAt((playerX - 32) / 32, (playerY + 8) / 32) != null)
+						if(surf != null && surf.getTileAt(newX, newY) != null)
 							return true;
 						else {
 							//The player can move but is no longer surfing
@@ -806,7 +813,7 @@ public class ServerMap {
 							return true;
 						}
 					} else {
-						if(surf != null && surf.getTileAt((playerX - 32) / 32, (playerY + 8) / 32) != null) {
+						if(surf != null && surf.getTileAt(newX, newY) != null) {
 							if(p instanceof PlayerChar) {
 								PlayerChar p1 = (PlayerChar) p;
 								if(p1.getBadgeCount() > 5) {
@@ -835,11 +842,12 @@ public class ServerMap {
 			}
 			break;
 		case right:
+			newX = (playerX + 32) / 32;
+			newY = (playerY + 8) / 32;
 			if (playerX + 32 < m_width * 32) {
-				if (!isBlocked((playerX + 32) / 32, (playerY + 8) / 32, Directions.right)
-						&& (getNPCAt(playerX + 32, playerY) == null)) {
+				if (!isBlocked(newX, newY, Directions.right)) {
 					if(p.isSurfing()) {
-						if(surf != null && surf.getTileAt((playerX + 32) / 32, (playerY + 8) / 32) != null)
+						if(surf != null && surf.getTileAt(newX, newY) != null)
 							return true;
 						else {
 							//The player can move but is no longer surfing
@@ -847,7 +855,7 @@ public class ServerMap {
 							return true;
 						}
 					} else {
-						if(surf != null && surf.getTileAt((playerX + 32) / 32, (playerY + 8) / 32) != null) {
+						if(surf != null && surf.getTileAt(newX, newY) != null) {
 							if(p instanceof PlayerChar) {
 								PlayerChar p1 = (PlayerChar) p;
 								if(p1.getBadgeCount() > 5) {

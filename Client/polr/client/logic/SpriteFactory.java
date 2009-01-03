@@ -21,6 +21,7 @@
 package polr.client.logic;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
@@ -81,32 +82,18 @@ public class SpriteFactory {
 		spriteSheets = new HashMap<Integer, SpriteSheet>();
 			
 		try {
-				BufferedReader is = new BufferedReader(new InputStreamReader(getClass().getClassLoader().
-					getResourceAsStream("res/sprites/players/index.txt")));
-					
-				String f = null;
-				while ((f = is.readLine()) != null) {
-					try {
-						if (f.endsWith(".png")) {
-							/*Image sheet = new Image(f.getPath(), trans);
-
-							Color c = sheet.getColor(0,0);
-							System.out.println("R: " + c.getRedByte() + " G: " + c.getGreenByte() + " B:" + c.getBlueByte() + " A:" + c.getAlphaByte());
-							c = trans;
-							System.out.println("N-R: " + c.getRedByte() + " G: " + c.getGreenByte() + " B:" + c.getBlueByte() + " A:" + c.getAlphaByte());
-
-							sheet = sheet.getSubImage
-								(1, 1,
-										sheet.getWidth() - 2,
-										sheet.getHeight() - 2);*/
-							spriteSheets.put(Integer.parseInt(f.replace(".png", "")),
-									new SpriteSheet("res/sprites/players/" + f, 41, 51));
-
-						}
-					} catch (SlickException e) {
-
-					}
+			File location = new File("res/sprites/players");
+			String loc = location.getAbsolutePath();
+			location = new File(loc);
+			for(int i = 0; i < location.list().length; i++) {
+				try {
+					loc = location.getAbsolutePath() + "/" + location.list()[i];
+					int num = Integer.parseInt(location.list()[i].replace(".png", ""));
+					spriteSheets.put(num, new SpriteSheet(loc, 41, 51));
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
+			}
 		} catch (Exception e) { 
 			e.printStackTrace();
 		}
