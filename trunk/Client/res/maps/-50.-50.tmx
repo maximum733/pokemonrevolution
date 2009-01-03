@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="12" height="10" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="pvp" value="no"/>
+  <property name="surfLevels" value=""/>
+  <property name="surfProbability" value="0"/>
+  <property name="surfSpecies" value=""/>
+  <property name="wildLevels" value=""/>
+  <property name="wildProbability" value="28"/>
+  <property name="wildSpecies" value=""/>
+  <property name="xOffsetModifier" value="0"/>
+  <property name="yOffsetModifier" value="0"/>
+ </properties>
+ <tileset firstgid="1" source="normal1.tsx"/>
+ <tileset firstgid="1025" source="normal2.tsx"/>
+ <tileset firstgid="2049" source="normal3.tsx"/>
+ <layer name="Walkable" width="12" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGHwgi5M4jKyehwhMSD3MXFqpJ9U9uNQjg0w2oH4gzmbDLg8AIizsheABAAA=
+  </data>
+ </layer>
+ <layer name="Walkable" width="12" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgoD3I50RgfPIw0MfFwNAPxL1cCLFOILsLys8G0jlcDMMSeLIxMHgBsTcbdcwDAIsKKArgAQAA
+  </data>
+ </layer>
+ <layer name="Grass" width="12" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAXDGQAAjcO6++ABAAA=
+  </data>
+ </layer>
+ <layer name="Collisions" width="12" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAABNiYGAQIhH7cxKHYerzuBgY8oE4F0RzQnAmkJ0F5XsDaR8uhHpiAbXV8wHdwM9FvHo9oFp9EtTjco8BFyGVEDWkxhMIAwC0cs9Z4AEAAA==
+  </data>
+ </layer>
+ <layer name="WalkBehind" width="12" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgIB34cTEw+AOxLxdCzBPI9uLCrWckAQEiwoEYNdQAAE/xD9zgAQAA
+  </data>
+ </layer>
+</map>
