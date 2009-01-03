@@ -122,19 +122,15 @@ public class GameClient extends BasicGame {
 	
 	public static void main(String args[]) {
 		try {
-			System.getProperties().put("proxySet", "true");
-			System.getProperties().put("proxyHost", "proxy.dcu.ie");
-			System.getProperties().put("proxyPort", "8080");
-			
 			//Load the user's settings (Create settings file if first time)
 			Settings settings = new Settings();
 			
 			//Check for map updates (Download maps if first time)
-			/*MapUpdater updater = new MapUpdater(settings.getMapRevision());
+			MapUpdater updater = new MapUpdater(settings.getMapRevision());
 			updater.checkSVN();
 			while(updater != null && updater.isVisible());
 			settings.setMapRevision(updater.getMapRevision());
-			settings.saveSettings();*/
+			settings.saveSettings();
 			
 			AppGameContainer container = new AppGameContainer(new GameClient(settings));
 			container.setDisplayMode(settings.getScreenWidth(), settings.getScreenHeight(), false);
