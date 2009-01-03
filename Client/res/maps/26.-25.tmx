@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="25" height="30" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="pvp" value="yes"/>
+  <property name="surfLevels" value=""/>
+  <property name="surfProbability" value="0"/>
+  <property name="surfSpecies" value=""/>
+  <property name="wildLevels" value="4-5;4-5;2-5;2-5;2-4;2-5;2-6"/>
+  <property name="wildProbability" value="28"/>
+  <property name="wildSpecies" value="Pikachu,1;Eevee,1;Plusle,50;Minun,50;Starly,60;Pachirisu,50;Munchlax,1;"/>
+  <property name="xOffsetModifier" value="0"/>
+  <property name="yOffsetModifier" value="0"/>
+ </properties>
+ <tileset name="1" firstgid="1" source="normal1.tsx"/>
+ <tileset name="2" firstgid="1025" source="normal2.tsx"/>
+ <layer name="Walkable" width="25" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2UwQ2AIAxFi+ggRh0EnUSdRF3cHiQhxEoLerKHd4Lmf9pfLABYRVF+hzEAVQbW8DVavDsgo4Ae6RIaofeacf/OV6om9j59pCH1Htc3ibmUajjGXCgNh4wEk9ArdTYjC8H6ksaG7ARHhoafmXSfwuw/5d7PjLtPT9nn5F6aMZOxt3HfUtTXGyR7G/aNi/RfUJRSThfNPni4CwAA
+  </data>
+ </layer>
+ <layer name="Grass" width="25" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGBlAkQCmlvnkyhNrBzKNTw255hOjn1y/kBLe5MbNcLFjFIyCUTAKRsHwB7Rqk9DLDlxmUtMuetgxlAAArKFOHbgLAAA=
+  </data>
+ </layer>
+ <layer name="LedgesDown" width="25" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQ0PoAAAgHcDDVuG2rgLAAA=
+  </data>
+ </layer>
+ <layer name="LedgesRight" width="25" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQ0PoAAAgHcDDVuG2rgLAAA=
+  </data>
+ </layer>
+ <layer name="LedgesLeft" width="25" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQ0PoAAAgHcDDVuG2rgLAAA=
+  </data>
+ </layer>
+ <layer name="Collisions" width="25" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAM2Waw7CIBCEt6mpXkTtRXycTD2I8R7Gxz18VY/hmEgkmy4s3dZ0ksnyB4YPKKUkoilcdliX8EKoM3iuqFJ/V0P5WjXhcPPTKsYVm/82J9rDJ+YDvMt1XLH5HwMZZyGD88TWv0kG54mt/yfjAl+Zb0LGGJ582z5HSHeM8/BcDH7tqibDn6/PwfPbEudIPa8acY4upN0PizQcbo9iVZKGQ3snWjiskjhW8BreJIwl9ZE4KvgJvxIypD4SR5ERDeFRps+Q+vTl+7CeXc19ZT27Xd5Xdf/BthX6n1uleZdY1bf3VSqX5Z34j/duW/UNBDLqS7gLAAA=
+  </data>
+ </layer>
+ <layer name="WalkBehind" width="25" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAXUBEuYGRiWouFlzAPtqqEP2IGYYwTbPwoIA1gcEaJHMkink55RQBqgdtodaml9oNxLLXsHS3gP1/QyWrajAgAtcEXcuAsAAA==
+  </data>
+ </layer>
+</map>

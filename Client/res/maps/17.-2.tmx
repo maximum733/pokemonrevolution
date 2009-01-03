@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="24" height="22" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="pvp" value="yes"/>
+  <property name="surfLevels" value=""/>
+  <property name="surfProbability" value="0"/>
+  <property name="surfSpecies" value=""/>
+  <property name="wildLevels" value="2-3;2-3;2-3;3-3;2-3"/>
+  <property name="wildProbability" value="28"/>
+  <property name="wildSpecies" value="Pidgey,50;Rattata,45;Sentret,4;Hoppip,5;Hoothoot,55"/>
+  <property name="xOffsetModifier" value="0"/>
+  <property name="yOffsetModifier" value="0"/>
+ </properties>
+ <tileset firstgid="1" source="normal1.tsx"/>
+ <tileset firstgid="1025" source="normal2.tsx"/>
+ <layer name="Walkable" width="24" height="22">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNiYGBgGsWjeAThtyz4xYLYiTcLXS02s5HlGoF0ExA3E2E2LrWE3I/PDYTChBy9o3j44q8k5AViMSiNkZoXyDF/NC3THgMAK4JFs0AIAAA=
+  </data>
+ </layer>
+ <layer name="Collisions" width="24" height="22">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAN2TSU7DQBREe2N7DYEjBNhm4AgMWxS4g8+TQJJzBBI4B4ThGrHNsOQt/KWo1YNb7mxS0tPflKvL/u1EKZVC0nCKmvq7cBIwRT7fKZzBBVwGTJHPdwXXW+fo/dpKcuUcvV9b6f1FG5ZSQAkVfKfm531evb/oIFPqEDpwBMeZPd/ltfXv4enDAIZw7sh3eW39b2rPiHkLd5AbsnOL19c/lmz9Y2mf+4/Z0wTu4QGmMIO55S6Z9u/qvyDnEZ5gCSt4hhfHXQ3p/0rOG6zhHT7gE74C8l39C3JKqOq8H+Yv/EXqLzJ9V58kb1f3R/L0/m3/Az1H79/2PfQcW//Y8x92Z3YAQAgAAA==
+  </data>
+ </layer>
+ <layer name="WalkBehind" width="24" height="22">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGNqAHYg5kOihDi6yMTBcAuLLQHwFiK+yUUftKBgFQwUUATNzMRCXAHEpEJcBcTkQV7APtMtGASEwUOUwpfYOdP2BXo+RSg8UAAAKSsWSQAgAAA==
+  </data>
+ </layer>
+</map>
