@@ -31,10 +31,6 @@ import polr.client.logic.Player.Dirs;
 public class Animator {
 	private GameMapMatrix mapMatrix;
 
-	// sets animation timers
-	Timer animTimer;
-	TimerTask animTask;
-
 	private GameClient thisGame;
 
 	private static final int ANIMATION_INCREMENT = 4;

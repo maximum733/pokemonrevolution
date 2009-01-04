@@ -172,9 +172,9 @@ public class GameMap extends TiledMap {
 			int drawWidth = getXOffset() + getWidth() * 32;
 			int drawHeight = getYOffset() + getHeight() * 32;
 			
-			if (!(drawWidth < 0 && getXOffset() < 0 ||
+			if (!(drawWidth < -32 && getXOffset() < -32 ||
 					drawWidth > 832 && getXOffset() > 832) &&
-					!(drawHeight < 0 && getYOffset() < 0 ||
+					!(drawHeight < -32 && getYOffset() < -32 ||
 							drawHeight > 632 && getYOffset() > 632)) {
 				return true;
 			}
