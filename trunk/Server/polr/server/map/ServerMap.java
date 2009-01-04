@@ -487,10 +487,8 @@ public class ServerMap {
 		}
 		
 		//Set the map offset
-		m_xOffsetModifier = Integer.parseInt(map.getProperties().getProperty(
-				"xOffsetModifier"));
-		m_yOffsetModifier = Integer.parseInt(map.getProperties().getProperty(
-				"yOffsetModifier"));
+		m_xOffsetModifier = Integer.parseInt(map.getProperties().getProperty("xOffsetModifier"));
+		m_yOffsetModifier = Integer.parseInt(map.getProperties().getProperty("yOffsetModifier"));
 		//Set the probability of wild pokemon
 		try {
 			m_wildProbability = Integer.parseInt(map.getProperties().getProperty(

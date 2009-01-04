@@ -189,6 +189,14 @@ public class GameClient extends BasicGame {
 	 */
 	@Override
 	public void update(GameContainer g, int delta) {
+		try {
+			synchronized (display) {
+				display.update(g, delta);
+			}
+		}
+		catch (NullPointerException e) { 
+			e.printStackTrace();
+		}
 		if(!isConnected && SERVER.length() > 0) {
 			connect();
 		}
@@ -211,14 +219,6 @@ public class GameClient extends BasicGame {
 			//battle = null;
 			showHUD = true;
 		}*/
-		try {
-			synchronized (display) {
-				display.update(g, delta);
-			}
-		}
-		catch (NullPointerException e) { 
-			e.printStackTrace();
-		}
 	}
 	
 	/**
@@ -235,7 +235,7 @@ public class GameClient extends BasicGame {
                              y <= 2; y++) {
                              thisMap = mapMatrix.getMap(x, y);
                              if (thisMap != null && thisMap.isRendering())
-                                     thisMap.render(thisMap.getXOffset() / 2,
+                                     thisMap.render((thisMap.getXOffset() / 2) + 16,
                                                      thisMap.getYOffset() / 2, 0, 0,
                                                      (arg0.getScreenWidth() - thisMap.getXOffset()) / 32,
                                                      (arg0.getScreenHeight() - thisMap.getYOffset()) / 32,
@@ -453,10 +453,8 @@ public class GameClient extends BasicGame {
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Left)) {
 					//thisPlayer.moveLeft();
 					packetGen.write("L");
-				} else {
-					if (thisPlayer.facing != Dirs.Left) {
-						packetGen.write("L");
-					}
+				} else if (thisPlayer.facing != Dirs.Left) {
+					packetGen.write("L");
 				}
 			}
 			else if (key == (Input.KEY_RIGHT)) {
@@ -466,10 +464,8 @@ public class GameClient extends BasicGame {
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Right)) {
 					//thisPlayer.moveRight();
 					packetGen.write("R");
-				} else {
-					if (thisPlayer.facing != Dirs.Right) {
+				} else if (thisPlayer.facing != Dirs.Right) {
 						packetGen.write("R");
-					}
 				}
 			}
 			else if(/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_S))) {
@@ -478,10 +474,8 @@ public class GameClient extends BasicGame {
 					packetGen.write("D");
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Down)) {
 					packetGen.write("D");
-				} else {
-					if (thisPlayer.facing != Dirs.Down) {
-						packetGen.write("D");
-					}
+				} else if (thisPlayer.facing != Dirs.Down) {
+					packetGen.write("D");
 				}
 			}
 			else if (/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_W))) {
@@ -490,10 +484,8 @@ public class GameClient extends BasicGame {
 					packetGen.write("U");
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Up)) {
 					packetGen.write("U");
-				} else {
-					if (thisPlayer.facing != Dirs.Up) {
-						packetGen.write("U");
-					}
+				} else if (thisPlayer.facing != Dirs.Up) {
+					packetGen.write("U");
 				}
 			}
 			else if (/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_A))) {
@@ -503,10 +495,8 @@ public class GameClient extends BasicGame {
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Left)) {
 					//thisPlayer.moveLeft();
 					packetGen.write("L");
-				} else {
-					if (thisPlayer.facing != Dirs.Left) {
-						packetGen.write("L");
-					}
+				} else if (thisPlayer.facing != Dirs.Left) {
+					packetGen.write("L");
 				}
 			}
 			else if (/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_D))) {
@@ -516,10 +506,8 @@ public class GameClient extends BasicGame {
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Right)) {
 					//thisPlayer.moveRight();
 					packetGen.write("R");
-				} else {
-					if (thisPlayer.facing != Dirs.Right) {
-						packetGen.write("R");
-					}
+				} else if (thisPlayer.facing != Dirs.Right) {
+					packetGen.write("R");
 				}
 			}
 			else if ((key == (Input.KEY_SPACE) || key == (Input.KEY_RCONTROL)) && !thisPlayer.isAnimating()
