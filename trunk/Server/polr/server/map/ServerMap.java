@@ -389,7 +389,7 @@ public class ServerMap {
 	 */
 	public void addPlayer(PlayerChar p) {
 		getPlayers().add(p);
-		sendToAllBut("A" + p.getNo() + "," + p.getName() + ","
+		sendToAllBut("mA" + p.getNo() + "," + p.getName() + ","
 				+ p.getFacing().toString() + "," + (p.isSurfing() ? "swim":p.getSprite()) + "," +
 				p.getX() + "," + p.getY(), p);
 		p.setMap(this);

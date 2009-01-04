@@ -32,15 +32,18 @@ import polr.client.logic.Whirlpool;
 public class PacketGenerator {
 	private IoSession gameSession;
 	private PrintWriter output;
+	private long m_lastMovement;
 
 	public PacketGenerator(IoSession session) {
 		gameSession = session;
 		output = null;
+		m_lastMovement = System.currentTimeMillis();
 	}
 	
 	public PacketGenerator(PrintWriter out) {
 		output = out;
 		gameSession = null;
+		m_lastMovement = System.currentTimeMillis();
 	}
 	
 	/** 
@@ -107,6 +110,29 @@ public class PacketGenerator {
         }
 	}
 	
+	public void moveUp() {
+		if(System.currentTimeMillis() - m_lastMovement >= 150) {
+			gameSession.write("U");
+		}
+	}
+	
+	public void moveDown() {
+		if(System.currentTimeMillis() - m_lastMovement >= 150) {
+			gameSession.write("D");
+		}
+	}
+	
+	public void moveLeft() {
+		if(System.currentTimeMillis() - m_lastMovement >= 150) {
+			gameSession.write("L");
+		}
+	}
+	
+	public void moveRight() {
+		if(System.currentTimeMillis() - m_lastMovement >= 150) {
+			gameSession.write("R");
+		}
+	}
 	
 	public void write(String message) {
 		if(output == null)
@@ -130,5 +156,9 @@ public class PacketGenerator {
 			output.flush();
 			output.close();
 		}
+	}
+
+	public void sendChatMessage(String s) {
+		gameSession.write("C" + s);
 	}
 }
