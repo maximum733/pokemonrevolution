@@ -43,31 +43,49 @@ public class MapLoader {
 		}
 		//Load the other maps
 		if(m_mapX > -30 && m_mapY > -30) {
-			for(int x = -1; x < 2; x++) {
-				try {
-					if(x != 0) {
-						map = new GameMap("res/maps/" + String.valueOf(m_mapX + x) + "." + String.valueOf(m_mapY) + ".tmx","res/maps");
-						map.setGraphics(g);
-		                map.setPosition(x + 1, 0, m_mapMatrix);
-						m_mapMatrix.setMap(map, x + 1, 0);
-					}
-				} catch (Exception e) {
-					m_mapMatrix.setMap(null, x + 1, 0);
-					System.out.println("Map Load Failure: (" + (m_mapX + x) + ", " + (m_mapY) + ")");
-				}
+			//Map to the right
+			try {
+				map = new GameMap("res/maps/" + String.valueOf(m_mapX + 1) + "." + String.valueOf(m_mapY) + ".tmx","res/maps");
+				map.setGraphics(g);
+                map.setPosition(m_mapX + 1, 1, m_mapMatrix);
+                map.setCurrent(false);
+				m_mapMatrix.setMap(map, 2, 1);
+			} catch (Exception e) {
+				m_mapMatrix.setMap(null, 2, 1);
+				System.out.println("Map Load Failure: (" + (m_mapX + 1) + ", " + (m_mapY) + ")");
 			}
-			for(int y = -1; y < 2; y++) {
-				try {
-					if(y != 0) {
-						map = new GameMap("res/maps/" + String.valueOf(m_mapX) + "." + String.valueOf(m_mapY + y) + ".tmx","res/maps");
-						map.setGraphics(g);
-		                map.setPosition(0, y + 1, m_mapMatrix);
-						m_mapMatrix.setMap(map, 0, y + 1);
-					}
-				} catch (Exception e) {
-					m_mapMatrix.setMap(null, 0, y + 1);
-					System.out.println("Map Load Failure: (" + (m_mapX + 0) + ", " + (m_mapY + y) + ")");
-				}
+			//Map to the left
+			try {
+				map = new GameMap("res/maps/" + String.valueOf(m_mapX - 1) + "." + String.valueOf(m_mapY) + ".tmx","res/maps");
+				map.setGraphics(g);
+                map.setPosition(m_mapX - 1, 1, m_mapMatrix);
+                map.setCurrent(false);
+				m_mapMatrix.setMap(map, 0, 1);
+			} catch (Exception e) {
+				m_mapMatrix.setMap(null, 0, 1);
+				System.out.println("Map Load Failure: (" + (m_mapX - 1) + ", " + (m_mapY) + ")");
+			}
+			//Map above
+			try {
+				map = new GameMap("res/maps/" + String.valueOf(m_mapX) + "." + String.valueOf(m_mapY + 1) + ".tmx","res/maps");
+				map.setGraphics(g);
+                map.setPosition(1, 2, m_mapMatrix);
+                map.setCurrent(false);
+				m_mapMatrix.setMap(map, 1, 2);
+			} catch(Exception e) {
+				m_mapMatrix.setMap(null, 1, 2);
+				System.out.println("Map Load Failure: (" + (m_mapX) + ", " + (m_mapY + 1) + ")");
+			}
+			//Map below
+			try {
+				map = new GameMap("res/maps/" + String.valueOf(m_mapX) + "." + String.valueOf(m_mapY - 1) + ".tmx","res/maps");
+				map.setGraphics(g);
+                map.setPosition(1, 0, m_mapMatrix);
+                map.setCurrent(false);
+				m_mapMatrix.setMap(map, 1, 0);
+			} catch(Exception e) {
+				m_mapMatrix.setMap(null, 1, 0);
+				System.out.println("Map Load Failure: (" + (m_mapX) + ", " + (m_mapY - 1) + ")");
 			}
 		} else {
 			m_mapMatrix.setMap(null, 0, 0);
