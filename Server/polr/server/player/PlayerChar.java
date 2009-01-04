@@ -754,11 +754,14 @@ public class PlayerChar extends Char {
 	/**
 	 * Execute the next movement.
 	 */
-	public void move() {
+	public boolean move() {
 		if(m_movements != null) {
-			this.move(m_movements);
-			m_movements = null;
+			if(this.move(m_movements)) {
+				m_movements = null;
+			}
+			return true;
 		}
+		return false;
 	}
 	
 	/**

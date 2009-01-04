@@ -18,8 +18,9 @@
  along with Pokemon Global.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package polr.server;
+package polr.server.mechanics;
 
+import polr.server.GameServer;
 import polr.server.battle.BattleField;
 import polr.server.battle.BattleTurn;
 import polr.server.battle.MoveQueueException;

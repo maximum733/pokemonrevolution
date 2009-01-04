@@ -37,6 +37,7 @@ import polr.server.map.MapLoader;
 import polr.server.map.MapMatrix;
 import polr.server.map.ServerMap;
 import polr.server.map.ServerMap.Directions;
+import polr.server.mechanics.ApplyItem;
 import polr.server.mechanics.MovementController;
 import polr.server.mechanics.moves.MoveList;
 import polr.server.mechanics.moves.MoveSetData;
@@ -180,6 +181,9 @@ public class ClientHandler extends IoHandlerAdapter {
 					player.setIsPropagated(true);
 					break;
 				}
+				break;
+			case 'C':
+				//Chat message
 				break;
 			case 'U':
 				//User is moving up

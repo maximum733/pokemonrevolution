@@ -426,88 +426,84 @@ public class GameClient extends BasicGame {
 			if (key == (Input.KEY_DOWN)) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Down)) {
 					loading.setVisible(true);
-					packetGen.write("D");
+					packetGen.moveDown();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Down)) {
-					packetGen.write("D");
+					packetGen.moveDown();
 				} else if (thisPlayer.facing != Dirs.Down) {
-						packetGen.write("D");
+					packetGen.moveDown();
 				}
 			}
 			else if (key == (Input.KEY_UP)) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Up)) {
 					loading.setVisible(true);
-					packetGen.write("U");
+					packetGen.moveUp();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Up)) {
 					//thisPlayer.moveUp();
-					packetGen.write("U");
-				} else {
-					if (thisPlayer.facing != Dirs.Up) {
-						packetGen.write("U");
-					}
+					packetGen.moveUp();
+				} else if (thisPlayer.facing != Dirs.Up) {
+					packetGen.moveUp();
 				}
 			}
 			else if (key == (Input.KEY_LEFT)) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Left)) {
 					loading.setVisible(true);
-					packetGen.write("L");
+					packetGen.moveLeft();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Left)) {
 					//thisPlayer.moveLeft();
-					packetGen.write("L");
+					packetGen.moveLeft();
 				} else if (thisPlayer.facing != Dirs.Left) {
-					packetGen.write("L");
+					packetGen.moveLeft();
 				}
 			}
 			else if (key == (Input.KEY_RIGHT)) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Right)) {
 					loading.setVisible(true);
-					packetGen.write("R");
+					packetGen.moveRight();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Right)) {
-					//thisPlayer.moveRight();
-					packetGen.write("R");
+					packetGen.moveRight();
 				} else if (thisPlayer.facing != Dirs.Right) {
-						packetGen.write("R");
+					packetGen.moveRight();
 				}
 			}
 			else if(/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_S))) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Down)) {
 					loading.setVisible(true);
-					packetGen.write("D");
+					packetGen.moveDown();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Down)) {
-					packetGen.write("D");
+					packetGen.moveDown();
 				} else if (thisPlayer.facing != Dirs.Down) {
-					packetGen.write("D");
+					packetGen.moveDown();
 				}
 			}
 			else if (/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_W))) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Up)) {
 					loading.setVisible(true);
-					packetGen.write("U");
+					packetGen.moveUp();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Up)) {
-					packetGen.write("U");
+					packetGen.moveUp();
 				} else if (thisPlayer.facing != Dirs.Up) {
-					packetGen.write("U");
+					packetGen.moveUp();
 				}
 			}
 			else if (/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_A))) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Left)) {
 					loading.setVisible(true);
-					packetGen.write("L");
+					packetGen.moveLeft();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Left)) {
 					//thisPlayer.moveLeft();
-					packetGen.write("L");
+					packetGen.moveLeft();
 				} else if (thisPlayer.facing != Dirs.Left) {
-					packetGen.write("L");
+					packetGen.moveLeft();
 				}
 			}
 			else if (/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_D))) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Right)) {
 					loading.setVisible(true);
-					packetGen.write("R");
+					packetGen.moveRight();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Right)) {
-					//thisPlayer.moveRight();
-					packetGen.write("R");
+					packetGen.moveRight();
 				} else if (thisPlayer.facing != Dirs.Right) {
-					packetGen.write("R");
+					packetGen.moveRight();
 				}
 			}
 			else if ((key == (Input.KEY_SPACE) || key == (Input.KEY_RCONTROL)) && !thisPlayer.isAnimating()
