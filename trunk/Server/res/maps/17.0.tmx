@@ -17,12 +17,7 @@
  <tileset firstgid="2049" source="normal6.tsx"/>
  <layer name="Walkable" width="24" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWUAKaBdsAoGI0DIgAojFQYkfiMOJVS1c6RDGjt/5EevqNg4AEA2uBTt0AIAAA=
-  </data>
- </layer>
- <layer name="Walkable" width="24" height="22">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNiYGBgohCjA2L1MTIyMDAzUm4/LqwINFuZxuaz0tAPIPOVaOiH4WI+reIAZj6t/IDN/DeclJn5jJ0BDpDNB2EmNExOmDEi6VcFYickrIJmHyuJ9oDMZsER5m9ZMP2jBHWDMx7zE4FyyYyYZsPMB5mLLT5gfsNnNggvBMovBmJHLOEAcz/MDmqlJ5hdsPCFYRYS3D3Y8wGlOIeLsPmgvEKJHYxI4U6L8MGW3qlpPr40SywGAIRTg2JACAAA
+   H4sIAAAAAAAAAGNiYGBgohCjA2L1MTIyMDAzUm4/LqwINFuZxuYr0dAPMPNp5YfhYj6t4gDZfFr4AZv5bzgpM/MZOwMcIJsPwkxomJwwY0TSrwrETkhYBc0+JRLtAZnNgiPM37Jg+kcJ6gZnPOYnAuWSGTHNhpkPMhdbfMD8hs9sEF4IlF8MxI5YwgHmfpgd1EpPMLvQ45SFBHcP9nxAKc7hImw+KK9QYgcjUrjTInywpXdqmo8vzRKLAT1zu0ZACAAA
   </data>
  </layer>
  <layer name="Collisions" width="24" height="22">
