@@ -718,16 +718,10 @@ public class ServerMap {
 			newY = ((playerY + 8) - 32) / 32;
 			if (playerY >= 1) {
 				if (!isBlocked(newX, newY, Directions.up)) {
-					if(p.isSurfing()) {
-						if(surf != null && surf.getTileAt(newX, newY) != null)
+					if(surf != null & surf.getTileAt(newX, newY) != null) {
+						if(p.isSurfing()) {
 							return true;
-						else {
-							//The player can move but is no longer surfing
-							p.setSurfing(false);
-							return true;
-						}
-					} else {
-						if(surf != null && surf.getTileAt(newX, newY) != null) {
+						} else {
 							if(p instanceof PlayerChar) {
 								PlayerChar p1 = (PlayerChar) p;
 								if(p1.getBadgeCount() > 5) {
@@ -737,16 +731,14 @@ public class ServerMap {
 								} else {
 									return false;
 								}
-							} else {
-								return false;
 							}
-						} else {
-							//TODO: Add warp tile check
-							return true;
 						}
+					} else {
+						if(p.isSurfing())
+							p.setSurfing(false);
+						//TODO:Add warp tile check
+						return true;
 					}
-				} else {
-					return false;
 				}
 			} else {
 				ServerMap newMap = m_mapMatrix.getMap(m_x, m_y - 1);
@@ -760,16 +752,10 @@ public class ServerMap {
 			newY = ((playerY + 8) + 32) / 32;
 			if (playerY + 40 < m_height * 32) {
 				if (!isBlocked(newX, newY, Directions.down)) {
-					if(p.isSurfing()) {
-						if(surf != null && surf.getTileAt(newX, newY) != null)
+					if(surf != null & surf.getTileAt(newX, newY) != null) {
+						if(p.isSurfing()) {
 							return true;
-						else {
-							//The player can move but is no longer surfing
-							p.setSurfing(false);
-							return true;
-						}
-					} else {
-						if(surf != null && surf.getTileAt(newX, newY) != null) {
+						} else {
 							if(p instanceof PlayerChar) {
 								PlayerChar p1 = (PlayerChar) p;
 								if(p1.getBadgeCount() > 5) {
@@ -779,16 +765,14 @@ public class ServerMap {
 								} else {
 									return false;
 								}
-							} else {
-								return false;
 							}
-						} else {
-							//TODO: Add warp tile check
-							return true;
 						}
+					} else {
+						if(p.isSurfing())
+							p.setSurfing(false);
+						//TODO:Add warp tile check
+						return true;
 					}
-				} else {
-					return false;
 				}
 			} else {
 				ServerMap newMap = m_mapMatrix.getMap(m_x, m_y + 1);
@@ -802,16 +786,10 @@ public class ServerMap {
 			newY = (playerY + 8) / 32;
 			if (playerX >= 32) {
 				if (!isBlocked(newX, newY, Directions.left)) {
-					if(p.isSurfing()) {
-						if(surf != null && surf.getTileAt(newX, newY) != null)
+					if(surf != null & surf.getTileAt(newX, newY) != null) {
+						if(p.isSurfing()) {
 							return true;
-						else {
-							//The player can move but is no longer surfing
-							p.setSurfing(false);
-							return true;
-						}
-					} else {
-						if(surf != null && surf.getTileAt(newX, newY) != null) {
+						} else {
 							if(p instanceof PlayerChar) {
 								PlayerChar p1 = (PlayerChar) p;
 								if(p1.getBadgeCount() > 5) {
@@ -821,16 +799,14 @@ public class ServerMap {
 								} else {
 									return false;
 								}
-							} else {
-								return false;
 							}
-						} else {
-							//TODO: Add warp tile check
-							return true;
 						}
+					} else {
+						if(p.isSurfing())
+							p.setSurfing(false);
+						//TODO:Add warp tile check
+						return true;
 					}
-				} else {
-					return false;
 				}
 			} else {
 				ServerMap newMap = m_mapMatrix.getMap(m_x - 1, m_y);
@@ -844,16 +820,10 @@ public class ServerMap {
 			newY = (playerY + 8) / 32;
 			if (playerX + 32 < m_width * 32) {
 				if (!isBlocked(newX, newY, Directions.right)) {
-					if(p.isSurfing()) {
-						if(surf != null && surf.getTileAt(newX, newY) != null)
+					if(surf != null & surf.getTileAt(newX, newY) != null) {
+						if(p.isSurfing()) {
 							return true;
-						else {
-							//The player can move but is no longer surfing
-							p.setSurfing(false);
-							return true;
-						}
-					} else {
-						if(surf != null && surf.getTileAt(newX, newY) != null) {
+						} else {
 							if(p instanceof PlayerChar) {
 								PlayerChar p1 = (PlayerChar) p;
 								if(p1.getBadgeCount() > 5) {
@@ -863,16 +833,14 @@ public class ServerMap {
 								} else {
 									return false;
 								}
-							} else {
-								return false;
 							}
-						} else {
-							//TODO: Add warp tile check
-							return true;
 						}
+					} else {
+						if(p.isSurfing())
+							p.setSurfing(false);
+						//TODO:Add warp tile check
+						return true;
 					}
-				} else {
-					return false;
 				}
 			} else {
 				ServerMap newMap = m_mapMatrix.getMap(m_x + 1, m_y);

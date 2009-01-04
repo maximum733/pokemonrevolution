@@ -236,6 +236,7 @@ public class PlayerDataManager implements Runnable {
 						p.setMoney(10);
 						p.setNo(m_playerAmount);
 						p.setPlayerClass(ClassType.NONE);
+						p.setSurfing(false);
 						p.initBoxes();
 						p.initPokedex();
 						//Save the user account and increment the total amount of players

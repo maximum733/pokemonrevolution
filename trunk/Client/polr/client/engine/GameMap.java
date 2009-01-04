@@ -99,44 +99,36 @@ public class GameMap extends TiledMap {
 			newY = thisPlayer.y;
 			break;
 		}
-		int colTileID =
-			getLayer("Collisions").getTileID(
-					newX / 32, (newY + 8) / 32);
-		int watTileID;
-		//Not all maps have a water layer
-		/*try {
-		watTileID =
-			getLayer("Water").getTileID(
-					newX / 32, (newY + 8) / 32);
-		}
-		catch (Exception e) {
-			watTileID = 0;
-		}*/
-		//Not all maps have a ledges layer
-		int ledTileID = 0;
 		try {
-			if(thisPlayer.facing != Dirs.Right) {
-				ledTileID =
-					getLayer("LedgesRight").getTileID(
-							newX / 32, (newY + 8) / 32);
+			int colTileID =
+				getLayer("Collisions").getTileID(
+						newX / 32, (newY + 8) / 32);
+			//Not all maps have a ledges layer
+			int ledTileID = 0;
+			try {
+				if(thisPlayer.facing != Dirs.Right) {
+					ledTileID =
+						getLayer("LedgesRight").getTileID(
+								newX / 32, (newY + 8) / 32);
+				}
+				if(ledTileID == 0 && thisPlayer.facing != Dirs.Left) {
+					ledTileID =
+						getLayer("LedgesLeft").getTileID(
+								newX / 32, (newY + 8) / 32);
+				}
+				if(ledTileID == 0 && thisPlayer.facing != Dirs.Down) {
+					ledTileID =
+						getLayer("LedgesDown").getTileID(
+								newX / 32, (newY + 8) / 32);
+				}
 			}
-			if(ledTileID == 0 && thisPlayer.facing != Dirs.Left) {
-				ledTileID =
-					getLayer("LedgesLeft").getTileID(
-							newX / 32, (newY + 8) / 32);
+			catch(Exception e) {
+				ledTileID = 0;
 			}
-			if(ledTileID == 0 && thisPlayer.facing != Dirs.Down) {
-				ledTileID =
-					getLayer("LedgesDown").getTileID(
-							newX / 32, (newY + 8) / 32);
-			}
-		}
-		catch(Exception e) {
-			ledTileID = 0;
-		}
-		if (colTileID + ledTileID != 0 
-				|| getNPCAt(newX, newY) != null)
-			return true;
+			if (colTileID + ledTileID != 0 
+					|| getNPCAt(newX, newY) != null)
+				return true;
+		} catch (Exception e) {}
 		return false;
 		
 //Switches maps for the player		
