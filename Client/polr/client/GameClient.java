@@ -425,7 +425,6 @@ public class GameClient extends BasicGame {
 				&& !newMap && (thisPlayer.map.getMapPlayers().size() > 0)) {
 			if (key == (Input.KEY_DOWN)) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Down)) {
-					loading.setVisible(true);
 					packetGen.moveDown();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Down)) {
 					packetGen.moveDown();
@@ -435,7 +434,6 @@ public class GameClient extends BasicGame {
 			}
 			else if (key == (Input.KEY_UP)) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Up)) {
-					loading.setVisible(true);
 					packetGen.moveUp();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Up)) {
 					//thisPlayer.moveUp();
@@ -446,7 +444,6 @@ public class GameClient extends BasicGame {
 			}
 			else if (key == (Input.KEY_LEFT)) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Left)) {
-					loading.setVisible(true);
 					packetGen.moveLeft();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Left)) {
 					//thisPlayer.moveLeft();
@@ -457,7 +454,6 @@ public class GameClient extends BasicGame {
 			}
 			else if (key == (Input.KEY_RIGHT)) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Right)) {
-					loading.setVisible(true);
 					packetGen.moveRight();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Right)) {
 					packetGen.moveRight();
@@ -467,7 +463,6 @@ public class GameClient extends BasicGame {
 			}
 			else if(/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_S))) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Down)) {
-					loading.setVisible(true);
 					packetGen.moveDown();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Down)) {
 					packetGen.moveDown();
@@ -477,7 +472,6 @@ public class GameClient extends BasicGame {
 			}
 			else if (/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_W))) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Up)) {
-					loading.setVisible(true);
 					packetGen.moveUp();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Up)) {
 					packetGen.moveUp();
@@ -487,10 +481,8 @@ public class GameClient extends BasicGame {
 			}
 			else if (/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_A))) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Left)) {
-					loading.setVisible(true);
 					packetGen.moveLeft();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Left)) {
-					//thisPlayer.moveLeft();
 					packetGen.moveLeft();
 				} else if (thisPlayer.facing != Dirs.Left) {
 					packetGen.moveLeft();
@@ -498,7 +490,6 @@ public class GameClient extends BasicGame {
 			}
 			else if (/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_D))) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Right)) {
-					loading.setVisible(true);
 					packetGen.moveRight();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Right)) {
 					packetGen.moveRight();

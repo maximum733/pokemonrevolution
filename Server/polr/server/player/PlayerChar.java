@@ -189,10 +189,12 @@ public class PlayerChar extends Char {
 	
 	@Override
 	public void setSurfing(boolean b) {
-		if(!b)
-			this.getIoSession().write("CS" + this.getNo() + "," + this.getSprite());
-		else
-			this.getIoSession().write("CS" + this.getNo() + ",swim");
+		if(this.getIoSession() != null) {
+			if(!b)
+				this.getIoSession().write("CS" + this.getNo() + "," + this.getSprite());
+			else
+				this.getIoSession().write("CS" + this.getNo() + ",swim");
+		}
 		super.setSurfing(b);
 	}
 
