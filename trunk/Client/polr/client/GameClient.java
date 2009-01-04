@@ -229,20 +229,19 @@ public class GameClient extends BasicGame {
 			GameMap thisMap;
 			arg1.setFont(getDPFont());
 			arg1.scale(2, 2);
-			for (int x = 0;
-					x <= 2; x++) {
-				for (int y = 0;
-					y <= 2; y++) {
-					thisMap = mapMatrix.getMap(x, y);
-					if (thisMap != null && thisMap.isRendering()) {
-						thisMap.render(thisMap.getXOffset() / 2,
-								thisMap.getYOffset() / 2, 0, 0,
-								(arg0.getScreenWidth() - thisMap.getXOffset()) / 32,
-								(arg0.getScreenHeight() - thisMap.getYOffset()) / 32,
-								true);
-					}	
-				}
-			}
+             for (int x = 0;
+                             x <= 2; x++) {
+                     for (int y = 0;
+                             y <= 2; y++) {
+                             thisMap = mapMatrix.getMap(x, y);
+                             if (thisMap != null && thisMap.isRendering())
+                                     thisMap.render(thisMap.getXOffset() / 2,
+                                                     thisMap.getYOffset() / 2, 0, 0,
+                                                     (arg0.getScreenWidth() - thisMap.getXOffset()) / 32,
+                                                     (arg0.getScreenHeight() - thisMap.getYOffset()) / 32,
+                                                     true);
+                     }
+             }
 			
 			arg1.resetTransform();
 			
