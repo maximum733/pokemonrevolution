@@ -147,6 +147,7 @@ public class PlayerChar extends Char {
 	private IoSession m_session;
 	//Stores the player's next request movement
 	private Directions m_movements = null;
+	private long m_lastMovement = System.currentTimeMillis();
 
 	private Object m_target;
 	
@@ -748,20 +749,19 @@ public class PlayerChar extends Char {
 	 * @param dir
 	 */
 	public void queueMovement(Directions dir) {
-		m_movements = dir;
+		if(System.currentTimeMillis() - m_lastMovement > 200)
+			m_movements = dir;
 	}
 	
 	/**
 	 * Execute the next movement.
 	 */
-	public boolean move() {
+	public void move() {
 		if(m_movements != null) {
-			if(this.move(m_movements)) {
-				m_movements = null;
-			}
-			return true;
+			this.move(m_movements);
+			m_movements = null;
+			m_lastMovement = System.currentTimeMillis();
 		}
-		return false;
 	}
 	
 	/**
