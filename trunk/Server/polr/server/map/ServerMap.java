@@ -70,12 +70,12 @@ public class ServerMap {
 
 	private Random random = new Random();
 
-	private TileLayer blocked;;
-	private TileLayer surf;
-	private TileLayer grass;
-	private TileLayer ledgesDown;
-	private TileLayer ledgesLeft;
-	private TileLayer ledgesRight;
+	private TileLayer blocked = null;
+	private TileLayer surf = null;
+	private TileLayer grass = null;
+	private TileLayer ledgesDown = null;
+	private TileLayer ledgesLeft = null;
+	private TileLayer ledgesRight = null;
 	
 	public static final String CHARSEP = new String(new char[] { (char) 27 });
 

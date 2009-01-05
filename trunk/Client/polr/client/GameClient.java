@@ -124,7 +124,7 @@ public class GameClient extends BasicGame {
 		try {
 			//Load the user's settings (Create settings file if first time)
 			Settings settings = new Settings();
-			
+
 			//Check for map updates (Download maps if first time)
 			MapUpdater updater = new MapUpdater(settings.getMapRevision());
 			updater.checkSVN();
@@ -154,7 +154,7 @@ public class GameClient extends BasicGame {
 		System.out.println("HDS: " + hdserial);
 		
 		g.setTargetFrameRate(50);
-		g.setShowFPS(true);
+		g.setShowFPS(false);
 		display = new Display(g);
 		mapMatrix = new GameMapMatrix();
 		animator = new Animator(mapMatrix, this);
