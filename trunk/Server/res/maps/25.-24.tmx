@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="40" height="30" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="pvp" value="yes"/>
+  <property name="surfLevels" value="3-5"/>
+  <property name="surfProbability" value="60"/>
+  <property name="surfSpecies" value="Psyduck,40;"/>
+  <property name="wildLevels" value=""/>
+  <property name="wildProbability" value="28"/>
+  <property name="wildSpecies" value=""/>
+  <property name="xOffsetModifier" value="0"/>
+  <property name="yOffsetModifier" value="0"/>
+ </properties>
+ <tileset firstgid="1" source="normal5.tsx"/>
+ <tileset firstgid="1025" source="normal1.tsx"/>
+ <layer name="Walkable" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OQQqAIBBG4UE9mecQqotoiw5uQosQJltIQ/A++DcizPNBxBtuO7c6UVm2vemLwXbHoK+4OVsG6/+la+1tf+ibJSud/f18a/2iS+u0ug8AAAAAwB9Vu6audMASAAA=
+  </data>
+ </layer>
+ <layer name="Water" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OwQkAIAwEwdin/ddhA4qCEiLMwbxvI2qst7kq03e3Vd8rp//ZXbvO7H8AAAD40QAQPK5twBIAAA==
+  </data>
+ </layer>
+ <layer name="Collisions" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3KsQ0AMAgDQQpWIZsk+48UNqCkuZOsb1wZcXq11Mntz8u9AgAAALDrA0vLY0LAEgAA
+  </data>
+ </layer>
+ <layer name="WalkBehind" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQ0PoAAAAADg1wAW4j6/wBIAAA==
+  </data>
+ </layer>
+</map>

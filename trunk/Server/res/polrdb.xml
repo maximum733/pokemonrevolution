@@ -25784,7 +25784,7 @@
             </entry>
             <entry>
                <integer>16</integer>
-               <string>X-Scissor</string>
+               <string>X-scissor</string>
             </entry>
             <entry>
                <integer>29</integer>
@@ -25800,11 +25800,11 @@
             </entry>
          </moves>
          <starterMoves>
-            <string>Pound</string>
+            <string>Night Slash</string>
             <string>Leer</string>
             <string>Absorb</string>
             <string>Quick Attack</string>
-            <string>Night Slash</string>
+            <string>Pound</string>
          </starterMoves>
          <eggMoves/>
          <evolutions/>

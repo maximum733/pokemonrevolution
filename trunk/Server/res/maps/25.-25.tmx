@@ -3,12 +3,12 @@
 <map version="1.0" orientation="orthogonal" width="40" height="30" tilewidth="16" tileheight="16">
  <properties>
   <property name="pvp" value="yes"/>
-  <property name="surfLevels" value=""/>
-  <property name="surfProbability" value="0"/>
-  <property name="surfSpecies" value=""/>
-  <property name="wildLevels" value="3-5"/>
+  <property name="surfLevels" value="3-5"/>
+  <property name="surfProbability" value="60"/>
+  <property name="surfSpecies" value="Psyduck,40;"/>
+  <property name="wildLevels" value=""/>
   <property name="wildProbability" value="28"/>
-  <property name="wildSpecies" value="Psyduck,40;"/>
+  <property name="wildSpecies" value=""/>
   <property name="xOffsetModifier" value="0"/>
   <property name="yOffsetModifier" value="0"/>
  </properties>
@@ -29,7 +29,7 @@
  </layer>
  <layer name="Collisions" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMWXSU4bQRhGS2ogICzLV0g8wTEMnjgGCQ5cA4LJPsywChkOwJABVihRDsCQkOzCdIAkCix5LbqR3a5qV7XL7V96+u0eXK8/91R5IcQI5A27TmU0twurClQjdH98mYNquar6UkL0wwA8gkEYSt2vM83N743jqz7rVgaXLOQgDyMw6vl1kl/TGBHd3CriUoIyVKAKEx3mF1fZyq9bFTW/LOQkvbF6ef3GlWvU/OK6L9rKrQRlg3F1y1Zuj5NCPIE0ZCALOcgnO/OzlV8BjzEYhyKUoAyVDv1s5TeJx1N4BlNQg+cwbeBXkyyzdd7N4jEHLzyfOn0BXkbIb51nxwZsprp3vc6Yaz3UZ7z24SClzkO3d6PC8mtXPxNC/Ep0ScyrsPzeOkK80+C90/ybab7XNMk4rU5uye7bwfy+su9reDUsxCIswTKswCqswRvWfwuMUVCMKasxg22D55PrdwjbeOzALuzBB/gIn+BLjH7B/23L8zvC4xhO4BS+ww84i9lvy5HzB4+/8G/4frv/9Bu4VfiNe+fWlMbYJn7nTivzbfaX+fnnr06OJn5XTjOu2++Ab/A4LiR+/vXv51gLyVPlp3P9Xjqt3rLjuFbkF+yyPE3ys/X+q3o+u3nWAxQN/Gy/P9ue/9mef9iep/Qqv8Ycw+YjvcrP7+3mSndDYso6wBIAAA==
+   H4sIAAAAAAAAAMWXWTIkQRyHM6IxBCH6CjN64RjoxRzD0riG/Z0ZDE+YmQOMnSdBOICdtxnLARB49FWoEqUmszqzOrv6H/HFv2vr/OJXa2aFEO2QNew6ldLcL6yK0BOhe+PLHFTrVVWXFKIeGuATNEJT8m2baW5e94+v+q1bKVzSkIEstEOH61dJfh/GiOjmVA6XPBSgCD3wtcL84ipb+VWrouaXhoyk+6uW929cuUbNL67noq3c8lAwGFe3bOX2uVWIL9AGKUhDBrKtlfnZyq8Tjy7ohhzkoQDFCv1s5deLRx/0wwCUYBCGDPxKknW2rrsRPEZhzPWZoE/CVIT8fvDuWIDFZPXu12FzrffaxmsHdpPqPHR7NSosv3J12SLEVUuVxNwKy+9nQohfGvxOfPzPNpZLmqQS/zs5JXtuB/M74NglmG4WYga+wXeYhTmYhxW2HwbG6FSMKasug32D15Pjtwd/8FiFNViHDdiELdiP0S94PpddvyM8juEETuEMzuEiZj/vfC4HuMfjAR6b3/Z7oj/Di8Kv2722BjTGNvX7C/98jJc5XubnXb86OZr43bDvrY9xia9T/uVriZ93/3s5lkLyVPnp3L837rF+5+Cyw50iv2CX5WmSn63vX9X72clzIkDOwM/297Pt+Z/t+YfteUqt8vPnGDYfqVV+Xi83V3oFuck7A8ASAAA=
   </data>
  </layer>
  <layer name="WalkBehind" width="40" height="30">
