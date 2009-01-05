@@ -193,7 +193,7 @@ public class PlayerChar extends Char {
 			if(!b)
 				this.getIoSession().write("CS" + this.getNo() + "," + this.getSprite());
 			else
-				this.getIoSession().write("CS" + this.getNo() + ",swim");
+				this.getIoSession().write("CS" + this.getNo() + ",-1");
 		}
 		super.setSurfing(b);
 	}
@@ -744,6 +744,15 @@ public class PlayerChar extends Char {
 
 	public int getBoxCount() {
 		return m_boxes.length;
+	}
+	
+	public boolean canSurf() {
+		if(this.getPlayerClass() == ClassType.RESEARCHER) {
+			return true;
+		} else if(this.getBadgeCount() >= 4) {
+			return true;
+		}
+		return false;
 	}
 	
 	/**
