@@ -19,13 +19,7 @@ public class ChatController implements Runnable {
 	public void run() {
 		while(true) {
 			if(m_chatqueue.get(0) != null) {
-				switch(m_chatqueue.get(0).charAt(0)) {
-				case 'l':
-					//Local chat
-					break;
-				default:
-					//Private chat
-				}
+				
 			}
 			try {
 				Thread.sleep(200);

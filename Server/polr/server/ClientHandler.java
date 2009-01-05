@@ -263,4 +263,12 @@ public class ClientHandler extends IoHandlerAdapter {
 		}
 		return true;
 	}
+	
+	public static PlayerChar getPlayerByIndex(int i) {
+		for(PlayerChar p : m_playerList.values()) {
+			if(p.getNo() == i)
+				return p;
+		}
+		return null;
+	}
 }
