@@ -335,14 +335,14 @@ public class GameMap extends TiledMap {
 					for (Player p : mapPlayers) {
 						if ((p.y >= mapY * 32 - 39) && (p.y <= mapY * 32 + 32)
 								&& (p.curImg != null))
-							p.curImg.draw(xOffset + p.x, yOffset + p.y);
+							p.curImg.draw(xOffset + p.x - 4, yOffset + p.y);
 					}
 				}
 				synchronized (mapNPCs) {
 					for (Player p : mapNPCs) {
 						if ((p.y >= mapY * 32 - 39) && (p.y <= mapY * 32 + 32)
 								&& (p.curImg != null))
-							p.curImg.draw(xOffset + p.x, yOffset + p.y);
+							p.curImg.draw(xOffset + p.x - 4, yOffset + p.y);
 					}
 				}
 			}
@@ -351,7 +351,7 @@ public class GameMap extends TiledMap {
 					if ((p.y >= mapY * 32 - 39) && (p.y <= mapY * 32 + 32)
 							&& (p.curImg != null))
 						graphics.drawString(p.username, xOffset + (p.x
-								- (graphics.getFont().getWidth(p.username) / 2)) + 14, yOffset + p.y
+								- (graphics.getFont().getWidth(p.username) / 2)) + 16, yOffset + p.y
 								- 36);
 				}
 			}
