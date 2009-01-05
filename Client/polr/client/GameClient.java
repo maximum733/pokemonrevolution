@@ -153,8 +153,8 @@ public class GameClient extends BasicGame {
 		String hdserial = diskUtilities.getSerialNumber("C");
 		System.out.println("HDS: " + hdserial);
 		
-		g.setTargetFrameRate(40);
-		g.setShowFPS(false);
+		g.setTargetFrameRate(50);
+		g.setShowFPS(true);
 		display = new Display(g);
 		mapMatrix = new GameMapMatrix();
 		animator = new Animator(mapMatrix, this);
@@ -172,7 +172,7 @@ public class GameClient extends BasicGame {
 		login.setVisible(true);
 		display.add(login);
 		
-		g.getInput().enableKeyRepeat(100, 400);
+		g.getInput().enableKeyRepeat(50, 300);
 		
 		//sets the skin and updates the display
 		RedTheme skin = new RedTheme();
@@ -235,7 +235,7 @@ public class GameClient extends BasicGame {
                              y <= 2; y++) {
                              thisMap = mapMatrix.getMap(x, y);
                              if (thisMap != null && thisMap.isRendering())
-                                     thisMap.render((thisMap.getXOffset() / 2) + 16,
+                                     thisMap.render((thisMap.getXOffset() / 2),
                                                      thisMap.getYOffset() / 2, 0, 0,
                                                      (arg0.getScreenWidth() - thisMap.getXOffset()) / 32,
                                                      (arg0.getScreenHeight() - thisMap.getYOffset()) / 32,
