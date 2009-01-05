@@ -235,7 +235,7 @@ public class GameClient extends BasicGame {
                              y <= 2; y++) {
                              thisMap = mapMatrix.getMap(x, y);
                              if (thisMap != null && thisMap.isRendering())
-                                     thisMap.render((thisMap.getXOffset() / 2),
+                                     thisMap.render((thisMap.getXOffset() / 2) + 2,
                                                      thisMap.getYOffset() / 2, 0, 0,
                                                      (arg0.getScreenWidth() - thisMap.getXOffset()) / 32,
                                                      (arg0.getScreenHeight() - thisMap.getYOffset()) / 32,
