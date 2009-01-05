@@ -17,27 +17,22 @@
  <tileset firstgid="2049" source="normal5.tsx"/>
  <layer name="Walkable" width="25" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2VXQ6CMAyAO7fw4C1APQhwDxP1JOghvY4l0tiQ7qcDQ0L28GU8lH3tuoIFgOsR4IGr/SPFURxbO97VPupYy2EMwCEDiwzuuwetPkeNsRekU3BGTkbenzsof8fiU6kj75BjjGumvPqFjrEWXg93aPPnjob1JVRHrqMV+pLqaJHOQ6/oS8hxQ+6Myv2epZnKcQzI08Mr0xHqW4jYvSdHrG+xe0VzK917ac41DpMwt5KDziwFN9UQmtu5g85MQ+y7sNf/R3Fs5/gAvfQ7WbgLAAA=
-  </data>
- </layer>
- <layer name="Grass" width="25" height="30">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGBlAkQCmtfnUsIfWdhAyi1J78LlXEY8aatmBTw017GBkZGBgAmJmRurHC5wNNFsJiJUZsctTAygxIvAoGAWjYBSMAtoBWrVJ6GUHLjNp2fahhR1DCQAAzvbL27gLAAA=
+   H4sIAAAAAAAAAGNmGB6AedSOUTtG7Ri1Y4jYMVzAcImP4WIHPcBw8Qc9wHBJV/Syw46LgcGehhhkRxyQXgqkm2iEYXYkQ9m0wAAMpx6puAsAAA==
   </data>
  </layer>
  <layer name="Water" width="25" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAIvhZKA5iBm1Y9SOUTtG7Ri1Y9SOUTtG7Ri1Y9SOUTsoAgDOEQBZuAsAAA==
+   H4sIAAAAAAAAAIvhZGCIGcWjeBSP4lE8ikfxKB7Fo3iAMK3BcLEDANmsbaG4CwAA
   </data>
  </layer>
  <layer name="Collisions" width="25" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMWWTU4CQRCFy0wyepABOYFyAP5OIJwEPYFyAvQAxi07YEsAj0Dc4g9yDB7JdKi0TVUN04YvealJoPvV605miujANVT7h8ppQx1Wm1DLUP11fuVI/ntuUqJbqJ7K6/yaBXK4/nzusHcX6nkeWi5iPsf6d/Sx9z30kAp/CuRwZEL/jiH2foZeFA8/D6chL6Ux9p5AU8XDoZ1LiFW+94fgUYGq+XMoh5WR8Bs/71AO3kMMQjm0Oy/KKfdRlDL3YcWa4zUhmkFLT3PoLZHXWnMsBI93xUPK8Qg9QYOSHlKODfQLbXOPNfTp6Yt58J6sOdILokvoCvrGPj9Me9zzJvnbkzVHUXhP1hyxsORw7xatHsOSw/o9L5Ij1jtRmgtivROluaQslvlK+9ZqaPNVpvhLWOZEN/uceo7anMhnuHPMu7HqDgiaSom4CwAA
+   H4sIAAAAAAAAAO3FsQ0AAAjDsG7w/8VwBGy2FCUBAACu1NYPHzsD0Uu4CwAA
   </data>
  </layer>
  <layer name="WalkBehind" width="25" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIB58Y2Vg+A7EP1hJ0EQiEGNjYBAHYgk22tkxCoYeYAdiDiqY0z8I3DAKaAuWMDMwLEXDy5gH2lXEgfRBaD6t3TQKEGULIXqwAWq5a7D6j1gwWNxPbnoZLO7HBYZq/qAVAAD6UJ+KuAsAAA==
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQ0PoAAAgHcDDVuG2rgLAAA=
   </data>
  </layer>
 </map>
