@@ -59,6 +59,7 @@ public class ProtocolHandler extends IoHandlerAdapter {
     		GameClient.setServer("");
 	        GameClient.getStartScreen().getLoginFrame().setVisible(false);
 	        GameClient.getStartScreen().getServerSelector().setVisible(true);
+	        GameClient.getStartScreen().setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -233,12 +234,12 @@ public class ProtocolHandler extends IoHandlerAdapter {
         		break;
         	case 'R':
         		//Remove a player
-        		details = message.substring(2).split(",");
+        		try {
+        			thisGame.getMapMatrix().getCurrentMap().removePlayer(Long.parseLong(message.substring(2)));
+        		} catch (Exception e) {}
         		break;
         	}
         	break;
-        case 'A':
-        	//Add a player
         }
 	}
     

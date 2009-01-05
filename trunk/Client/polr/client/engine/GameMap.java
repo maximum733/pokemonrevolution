@@ -78,6 +78,15 @@ public class GameMap extends TiledMap {
 		return getLayer(idx);
 	}
 	
+	public void removePlayer(long id) {
+		for(int i = 0; i < mapPlayers.size(); i++) {
+			if(mapPlayers.get(i).index == id) {
+				mapPlayers.remove(i);
+				return;
+			}
+		}
+	}
+	
 //Checks collision
 	public boolean isColliding(Player thisPlayer, Dirs dir) {
 		int newX = 0, newY = 0;

@@ -1,6 +1,7 @@
 package polr.server.database;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
@@ -61,6 +62,7 @@ public class PlayerDataManager implements Runnable {
 		catch(Exception e) {
 			m_playerAmount = 0;
 		}
+		System.out.println("INFO: " + m_playerAmount + " registered on this server");
 		m_instance = this;
 	}
 	
@@ -219,10 +221,11 @@ public class PlayerDataManager implements Runnable {
 					session.write("r1");
 					return false;
 				} else {
-					if(!userfile.createNewFile()) {
+					if(userfile.exists()) {
 						session.write("r2");
 						return false;
 					} else {
+						userfile.createNewFile();
 						//Everything is okay, generate a new player account
 						PlayerChar p = new PlayerChar();
 						p.setSprite(sprite);

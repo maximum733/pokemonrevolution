@@ -751,7 +751,7 @@ public class PlayerChar extends Char {
 	 * @param dir
 	 */
 	public void queueMovement(Directions dir) {
-		if(System.currentTimeMillis() - m_lastMovement > 200)
+		if(System.currentTimeMillis() - m_lastMovement > 125)
 			m_movements = dir;
 	}
 	

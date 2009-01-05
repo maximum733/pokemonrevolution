@@ -401,7 +401,7 @@ public class ServerMap {
 	 * @param p
 	 */
 	public void removePlayer(PlayerChar p) {
-		sendToAllBut("PR" + p.getNo(), p);
+		sendToAllBut("mR" + p.getNo(), p);
 		getPlayers().remove(p);
 	}
 	
