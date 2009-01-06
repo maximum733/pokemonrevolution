@@ -155,6 +155,9 @@ public class PlayerDataManager implements Runnable {
 					player.reinitialise();
 					m_playerList.put(player.getName(), player);
 					session.write("ls");
+					//player.initialiseClientParty();
+					//player.initialiseClientBag();
+					player.initialiseClientFriendList();
 					m_mapMatrix.getMap(player.getMapX(), player.getMapY()).addPlayer(player);
 				} else {
 					//Tell the user the password was wrong

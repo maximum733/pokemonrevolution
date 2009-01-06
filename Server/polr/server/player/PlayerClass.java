@@ -6,7 +6,7 @@ import org.simpleframework.xml.Element;
  * Stores the class of Players and that classes information
  */
 public class PlayerClass {
-	public enum ClassType { NONE, TRAINER, RESEARCHER, THIEF, BREEDER, HUNTER }
+	public enum ClassType { NONE, TRAINER, RESEARCHER, COORDINATOR, BREEDER, HUNTER }
 	
 	@Element
 	private double m_exp;
@@ -47,7 +47,7 @@ public class PlayerClass {
 			return 1.0;
 		case RESEARCHER:
 			return 0.8;
-		case THIEF:
+		case COORDINATOR:
 			return 0.8;
 		case BREEDER:
 			return 1.0;
@@ -64,7 +64,7 @@ public class PlayerClass {
 			return 1.1;
 		case RESEARCHER:
 			return 1.0;
-		case THIEF:
+		case COORDINATOR:
 			return 0.8;
 		case BREEDER:
 			return 0.9;
@@ -72,23 +72,6 @@ public class PlayerClass {
 			return 1.0;
 		default:
 			return 1.0;
-		}
-	}
-	
-	public static int getBoxAmount(ClassType c) {
-		switch(c) {
-		case TRAINER:
-			return 3;
-		case RESEARCHER:
-			return 4;
-		case THIEF:
-			return 4;
-		case BREEDER:
-			return 4;
-		case HUNTER:
-			return 5;
-		default:
-			return 4;
 		}
 	}
 	

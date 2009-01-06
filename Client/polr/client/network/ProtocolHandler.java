@@ -60,6 +60,8 @@ public class ProtocolHandler extends IoHandlerAdapter {
 	        GameClient.getStartScreen().getLoginFrame().setVisible(false);
 	        GameClient.getStartScreen().getServerSelector().setVisible(true);
 	        GameClient.getStartScreen().setVisible(true);
+	        thisGame.getFriendList().setVisible(false);
+	        thisGame.getLocalChat().setVisible(false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -86,6 +88,8 @@ public class ProtocolHandler extends IoHandlerAdapter {
         		thisGame.setIsPlaying(true);
         		thisGame.getStartScreen().setVisible(false);
         		thisGame.getLoading().setVisible(true);
+        		thisGame.getFriendList().setVisible(true);
+        		thisGame.getLocalChat().setVisible(true);
         		break;
         	case '0':
         		//Account does not exist
@@ -240,6 +244,33 @@ public class ProtocolHandler extends IoHandlerAdapter {
         		break;
         	}
         	break;
+        case 'c':
+        	//Chat messages
+        	switch(message.charAt(1)) {
+        	case 'l':
+        		break;
+        	default:
+        		//Private Chat
+        		details = message.substring(2).split(",");
+        		thisGame.addPrivateChat(details[0], details[1]);
+        	}
+        	break;
+        case 'f':
+        	//Friends list information
+        	switch(message.charAt(1)) {
+        	case 'i':
+        		//Initialise friend list
+        		details = message.substring(2).split(",");
+        		for(int i = 0; i < details.length; i++)
+        			thisGame.getFriendList();
+        		break;
+        	case 'a':
+        		//Add a friend
+        		break;
+        	case 'r':
+        		//Remove a friend
+        		break;
+        	}
         }
 	}
     

@@ -126,6 +126,9 @@ public class PlayerChar extends Char {
 	@Element(required=false)
 	private boolean m_POK = false;
 	
+	@ElementList(required=false)
+	private List<String> m_friends = new ArrayList<String>();
+	
 	private boolean m_bagInitialised = false;
 	private boolean m_isPropagated = false;
 	
@@ -183,10 +186,17 @@ public class PlayerChar extends Char {
 		m_class = c;
 	}
 	
+	/**
+	 * Returns their hashed password
+	 * @return
+	 */
 	public String getPasswordHash() {
 		return m_passwordHash;
 	}
 	
+	/**
+	 * Sets if the player is surfing or not. Client will be updated when this is called.
+	 */
 	@Override
 	public void setSurfing(boolean b) {
 		if(this.getIoSession() != null) {
@@ -197,17 +207,61 @@ public class PlayerChar extends Char {
 		}
 		super.setSurfing(b);
 	}
+	
+	/**
+	 * Sends all friend information to the client
+	 */
+	public void initialiseClientFriendList() {
+		if(m_friends != null && m_friends.size() > 0) {
+			String packet = "fi";
+			for(int i = 0; i < m_friends.size(); i++)
+				packet = packet + m_friends.get(i);
+			this.getIoSession().write(packet);
+		}
+	}
+	
+	/**
+	 * Adds a player to this player's friend list
+	 * @param username
+	 */
+	public void addFriend(String username) {
+		m_friends.add(username);
+		this.getIoSession().write("fa" + username);
+	}
+	
+	/**
+	 * Removes a player from this player's friend list
+	 * @param username
+	 */
+	public void removeFriend(String username) {
+		m_friends.remove(username);
+		this.getIoSession().write("fr" + username);
+	}
 
+	/**
+	 * Returns a specific box of Pokemon
+	 * @param boxNum
+	 * @return
+	 */
 	public Pokemon[] getBox(int boxNum) {
 		return m_boxes[boxNum].getPokes();
 	}
 
+	/**
+	 * Initialises Pokemon boxes. Only to be called on registration.
+	 */
 	public void initBoxes() {
 		for (int i = 0; i < m_boxes.length; i++) {
 			m_boxes[i] = new PokesBox();
 		}
 	}
 
+	/**
+	 * Swaps two Pokemon between the player's party and a selected box
+	 * @param boxNum
+	 * @param boxIndex
+	 * @param teamIndex
+	 */
 	public void switchPoke(int boxNum, int boxIndex, int teamIndex) {
 		if (!(teamIndex == 0 && getParty()[1] == null && getBox(boxNum)[boxIndex] == null)) {
 			Pokemon tempPoke;
@@ -223,24 +277,45 @@ public class PlayerChar extends Char {
 		}
 	}
 	
+	/**
+	 * Add a badge
+	 * @param badge
+	 */
 	public void addBadge(String badge) {
 		if(!m_badges.contains(badge)) {
 			m_badges.add(badge);
 		}
 	}
 	
+	/**
+	 * Returns if the user has a specific badge
+	 * @param badge
+	 * @return
+	 */
 	public boolean hasBadge(String badge) {
 		return m_badges.contains(badge);
 	}
 	
+	/**
+	 * Returns how many badges the user has
+	 * @return
+	 */
 	public int getBadgeCount() {
 		return m_badges.size();
 	}
 
+	/**
+	 * Returns if the user is talking to an NPC
+	 * @return
+	 */
 	public boolean isTalking() {
 		return m_talking;
 	}
 
+	/**
+	 * Returns the name of the player's team if they are a part of one.
+	 * @return
+	 */
 	public String getTeamName() {
 		return m_teamName;
 	}
@@ -366,8 +441,11 @@ public class PlayerChar extends Char {
 		return tLogic;
 	}
 	
-	// the player this is being called on is the challenger,
-	// the argument is the challenged
+	/**
+	 * Starts a PvP battle with another player
+	 * @param challenged
+	 * @param amount
+	 */
 	public void startPvPBattleWith(PlayerChar challenged, long amount) {
 		clearChallengesForPvP(challenged);
 		challenged.clearChallengesForPvP(this);
@@ -426,19 +504,34 @@ public class PlayerChar extends Char {
 	public void setTalking(boolean talking) {
 		m_talking = talking;
 	}
-
+	
+	/**
+	 * Sets the player's password.
+	 * @param hash
+	 */
 	public void setPasswordHash(String hash) {
 		m_passwordHash = hash;
 	}
 
+	/**
+	 * Returns the session the user is connected to the server on. Send all messages through here by using .write(Object).
+	 * @return
+	 */
 	public IoSession getIoSession() {
 		return m_session;
 	}
 
+	/**
+	 * Sets the session.
+	 * @param session
+	 */
 	public void setIoSession(IoSession session) {
 		m_session = session;
 	}
 
+	/**
+	 * Sets the user's username.
+	 */
 	@Override
 	public void setName(String name) {
 		super.setName(name);
@@ -448,6 +541,9 @@ public class PlayerChar extends Char {
 		return (isBattling()) || (isTalking()) || (isFrozen());
 	}
 
+	/**
+	 * Heals the player's party.
+	 */
 	public void healParty() {
 		for (Pokemon pokemon : getParty()) {
 			if (pokemon != null) {
@@ -486,7 +582,9 @@ public class PlayerChar extends Char {
 			}
 	}
 	
-	// Regenerates player data after logging in.
+	/**
+	 * Reinitialises the player after login.
+	 */
 	public void reinitialise() {
 		arrangeParty();
 		boolean newPokedex = false;
@@ -532,12 +630,18 @@ public class PlayerChar extends Char {
 				.synchronizedList(new ArrayList<PlayerChar>());
 	}
 
+	/**
+	 * Called when a battle is lost.
+	 */
 	public void lostBattle() {
 		healParty();
-		updateClientParty();
+		initialiseClientParty();
 		gameOverTeleport();
 	}
 
+	/**
+	 * Teleports the player to the location they last healed.
+	 */
 	public void gameOverTeleport() {
 		getMap().removePlayer(this);
 		this.setX(lastHealX);
@@ -549,6 +653,13 @@ public class PlayerChar extends Char {
 						+ " the injured Pokemon and nursed them to health.");
 	}
 	
+	/**
+	 * Sets the location the player last healed.
+	 * @param MapX
+	 * @param MapY
+	 * @param X
+	 * @param Y
+	 */
 	public void setLastHeal(int MapX, int MapY, int X, int Y) {
 		lastHealX = X;
 		lastHealY = Y;
@@ -556,6 +667,9 @@ public class PlayerChar extends Char {
 		lastHealMapY = MapY;
 	}
 	
+	/**
+	 * Puts a healthy Pokemon at the front of the player's party.
+	 */
 	public void switchOutHealthyPoke() {
 			for(int i = 1; i < getParty().length && getParty()[i] != null; i++) {
 				if(getParty()[i].getHealth() > 0) {
@@ -563,12 +677,15 @@ public class PlayerChar extends Char {
 					getParty()[0] = getParty()[i];
 					getParty()[i] = temp;
 					arrangeParty();
-					updateClientParty();
+					initialiseClientParty();
 					break;
 				}
 			}
 	}
 
+	/**
+	 * Starts a wild Pokemon battle
+	 */
 	public void startWildBattle() {
 		clearChallenges();
 		if(getParty()[0].getHealth() <= 0) {
@@ -610,6 +727,7 @@ public class PlayerChar extends Char {
 			endBattle();
 		}
 	}
+
 	public void startSurfBattle() {
 		clearChallenges();
 		if(getParty()[0].getHealth() <= 0) {
@@ -653,6 +771,11 @@ public class PlayerChar extends Char {
 		}
 	}
 	
+	/**
+	 * Adds a caught Pokemon to the player's party/box
+	 * @param caught
+	 * @throws Exception
+	 */
 	public void catchPokemon(Pokemon caught) throws Exception {
 		addPokemon(caught);
 		caught.setOriginalTrainer(getName());
@@ -710,6 +833,10 @@ public class PlayerChar extends Char {
 			}
 	}
 	
+	/**
+	 * Adds a Pokemon to the player's party/box
+	 * @param newPoke
+	 */
 	public void addPokemon(Pokemon newPoke) {
 		for (int i = 0; i < getParty().length; i++) {
 			if (getParty()[i] == null) {
@@ -726,6 +853,10 @@ public class PlayerChar extends Char {
 			}
 	}
 
+	/**
+	 * Returns a string representation (to be parsed by the client) of a box belonging to the player
+	 * @param boxNum
+	 */
 	public void getBoxString(int boxNum) {
 		StringBuilder box = new StringBuilder("S,");
 		for (int i = 0; i < 30; i++) {
@@ -742,10 +873,18 @@ public class PlayerChar extends Char {
 		getIoSession().write(box);
 	}
 
+	/**
+	 * Returns how many boxes the player has
+	 * @return
+	 */
 	public int getBoxCount() {
 		return m_boxes.length;
 	}
 	
+	/**
+	 * Returns if the player can surf or not
+	 * @return
+	 */
 	public boolean canSurf() {
 		if(this.getPlayerClass() == ClassType.RESEARCHER) {
 			return true;
@@ -776,7 +915,8 @@ public class PlayerChar extends Char {
 	}
 	
 	/**
-	 * Move the player.
+	 * Moves the player. If the player is not facing the direction
+	 * they want to move, change their direction, else move them.
 	 */
 	public boolean move(Directions dir) {
 		if (!isBlocked()) {
@@ -883,6 +1023,12 @@ public class PlayerChar extends Char {
 		}
 	}
 
+	/**
+	 * Switches two pokemon in the player's party
+	 * @param a
+	 * @param b
+	 * @throws Exception
+	 */
 	public void switchPokes(int a, int b) throws Exception {
 		if (a >= 0 && b <= 5 && getParty()[a] != null && getParty()[b] != null
 				&& !isBlocked()) {
@@ -890,14 +1036,22 @@ public class PlayerChar extends Char {
 			getParty()[a] = getParty()[b];
 			getParty()[b] = temp;
 			arrangeParty();
-			updateClientParty();
+			initialiseClientParty();
 		}
 	}
 
+	/**
+	 * Returns how much money the player has
+	 * @return
+	 */
 	public long getMoney() {
 		return m_money;
 	}
 
+	/**
+	 * Sets how much money the player has
+	 * @param m_money
+	 */
 	public void setMoney(long m_money) {
 		this.m_money = m_money;
 	}
@@ -913,14 +1067,25 @@ public class PlayerChar extends Char {
 		}
 	}
 	
+	/**
+	 * Returns if the player is a mod
+	 * @return
+	 */
 	public boolean isMod() {
 		return m_isMod;
 	}
 
+	/**
+	 * Sets if the player is a mod
+	 * @param setMod
+	 */
 	public void setMod(boolean setMod) {
 		m_isMod = setMod;
 	}
 	
+	/**
+	 * Sends bag information to the client
+	 */
 	public void initialiseClientBag() {
 		if(!m_bagInitialised) {
 			String packet = "Bi";
@@ -932,11 +1097,17 @@ public class PlayerChar extends Char {
 		}
 	}
 
+	/**
+	 * Ends the player's current battle.
+	 */
 	@Override
 	public void endBattle() {
 		super.endBattle();
 	}
 
+	/**
+	 * Arranges the player's party so empty slots at put at the end.
+	 */
 	public void arrangeParty() {
 		ArrayList<Pokemon> tempArrange = new ArrayList<Pokemon>();
 		for (Pokemon p : getParty()) {
@@ -949,7 +1120,10 @@ public class PlayerChar extends Char {
 		}
 	}
 
-	public void updateClientParty() {
+	/**
+	 * Sends all Pokemon information the the client
+	 */
+	public void initialiseClientParty() {
 		int i = 0;
 		for (Pokemon p : getParty()) {
 			if (p != null)

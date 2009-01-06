@@ -758,7 +758,7 @@ public class ServerMap {
 						} else {
 							if(p instanceof PlayerChar) {
 								PlayerChar p1 = (PlayerChar) p;
-								if(p1.getBadgeCount() > 5) {
+								if(p1.canSurf()) {
 									p1.setSurfing(true);
 									p1.move(p1.getFacing());
 									return true;
@@ -792,7 +792,7 @@ public class ServerMap {
 						} else {
 							if(p instanceof PlayerChar) {
 								PlayerChar p1 = (PlayerChar) p;
-								if(p1.getBadgeCount() > 5) {
+								if(p1.canSurf()) {
 									p1.setSurfing(true);
 									p1.move(p1.getFacing());
 									return true;
@@ -826,7 +826,7 @@ public class ServerMap {
 						} else {
 							if(p instanceof PlayerChar) {
 								PlayerChar p1 = (PlayerChar) p;
-								if(p1.getBadgeCount() > 5) {
+								if(p1.canSurf()) {
 									p1.setSurfing(true);
 									p1.move(p1.getFacing());
 									return true;

@@ -38,6 +38,7 @@ import polr.server.map.MapMatrix;
 import polr.server.map.ServerMap;
 import polr.server.map.ServerMap.Directions;
 import polr.server.mechanics.ApplyItem;
+import polr.server.mechanics.ChatController;
 import polr.server.mechanics.MovementController;
 import polr.server.mechanics.moves.MoveList;
 import polr.server.mechanics.moves.MoveSetData;
@@ -60,6 +61,7 @@ public class ClientHandler extends IoHandlerAdapter {
 	private static ArrayList<String> m_ipbans = new ArrayList<String>();
 
 	private PlayerDataManager m_persistor;
+	private ChatController m_chatController;
 
 	private static Map<String, PlayerChar> m_playerList;
 	private ApplyItem m_applyItem;
@@ -121,7 +123,11 @@ public class ClientHandler extends IoHandlerAdapter {
 		
 		//Start the movement controller
 		new Thread(new MovementController()).start();
-		System.out.println("INFO: Player Movement Engine starter.");
+		System.out.println("INFO: Player Movement Engine started.");
+		
+		m_chatController = new ChatController();
+		new Thread(m_chatController).start();
+		System.out.println("INFO: Chat Controller started");
 	}
 	
 	   /**
@@ -182,8 +188,17 @@ public class ClientHandler extends IoHandlerAdapter {
 					break;
 				}
 				break;
-			case 'C':
+			case 'c':
 				//Chat message
+				switch(line.charAt(1)) {
+				case 'l':
+					m_chatController.addMessage(player.getName(), "l", line.substring(2));
+					break;
+				case 'p':
+					details = line.substring(1).split(",");
+					m_chatController.addMessage(player.getName(), details[0], details[1]);
+					break;
+				}
 				break;
 			case 'U':
 				//User is moving up
