@@ -3,6 +3,7 @@ package polr.server.mechanics;
 import java.util.ArrayList;
 
 import polr.server.ClientHandler;
+import polr.server.player.PlayerChar;
 
 /**
  * Handles chat
@@ -25,7 +26,12 @@ public class ChatController implements Runnable {
 						ClientHandler.getPlayerList().get(m_chatqueue.get(0)[0]).getMap().sendToAll("cl<" + m_chatqueue.get(0)[0] + "> " + m_chatqueue.get(0)[2]);
 						break;
 					default:
-						ClientHandler.getPlayerList().get(m_chatqueue.get(0)[1]).getIoSession().write("cp" + m_chatqueue.get(0)[0] + "," + m_chatqueue.get(0)[2]);
+						PlayerChar receiver = ClientHandler.getPlayerList().get(m_chatqueue.get(0)[1]);
+						PlayerChar sender = ClientHandler.getPlayerList().get(m_chatqueue.get(0)[0]);
+						if(receiver != null && sender != null) {
+							receiver.getIoSession().write("cp" + sender.getName() + ",<" + sender.getName() + "> "+ m_chatqueue.get(0)[2]);
+							sender.getIoSession().write("cp" + receiver.getName() + ",<" + sender.getName() + "> "+ m_chatqueue.get(0)[2]);
+						}
 					}
 					m_chatqueue.remove(0);
 				} catch (Exception e) {}

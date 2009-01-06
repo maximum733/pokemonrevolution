@@ -25,12 +25,13 @@ public class ChatBase extends Frame {
 		m_conversation.setForeground(new Color(255, 255, 255));
 		m_conversation.setBorderRendered(false);
 		m_conversation.setEditable(false);
+		m_conversation.setWrapEnabled(true);
 		m_conversation.setFont(GameClient.getDPFontSmall());
 		this.getContentPane().add(m_conversation);
 		
 		m_speech = new TextField();
 		m_speech.setName("chatType");
-		m_speech.setSize(280, 25);
+		m_speech.setSize(240, 25);
 		m_speech.setLocation(0, 268);
 		m_speech.setForeground(new Color(255, 255, 255));
 		m_speech.addActionListener(new ActionListener() {

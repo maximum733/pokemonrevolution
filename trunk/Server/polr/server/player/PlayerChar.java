@@ -215,7 +215,7 @@ public class PlayerChar extends Char {
 		if(m_friends != null && m_friends.size() > 0) {
 			String packet = "fi";
 			for(int i = 0; i < m_friends.size(); i++)
-				packet = packet + m_friends.get(i);
+				packet = packet + m_friends.get(i) + ",";
 			this.getIoSession().write(packet);
 		}
 	}
@@ -225,8 +225,12 @@ public class PlayerChar extends Char {
 	 * @param username
 	 */
 	public void addFriend(String username) {
-		m_friends.add(username);
-		this.getIoSession().write("fa" + username);
+		if(m_friends.size() < 10) {
+			m_friends.add(username);
+			this.getIoSession().write("fa" + username);
+		} else {
+			this.getIoSession().write("!2");
+		}
 	}
 	
 	/**
@@ -234,8 +238,10 @@ public class PlayerChar extends Char {
 	 * @param username
 	 */
 	public void removeFriend(String username) {
-		m_friends.remove(username);
-		this.getIoSession().write("fr" + username);
+		if(m_friends.contains(username)) {
+			m_friends.remove(username);
+			this.getIoSession().write("fr" + username);
+		}
 	}
 
 	/**

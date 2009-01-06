@@ -10,6 +10,8 @@ public class PrivateChat extends ChatBase {
 		this.setName(c);
 		this.addMessage(m);
 		this.setTitle("Private: " + c);
+		this.setVisible(true);
+		this.setLocation(160, 160);
 	}
 	
 	public void addMessage(String s) {
@@ -22,6 +24,6 @@ public class PrivateChat extends ChatBase {
 	
 	@Override
 	public void sendMessage(String s) {
-		GameClient.getPacketGenerator().write("cl" + s);
+		GameClient.getPacketGenerator().write("cp" + m_target + "," + s);
 	}
 }

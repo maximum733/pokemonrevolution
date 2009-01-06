@@ -286,14 +286,15 @@ public class GameClient extends BasicGame {
 	public void addPrivateChat(String c, String m) {
 		try {
 			for(int i = 0; i < display.getChildren().length; i++) {
-				if(display.getChild(i).getName().equalsIgnoreCase(c)) {
+				if(display.getChild(i) != null && display.getChild(i).getName() != null &&
+						display.getChild(i).getName().equalsIgnoreCase(c)) {
 					PrivateChat chat = (PrivateChat) display.getChild(i);
 					chat.addMessage(m);
 					return;
 				}
 			}
 			display.add(new PrivateChat(c, m));
-		} catch (Exception e) {}
+		} catch (Exception e) { e.printStackTrace(); }
 	}
 	
 	/**
