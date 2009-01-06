@@ -18,17 +18,17 @@ import polr.client.ui.base.skin.ColorUIResource;
  */
 public class RedTheme implements Theme {
     
-    private Color buttonBase2 = new ColorUIResource(255, 0, 0);  
+    private Color buttonBase2 = new ColorUIResource(0, 0, 0, 90);  
     private Color lightTop2 = new ColorUIResource(255, 51, 0);    
     private Color lightBottom2 = new ColorUIResource(255, 51, 0); 
     
-    private Color buttonBase = new ColorUIResource(255, 0, 0); 
+    private Color buttonBase = new ColorUIResource(0, 0, 0, 90); 
     private Color lightTop = new ColorUIResource(255, 51, 0); 
     private Color lightBottom = new ColorUIResource(255, 51, 0);
     
     private Color borderDark = new ColorUIResource(64, 66, 70); 
     private Color borderLight = new ColorUIResource(245, 122, 0);
-    private Color background = new ColorUIResource(255, 0, 0);
+    private Color background = new ColorUIResource(0, 0, 0, 90);
     
     private Color winBorderLight = new ColorUIResource(245, 46, 0);
     private Color winBorderDark = new ColorUIResource(240, 46, 0);
