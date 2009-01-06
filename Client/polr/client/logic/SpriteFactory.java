@@ -20,21 +20,30 @@
 
 package polr.client.logic;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
 import polr.client.logic.Player.Dirs;
 
+/**
+ * Handles overworld sprites
+ * @author shinobi
+ *
+ */
 public class SpriteFactory {
 	private HashMap<Integer, SpriteSheet> spriteSheets;
 	
-	//gets overworld sprite data
+	/**
+	 * Returns the requested sprite
+	 * @param dir
+	 * @param isMoving
+	 * @param isLeftFoot
+	 * @param sprite
+	 * @return
+	 */
 	public Image getSprite(Dirs dir, boolean isMoving, 
 			boolean isLeftFoot, int sprite) {
 		SpriteSheet sheet = spriteSheets.get(sprite);
@@ -77,10 +86,11 @@ public class SpriteFactory {
 		return null;
 	}
 	
-	//gets available sprites
+	/**
+	 * Initialises the database of sprites
+	 */
 	public SpriteFactory() {
-		spriteSheets = new HashMap<Integer, SpriteSheet>();
-			
+		spriteSheets = new HashMap<Integer, SpriteSheet>();	
 		try {
 			File location = new File("res/sprites/players");
 			String loc = location.getAbsolutePath();
@@ -90,15 +100,10 @@ public class SpriteFactory {
 					loc = location.getAbsolutePath() + "/" + location.list()[i];
 					int num = Integer.parseInt(location.list()[i].replace(".png", ""));
 					spriteSheets.put(num, new SpriteSheet(loc, 41, 51));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				} catch (Exception e) {}
 			}
 		} catch (Exception e) { 
 			e.printStackTrace();
 		}
-	
-
-		
 	}
 }

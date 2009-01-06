@@ -18,7 +18,7 @@ public class ChatController implements Runnable {
 
 	public void run() {
 		while(true) {
-			if(m_chatqueue.get(0) != null) {
+			if(m_chatqueue.size() > 0 && m_chatqueue.get(0) != null) {
 				try {
 					switch(m_chatqueue.get(0)[1].charAt(0)) {
 					case 'l':
@@ -27,6 +27,7 @@ public class ChatController implements Runnable {
 					default:
 						ClientHandler.getPlayerList().get(m_chatqueue.get(0)[1]).getIoSession().write("cp" + m_chatqueue.get(0)[0] + "," + m_chatqueue.get(0)[2]);
 					}
+					m_chatqueue.remove(0);
 				} catch (Exception e) {}
 			}
 			try {

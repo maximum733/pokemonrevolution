@@ -25,6 +25,7 @@ import polr.server.mechanics.moves.MoveListEntry;
 import polr.server.player.Bag;
 import polr.server.player.PlayerChar;
 import polr.server.player.PlayerClass.ClassType;
+import polr.server.time.WorldClock;
 
 public class PlayerDataManager implements Runnable {
 	private Serializer m_serializer;
@@ -158,6 +159,7 @@ public class PlayerDataManager implements Runnable {
 					//player.initialiseClientParty();
 					//player.initialiseClientBag();
 					player.initialiseClientFriendList();
+					player.getIoSession().write("CT" + WorldClock.getHourOfDay() + "," + WorldClock.getMinuteOfDay());
 					m_mapMatrix.getMap(player.getMapX(), player.getMapY()).addPlayer(player);
 				} else {
 					//Tell the user the password was wrong

@@ -39,7 +39,7 @@ public class LoadingScreen extends Frame {
 		this.setLocation(0, -24);
 		this.setAlwaysOnTop(true);
 		this.getTitleBar().setVisible(false);
-		this.setBackground(new Color(0, 0, 205, 70));
+		this.setBackground(new Color(255, 255, 255, 90));
 		info = new Label();
 		try {
 			Image img = new Image("res/loading.png");

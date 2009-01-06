@@ -17,6 +17,7 @@ public class PrivateChat extends ChatBase {
 			m_conversation.setText(m_conversation.getText() + "\n" + s);
 		else
 			m_conversation.setText(s);
+		this.checkChatWindow();
 	}
 	
 	@Override
