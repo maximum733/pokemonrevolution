@@ -58,6 +58,7 @@ import polr.client.network.PacketGenerator;
 import polr.client.network.ProtocolHandler;
 import polr.client.network.security.diskUtilities;
 import polr.client.ui.PartyInfo;
+import polr.client.ui.UserInterface;
 import polr.client.ui.base.Container;
 import polr.client.ui.base.Display;
 import polr.client.ui.base.MessageBox;
@@ -83,6 +84,7 @@ public class GameClient extends BasicGame {
 	private boolean isConnected;
 	public static final int width = 800;
 	public static final int height = 600;
+	private int m_hour = 0;
 
 	private static Font dpFont;
 	private static Font dpFontSmall;
@@ -106,8 +108,7 @@ public class GameClient extends BasicGame {
 	private MapLoader m_mapLoader;
 	private LoadingScreen loading;
 	private Settings m_settings;
-	private FriendList m_friendList;
-	private LocalChat m_localChat;
+	private UserInterface m_ui;
 	
 	PartyInfo teamInfo;
 	public static final String CHARSEP = new String(new char[] { 27 });
@@ -121,7 +122,7 @@ public class GameClient extends BasicGame {
 	 * @param settings
 	 */
 	public GameClient(Settings settings) {
-		super("Pokemon Online Revolution - Beta 1");
+		super("Pokemon Online Revolution - Alpha 1");
 		m_settings = settings;
 	}
 	
@@ -177,13 +178,9 @@ public class GameClient extends BasicGame {
 		login.setVisible(true);
 		display.add(login);
 		
-		m_localChat = new LocalChat();
-		m_localChat.setVisible(false);
-		display.add(m_localChat);
-		
-		m_friendList = new FriendList();
-		m_friendList.setVisible(false);
-		display.add(m_friendList);
+		m_ui = new UserInterface(display);
+		m_ui.setVisible(false);
+		display.add(m_ui);
 		
 		g.getInput().enableKeyRepeat(50, 300);
 		
@@ -372,12 +369,8 @@ public class GameClient extends BasicGame {
 		return dpFontSmall;
 	}
 	
-	public LocalChat getLocalChat() {
-		return m_localChat;
-	}
-	
-	public FriendList getFriendList() {
-		return m_friendList;
+	public UserInterface getUI() {
+		return m_ui;
 	}
 	
 	public GameMapMatrix getMapMatrix() {
@@ -479,7 +472,6 @@ public class GameClient extends BasicGame {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Up)) {
 					packetGen.moveUp();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Up)) {
-					//thisPlayer.moveUp();
 					packetGen.moveUp();
 				} else if (thisPlayer.facing != Dirs.Up) {
 					packetGen.moveUp();
@@ -489,7 +481,6 @@ public class GameClient extends BasicGame {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Left)) {
 					packetGen.moveLeft();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Left)) {
-					//thisPlayer.moveLeft();
 					packetGen.moveLeft();
 				} else if (thisPlayer.facing != Dirs.Left) {
 					packetGen.moveLeft();
@@ -504,7 +495,7 @@ public class GameClient extends BasicGame {
 					packetGen.moveRight();
 				}
 			}
-			else if(/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_S))) {
+			else if(!m_ui.isChatting() && (key == (Input.KEY_S))) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Down)) {
 					packetGen.moveDown();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Down)) {
@@ -513,7 +504,7 @@ public class GameClient extends BasicGame {
 					packetGen.moveDown();
 				}
 			}
-			else if (/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_W))) {
+			else if (!m_ui.isChatting() && (key == (Input.KEY_W))) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Up)) {
 					packetGen.moveUp();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Up)) {
@@ -522,7 +513,7 @@ public class GameClient extends BasicGame {
 					packetGen.moveUp();
 				}
 			}
-			else if (/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_A))) {
+			else if (!m_ui.isChatting() && (key == (Input.KEY_A))) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Left)) {
 					packetGen.moveLeft();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Left)) {
@@ -531,7 +522,7 @@ public class GameClient extends BasicGame {
 					packetGen.moveLeft();
 				}
 			}
-			else if (/*!mainInterface.isChatting() &&*/ (key == (Input.KEY_D))) {
+			else if (!m_ui.isChatting() && (key == (Input.KEY_D))) {
 				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Right)) {
 					packetGen.moveRight();
 				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Right)) {

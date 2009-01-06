@@ -60,8 +60,7 @@ public class ProtocolHandler extends IoHandlerAdapter {
 	        GameClient.getStartScreen().getLoginFrame().setVisible(false);
 	        GameClient.getStartScreen().getServerSelector().setVisible(true);
 	        GameClient.getStartScreen().setVisible(true);
-	        thisGame.getFriendList().setVisible(false);
-	        thisGame.getLocalChat().setVisible(false);
+	        thisGame.getUI().setVisible(false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -70,7 +69,6 @@ public class ProtocolHandler extends IoHandlerAdapter {
     /** 
 	    * Called when a message is received from the server. The first char of the message tells the client what to do.
 	    */
-    
 	@SuppressWarnings("static-access")
 	public void messageReceived(IoSession session, Object m) {
     	Player p = null;
@@ -88,8 +86,7 @@ public class ProtocolHandler extends IoHandlerAdapter {
         		thisGame.setIsPlaying(true);
         		thisGame.getStartScreen().setVisible(false);
         		thisGame.getLoading().setVisible(true);
-        		thisGame.getFriendList().setVisible(true);
-        		thisGame.getLocalChat().setVisible(true);
+        		thisGame.getUI().setVisible(true);
         		break;
         	case '0':
         		//Account does not exist
@@ -181,7 +178,17 @@ public class ProtocolHandler extends IoHandlerAdapter {
         	case 'S':
         		//Sprite
         		try {
+        			details = message.substring(2).split(",");
+        			thisGame.getMapMatrix().findPlayer(details[0]).spriteType = Integer.parseInt(details[1]);
             	} catch (Exception e) {}
+        		break;
+        	case 'T':
+        		//Time of day
+        		details = message.substring(2).split(",");
+        		thisGame.getUI().startClock(Integer.parseInt(details[0]), Integer.parseInt(details[1]));
+        		break;
+        	case 'W':
+        		//Weather
         		break;
         	}
         	break;
@@ -248,6 +255,7 @@ public class ProtocolHandler extends IoHandlerAdapter {
         	//Chat messages
         	switch(message.charAt(1)) {
         	case 'l':
+        		thisGame.getUI().addLocalChatMessage(message.substring(2));
         		break;
         	default:
         		//Private Chat
@@ -262,15 +270,18 @@ public class ProtocolHandler extends IoHandlerAdapter {
         		//Initialise friend list
         		details = message.substring(2).split(",");
         		for(int i = 0; i < details.length; i++)
-        			thisGame.getFriendList();
+        			thisGame.getUI().addFriend(details[i]);
         		break;
         	case 'a':
         		//Add a friend
+        		thisGame.getUI().addFriend(message.substring(2));
         		break;
         	case 'r':
         		//Remove a friend
+        		thisGame.getUI().removeFriend(message.substring(2));
         		break;
         	}
+        	break;
         }
 	}
     
