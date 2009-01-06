@@ -126,7 +126,7 @@ public final class WildBattleField extends BattleField {
 		// case 5- catch
 		case 1: 
 			m_humanPlayer.getIoSession().write("br");
-			m_humanPlayer.updateClientParty();
+			m_humanPlayer.initialiseClientParty();
 			m_humanPlayer.endBattle();
 			break;
 		case 2:
@@ -136,7 +136,7 @@ public final class WildBattleField extends BattleField {
 			//TODO: Code to exit battle
 			break;
 		case 3:
-			m_humanPlayer.updateClientParty();
+			m_humanPlayer.initialiseClientParty();
 			m_humanPlayer.endBattle();
 			break;
 		case 4:
@@ -144,7 +144,7 @@ public final class WildBattleField extends BattleField {
 			break;
 		case 5:
 			//Pokemon Capture
-			m_humanPlayer.updateClientParty();
+			m_humanPlayer.initialiseClientParty();
 			m_humanPlayer.endBattle();
 			break;
 		}
@@ -367,7 +367,7 @@ public final class WildBattleField extends BattleField {
 					}
 				}
 			}
-			m_humanPlayer.updateClientParty();
+			m_humanPlayer.initialiseClientParty();
 		} else {
 			m_humanPlayer.lostBattle();
 		}

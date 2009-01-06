@@ -83,7 +83,7 @@ public final class PvPBattleField extends BattleField {
 					getParty(0)[0] = getParty(0)[i];
 					getParty(0)[i] = temp;
 					players[0].arrangeParty();
-					players[0].updateClientParty();
+					players[0].initialiseClientParty();
 					break;
 				}
 			}
@@ -95,7 +95,7 @@ public final class PvPBattleField extends BattleField {
 					getParty(1)[0] = getParty(1)[i];
 					getParty(1)[i] = temp;
 					players[1].arrangeParty();
-					players[1].updateClientParty();
+					players[1].initialiseClientParty();
 					break;
 				}
 			}
@@ -124,8 +124,8 @@ public final class PvPBattleField extends BattleField {
 		case 3:
 			players[0].endBattle();
 			players[1].endBattle();
-			players[0].updateClientParty();
-			players[1].updateClientParty();
+			players[0].initialiseClientParty();
+			players[1].initialiseClientParty();
 			break;
 		case 4:
 			//TODO: something's wrong
@@ -227,8 +227,8 @@ public final class PvPBattleField extends BattleField {
 		}	
 		players[0].getIoSession().write("v" + this.getTrainerName(winner));
 		players[1].getIoSession().write("v" + this.getTrainerName(winner));
-		players[0].updateClientParty();
-		players[1].updateClientParty();
+		players[0].initialiseClientParty();
+		players[1].initialiseClientParty();
 	}
 
 	@Override

@@ -266,8 +266,8 @@ public class TradeLogic {
 		}
 		players[0].arrangeParty();
 		players[1].arrangeParty();
-		players[0].updateClientParty();
-		players[1].updateClientParty();
+		players[0].initialiseClientParty();
+		players[1].initialiseClientParty();
 	}
 
 	public void exchangeMoney(int sender, int receiver, long amount) {

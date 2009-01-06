@@ -63,6 +63,9 @@ import polr.client.ui.base.Display;
 import polr.client.ui.base.MessageBox;
 import polr.client.ui.base.Sui;
 import polr.client.ui.base.theme.RedTheme;
+import polr.client.ui.chat.FriendList;
+import polr.client.ui.chat.LocalChat;
+import polr.client.ui.chat.PrivateChat;
 import polr.client.ui.screen.LoadingScreen;
 import polr.client.ui.screen.StartScreen;
 
@@ -103,6 +106,8 @@ public class GameClient extends BasicGame {
 	private MapLoader m_mapLoader;
 	private LoadingScreen loading;
 	private Settings m_settings;
+	private FriendList m_friendList;
+	private LocalChat m_localChat;
 	
 	PartyInfo teamInfo;
 	public static final String CHARSEP = new String(new char[] { 27 });
@@ -171,6 +176,14 @@ public class GameClient extends BasicGame {
 		login = new StartScreen(packetGen);
 		login.setVisible(true);
 		display.add(login);
+		
+		m_localChat = new LocalChat();
+		m_localChat.setVisible(false);
+		display.add(m_localChat);
+		
+		m_friendList = new FriendList();
+		m_friendList.setVisible(false);
+		display.add(m_friendList);
 		
 		g.getInput().enableKeyRepeat(50, 300);
 		
@@ -257,13 +270,35 @@ public class GameClient extends BasicGame {
 		} catch (ConcurrentModificationException e) { }	
 	}
 	
+	/**
+	 * Loads the D/P font
+	 * @throws SlickException
+	 */
 	public static void loadDPFont() throws SlickException {
 		dpFont = new AngelCodeFont("res/fonts/dp.fnt",
 		"res/fonts/dp.png");	
 		dpFontSmall = new AngelCodeFont("res/fonts/dp-small.fnt",
 		"res/fonts/dp-small.png");
 	}
-
+	
+	/**
+	 * Creates a new private chat.
+	 * @param c
+	 * @param m
+	 */
+	public void addPrivateChat(String c, String m) {
+		try {
+			for(int i = 0; i < display.getChildren().length; i++) {
+				if(display.getChild(i).getName().equalsIgnoreCase(c)) {
+					PrivateChat chat = (PrivateChat) display.getChild(i);
+					chat.addMessage(m);
+					return;
+				}
+			}
+			display.add(new PrivateChat(c, m));
+		} catch (Exception e) {}
+	}
+	
 	/**
 	 * Connects to the game server. This method will adjust if a proxy was specified.
 	 */
@@ -335,6 +370,14 @@ public class GameClient extends BasicGame {
 	
 	public static Font getDPFontSmall() {
 		return dpFontSmall;
+	}
+	
+	public LocalChat getLocalChat() {
+		return m_localChat;
+	}
+	
+	public FriendList getFriendList() {
+		return m_friendList;
 	}
 	
 	public GameMapMatrix getMapMatrix() {

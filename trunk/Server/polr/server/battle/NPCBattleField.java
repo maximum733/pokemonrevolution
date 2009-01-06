@@ -92,7 +92,7 @@ public class NPCBattleField extends BattleField {
                //case 4 = someone screwed up
                // case 5- catch
                case 1:
-                       m_humanPlayer.updateClientParty();
+                       m_humanPlayer.initialiseClientParty();
                        m_humanPlayer.endBattle();
                        break;
                case 2:
@@ -108,7 +108,7 @@ public class NPCBattleField extends BattleField {
                        //TODO: something's wrong
                        break;
                case 5:
-                       m_humanPlayer.updateClientParty();
+                       m_humanPlayer.initialiseClientParty();
                        m_humanPlayer.endBattle();
                        break;
                }
@@ -230,7 +230,7 @@ public class NPCBattleField extends BattleField {
                                        }
                                }
                        }
-                       m_humanPlayer.updateClientParty();
+                       m_humanPlayer.initialiseClientParty();
                        participatingPokemon.clear();
                }
                showMessage("!" + this.getActivePokemon()[trainer].getName() + " fainted!");
@@ -390,7 +390,7 @@ public class NPCBattleField extends BattleField {
                                                }
                                        }
                                }
-                               m_humanPlayer.updateClientParty();
+                               m_humanPlayer.initialiseClientParty();
                        //opponent.battleWon(m_humanPlayer);
                } else {
                        int moneyGain = m_humanPlayer.getHighestLevel() + 2;
