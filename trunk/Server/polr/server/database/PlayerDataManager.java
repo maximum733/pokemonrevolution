@@ -238,7 +238,7 @@ public class PlayerDataManager implements Runnable {
 						p.setPasswordHash(password);
 						p.setParty(new Pokemon[6]);
 						p.setX(544);
-						p.setY(512);
+						p.setY(504);
 						p.setMap(m_mapMatrix.getMap(25, -25));
 						p.setBag(new Bag(true));
 						p.setMoney(10);
