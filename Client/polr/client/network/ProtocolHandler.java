@@ -202,6 +202,10 @@ public class ProtocolHandler extends IoHandlerAdapter {
         	case '1':
         		//You cannot challenge this trainer
         		break;
+        	case '2':
+        		//You cannot add anymore friends
+        		JOptionPane.showMessageDialog(null, "You can only have 10 friends.");
+        		break;
         	}
         	break;
         case 'm':
@@ -257,10 +261,11 @@ public class ProtocolHandler extends IoHandlerAdapter {
         	case 'l':
         		thisGame.getUI().addLocalChatMessage(message.substring(2));
         		break;
-        	default:
+        	case 'p':
         		//Private Chat
         		details = message.substring(2).split(",");
         		thisGame.addPrivateChat(details[0], details[1]);
+        		break;
         	}
         	break;
         case 'f':

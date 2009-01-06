@@ -195,8 +195,21 @@ public class ClientHandler extends IoHandlerAdapter {
 					m_chatController.addMessage(player.getName(), "l", line.substring(2));
 					break;
 				case 'p':
-					details = line.substring(1).split(",");
+					details = line.substring(2).split(",");
 					m_chatController.addMessage(player.getName(), details[0], details[1]);
+					break;
+				}
+				break;
+			case 'f':
+				//Friend list
+				switch(line.charAt(1)) {
+				case 'a':
+					//Add a friend
+					player.addFriend(line.substring(2));
+					break;
+				case 'r':
+					//Remove a friend
+					player.removeFriend(line.substring(2));
 					break;
 				}
 				break;
