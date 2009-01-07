@@ -48,6 +48,7 @@ import org.newdawn.slick.SlickException;
 
 
 import polr.client.engine.Animator;
+import polr.client.engine.Environment;
 import polr.client.engine.GameMap;
 import polr.client.engine.GameMapMatrix;
 import polr.client.engine.MapLoader;
@@ -64,8 +65,6 @@ import polr.client.ui.base.Display;
 import polr.client.ui.base.MessageBox;
 import polr.client.ui.base.Sui;
 import polr.client.ui.base.theme.RedTheme;
-import polr.client.ui.chat.FriendList;
-import polr.client.ui.chat.LocalChat;
 import polr.client.ui.chat.PrivateChat;
 import polr.client.ui.screen.LoadingScreen;
 import polr.client.ui.screen.StartScreen;
@@ -84,12 +83,12 @@ public class GameClient extends BasicGame {
 	private boolean isConnected;
 	public static final int width = 800;
 	public static final int height = 600;
-	private int m_hour = 0;
+	private static Environment m_environment;
 
 	private static Font dpFont;
 	private static Font dpFontSmall;
 
-	private Color dimmingColor;
+	private Color m_daylight;
 	
 	/** Stores user's screen name. */
 	public static String user;
@@ -170,6 +169,8 @@ public class GameClient extends BasicGame {
 		Player.loadSprites();
 		loadDPFont();
 		
+		m_environment = new Environment();
+		
 		loading = new LoadingScreen();
 		loading.setVisible(false);
 		display.add(loading);
@@ -229,6 +230,13 @@ public class GameClient extends BasicGame {
 			//battle = null;
 			showHUD = true;
 		}*/
+		if(m_environment.getDaylight() < m_environment.getTargetDaylight()) {
+			m_environment.setDaylight(m_environment.getDaylight() + 1);
+		} else if(m_environment.getDaylight() > m_environment.getTargetDaylight()) {
+			m_environment.setDaylight(m_environment.getDaylight() - 1);
+		}
+		int a = m_environment.getDaylight();
+		m_daylight = new Color(0, 0, 20, a);
 	}
 	
 	/**
@@ -254,7 +262,8 @@ public class GameClient extends BasicGame {
              }
 			
 			arg1.resetTransform();
-			
+			arg1.setColor(m_daylight);
+			arg1.fillRect(0, 0, arg0.getWidth(), arg0.getHeight());
 			/*if (battle != null && battle.isVisible() && dimmingColor != null) {
 				arg1.setColor(dimmingColor);
 				arg1.fillRect(0, 0, arg0.getWidth(), arg0.getHeight());
@@ -436,8 +445,16 @@ public class GameClient extends BasicGame {
 		isPlaying = playing;
 	}
 	
+	/**
+	 * Set if the user is connected
+	 * @param b
+	 */
 	public void setIsConnected(Boolean b) {
 		isConnected = b;
+	}
+	
+	public static Environment getEnvironment() {
+		return m_environment;
 	}
 	
 	/**
@@ -496,43 +513,7 @@ public class GameClient extends BasicGame {
 					packetGen.moveRight();
 				}
 			}
-			else if(!m_ui.isChatting() && (key == (Input.KEY_S))) {
-				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Down)) {
-					packetGen.moveDown();
-				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Down)) {
-					packetGen.moveDown();
-				} else if (thisPlayer.facing != Dirs.Down) {
-					packetGen.moveDown();
-				}
-			}
-			else if (!m_ui.isChatting() && (key == (Input.KEY_W))) {
-				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Up)) {
-					packetGen.moveUp();
-				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Up)) {
-					packetGen.moveUp();
-				} else if (thisPlayer.facing != Dirs.Up) {
-					packetGen.moveUp();
-				}
-			}
-			else if (!m_ui.isChatting() && (key == (Input.KEY_A))) {
-				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Left)) {
-					packetGen.moveLeft();
-				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Left)) {
-					packetGen.moveLeft();
-				} else if (thisPlayer.facing != Dirs.Left) {
-					packetGen.moveLeft();
-				}
-			}
-			else if (!m_ui.isChatting() && (key == (Input.KEY_D))) {
-				if (thisPlayer.map.isNewMap(thisPlayer, Dirs.Right)) {
-					packetGen.moveRight();
-				} else if (!thisPlayer.map.isColliding(thisPlayer, Dirs.Right)) {
-					packetGen.moveRight();
-				} else if (thisPlayer.facing != Dirs.Right) {
-					packetGen.moveRight();
-				}
-			}
-			else if ((key == (Input.KEY_SPACE) || key == (Input.KEY_RCONTROL)) && !thisPlayer.isAnimating()
+			else if (key == (Input.KEY_RCONTROL) && !thisPlayer.isAnimating()
 					/*(speechPopup == null || !speechPopup.isVisible())*/) {
 				int facingX = thisPlayer.x;
 				int facingY = thisPlayer.y;
@@ -556,14 +537,6 @@ public class GameClient extends BasicGame {
 				} else if (thisPlayer.facing == Dirs.Right) {
 					packetGen.write("TT" + GameClient.CHARSEP + (thisPlayer.x + 32) + GameClient.CHARSEP + thisPlayer.y);
 				}
-			}
-			// Toggles chat box on/off
-			else if (key == (Input.KEY_C)) {
-				
-			}
-			// Toggles trade/pvp on/off
-			else if (key == (Input.KEY_T)){
-				
 			}
 			else if (key == (Input.KEY_F1)){
 				
