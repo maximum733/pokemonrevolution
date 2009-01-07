@@ -111,25 +111,25 @@ public class PacketGenerator {
 	}
 	
 	public void moveUp() {
-		if(System.currentTimeMillis() - m_lastMovement >= 60) {
+		if(System.currentTimeMillis() - m_lastMovement >= 20) {
 			gameSession.write("U");
 		}
 	}
 	
 	public void moveDown() {
-		if(System.currentTimeMillis() - m_lastMovement >= 60) {
+		if(System.currentTimeMillis() - m_lastMovement >= 20) {
 			gameSession.write("D");
 		}
 	}
 	
 	public void moveLeft() {
-		if(System.currentTimeMillis() - m_lastMovement >= 60) {
+		if(System.currentTimeMillis() - m_lastMovement >= 20) {
 			gameSession.write("L");
 		}
 	}
 	
 	public void moveRight() {
-		if(System.currentTimeMillis() - m_lastMovement >= 60) {
+		if(System.currentTimeMillis() - m_lastMovement >= 20) {
 			gameSession.write("R");
 		}
 	}

@@ -39,6 +39,7 @@ public class FriendList extends Frame {
 		});
 		
 		this.reload();
+		this.setLocation(48, 0);
 	}
 	
 	public void reload() {
