@@ -23,6 +23,8 @@ package polr.server.battle;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import polr.server.battle.BattleTurn;
+import polr.server.battle.MoveQueueException;
 import polr.server.GameServer;
 import polr.server.database.POLRDataEntry;
 import polr.server.database.POLRDatabase;
@@ -380,10 +382,17 @@ public final class WildBattleField extends BattleField {
 		*/
 	public void run() {
 		if (m_queuedTurns[0] == null) {
-			if (true) { // can we run?
+			if (canRun()) { // can we run?
+				showMessage("Got away safely!");
 				endBattle(1);
 			} else {
-				m_humanPlayer.getIoSession().write("br");
+				showMessage("Can't escape!");
+				try {
+					queueMove(0, BattleTurn.getMoveTurn(-1));}
+				catch (MoveQueueException e) { 
+					// we're screwed
+					e.printStackTrace();
+				}
 			}
 		}
 	}
