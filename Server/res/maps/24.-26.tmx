@@ -6,9 +6,9 @@
   <property name="surfLevels" value=""/>
   <property name="surfProbability" value="0"/>
   <property name="surfSpecies" value=""/>
-  <property name="wildLevels" value="4-5;4-5;2-5;2-5;2-4;2-5;2-6"/>
-  <property name="wildProbability" value="28"/>
-  <property name="wildSpecies" value="Pikachu,1;Eevee,1;Plusle,50;Minun,50;Starly,60;Pachirisu,50;Munchlax,1;"/>
+  <property name="wildLevels" value=""/>
+  <property name="wildProbability" value="0"/>
+  <property name="wildSpecies" value=""/>
   <property name="xOffsetModifier" value="0"/>
   <property name="yOffsetModifier" value="0"/>
  </properties>
