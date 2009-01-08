@@ -20,7 +20,7 @@ public class ChatBase extends Frame {
 		this.setBackground(new Color(0, 0, 0, 70));
 		this.setForeground(new Color(255, 255, 255));
 		m_conversation = new TextArea();
-		m_conversation.setSize(280, 256);
+		m_conversation.setSize(238, 256);
 		m_conversation.setBackground(new Color(0, 0, 0, 20));
 		m_conversation.setForeground(new Color(255, 255, 255));
 		m_conversation.setBorderRendered(false);
@@ -31,7 +31,7 @@ public class ChatBase extends Frame {
 		
 		m_speech = new TextField();
 		m_speech.setName("chatType");
-		m_speech.setSize(240, 25);
+		m_speech.setSize(238, 25);
 		m_speech.setLocation(0, 268);
 		m_speech.setForeground(new Color(255, 255, 255));
 		m_speech.addActionListener(new ActionListener() {

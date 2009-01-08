@@ -38,18 +38,20 @@ public class ServerListPane extends Container {
 		serverName = new ArrayList<Label>();
 		for(int i = 0; i < servers.length; i++) {
 			String [] details = servers[i].split(" ");
-			ServerEvent s = new ServerEvent(details[1], Integer.parseInt(details[2]));
-			Button b = new Button("Connect");
-			b.setSize(64, 24);
-			b.setVisible(true);
-			b.addActionListener(s);
-			serverConnect.add(b);
-			
-			Label l = new Label(details[0]);
-			l.setVisible(true);
-			l.pack();
-			l.setForeground(black);
-			serverName.add(l);
+			if(details.length > 1 && !details[0].equalsIgnoreCase("") && !details[1].equalsIgnoreCase("")) {
+				ServerEvent s = new ServerEvent(details[1], Integer.parseInt(details[2]));
+				Button b = new Button("Connect");
+				b.setSize(64, 24);
+				b.setVisible(true);
+				b.addActionListener(s);
+				serverConnect.add(b);
+				
+				Label l = new Label(details[0]);
+				l.setVisible(true);
+				l.pack();
+				l.setForeground(black);
+				serverName.add(l);
+			}
 		}
 		scrollUp = new Button("");
 		scrollUp.setSize(24, 16);

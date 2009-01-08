@@ -33,7 +33,6 @@ import polr.client.logic.Player.Dirs;
 // loads tmx maps
 public class GameMap extends TiledMap {
 	private ArrayList<Player> mapPlayers = new ArrayList<Player>();
-	private ArrayList<Player> mapNPCs = new ArrayList<Player>();
 
 	// the map walkable layers
 	private int walkableLayer;
@@ -52,6 +51,7 @@ public class GameMap extends TiledMap {
 	private GameMapMatrix matrix;
 	private int mapX;
 	private int mapY;
+	private int m_lastRendered;
 
 	public boolean rendering = true;
 
@@ -134,8 +134,7 @@ public class GameMap extends TiledMap {
 			catch(Exception e) {
 				ledTileID = 0;
 			}
-			if (colTileID + ledTileID != 0 
-					|| getNPCAt(newX, newY) != null)
+			if (colTileID + ledTileID != 0)
 				return true;
 		} catch (Exception e) {}
 		return false;
@@ -323,10 +322,12 @@ public class GameMap extends TiledMap {
 		xOffset = xOffsetModifier;
 		yOffset = yOffsetModifier;
 		walkableLayer = getLayerCount() - 2;
+		m_lastRendered = getLayerCount() - 1;
 	}
 
 	@Override
 	protected void renderedLine(int visualY, int mapY, int layer) {
+		m_lastRendered = layer;
 		if (current) {
 		try {
 			graphics.resetTransform();
@@ -334,25 +335,13 @@ public class GameMap extends TiledMap {
 				synchronized (mapPlayers) {
 					for (Player p : mapPlayers) {
 						if ((p.y >= mapY * 32 - 39) && (p.y <= mapY * 32 + 32)
-								&& (p.curImg != null))
+								&& (p.curImg != null)) {
 							p.curImg.draw(xOffset + p.x - 4, yOffset + p.y);
+							graphics.drawString(p.username, xOffset + (p.x
+									- (graphics.getFont().getWidth(p.username) / 2)) + 16, yOffset + p.y
+									- 36);
+						}
 					}
-				}
-				synchronized (mapNPCs) {
-					for (Player p : mapNPCs) {
-						if ((p.y >= mapY * 32 - 39) && (p.y <= mapY * 32 + 32)
-								&& (p.curImg != null))
-							p.curImg.draw(xOffset + p.x - 4, yOffset + p.y);
-					}
-				}
-			}
-			if (layer == walkableLayer) {
-				for (Player p : mapPlayers) {
-					if ((p.y >= mapY * 32 - 39) && (p.y <= mapY * 32 + 32)
-							&& (p.curImg != null))
-						graphics.drawString(p.username, xOffset + (p.x
-								- (graphics.getFont().getWidth(p.username) / 2)) + 16, yOffset + p.y
-								- 36);
 				}
 			}
 			graphics.scale(2, 2);
@@ -361,24 +350,14 @@ public class GameMap extends TiledMap {
 		}
 		}
 	}
-
-	// draws NPCs
-	public Player getNPCAt(int x, int y) {
-		for (Player p : mapNPCs) {
-			if (p.x == x && p.y == y)
-				return p;
-		}
-		return null;
+	
+	public int getLastLayerRendered() {
+		return m_lastRendered;
 	}
 
 	// creates players
 	public ArrayList<Player> getMapPlayers() {
 		return mapPlayers;
-	}
-
-	// creates NPCs
-	public ArrayList<Player> getMapNPCs() {
-		return mapNPCs;
 	}
 
 	// creates walkable layer
@@ -409,7 +388,9 @@ public class GameMap extends TiledMap {
 	public void wipe() {
 		mapPlayers.clear();
 		mapPlayers.trimToSize();
-		mapNPCs.clear();
-		mapNPCs.trimToSize();
+	}
+	
+	public boolean isCurrent() {
+		return current;
 	}
 }

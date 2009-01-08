@@ -130,6 +130,10 @@ public class GameClient extends BasicGame {
 			//Load the user's settings (Create settings file if first time)
 			Settings settings = new Settings();
 
+			System.getProperties().put("proxySet", "true");
+			System.getProperties().put("proxyHost", "proxy.dcu.ie");
+			System.getProperties().put("proxyPort", "8080");
+			
 			//Check for map updates (Download maps if first time)
 			MapUpdater updater = new MapUpdater(settings.getMapRevision());
 			updater.checkSVN();
@@ -158,8 +162,9 @@ public class GameClient extends BasicGame {
 		String hdserial = diskUtilities.getSerialNumber("C");
 		System.out.println("HDS: " + hdserial);
 		
+		g.setVSync(true);
 		g.setTargetFrameRate(50);
-		g.setShowFPS(false);
+		g.setShowFPS(true);
 		display = new Display(g);
 		mapMatrix = new GameMapMatrix();
 		animator = new Animator(mapMatrix, this);
@@ -247,23 +252,25 @@ public class GameClient extends BasicGame {
 			GameMap thisMap;
 			arg1.setFont(getDPFont());
 			arg1.scale(2, 2);
-             for (int x = 0;
+            for (int x = 0;
                              x <= 2; x++) {
                      for (int y = 0;
                              y <= 2; y++) {
-                             thisMap = mapMatrix.getMap(x, y);
+                    		 thisMap = mapMatrix.getMap(x, y);
                              if (thisMap != null && thisMap.isRendering())
                                      thisMap.render(thisMap.getXOffset() / 2,
                                                      thisMap.getYOffset() / 2, 0, 0,
                                                      (arg0.getScreenWidth() - thisMap.getXOffset()) / 32,
                                                      (arg0.getScreenHeight() - thisMap.getYOffset()) / 32,
-                                                     true);
+                                                     thisMap.isCurrent());
                      }
-             }
+            }
 			
 			arg1.resetTransform();
-			arg1.setColor(m_daylight);
-			arg1.fillRect(0, 0, arg0.getWidth(), arg0.getHeight());
+			if(m_environment.getDaylight() > 0) {
+				arg1.setColor(m_daylight);
+				arg1.fillRect(0, 0, arg0.getWidth(), arg0.getHeight());
+			}
 			/*if (battle != null && battle.isVisible() && dimmingColor != null) {
 				arg1.setColor(dimmingColor);
 				arg1.fillRect(0, 0, arg0.getWidth(), arg0.getHeight());
@@ -298,6 +305,9 @@ public class GameClient extends BasicGame {
 				if(display.getChild(i) != null && display.getChild(i).getName() != null &&
 						display.getChild(i).getName().equalsIgnoreCase(c)) {
 					PrivateChat chat = (PrivateChat) display.getChild(i);
+					if(!chat.isShowing())
+						chat.setVisible(true);
+					chat.setName(c);
 					chat.addMessage(m);
 					return;
 				}

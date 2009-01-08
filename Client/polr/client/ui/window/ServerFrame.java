@@ -90,17 +90,11 @@ public class ServerFrame extends Frame {
 		s_3.setLocation(300, 360);
 		this.add(s_3);
 		
-		Label s_4 = new Label("Proxy Server");
+		Label s_4 = new Label("Host:");
 		s_4.setForeground(black);
-		s_4.setSize(128, 24);
-		s_4.setLocation(300, 420);
+		s_4.setSize(64, 24);
+		s_4.setLocation(168, 386);
 		this.add(s_4);
-		
-		Label s_5 = new Label("Host:");
-		s_5.setForeground(black);
-		s_5.setSize(64, 24);
-		s_5.setLocation(168, 386);
-		this.add(s_5);
 		
 		m_privateHost = new TextField();
 		m_privateHost.setSize(102, 24);
