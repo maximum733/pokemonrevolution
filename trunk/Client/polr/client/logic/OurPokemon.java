@@ -67,8 +67,13 @@ public class OurPokemon extends TempPokemon {
 			else{
 				index = String.valueOf(pokeNum);
 			}
-			int gender = getGender();
-			if(gender > 1 || gender < 0) gender = 1;
+			int gender;
+			if(getGender() == 1){
+				gender = 2;
+			} 
+			else{
+				gender = 3;
+			}
 			try {
 				path = "res/sprites/back/normal/" + index + "-"
 				+ gender + ".png";

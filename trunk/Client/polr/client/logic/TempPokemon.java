@@ -86,17 +86,12 @@ public class TempPokemon {
 				index = String.valueOf(pokeNum);
 			}
 			
-			int pathGender = 0;
-			switch (gender){
-				case 0:
-					pathGender = 3;
-					break;
-				case 1:
-					pathGender = 3;
-					break;
-				case 2:
-					pathGender = 2;
-					break;
+			int pathGender;
+			if(getGender() == 1){
+				pathGender = 2;
+			}
+			else{
+				pathGender = 3;
 			}
 			if (pathGender > 3) pathGender = 3;
 			try {

@@ -649,14 +649,23 @@ public class PlayerChar extends Char {
 	 * Teleports the player to the location they last healed.
 	 */
 	public void gameOverTeleport() {
-		getMap().removePlayer(this);
-		this.setX(lastHealX);
-		this.setY(lastHealY);
-		getMap().getMapMatrix().getMap(lastHealMapX, lastHealMapY).addPlayer(this);
-		setMap(getMap().getMapMatrix().getMap(lastHealMapX, lastHealMapY));
-		getIoSession().write(
-				"C" + getName() + " ran to the Pokemon Center with"
-						+ " the injured Pokemon and nursed them to health.");
+		if(getMap().getX() != lastHealMapX && getMap().getY() != lastHealMapY){
+			getMap().removePlayer(this);
+			this.setX(lastHealX);
+			this.setY(lastHealY);
+			getMap().getMapMatrix().getMap(lastHealMapX, lastHealMapY).addPlayer(this);
+			setMap(getMap().getMapMatrix().getMap(lastHealMapX, lastHealMapY));
+			getIoSession().write("C" + getName() + 
+				" ran to the Pokemon Center with" +
+				" the injured Pokemon and nursed them to health.");
+		} else{
+			getIoSession().write("C" + getName() +
+				" ran to Nurse Joy with " +
+				" the injured Pokemon and nursed them to health." +
+				" Luckily, " +
+				getName() + 
+				" was already in the Center.");
+		}
 	}
 	
 	/**
