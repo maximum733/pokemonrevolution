@@ -13354,20 +13354,22 @@
                <m_level>0</m_level>
                <m_evolveTo>Espeon</m_evolveTo>
             </POLREvolution>
-			<POLREvolution>
-               <m_type>Espeon</m_type>
-               <m_level>0</m_level>
-               <m_evolveTo>Espeon</m_evolveTo>
-            </POLREvolution>
             <POLREvolution>
                <m_type>HappinessNight</m_type>
                <m_level>0</m_level>
                <m_evolveTo>Umbreon</m_evolveTo>
             </POLREvolution>
-			<POLREvolution>
-               <m_type>Moon Shard</m_type>
-               <m_level>0</m_level>
-               <m_evolveTo>Umbreon</m_evolveTo>
+            <POLREvolution>
+            	<m_type>Item</m_type>
+            	<m_level>0</m_level>
+            	<m_attribute>Moon Shard</m_attribute>
+            	<m_evolveTo>Umbreon</m_evolveTo>
+            </POLREvolution>
+            <POLREvolution>
+            	<m_type>Item</m_type>
+            	<m_level>0</m_level>
+            	<m_attribute>Sun Shard</m_attribute>
+            	<m_evolveTo>Espeon</m_evolveTo>
             </POLREvolution>
          </evolutions>
          <battlerPlayerY>0</battlerPlayerY>
@@ -17750,11 +17752,13 @@
             <string>Psycho Shift</string>
             <string>Lucky Chant</string>
          </eggMoves>
-         <POLREvolution>
-               <m_type>Happiness</m_type>
-               <m_level>0</m_level>
-               <m_evolveTo>Togetic</m_evolveTo>
-         </POLREvolution>
+		 <evolutions>
+	         <POLREvolution>
+	         	<m_type>Happiness</m_type>
+	            <m_level>0</m_level>
+	            <m_evolveTo>Togetic</m_evolveTo>
+	         </POLREvolution>
+         </evolutions>
          <battlerPlayerY>0</battlerPlayerY>
          <battlerEnemyY>0</battlerEnemyY>
          <battlerAltitude>0</battlerAltitude>
