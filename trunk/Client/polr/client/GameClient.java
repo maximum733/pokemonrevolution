@@ -129,10 +129,6 @@ public class GameClient extends BasicGame {
 		try {
 			//Load the user's settings (Create settings file if first time)
 			Settings settings = new Settings();
-
-			System.getProperties().put("proxySet", "true");
-			System.getProperties().put("proxyHost", "proxy.dcu.ie");
-			System.getProperties().put("proxyPort", "8080");
 			
 			//Check for map updates (Download maps if first time)
 			MapUpdater updater = new MapUpdater(settings.getMapRevision());
@@ -164,7 +160,7 @@ public class GameClient extends BasicGame {
 		
 		g.setVSync(true);
 		g.setTargetFrameRate(50);
-		g.setShowFPS(true);
+		g.setShowFPS(false);
 		display = new Display(g);
 		mapMatrix = new GameMapMatrix();
 		animator = new Animator(mapMatrix, this);
