@@ -3,9 +3,9 @@
 <map version="1.0" orientation="orthogonal" width="40" height="30" tilewidth="16" tileheight="16">
  <properties>
   <property name="pvp" value="yes"/>
-  <property name="surfLevels" value="3-5"/>
+  <property name="surfLevels" value=""/>
   <property name="surfProbability" value="60"/>
-  <property name="surfSpecies" value="Psyduck,40;"/>
+  <property name="surfSpecies" value=""/>
   <property name="wildLevels" value=""/>
   <property name="wildProbability" value="28"/>
   <property name="wildSpecies" value=""/>
@@ -26,7 +26,7 @@
  </layer>
  <layer name="Collisions" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3QMQ6AIAxGYYYeBb0J3P9I1MGlkUBNq8v7lg4mPy+WAgAAAABArip/Fzy7uu62WePqeyb7pm1Z3cyut/8ruzFyN3Lr0K1T/PerxqY7Xfx3R0TjAEQceVrAEgAA
+   H4sIAAAAAAAAAO3QMQ7AIAhAUQaOor2K3v9E1aELqVEaqct/C4MJ/iACAAAAAECspKcL3vWup23UOHuPZP+0LbMZ2fX1Xifv6bWzMbddl/rnX42l7anqnyt2NN5JymClwBIAAA==
   </data>
  </layer>
  <layer name="WalkBehind" width="40" height="30">
