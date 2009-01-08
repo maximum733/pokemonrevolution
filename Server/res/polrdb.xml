@@ -3978,7 +3978,13 @@
             <string>Leech Life</string>
          </starterMoves>
          <eggMoves/>
-         <evolutions/>
+		 <evolutions>
+            <POLREvolution>
+               <m_type>Happiness</m_type>
+               <m_level>0</m_level>
+               <m_evolveTo>Crobat</m_evolveTo>
+            </POLREvolution>
+         </evolutions>
          <battlerPlayerY>0</battlerPlayerY>
          <battlerEnemyY>0</battlerEnemyY>
          <battlerAltitude>0</battlerAltitude>
@@ -11357,7 +11363,13 @@
             <string>Growl</string>
          </starterMoves>
          <eggMoves/>
-         <evolutions/>
+         <evolutions>
+            <POLREvolution>
+               <m_type>Happiness</m_type>
+               <m_level>0</m_level>
+               <m_evolveTo>Blissey</m_evolveTo>
+            </POLREvolution>
+         </evolutions>
          <battlerPlayerY>0</battlerPlayerY>
          <battlerEnemyY>0</battlerEnemyY>
          <battlerAltitude>0</battlerAltitude>
@@ -13340,8 +13352,22 @@
             <POLREvolution>
                <m_type>HappinessDay</m_type>
                <m_level>0</m_level>
-               <m_attribute></m_attribute>
                <m_evolveTo>Espeon</m_evolveTo>
+            </POLREvolution>
+			<POLREvolution>
+               <m_type>Espeon</m_type>
+               <m_level>0</m_level>
+               <m_evolveTo>Espeon</m_evolveTo>
+            </POLREvolution>
+            <POLREvolution>
+               <m_type>HappinessNight</m_type>
+               <m_level>0</m_level>
+               <m_evolveTo>Umbreon</m_evolveTo>
+            </POLREvolution>
+			<POLREvolution>
+               <m_type>Moon Shard</m_type>
+               <m_level>0</m_level>
+               <m_evolveTo>Umbreon</m_evolveTo>
             </POLREvolution>
          </evolutions>
          <battlerPlayerY>0</battlerPlayerY>
@@ -17437,7 +17463,13 @@
             <string>Tickle</string>
             <string>Volt Tackle</string>
          </eggMoves>
-         <evolutions/>
+         <evolutions>
+            <POLREvolution>
+               <m_type>Happiness</m_type>
+               <m_level>0</m_level>
+               <m_evolveTo>Pikachu</m_evolveTo>
+            </POLREvolution>
+         </evolutions>
          <battlerPlayerY>0</battlerPlayerY>
          <battlerEnemyY>0</battlerEnemyY>
          <battlerAltitude>0</battlerAltitude>
@@ -17521,7 +17553,13 @@
             <string>Fake Tears</string>
             <string>Covet</string>
          </eggMoves>
-         <evolutions/>
+         <evolutions>
+            <POLREvolution>
+               <m_type>Happiness</m_type>
+               <m_level>0</m_level>
+               <m_evolveTo>Clefairy</m_evolveTo>
+            </POLREvolution>
+         </evolutions>
          <battlerPlayerY>0</battlerPlayerY>
          <battlerEnemyY>0</battlerEnemyY>
          <battlerAltitude>0</battlerAltitude>
@@ -17598,7 +17636,13 @@
             <string>Covet</string>
             <string>Gravity</string>
          </eggMoves>
-         <evolutions/>
+         <evolutions>
+            <POLREvolution>
+               <m_type>Happiness</m_type>
+               <m_level>0</m_level>
+               <m_evolveTo>Jigglypuff</m_evolveTo>
+            </POLREvolution>
+         </evolutions>
          <battlerPlayerY>0</battlerPlayerY>
          <battlerEnemyY>0</battlerEnemyY>
          <battlerAltitude>0</battlerAltitude>
@@ -17706,7 +17750,11 @@
             <string>Psycho Shift</string>
             <string>Lucky Chant</string>
          </eggMoves>
-         <evolutions/>
+         <POLREvolution>
+               <m_type>Happiness</m_type>
+               <m_level>0</m_level>
+               <m_evolveTo>Togetic</m_evolveTo>
+         </POLREvolution>
          <battlerPlayerY>0</battlerPlayerY>
          <battlerEnemyY>0</battlerEnemyY>
          <battlerAltitude>0</battlerAltitude>
@@ -30100,7 +30148,13 @@
             <string>Tickle</string>
             <string>Fake Tears</string>
          </eggMoves>
-         <evolutions/>
+         <evolutions>
+            <POLREvolution>
+               <m_type>Happiness</m_type>
+               <m_level>0</m_level>
+               <m_evolveTo>Marill</m_evolveTo>
+            </POLREvolution>
+         </evolutions>
          <battlerPlayerY>0</battlerPlayerY>
          <battlerEnemyY>0</battlerEnemyY>
          <battlerAltitude>0</battlerAltitude>
@@ -41616,7 +41670,13 @@
             <string>Leaf Storm</string>
             <string>Extrasensory</string>
          </eggMoves>
-         <evolutions/>
+         <evolutions>
+            <POLREvolution>
+               <m_type>HappinessDay</m_type>
+               <m_level>0</m_level>
+               <m_evolveTo>Roselia</m_evolveTo>
+            </POLREvolution>
+         </evolutions>
          <battlerPlayerY>0</battlerPlayerY>
          <battlerEnemyY>0</battlerEnemyY>
          <battlerAltitude>0</battlerAltitude>
@@ -43759,7 +43819,13 @@
             <string>Ice Punch</string>
             <string>Fire Punch</string>
          </eggMoves>
-         <evolutions/>
+         <evolutions>
+            <POLREvolution>
+               <m_type>Happiness</m_type>
+               <m_level>0</m_level>
+               <m_evolveTo>Lopunny</m_evolveTo>
+            </POLREvolution>
+         </evolutions>
          <battlerPlayerY>0</battlerPlayerY>
          <battlerEnemyY>0</battlerEnemyY>
          <battlerAltitude>0</battlerAltitude>
@@ -44270,7 +44336,13 @@
             <string>Future Sight</string>
             <string>Recover</string>
          </eggMoves>
-         <evolutions/>
+         <evolutions>
+            <POLREvolution>
+               <m_type>HappinessNight</m_type>
+               <m_level>0</m_level>
+               <m_evolveTo>Chimecho</m_evolveTo>
+            </POLREvolution>
+         </evolutions>
          <battlerPlayerY>0</battlerPlayerY>
          <battlerEnemyY>0</battlerEnemyY>
          <battlerAltitude>0</battlerAltitude>
@@ -45593,7 +45665,13 @@
             <string>Pursuit</string>
             <string>Zen Headbutt</string>
          </eggMoves>
-         <evolutions/>
+         <evolutions>
+            <POLREvolution>
+               <m_type>Happiness</m_type>
+               <m_level>0</m_level>
+               <m_evolveTo>Snorlax</m_evolveTo>
+            </POLREvolution>
+         </evolutions>
          <battlerPlayerY>0</battlerPlayerY>
          <battlerEnemyY>0</battlerEnemyY>
          <battlerAltitude>0</battlerAltitude>
@@ -45684,7 +45762,13 @@
             <string>Blaze Kick</string>
             <string>Mach Punch</string>
          </eggMoves>
-         <evolutions/>
+         <evolutions>
+            <POLREvolution>
+               <m_type>HappinessDay</m_type>
+               <m_level>0</m_level>
+               <m_evolveTo>Lucario</m_evolveTo>
+            </POLREvolution>
+         </evolutions>
          <battlerPlayerY>0</battlerPlayerY>
          <battlerEnemyY>0</battlerEnemyY>
          <battlerAltitude>0</battlerAltitude>
