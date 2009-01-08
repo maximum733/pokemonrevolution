@@ -5,7 +5,7 @@
   <property name="pvp" value="yes"/>
   <property name="surfLevels" value=""/>
   <property name="surfProbability" value="60"/>
-  <property name="surfSpecies" value=";"/>
+  <property name="surfSpecies" value=""/>
   <property name="wildLevels" value=""/>
   <property name="wildProbability" value="28"/>
   <property name="wildSpecies" value=""/>
