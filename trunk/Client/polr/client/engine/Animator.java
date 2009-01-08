@@ -44,10 +44,13 @@ public class Animator {
 	// Prepares for animation
 	public void animate() {
 		try {
-			for (Player p : mapMatrix.getPlayerList().values()) {
-				animatePlayer(p);
+			GameMap map = mapMatrix.getCurrentMap();
+			if(map != null) {
+				for(int i = 0; i < map.getMapPlayers().size(); i++) {
+					animatePlayer(map.getMapPlayers().get(i));
+				}
 			}
-		} catch (ConcurrentModificationException e) {}
+		} catch (Exception e) {}
 	}
 
 	// moves player and animates sprite
