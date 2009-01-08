@@ -382,10 +382,10 @@ public abstract class BattleMechanics implements Serializable {
 				return true;
 			else {
 				double r = 131071 * Math.sqrt(Math.sqrt(reCalc / 511));
-				double po = Math.random();
-				double pt = Math.random();
-				double pth = Math.random();
-				double pf = Math.random();
+                double po = getRandom().nextInt(65536);
+                double pt = getRandom().nextInt(65536);
+                double pth = getRandom().nextInt(65536);
+                double pf = getRandom().nextInt(65536);
 				if(r >= po)
 					if(r >= pt)
 						if(r >= pth)

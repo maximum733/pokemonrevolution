@@ -1732,5 +1732,10 @@ public class Pokemon extends PokemonSpecies {
             setPp(idx, m_move[idx].getMove().getPp());
 		}
 	}
+
+	public static int generateGender(int possibleGenders) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
     
 }

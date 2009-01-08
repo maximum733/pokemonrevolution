@@ -58,6 +58,7 @@ public final class WildBattleField extends BattleField {
 	= new LinkedHashSet<Pokemon>();
 
 	private POLRDatabase m_polrDB;
+	private int runCount;
 
 	   /**
 	    * Defines whether or not the battle is over
@@ -385,6 +386,23 @@ public final class WildBattleField extends BattleField {
 				m_humanPlayer.getIoSession().write("br");
 			}
 		}
+	}
+	/**
+	 * canRun formula
+	 */
+	private boolean canRun(){
+			// Formula from http://bulbapedia.bulbagarden.net/wiki/escape
+			float A = getActivePokemon()[0].getStat(Pokemon.S_SPEED);
+			float B = getActivePokemon()[1].getStat(Pokemon.S_SPEED);
+			int C = ++runCount;
+			
+			float F = (((A * 32) / (B / 4)) + 30) * C;
+			
+			if(F > 255) return true;
+			
+			if(getMechanics().getRandom().nextInt(255) <= F) return true;
+			
+			return false;
 	}
 	
 	   /**

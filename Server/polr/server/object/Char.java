@@ -276,8 +276,7 @@ public abstract class Char implements Battleable, Positionable {
 						.getNatureNames().length)),
 						species.getPossibleAbilities(species.getDefaultData())[random
 						      .nextInt(species.getPossibleAbilities(species.getDefaultData()).length)],
-				null, (random.nextInt(100) > 50 ? Pokemon.GENDER_FEMALE
-						: Pokemon.GENDER_MALE), level, new int[] {
+				null, Pokemon.generateGender(species.getPossibleGenders()), level, new int[]{
 						random.nextInt(32), // IVs
 						random.nextInt(32), random.nextInt(32),
 						random.nextInt(32), random.nextInt(32),

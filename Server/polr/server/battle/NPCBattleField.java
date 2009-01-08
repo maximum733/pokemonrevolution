@@ -333,7 +333,7 @@ public class NPCBattleField extends BattleField {
                                                        if (moveData.getEvolutions().get(i).getLevel() == level){
                                                                //System.out.println(pokemon.m_name + " evolves at level 16");
                                                                if(moveData.getEvolutions().get(i).getType()
-                                                                               == EvoTypes.Level){
+                                                                               == EvoTypes.Level || (moveData.getEvolutions().get(i).getType() == EvoTypes.Happiness && pokemon.getHappiness() >=220)){
                                                                        StringBuilder evoPacket = new StringBuilder("e,"
                                                                                        + pokemon.getName());
                                                                        //stop hardcoding party
