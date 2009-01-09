@@ -322,12 +322,12 @@ public class GameMap extends TiledMap {
 		xOffset = xOffsetModifier;
 		yOffset = yOffsetModifier;
 		walkableLayer = getLayerCount() - 2;
-		m_lastRendered = getLayerCount() - 1;
+		m_lastRendered = 0;
 	}
 
 	@Override
 	protected void renderedLine(int visualY, int mapY, int layer) {
-		m_lastRendered = layer;
+		//m_lastRendered = layer;
 		if (current) {
 		try {
 			graphics.resetTransform();
@@ -349,6 +349,10 @@ public class GameMap extends TiledMap {
 
 		}
 		}
+	}
+	
+	public void setLastLayerRendered(int i) {
+		m_lastRendered = i;
 	}
 	
 	public int getLastLayerRendered() {
