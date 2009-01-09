@@ -718,7 +718,7 @@ public class ServerMap {
 			newY = ((playerY + 8) - 32) / 32;
 			if (playerY >= 1) {
 				if (!isBlocked(newX, newY, Directions.up)) {
-					if(surf != null & surf.getTileAt(newX, newY) != null) {
+					if(surf != null && surf.getTileAt(newX, newY) != null) {
 						if(p.isSurfing()) {
 							return true;
 						} else {
@@ -752,7 +752,7 @@ public class ServerMap {
 			newY = ((playerY + 8) + 32) / 32;
 			if (playerY + 40 < m_height * 32) {
 				if (!isBlocked(newX, newY, Directions.down)) {
-					if(surf != null & surf.getTileAt(newX, newY) != null) {
+					if(surf != null && surf.getTileAt(newX, newY) != null) {
 						if(p.isSurfing()) {
 							return true;
 						} else {
@@ -786,7 +786,7 @@ public class ServerMap {
 			newY = (playerY + 8) / 32;
 			if (playerX >= 32) {
 				if (!isBlocked(newX, newY, Directions.left)) {
-					if(surf != null & surf.getTileAt(newX, newY) != null) {
+					if(surf != null && surf.getTileAt(newX, newY) != null) {
 						if(p.isSurfing()) {
 							return true;
 						} else {
@@ -820,7 +820,7 @@ public class ServerMap {
 			newY = (playerY + 8) / 32;
 			if (playerX + 32 < m_width * 32) {
 				if (!isBlocked(newX, newY, Directions.right)) {
-					if(surf != null & surf.getTileAt(newX, newY) != null) {
+					if(surf != null && surf.getTileAt(newX, newY) != null) {
 						if(p.isSurfing()) {
 							return true;
 						} else {
