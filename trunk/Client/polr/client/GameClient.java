@@ -158,7 +158,7 @@ public class GameClient extends BasicGame {
 		String hdserial = diskUtilities.getSerialNumber("C");
 		System.out.println("HDS: " + hdserial);
 		
-		g.setVSync(true);
+		g.setSmoothDeltas(true);
 		g.setTargetFrameRate(50);
 		g.setShowFPS(false);
 		display = new Display(g);
@@ -248,17 +248,28 @@ public class GameClient extends BasicGame {
 			GameMap thisMap;
 			arg1.setFont(getDPFont());
 			arg1.scale(2, 2);
-            for (int x = 0;
-                             x <= 2; x++) {
-                     for (int y = 0;
-                             y <= 2; y++) {
+            for (int x = 0; x <= 2; x++) {
+                     for (int y = 0; y <= 2; y++) {
                     		 thisMap = mapMatrix.getMap(x, y);
-                             if (thisMap != null && thisMap.isRendering())
-                                     thisMap.render(thisMap.getXOffset() / 2,
-                                                     thisMap.getYOffset() / 2, 0, 0,
-                                                     (arg0.getScreenWidth() - thisMap.getXOffset()) / 32,
-                                                     (arg0.getScreenHeight() - thisMap.getYOffset()) / 32,
-                                                     thisMap.isCurrent());
+                             if (thisMap != null && thisMap.isRendering()) {
+                            	 if(!(x == 1 && y == 1))
+                        			 thisMap.render(thisMap.getXOffset() / 2,
+                                             thisMap.getYOffset() / 2, 0, 0,
+                                             (arg0.getScreenWidth() - thisMap.getXOffset()) / 32,
+                                             (arg0.getScreenHeight() - thisMap.getYOffset()) / 32,
+                                             false);
+                        		 else {
+                                	 for(int l = 0; l < thisMap.getLayerCount(); l++) {
+                                		 thisMap.render(thisMap.getXOffset() / 2,
+                                                 thisMap.getYOffset() / 2, 0, 0,
+                                                 (arg0.getScreenWidth() - thisMap.getXOffset()) / 32,
+                                                 (arg0.getScreenHeight() - thisMap.getYOffset()) / 32,
+                                                 l, thisMap.getLastLayerRendered() + 1 == thisMap.getWalkableLayer());
+                            			 thisMap.setLastLayerRendered(l); 
+                                	 }
+                        		 }
+                             }
+                            	 
                      }
             }
 			
