@@ -153,7 +153,24 @@ public class PlayerChar extends Char {
 	private long m_lastMovement = System.currentTimeMillis();
 
 	private Object m_target;
+	private int m_pvpRank;
 	
+	/**
+	 * Returns the player player versus player rank
+	 * @return
+	 */
+	public int getpvpRank() {
+		return m_pvpRank;
+	}
+
+	/**
+	 * Set if the user have won or lost in player versus player match
+	 * @param rank
+	 */
+	public void setpvpRank(int rank) {
+		m_pvpRank = rank;
+	}
+
 	/**
 	 * Returns if the player has received all the map information. Stops players constantly requesting information.
 	 * @return

@@ -218,11 +218,34 @@ public final class PvPBattleField extends BattleField {
 		if(this.getTrainerName(winner) == players[0].getName()) {
 			players[0].setMoney(players[0].getMoney() + prizeMoney);
 			players[1].setMoney(players[1].getMoney() - prizeMoney);
+			// Checks that player pvpRank does not go over INT's handling
+			if(players[0].getpvpRank() >= -2147483648 || players[0].getpvpRank() <= 2147483647){
+				players[0].setpvpRank(players[0].getpvpRank() + 1);
+			}else{
+				// Do nothing.
+			}
+			if(players[1].getpvpRank() >= -2147483648 || players[1].getpvpRank() <= 2147483647){
+				players[1].setpvpRank(players[1].getpvpRank() - 1);
+			}else{
+				// Do nothing.
+			}
 			players[1].lostBattle();
+			
 		}
 		else {
 			players[0].setMoney(players[0].getMoney() - prizeMoney);
 			players[1].setMoney(players[1].getMoney() + prizeMoney);
+			// Checks that player pvpRank does not go over INT's handling
+			if(players[1].getpvpRank() >= -2147483648 || players[1].getpvpRank() <= 2147483647){
+				players[1].setpvpRank(players[1].getpvpRank() + 1);
+			}else{
+				// Do nothing.
+			}
+			if(players[0].getpvpRank() >= -2147483648 || players[0].getpvpRank() <= 2147483647){
+				players[0].setpvpRank(players[0].getpvpRank() - 1);
+			}else{
+				// Do nothing.
+			}
 			players[0].lostBattle();
 		}	
 		players[0].getIoSession().write("v" + this.getTrainerName(winner));
