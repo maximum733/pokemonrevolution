@@ -3,9 +3,9 @@
 <map version="1.0" orientation="orthogonal" width="50" height="23" tilewidth="16" tileheight="16">
  <properties>
   <property name="pvp" value="yes"/>
-  <property name="surfLevels" value=""/>
-  <property name="surfProbability" value="0"/>
-  <property name="surfSpecies" value=""/>
+  <property name="surfLevels" value="10-20;10-20;10-20;10-20;10-20;"/>
+  <property name="surfProbability" value="28"/>
+  <property name="surfSpecies" value="Marill,80;Magikarp,17;Goldeen,1;Corphish,1;Surskit,1;"/>
   <property name="wildLevels" value="3-4;3-4;3-4;3-4;4-4;3-3;"/>
   <property name="wildProbability" value="28"/>
   <property name="wildSpecies" value="Wurmple,30;Poochyena,30;Lotad,20;Zigzagoon,15;Ralts,4;Seedot,1"/>
