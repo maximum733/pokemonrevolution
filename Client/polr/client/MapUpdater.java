@@ -30,6 +30,7 @@ public class MapUpdater extends JFrame implements ActionListener {
 		super("POLR Updater");
 		this.setSize(196, 196);
 		this.getContentPane().setLayout(null);
+		this.setIconImage(new ImageIcon("res/picon.png").getImage());
 		
 		m_logo = new JLabel(new ImageIcon("res/pokeball.png"));
 		m_logo.setSize(96, 96);

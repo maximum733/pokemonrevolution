@@ -158,6 +158,7 @@ public class GameClient extends BasicGame {
 		String hdserial = diskUtilities.getSerialNumber("C");
 		System.out.println("HDS: " + hdserial);
 		
+		g.setIcon("res/picon.png");
 		g.setSmoothDeltas(true);
 		g.setTargetFrameRate(50);
 		g.setShowFPS(false);
