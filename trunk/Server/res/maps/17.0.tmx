@@ -17,12 +17,12 @@
  <tileset firstgid="2049" source="normal6.tsx"/>
  <layer name="Walkable" width="24" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNiYGBgohCjA2L1MTIyMDAzUm4/LqwINFuZxuYr0dAPMPNp5YfhYj6t4gDZfFr4AZv5bzgpM/MZOwMcIJsPwkxomJwwY0TSrwrETkhYBc0+JRLtAZnNgiPM37Jg+kcJ6gZnPOYnAuWSGTHNhpkPMhdbfMD8hs9sEF4IlF8MxI5YwgHmfpgd1EpPMLvQ45SFBHcP9nxAKc7hImw+KK9QYgcjUrjTInywpXdqmo8vzRKLAT1zu0ZACAAA
+   H4sIAAAAAAAAAGNiYGBgohCjA1L0MjIyMDAzUu4GXFgRaLYyjcwHuZ2FhuaD3K40aj5B85VolIaQzaeFH7CZ/4aTMjOfsTPAAbL5IMyEhskJM0Yk/apA7ISEVdDsUyLRHlh+whbmb1kw/aMEdYMzHvMTgXLJjJhmw8wHmYstPmB+w2c2CC8Eyi8GYkcs4QBzP8wOaqUnmF3occpCgrsHez6gFOdwETYflFcosYMRKdxpET7Y0js1zceXZonFAMKrO0NACAAA
   </data>
  </layer>
  <layer name="Collisions" width="24" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALWU6QnCQBCF54+GpA8P8OhCI3jUIYh25QEeXXiARxeiIFqDT9xAGHedHaIPPkaMefnC7hoTUQs0QDM1eXIgb5mxud81S6AMCqCYmjz8enKfNJPnSP78uuTt8nflV/6uZPWXwv193yN5jhTu7/sevv6vzEOiBViCVfj+TuM/DogmYApmwWf/Hp0HcAQn06/xX6NzA7ZgZ+m/mc475sN8ltYh7X82nRfMq6XfFmk9pH2vDfeX9r023N83fc/fcf9fJ8v+/xbN+a1ERFVQA/XI3sfPiub8ttHZAV3Qc/Tzs6LxH5jOIebI0c/PiuSfdR0kf+1+5fmXv/T/+QS/C59XQAgAAA==
+   H4sIAAAAAAAAALWUaQrCQAyF80dLvYcLuNxCK7icQxC9lQu43MIFXG4hCqJn8IkzUOKMaWh98JHSad+8MkkjImqDJmg5qlUO5B01Mu/7ahlUQBGUYpWLr9v3pGr38eW24utSbl9+n7LK71Pa/JJ4/qTfYfeR5OuvrPK/tQiJlmAF1uHnnib/JCCaghmYB9/+B3gewQmcjb8m/waeW7ADe4f/3Xg+UJ/mWjqHeP6L8byi3hz+LknnIfW9Vjy/1Pda8fxJNUj4HM+ftdL0/y9p5rdaIKqBOmgU3H58VjTz24FnF/RA3+PPZ0WTf2g8R6hjjz+fFSl/2nOQ8mv7letf+aX/5wv0r8xsQAgAAA==
   </data>
  </layer>
  <layer name="WalkBehind" width="24" height="22">

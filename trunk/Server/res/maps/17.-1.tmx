@@ -2,7 +2,7 @@
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="41" height="20" tilewidth="16" tileheight="16">
  <properties>
- <property name="pvp" value="yes"/>
+  <property name="pvp" value="yes"/>
   <property name="surfLevels" value="5-35;10-30;10-20;25-30;20-35;15-30;"/>
   <property name="surfProbability" value="28"/>
   <property name="surfSpecies" value="Tentacool,60;Wingull,20;Magikarp,15;Pelipper,3;Wailmer,1;Sharpedo,1;"/>
@@ -46,12 +46,12 @@
  </layer>
  <layer name="Collison" width="41" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2W2w3CMAxFQ6OwCY9FYBYGq9ijEn9MgYT4ZQUcgYVl4rpOXPjhSpFLH8n1gXKTQghLGOlVdzD2hprY81Kt0RBDuMBYwfE6vKtV/Hmp1ij7u3ef/KzSeOL1HtY7Rvv8Q2zrk0rjd4W1bgWP6P28eH7OlfaTWbb8Xqgknrgu94TnqXe8j/fjxZHPx+dFb7g+9S0J7/HiiOLvPUr6riVR3t4cvUR5Wzge5jQ1IuS4gbH9kQdNHnkwtzzyYG79ObaLvtff4Mhzjp4fO/biqOU1z7lSTkuZ7cXRum/Ucode531r/5NT94slnrX7M2v/U/fdpfmsmZ3Vd3LfEs8WjjU6gccHKiPLftAMAAA=
+   H4sIAAAAAAAAAO2W2w3CMAxFQ6OwCY9FYBYGq9ijEn9MgYT4ZQUcgYVl4rpOXPjhSpHTtE2uTx9OCiEsoaVX3EHbG2Ji90uxRkMM4QJtBf11eEer+P1SrFH2d+8++Vml8cTzPax3jPb5h9iWJ5XG7wpr3Qoe0ft58TzOkeaTWba8L1QST1yXe8Jx6h2v4/l4ceTz8XnRG65PfUvCa7w4ovh3j5KetSTK25ujlyhvC8fDnKZGhBw30LY/8qDJox7MLY96MLf+HNtFv+tvcOR1jo6P9b04avWa17lSnZZqthdH675Rqzv0PM9b+09O3S+WeNbuz6z5T913l+az1uysvpPz5jxr+bW+5yfw+AB/twAc0AwAAA==
   </data>
  </layer>
  <layer name="WalkBehind" width="41" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglGAD7ADMcdAO2IUjIJRMKgArFxAp0cqIOR/UsNrNDxHtv9JBQCOG8zT0AwAAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMglGAD7ADMcdAO2IUjIJRMKgArFxAp0cqIOR/UsNrNDxR/T/Sw4MQAABRT1+U0AwAAA==
   </data>
  </layer>
 </map>
