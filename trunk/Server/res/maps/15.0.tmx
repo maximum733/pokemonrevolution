@@ -10,7 +10,7 @@
   <property name="wildProbability" value="28"/>
   <property name="wildSpecies" value="Psyduck,40;"/>
   <property name="xOffsetModifier" value="0"/>
-  <property name="yOffsetModifier" value="0"/>
+  <property name="yOffsetModifier" value="-256"/>
  </properties>
  <tileset firstgid="1" source="normal1.tsx"/>
  <tileset firstgid="1025" source="normal3.tsx"/>
