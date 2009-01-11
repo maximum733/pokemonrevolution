@@ -9,7 +9,7 @@
   <property name="wildLevels" value="4-5;4-5;4-5;4-5;3-5;"/>
   <property name="wildProbability" value="28"/>
   <property name="wildSpecies" value="Poochyena,40;Marill,20;Wurmple,20;Tailow,10;Wingull,10;"/>
-  <property name="xOffsetModifier" value="600"/>
+  <property name="xOffsetModifier" value="0"/>
   <property name="yOffsetModifier" value="0"/>
  </properties>
  <tileset firstgid="1" source="normal1.tsx"/>
