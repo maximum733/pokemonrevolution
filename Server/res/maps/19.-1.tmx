@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="40" height="50" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="pvp" value="yes"/>
+  <property name="surfLevels" value="5-35;10-30;20-30;25-30;20-30;"/>
+  <property name="surfProbability" value="28"/>
+  <property name="surfSpecies" value="Tentacool,50;Wingull,20;Magikarp,20;Pelipper,9;Wailmer,1;"/>
+  <property name="wildLevels" value="12-13;12-12;13-13;13-13;13-13;12-12;12-13;"/>
+  <property name="wildProbability" value="28"/>
+  <property name="wildSpecies" value="Electrike,30;Poochyena,20;Minun,15;Gulpin,15;Oddish,10;Wingull,8;Plusle,2;"/>
+  <property name="xOffsetModifier" value="0"/>
+  <property name="yOffsetModifier" value="0"/>
+ </properties>
  <tileset firstgid="1" source="normal1.tsx"/>
  <tileset firstgid="1025" source="normal5.tsx"/>
  <tileset firstgid="2049" source="normal3.tsx"/>
