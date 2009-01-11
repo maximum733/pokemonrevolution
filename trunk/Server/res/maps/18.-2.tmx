@@ -14,7 +14,7 @@
  </properties>
  <tileset firstgid="1" source="normal1.tsx"/>
  <tileset firstgid="1025" source="normal2.tsx"/>
- <tileset firstgid="2049" source="norma17.tsx"/>
+ <tileset firstgid="2049" source="normal17.tsx"/>
  <tileset firstgid="3073" source="normal6.tsx"/>
  <layer name="Walkable" width="60" height="20">
   <data encoding="base64" compression="gzip">
@@ -46,7 +46,7 @@
    H4sIAAAAAAAAAO3BMQEAAADCoPVPbQ0PoAAAAADg1wAW4j6/wBIAAA==
   </data>
  </layer>
- <layer name="Collision" width="60" height="20">
+ <layer name="Collisions" width="60" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO1XUVICMQytuz97DxXPoYhn4S4qp8AvwFOUL8A7+K1yBl4HOtRMk6a7BRV5M28C2bbJ20y7qa2MsQLnhNpxEjVzNHhRjgshabWR9brkF67h1u7VxkxgF+ASXIFTcFbptOTGdUjV9lBwa1/UW60f4Cf4FeguFZu+N0nvJfIZMLyqu+fi9XqsA91SzjE8NsY8gc/gqNn76XuT9N4Kmu4K6fW1jenkco5hAo1TcAa+Nvw47gyaH0HvDdZ4r9rTwdkh7AIal+AKfGvkOdz5o9E77C77qOD2p2N/Z2Nz7gvU94z/jWuwJ9hTwwB8EOwpIVVbb//aeckhVducGo+rPf1ZHPpCf9hjfcunYJ8Vg7RHNfs31ELvA9Rng7HSN9ihRN8Rg1Q/6VlMI9XVtqd0OJTetkjd91Ls7/RwPclv6jtStdPc2bVxPOl/7tlPa7WJfCW/dn+MyW9ON/e+YrHbak3lm+vPiUeZOzcn3gZYAfCAwBIAAA==
   </data>
