@@ -17,7 +17,7 @@
  <tileset firstgid="2049" source="normal6.tsx"/>
  <layer name="Walkable" width="24" height="22">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNiYGBgohCjA1L0MjIyMDAzUu4GXFgRaLYyjcwHuZ2FhuaD3K40aj5B85VolIaQzaeFH7CZ/4aTMjOfsTPAAbL5IMyEhskJM0Yk/apA7ISEVdDsUyLRHlh+whbmb1kw/aMEdYMzHvMTgXLJjJhmw8wHmYstPmB+w2c2CC8Eyi8GYkcs4QBzP8wOaqUnmF3occpCgrsHez6gFOdwETYflFcosYMRKdxpET7Y0js1zceXZonFAMKrO0NACAAA
+   H4sIAAAAAAAAAGNiYGBgGkDMyMjAwMxIO/MVgWYr08h8kNtZaGg+yO1Ko+YTNF+JRmkI2Xxa+AGb+W84KTPzGTsDHCCbD8JMaJicMGNE0q8KxE5IWAXNPiUS7YHlJ2xh/pYF0z9KUDc44zE/ESiXzIhpNsx8kLnY4gPmN3xmg/BCoPxiIHbEEg4w98PsoFZ6gtmFHqcsJLh7sOcDSnEOF2HzQXmFEjsYkcKdFuGDLb1T03x8aZZYDAACUbdhQAgAAA==
   </data>
  </layer>
  <layer name="Collisions" width="24" height="22">
