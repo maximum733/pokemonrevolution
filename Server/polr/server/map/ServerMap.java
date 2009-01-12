@@ -28,8 +28,6 @@ import java.util.Random;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.core.Strategy;
-import org.simpleframework.xml.graph.CycleStrategy;
 
 import polr.server.GameServer;
 import polr.server.battle.Pokemon;
@@ -531,8 +529,10 @@ public class ServerMap {
 						data.getWarpTiles().get(i).getWarpX(),
 						data.getWarpTiles().get(i).getWarpY(),
 						data.getWarpTiles().get(i).getWarpToMapX(),
-						data.getWarpTiles().get(i).getWarpToMapY()
-						));
+						data.getWarpTiles().get(i).getWarpToMapY(),
+						data.getWarpTiles().get(i).getRequiredBadge(),
+						data.getWarpTiles().get(i).getRequiredItem(),
+						data.getWarpTiles().get(i).getRequiredQuest()));
 			}
 			
 			//Load all the npcs
@@ -705,6 +705,19 @@ public class ServerMap {
 	}
 	
 	/**
+	 * Returns if the char collided with a warp tile
+	 * @param p
+	 * @return
+	 */
+	public WarpTile isWarped(int x, int y) {
+		for(int i = 0; i < m_warpTiles.size(); i++) {
+			if(m_warpTiles.get(i).getX() == x && m_warpTiles.get(i).getY() == y)
+				return m_warpTiles.get(i);
+		}
+		return null;
+	}
+	
+	/**
 	 * Returns true if the char can move
 	 * @param dir
 	 * @param p
@@ -740,8 +753,13 @@ public class ServerMap {
 					} else {
 						if(p.isSurfing())
 							p.setSurfing(false);
-						//TODO:Add warp tile check
-						return true;
+						WarpTile warpTile = isWarped(newX, newY);
+						if(p instanceof PlayerChar) {
+							PlayerChar pl = (PlayerChar) p;
+							warpTile.warpPlayer(pl);
+							return false;
+						} else
+							return true;
 					}
 				}
 			} else {
@@ -774,8 +792,13 @@ public class ServerMap {
 					} else {
 						if(p.isSurfing())
 							p.setSurfing(false);
-						//TODO:Add warp tile check
-						return true;
+						WarpTile warpTile = isWarped(newX, newY);
+						if(p instanceof PlayerChar) {
+							PlayerChar pl = (PlayerChar) p;
+							warpTile.warpPlayer(pl);
+							return false;
+						} else
+							return true;
 					}
 				}
 			} else {
@@ -808,8 +831,13 @@ public class ServerMap {
 					} else {
 						if(p.isSurfing())
 							p.setSurfing(false);
-						//TODO:Add warp tile check
-						return true;
+						WarpTile warpTile = isWarped(newX, newY);
+						if(p instanceof PlayerChar) {
+							PlayerChar pl = (PlayerChar) p;
+							warpTile.warpPlayer(pl);
+							return false;
+						} else
+							return true;
 					}
 				}
 			} else {
@@ -842,8 +870,13 @@ public class ServerMap {
 					} else {
 						if(p.isSurfing())
 							p.setSurfing(false);
-						//TODO:Add warp tile check
-						return true;
+						WarpTile warpTile = isWarped(newX, newY);
+						if(p instanceof PlayerChar) {
+							PlayerChar pl = (PlayerChar) p;
+							warpTile.warpPlayer(pl);
+							return false;
+						} else
+							return true;
 					}
 				}
 			} else {
