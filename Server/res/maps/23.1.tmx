@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="24" height="26" tilewidth="16" tileheight="16">
+<properties>
+  <property name="pvp" value="yes"/>
+  <property name="surfLevels" value="5-35;10-30;20-30;25-30;20-30;20-30;"/>
+  <property name="surfProbability" value="28"/>
+  <property name="surfSpecies" value="Tentacool,50;Wingull,20;Magikarp,20;Pelipper,8;Wailmer,1;Sharpedo,1;"/>
+  <property name="wildLevels" value="12-13;12-12;13-13;13-13;13-13;12-12;12-13;"/>
+  <property name="wildProbability" value="28"/>
+  <property name="wildSpecies" value="Electrike,30;Poochyena,20;Minun,15;Gulpin,15;Oddish,10;Wingull,8;Plusle,2;"/>
+  <property name="xOffsetModifier" value="0"/>
+  <property name="yOffsetModifier" value="0"/>
+ </properties>
+ <tileset firstgid="1" source="normal18.tsx"/>
+ <tileset firstgid="1025" source="normal6.tsx"/>
+ <tileset firstgid="2049" source="normal1.tsx"/>
+ <tileset firstgid="3073" source="normal3.tsx"/>
+ <tileset firstgid="4097" source="normal5.tsx"/>
+ <layer name="Layer 6" width="24" height="26">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBRQCh5RWd1QAsPRT6NgZIHRNDwKhiIAAE9XrD/ACQAA
+  </data>
+ </layer>
+ <layer name="Layer 5" width="24" height="26">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2UQQ6AMAgE22/4Nl/fl3gwJIQAXUA8dRMO2u0UFDrGUZdW0vf1PpRn7bsmxidflG89Z94vZ93jyODidWmMe76BaOer/kOtFjSyQmvPqpLbX3yv13b8yPxrM4bmH51Pyc/eU+S1+k3yZZ7IuVaOuzUS2sMRfqQHuM/6Vt6cVnq4+3446tMDi7Am+sAJAAA=
+  </data>
+ </layer>
+ <layer name="Walkable" width="24" height="26">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAADvDxcBwhoYYF6CWOcMB/ATiX0j4N5X1STIyMEghYWlG4syH6XvDjF8fserIdRcudT+xqEUOA0ugOisojgJiaxzm41IHszeHDcLH58YqIv2MrA7dX/jMryHSfJC6WCCOY0T4KwrJf9ZI8ug0uYBYv5MLiPU7uSCGCubjy4uE3E9MPsaXxwi5n5j8iS8vwtyPy53E5GP0tGiNxf243GmJJQ3jAtjSYg2a+djcSWwaxhbWMUS4k5z8C6NriHAnJWk4Bk+ZgM0NpAJa59+hBKjdjgIASaM/tMAJAAA=
+  </data>
+ </layer>
+ <layer name="Water" width="24" height="26">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAK2VAa7CMAxDW3rNf5R/ubKTlF3kU2kWbyYpH4SliG7rHMdLSinfQ7e42q+vVzH3bcY9EM41bO17ndfzzX21PkJ7B551W2dcfLYd79yO9y73aPWsP/PSObymCM20XZN90rQfwdpnjH/qyvhVq4M9EUG80rWqM4NqiyDtDd/hXX7Vpl95xV5jb6hm9bPyZ6C/9HgLgv27PTG9B/pO/zkbvZz7X/6pr3esG+6p1yL9FV5Gc12Mkz2r+xd7Rv3R3HGuJ8jh2p2D0cHhUF3OL+2v5uAVv/iUi/roYQR9i9WeBv3RLE9k5wS9W/FzJiJktbv/s78081pLw8QekZRHbyqX5tr7nedZL+c5l55Mp97z/qV+5c1AH31GqIFRA36fo/n9fhZ5CfrCeeK155jXv+ZpxOPX8miUeP74DVaR5aO+UT4P+e/nWva/+in8XJP+P1nMmU7ACQAA
+  </data>
+ </layer>
+ <layer name="Layer 4" width="24" height="26">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgoC14wouJF/GSbs5CLOY8wWEOOx92tfgwBx9l/hwFo2AUjIJRMApGwSigFwAAhK3macAJAAA=
+  </data>
+ </layer>
+ <layer name="Collisions" width="24" height="26">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAANMVZmDQBWJ9IPZFwu+5MMWwYQMgfseFKaYLxbgAMWYjm0cvsI+PgeEAH+3M/wcym5965p1mZmA4A8RnmamjDh28hqp/S0AfLnXabAwMOkCsC8R6bKTZTQzwBprpA8S+QOxHA/OzoWbmAuk8GpifwUF9M0fBwABy8xixeonNi9TWiwwo8SMxgFruHAX0BYO93iTWfauBbZk1JOK1XLjdR6pZpGIA3cCtKMAJAAA=
+  </data>
+ </layer>
+ <layer name="WalkBehind" width="24" height="26">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGNmgm5mBoQeIe5mpow4drAaqXwPEawnoI1YdtQE3GwMDDxDzAjEfG33tHgWjABmQm8eI1UtJHqNW/qTEj8SAgSpHRsEoGAXkgdVcmGJrsYhhAwDqfd3SwAkAAA==
+  </data>
+ </layer>
+</map>
