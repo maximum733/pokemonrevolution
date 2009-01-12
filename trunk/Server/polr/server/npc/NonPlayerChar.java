@@ -20,6 +20,7 @@
 
 package polr.server.npc;
 
+import polr.server.GameServer;
 import polr.server.battle.Pokemon;
 import polr.server.map.ServerMap.Directions;
 import polr.server.object.Char;
@@ -32,14 +33,24 @@ import polr.server.player.PlayerChar;
  *
  */
 public class NonPlayerChar extends Char {
-	public enum NpcType { NORMAL, TRAINER, SHOP, HEALER, GYMLEADER, POKEMON }
-	private Pokemon [] m_pokemon;
+	public enum NpcType { NORMAL, TRAINER, SHOP, HEALER, GYMLEADER, POKEMON, QUEST }
+	private String [] m_possiblePokemon = new String[6];
+	private int m_minimalLevel = 1;
 	private long m_index;
-	private int m_speech;
+	private String m_speech = "";
+	private String m_questSpeech;
+	private String m_endSpeech = "";
+	private String m_badge;
 	private NpcType m_type;
-	private NpcAction m_firstAction;
-	private NpcAction m_middleAction;
-	private NpcAction m_lastAction;
+	private int m_questId = 0;
+	private int m_badgeReq = 0;
+	private int m_itemReq = 0;
+	private int m_pokeReq = 0;
+	private int m_questReq = 0;
+	private int m_pokeLevelReq = 0;
+	private boolean m_endsQuest = false;
+	private boolean m_startsQuest = false;
+	private int m_money = 0;
 	
 	/**
 	 * Default constructor, requires an NPC Type.
@@ -50,31 +61,102 @@ public class NonPlayerChar extends Char {
 	}
 	
 	/**
-	 * Sets pokemon party based on a string of information
-	 * @param pokes
+	 * Set if this npc ends a quest
+	 * @param b
 	 */
-	public void setPokemonParty(String [] pokes) {
-		m_pokemon = new Pokemon[6];
-		for(int i = 0; i < 6; i++) {
-			if(i < pokes.length) {
-				if(pokes[i] != null) {
-					getParty()[i] = new Pokemon(generatePokemon(
-							Integer.parseInt(pokes[i].substring(0, pokes[i].indexOf(","))), 
-							Integer.parseInt(pokes[i].substring(pokes[i].indexOf(",") + 1))));
-				}
-			}
-			else {
-				getParty()[i] = null;
-			}
-		}
+	public void setEndsQuest(boolean b) {
+		m_endsQuest = b;
 	}
 	
 	/**
-	 * Sets Pokemon party based on an array of Pokemon objects
+	 * Set if this npc starts a quest
+	 * @param b
+	 */
+	public void setStartsQuest(boolean b) {
+		m_startsQuest = b;
+	}
+	
+	/**
+	 * Sets the Pokemon Level Requirement of this npc
+	 * @param i
+	 */
+	public void setPokemonLevelRequirement(int i) {
+		m_pokeLevelReq = i;
+	}
+	
+	/**
+	 * Set the quest requirement of this npc
+	 * @param i
+	 */
+	public void setQuestRequirement(int i) {
+		m_questReq = i;
+	}
+	
+	/**
+	 * Set the pokemon requirement of this npc
+	 * @param i
+	 */
+	public void setPokemonRequirement(int i) {
+		m_pokeReq = i;
+	}
+	
+	/**
+	 * Set the item requirement of this npc
+	 * @param i
+	 */
+	public void setItemRequirement(int i) {
+		m_itemReq = i;
+	}
+	
+	/**
+	 * Sets the badge requirement
+	 * @param i
+	 */
+	public void setBadgeRequirement(int i) {
+		m_badgeReq = i;
+	}
+	
+	/**
+	 * Sets the quest if of this npc
+	 * @param i
+	 */
+	public void setQuestId(int i) {
+		m_questId = i;
+	}
+	
+	/**
+	 * Set the potential pokemon of this npc
 	 * @param pokes
 	 */
-	public void setPokemonParty(Pokemon [] pokes) {
-		m_pokemon = pokes;
+	public void setPotentialParty(String [] pokes) {
+		m_possiblePokemon = pokes;
+	}
+	
+	/**
+	 * Returns a unique party based on a string of information
+	 * The highest level of a player should be passed
+	 * @param pokes
+	 */
+	public Pokemon [] generatePokemonParty(int level) {
+		Pokemon [] m_pokemon = new Pokemon[6];
+		for(int i = 0; i < 6; i++) {
+			if(i < m_possiblePokemon.length) {
+				if(m_possiblePokemon[i] != null) {
+					int l = m_minimalLevel;
+					if(level > m_minimalLevel + 3) {
+						l = GameServer.getMechanics().getRandom().nextInt(3) + level;
+					} else {
+						l = GameServer.getMechanics().getRandom().nextInt(3) + m_minimalLevel;
+					}
+					m_pokemon[i] = new Pokemon(generatePokemon(
+							Integer.parseInt(m_possiblePokemon[i].substring(0, m_possiblePokemon[i].indexOf(","))), l));
+				}
+			}
+			else {
+				m_pokemon[i] = null;
+			}
+		}
+		return m_pokemon;
 	}
 	
 	/**
@@ -82,7 +164,7 @@ public class NonPlayerChar extends Char {
 	 * The number is sent to the client and its string is generated
 	 * @return
 	 */
-	public int getSpeech() {
+	public String getSpeech() {
 		return m_speech;
 	}
 	
@@ -90,8 +172,24 @@ public class NonPlayerChar extends Char {
 	 * Sets the speech
 	 * @param speechIndex
 	 */
-	public void setSpeech(int speechIndex) {
-		m_speech = speechIndex;
+	public void setSpeech(String speech) {
+		m_speech = speech;
+	}
+	
+	/**
+	 * Sets the quest speech
+	 * @param speech
+	 */
+	public void setQuestSpeech(String speech) {
+		m_questSpeech = speech;
+	}
+	
+	/**
+	 * Returns the quest speech of this NPC
+	 * @return
+	 */
+	public String getQuestSpeech() {
+		return m_questSpeech;
 	}
 	
 	/**
@@ -108,6 +206,78 @@ public class NonPlayerChar extends Char {
 	 */
 	public long getIndex() {
 		return m_index;
+	}
+	
+	/**
+	 * Set the badge this npc rewards, if any
+	 * @param badge
+	 */
+	public void setBadge(String badge) {
+		m_badge = badge;
+	}
+	
+	/**
+	 * Return the badge this npc rewards
+	 * @return
+	 */
+	public String getBadge() {
+		return m_badge;
+	}
+	
+	/**
+	 * Set how much money this NPC rewards when battled.
+	 * @param money
+	 */
+	public void setMoney(int money) {
+		m_money = money;
+	}
+	
+	/**
+	 * Return how much money this NPC rewards when battled.
+	 * @return
+	 */
+	public int getMoney() {
+		return m_money;
+	}
+	
+	/**
+	 * Set the speech this NPC says at the end of battles.
+	 * @param speech
+	 */
+	public void setEndSpeech(String speech) {
+		m_endSpeech = speech;
+	}
+	
+	/**
+	 * Return the speech this NPC says at the end of battles.
+	 * @return
+	 */
+	public String getEndSpeech() {
+		return m_endSpeech;
+	}
+	
+	/**
+	 * If this npc was battled, this is called when the battle is finished.
+	 * @param p
+	 */
+	public void endBattle(PlayerChar p) {
+		switch(m_type) {
+		case TRAINER:
+			if(m_money > 0)
+				p.setMoney(p.getMoney() + m_money);
+			if(m_endSpeech != null && !m_endSpeech.equalsIgnoreCase(""))
+				p.getIoSession().write("c" + m_endSpeech);
+			break;
+		case GYMLEADER:
+			if(m_badge != null && !m_badge.equalsIgnoreCase(""))
+				p.addBadge(this.getBadge());
+			if(m_money > 0)
+				p.setMoney(p.getMoney() + m_money);
+			if(m_endSpeech != null && !m_endSpeech.equalsIgnoreCase(""))
+				p.getIoSession().write("c" + m_endSpeech);
+			break;
+		default:
+		}
 	}
 	
 	/**
@@ -166,35 +336,64 @@ public class NonPlayerChar extends Char {
 	 * @param target
 	 */
 	public void speakTo(PlayerChar target) {
-		//If the NPC is a trainer, ensure the player hasn't battled them recently
-		if(this.isTrainer()) {
-			if(target.getNpcList().contains(this.getName())) {
+		switch(m_type) {
+		case NORMAL:
+			if(m_speech != null && !m_speech.equalsIgnoreCase(""))
+				target.getIoSession().write("c" + m_speech);
+			break;
+		case TRAINER:
+			if(!target.getNpcList().contains(this.getName()))
+				target.startTrainerBattle(this);
+			else
 				target.getIoSession().write("!1");
-				return;
+			break;
+		case SHOP:
+			target.getIoSession().write("cs");
+			break;
+		case HEALER:
+			if(m_speech != null && !m_speech.equalsIgnoreCase(""))
+				target.getIoSession().write("c" + m_speech);
+			target.healParty();
+			break;
+		case GYMLEADER:
+			break;
+		case POKEMON:
+			break;
+		case QUEST:
+			if(!target.hasCompletedQuest(m_questId)) {
+				if(m_questSpeech != null && !m_questSpeech.equalsIgnoreCase("") &&
+						target.getBadgeCount() >= m_badgeReq &&
+						target.getHighestLevel() >= m_pokeLevelReq &&
+						(m_itemReq > 0 && target.getBag().hasItem(m_itemReq)) &&
+						(m_questReq > 0 && target.hasCompletedQuest(m_questReq))) {
+					if(target.getQuestId() == m_questId) {
+						//The player is on this quest
+						if(m_endsQuest) {
+							//End the quest this NPC ends the quest
+							target.endQuest();
+						}
+						//Send quest speech
+						target.getIoSession().write("c" + m_questSpeech);
+					} else {
+						if(m_startsQuest) {
+							//Start the quest if this NPC starts the quest
+							target.setQuestId(m_questId);
+							target.getIoSession().write("c" + m_questSpeech);
+						} else {
+							//The player is not on this quest
+							target.getIoSession().write("c" + m_speech);
+						}
+					}
+				} else {
+					//The player does not meet the minimum requirements to do this quest
+					target.getIoSession().write("c" + m_speech);
+				}
+			} else {
+				//Quest was completed
+				target.getIoSession().write("!3");
 			}
+			break;
 		}
-		//Execute this NPCs actions
-		if(m_firstAction != null)
-			m_firstAction.execute(target);
-		if(m_middleAction != null)
-			m_middleAction.execute(target);
-	}
-	
-	/**
-	 * Returns if the NPC has an action to be executed when interaction is finished
-	 * @return
-	 */
-	public boolean hasLastAction() {
-		return m_lastAction != null;
-	}
-	
-	/**
-	 * Called when the player is finished talking to the NPC.
-	 * @param target
-	 */
-	public void finishTalkingTo(PlayerChar target) {
-		if(m_lastAction != null)
-			m_lastAction.execute(target);
 	}
 	
 	/**
@@ -204,27 +403,19 @@ public class NonPlayerChar extends Char {
 	public boolean isTrainer() {
 		return m_type == NpcType.TRAINER;
 	}
-	
+
 	/**
-	 * Get the NPC's Pokemon party.
+	 * Get the level of the highest possible level Pokemon in the NPC's party
 	 */
-	@Override
-	public Pokemon [] getParty() {
-		return m_pokemon;
+	public int getHighestLevel() {
+		return m_minimalLevel;
 	}
 	
 	/**
-	 * Get the level of the highest level Pokemon in the NPC's party
+	 * Sets the minimal level of Pokemon in this NPCs potential party
+	 * @param l
 	 */
-	@Override
-	public int getHighestLevel() {
-		int result = 0;
-		for(int i = 0; i < m_pokemon.length; i++) {
-			if(m_pokemon[i] != null) {
-				if(m_pokemon[i].getLevel() > result)
-					result = m_pokemon[i].getLevel();
-			}
-		}
-		return result;
+	public void setMinimalLevel(int l) {
+		m_minimalLevel = l;
 	}
 }

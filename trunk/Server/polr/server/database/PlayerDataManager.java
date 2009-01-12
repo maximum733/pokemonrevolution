@@ -1,7 +1,6 @@
 package polr.server.database;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
@@ -71,29 +70,30 @@ public class PlayerDataManager implements Runnable {
 	 * Login and saving thread. NOTE: Only create one instance of this.
 	 */
 	public void run() {
-		String username, password;
-		IoSession session;
 		while(true) {
 			//First try login the next player in the login queue
 			if(m_loginQueue.size() > 0 && m_loginQueue.get(0) != null) {
-				username = (String) m_loginQueue.get(0)[0];
-				password = (String) m_loginQueue.get(0)[1];
-				session = (IoSession) m_loginQueue.get(0)[2];
-				this.login(username, password, session);
-				m_loginQueue.remove(0);
-				m_loginQueue.trimToSize();
-			}
-			//Next try save the next player is the save queue
-			if(m_saveQueue.size() > 0 && m_saveQueue.get(0) != null) {
-				if(save(m_saveQueue.get(0))) {
-					//If successfully saved, remove them from the save queue
-					m_saveQueue.remove(0);
-					m_saveQueue.trimToSize();
-				} else {
-					//Else, put them at the end of the queue
-					PlayerChar p = m_saveQueue.remove(0);
-					m_saveQueue.add(p);
+				synchronized (m_loginQueue) {
+					for(int i = 0; i < m_loginQueue.size(); i++) {
+						String username = (String) m_loginQueue.get(0)[0];
+						String password = (String) m_loginQueue.get(0)[1];
+						IoSession session = (IoSession) m_loginQueue.get(0)[2];
+						this.login(username, password, session);
+						m_loginQueue.remove(i);
+						m_loginQueue.trimToSize();
+					}
 				}
+			}
+			//Next, try save any players that had trouble earlier
+			if(m_saveQueue.size() > 0) {
+				synchronized (m_saveQueue) {
+					for(int i = 0; i < m_saveQueue.size(); i++) {
+						this.save(m_saveQueue.get(i));
+						m_saveQueue.remove(i);
+						m_saveQueue.trimToSize();
+					}
+				}
+				m_saveQueue.clear();
 			}
 			try {
 				Thread.sleep(200);
@@ -175,12 +175,14 @@ public class PlayerDataManager implements Runnable {
 	}
 	
 	/**
-	 * Attempt to save a player's data by adding them to the save queue.
+	 * Attempt to save a player's data. If it fails, it stores it to be saved later.
 	 * 
 	 * @param p
 	 */
 	public void attemptSave(PlayerChar p) {
-		m_saveQueue.add(p);
+		if(!this.save(p)) {
+			m_saveQueue.add(p);
+		}
 	}
 	
 	/**

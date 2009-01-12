@@ -172,9 +172,11 @@ public class UserInterface extends Frame {
 	 */
 	public void openChat() {
 		if(m_localChat != null && m_display.containsChild(m_localChat))
-			m_display.remove(m_localChat);
-		m_localChat = new LocalChat();
-		m_display.add(m_localChat);
+			m_localChat.setVisible(true);
+		else {
+			m_localChat = new LocalChat();
+			m_display.add(m_localChat);
+		}
 	}
 	
 	/**
