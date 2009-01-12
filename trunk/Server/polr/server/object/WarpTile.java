@@ -31,22 +31,46 @@ import polr.server.player.PlayerChar;
  */
 public class WarpTile {
 	private int m_x, m_y, m_warpMapX, m_warpMapY, m_warpX, m_warpY;
+	private int m_badgeReq, m_itemReq, m_questReq;
 	
-	public WarpTile(int x, int y, int warpX, int warpY, int warpMapX, int warpMapY) {
+	/**
+	 * Constructor
+	 * @param x
+	 * @param y
+	 * @param warpX
+	 * @param warpY
+	 * @param warpMapX
+	 * @param warpMapY
+	 * @param badgeReq
+	 * @param itemReq
+	 * @param questReq
+	 */
+	public WarpTile(int x, int y, int warpX, int warpY, int warpMapX,
+			int warpMapY, int badgeReq, int itemReq, int questReq) {
 		this.m_x = x;
 		this.m_y = y;
 		this.m_warpX = warpX;
 		this.m_warpY = warpY;
 		this.m_warpMapX = warpMapX;
 		this.m_warpMapY = warpMapY;
+		this.m_badgeReq = badgeReq;
+		this.m_itemReq = itemReq;
+		this.m_questReq = questReq;
 	}
 	
+	/**
+	 * Warps a player
+	 * @param p
+	 */
 	public void warpPlayer(PlayerChar p) {
-		MapMatrix m_mapMatrix = p.getMap().getMapMatrix();
-		m_mapMatrix.getMap(p.getMapX(), p.getMapY()).removePlayer(p);
-		p.setX(m_warpX);
-		p.setY(m_warpY);
-		m_mapMatrix.getMap(m_warpMapX, m_warpMapY).addPlayer(p);
+		if(p.getBadgeCount() >= m_questReq && (m_itemReq > 0 && p.getBag().hasItem(m_itemReq)) &&
+				p.hasCompletedQuest(m_questReq)) {
+			MapMatrix m_mapMatrix = p.getMap().getMapMatrix();
+			m_mapMatrix.getMap(p.getMapX(), p.getMapY()).removePlayer(p);
+			p.setX(m_warpX);
+			p.setY(m_warpY);
+			m_mapMatrix.getMap(m_warpMapX, m_warpMapY).addPlayer(p);
+		}
 	}
 	
 	public int getWarpMapX() {
