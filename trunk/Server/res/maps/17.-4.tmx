@@ -27,17 +27,17 @@
  </layer>
  <layer name="LedgesDown" width="50" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBTQC1zgZGAo4cLE5pwD7bJRMApGAbnAkhOCpQjk42JgXueH4tE8P7gActzA8IfROBoFo2AUjIJRMAAAAML8uLOgDwAA
+   H4sIAAAAAAAAAGNgGAWjYBTQC1zgZGAo4cLEo2AUjIKhCZDz8QdO/GqLgWr4oXgUDC6AHDcwTCg+R8EoGAWjYBSMAloAAND9PcOgDwAA
   </data>
  </layer>
  <layer name="LedgesRight" width="50" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAIC3Ab6TizqgDwAA
+   H4sIAAAAAAAAAO3OQQkAAAgEsHtb1/5gBz+CbAmWAAAbXdcDAOCTAW51HoSgDwAA
   </data>
  </layer>
  <layer name="LadgesLeft" width="50" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIB9Ic1KgeRCBUX8MLjAS/cHLRTt3UApI8UfwqD9oDkb9MbiABZnllfEg9hMpYDDHzSgYBaNgFIyCUTAUAQDuW4CsoA8AAA==
+   H4sIAAAAAAAAAO3RwQkAIAzF0J4Fp3EUR3F/cIbWS9S8e6HhR9TNdnAMYgfLjx0d3JzpIG9nB8srHav42wA3ZZC3kSTpRhtWRgd+oA8AAA==
   </data>
  </layer>
  <layer name="Collisions" width="50" height="20">
