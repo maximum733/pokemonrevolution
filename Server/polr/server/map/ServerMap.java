@@ -20,16 +20,24 @@
 
 package polr.server.map;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Random;
+
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.core.Strategy;
+import org.simpleframework.xml.graph.CycleStrategy;
 
 import polr.server.GameServer;
 import polr.server.battle.Pokemon;
 import polr.server.battle.PokemonSpecies;
 import polr.server.battle.PokemonSpeciesData;
 import polr.server.database.POLRDatabase;
+import polr.server.database.events.MapData;
+import polr.server.database.events.NpcData;
 import polr.server.mechanics.BattleMechanics;
 import polr.server.mechanics.PokemonNature;
 import polr.server.mechanics.moves.MoveList;
@@ -63,10 +71,12 @@ public class ServerMap {
 	private int m_wildProbability;
 	private int m_surfProbability;
 
-	private HashMap<String, Integer> wildPokemonChances;
-	private HashMap<String, int[]> wildLevels;
-	private HashMap<String, Integer> surfPokemonChances;
-	private HashMap<String, int[]> surfLevels;
+	private HashMap<String, Integer> m_dayPokemonChances;
+	private HashMap<String, int[]> m_dayPokemonLevels;
+	private HashMap<String, Integer> m_nightPokemonChances;
+	private HashMap<String, int[]> m_nightPokemonLevels;
+	private HashMap<String, Integer> m_surfPokemonChances;
+	private HashMap<String, int[]> m_surfPokemonLevels;
 
 	private Random random = new Random();
 
@@ -338,8 +348,8 @@ public class ServerMap {
 	private String getWildSpecies() {
 		ArrayList<String> potentialSpecies = new ArrayList<String>();
 		do {
-			for (String species : wildPokemonChances.keySet()) {
-				if (random.nextInt(101) < wildPokemonChances.get(species))
+			for (String species : m_dayPokemonChances.keySet()) {
+				if (random.nextInt(101) < m_dayPokemonChances.get(species))
 					potentialSpecies.add(species);
 			}
 		} while (potentialSpecies.size() <= 0);
@@ -352,7 +362,7 @@ public class ServerMap {
 	 * @return
 	 */
 	private int getWildLevel(String speciesName) {
-		int[] range = wildLevels.get(speciesName);
+		int[] range = m_dayPokemonLevels.get(speciesName);
 		int unshiftedLevel = random.nextInt((range[1] - range[0]) + 1);
 		return unshiftedLevel + range[0];
 	}
@@ -364,8 +374,8 @@ public class ServerMap {
 	private String getSurfSpecies() {
 		ArrayList<String> potentialSpecies = new ArrayList<String>();
 		do {
-			for (String surfspecies : surfPokemonChances.keySet()) {
-				if (random.nextInt(101) < surfPokemonChances.get(surfspecies))
+			for (String surfspecies : m_nightPokemonChances.keySet()) {
+				if (random.nextInt(101) < m_nightPokemonChances.get(surfspecies))
 					potentialSpecies.add(surfspecies);
 			}
 		} while (potentialSpecies.size() <= 0);
@@ -378,7 +388,7 @@ public class ServerMap {
 	 * @return
 	 */
 	private int getSurfLevel(String speciesName) {
-		int[] range = surfLevels.get(speciesName);
+		int[] range = m_nightPokemonLevels.get(speciesName);
 		int unshiftedLevel = random.nextInt((range[1] - range[0]) + 1);
 		return unshiftedLevel + range[0];
 	}
@@ -450,6 +460,16 @@ public class ServerMap {
 		m_players = new ArrayList<PlayerChar>();
 		m_npcs = new ArrayList<NonPlayerChar>();
 		m_warpTiles = new ArrayList<WarpTile>();
+		m_dayPokemonChances = new HashMap<String, Integer>();
+		m_dayPokemonLevels = new HashMap<String, int[]>();
+		m_nightPokemonChances = new HashMap<String, Integer>();
+		m_nightPokemonLevels = new HashMap<String, int []>();
+		m_surfPokemonChances = new HashMap<String, Integer>();
+		m_surfPokemonLevels = new HashMap<String, int[]>();
+		
+		//Set the map offset
+		m_xOffsetModifier = Integer.parseInt(map.getProperties().getProperty("xOffsetModifier"));
+		m_yOffsetModifier = Integer.parseInt(map.getProperties().getProperty("yOffsetModifier"));
 
 		this.m_x = x;
 		this.m_y = y;
@@ -469,107 +489,91 @@ public class ServerMap {
 				surf = (TileLayer)l;
 			else if (l.getName().equalsIgnoreCase("Grass"))
 				grass = (TileLayer) l;
-		
 		}
 		
-		//Set the map's PvP property
+		//Attempt to load this maps information
 		try {
-			String pvpType = map.getProperties().getProperty("pvp");
-			if(pvpType.equalsIgnoreCase("enforced")) {
-				m_pvpType = MapPvPType.PVPENFORCED;
-			} else if(pvpType.equalsIgnoreCase("no")) {
-				m_pvpType = MapPvPType.NONPVP;
-			} else {
-				m_pvpType = MapPvPType.PVP;
+			Serializer m_serializer = new Persister();
+			MapData data = m_serializer.read(MapData.class, new File("res/maps/data/" + String.valueOf(x) + "." + String.valueOf(y) + ".xml"));
+			
+			m_pvpType = data.getMapPvpType();
+			m_wildProbability = data.getWildProbability();
+			
+			//Load all the day pokemon
+			for(int i = 0; i < data.getDayPokemon().size(); i++) {
+				m_dayPokemonChances.put(data.getDayPokemon().get(i).getSpecies(), 
+						data.getDayPokemon().get(i).getEncounterRate());
+				m_dayPokemonLevels.put(data.getDayPokemon().get(i).getSpecies(),
+						new int[] {data.getDayPokemon().get(i).getMinimalLevel(), data.getDayPokemon().get(i).getMaximumLevel()});
+			}
+			
+			//Load all the night pokemon
+			for(int i = 0; i < data.getNightPokemon().size(); i++) {
+				m_nightPokemonChances.put(data.getNightPokemon().get(i).getSpecies(),
+						data.getNightPokemon().get(i).getEncounterRate());
+				m_nightPokemonLevels.put(data.getNightPokemon().get(i).getSpecies(),
+						new int[] {data.getNightPokemon().get(i).getMinimalLevel(), data.getNightPokemon().get(i).getMaximumLevel()});
+			}
+			
+			//Load all the surf pokemon
+			for(int i = 0; i < data.getSurfPokemon().size(); i++) {
+				m_surfPokemonChances.put(data.getSurfPokemon().get(i).getSpecies(),
+						data.getSurfPokemon().get(i).getEncounterRate());
+				m_surfPokemonLevels.put(data.getSurfPokemon().get(i).getSpecies(),
+						new int[] {data.getSurfPokemon().get(i).getMinimalLevel(), data.getSurfPokemon().get(i).getMaximumLevel()});
+			}
+			
+			//Load all the warp tiles
+			for(int i = 0; i < data.getWarpTiles().size(); i++) {
+				m_warpTiles.add(new WarpTile(
+						data.getWarpTiles().get(i).getX(),
+						data.getWarpTiles().get(i).getY(),
+						data.getWarpTiles().get(i).getWarpX(),
+						data.getWarpTiles().get(i).getWarpY(),
+						data.getWarpTiles().get(i).getWarpToMapX(),
+						data.getWarpTiles().get(i).getWarpToMapY()
+						));
+			}
+			
+			//Load all the npcs
+			for(int i = 0; i < data.getNpcData().size(); i++) {
+				NpcData npcData = data.getNpcData().get(i);
+				NonPlayerChar n = new NonPlayerChar(npcData.getNpcType());
+				n.setSprite(npcData.getSprite());
+				n.setName(npcData.getName());
+				n.setX(npcData.getX());
+				n.setY(npcData.getY());
+				if(npcData.getPotentialPokemon() != null)
+					n.setPotentialParty(npcData.getPotentialPokemon());
+				n.setBadgeRequirement(npcData.getBadgeRequirement());
+				n.setQuestId(npcData.getQuestId());
+				n.setQuestRequirement(npcData.getQuestRequirement());
+				n.setSpeech(npcData.getSpeech());
+				if(npcData.getQuestSpeech() != null)
+					n.setQuestSpeech(npcData.getQuestSpeech());
+				if(npcData.getEndSpeech() != null)
+					n.setEndSpeech(npcData.getEndSpeech());
+				n.setPokemonLevelRequirement(npcData.getPokemonLevelRequirement());
+				n.setPokemonRequirement(npcData.getPokemonRequirement());
+				n.setItemRequirement(npcData.getItemRequirement());
+				if(npcData.getMoney() > 0)
+					n.setMoney(npcData.getMoney());
+				n.setMinimalLevel(npcData.getMinimalPokemonLevel());
+				if(n.getBadge() != null)
+					n.setBadge(npcData.getBadge());
+				n.setIndex(- 1 - m_npcs.size());
+				m_npcs.add(n);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			m_pvpType = MapPvPType.PVP;
-		}
-		
-		//Set the map offset
-		m_xOffsetModifier = Integer.parseInt(map.getProperties().getProperty("xOffsetModifier"));
-		m_yOffsetModifier = Integer.parseInt(map.getProperties().getProperty("yOffsetModifier"));
-		//Set the probability of wild pokemon
-		try {
-			m_wildProbability = Integer.parseInt(map.getProperties().getProperty(
-			"wildProbability"));
-		} catch (Exception e) {
-			System.err.println("wildProbability variable missing for " + this.getX() + "," + this.getY());
 			m_wildProbability = 0;
-		}
-		//Set the probability of water pokemon
-		try {
-			m_surfProbability = Integer.parseInt(map.getProperties().getProperty(
-			"surfProbability"));
-		} catch (Exception e) {
-			System.err.println("surfProbability variable missing for " + this.getX() + "," + this.getY());
-			m_surfProbability = 0;
-		}
-		//Set the possible pokemons & levels for them
-		wildPokemonChances = new HashMap<String, Integer>();
-		wildLevels = new HashMap<String, int[]>();
-		String[] species;
-		String[] levels;
-		try {
-			species = map.getProperties().getProperty("wildSpecies")
-			.split(";");
-			levels = map.getProperties().getProperty("wildLevels")
-			.split(";");
-		} catch (Exception e) {
-			System.err.println("wildSpecies or wildLevels variable missing for " + this.getX() + "," + this.getY());
-			species = new String[]{""};
-			levels = new String[]{""};
-		}
-		if (!species[0].equals("") && !levels[0].equals("")
-				&& species.length == levels.length) {
-			for (int i = 0; i < species.length; i++) {
-				String[] speciesInfo = species[i].split(",");
-				wildPokemonChances.put(speciesInfo[0], Integer
-						.parseInt(speciesInfo[1]));
-				String[] levelInfo = levels[i].split("-");
-				wildLevels.put(speciesInfo[0], new int[] {
-						Integer.parseInt(levelInfo[0]),
-						Integer.parseInt(levelInfo[1]) });
-
-			}
-		}
-		surfPokemonChances = new HashMap<String, Integer>();
-		surfLevels = new HashMap<String, int[]>();
-		String[] surfspecies = new String[]{""};
-		String[] surflevels = new String[]{""};
-		try {
-			surfspecies = map.getProperties().getProperty("surfSpecies")
-			.split(";");
-			surflevels = map.getProperties().getProperty("surfLevels")
-			.split(";");
-		} catch (Exception e) {
-			System.err.println("surfSpecies or surfLevels variable missing for " + this.getX() + "," + this.getY());
-			surfspecies = new String[]{""};
-			surflevels = new String[]{""};
-		}
-		if (!surfspecies[0].equals("") && !surflevels[0].equals("")
-				&& surfspecies.length == surflevels.length) {
-			for (int i = 0; i < surfspecies.length; i++) {
-				String[] surfspeciesInfo = surfspecies[i].split(",");
-				surfPokemonChances.put(surfspeciesInfo[0], Integer
-						.parseInt(surfspeciesInfo[1]));
-				String[] surflevelInfo = surflevels[i].split("-");
-				surfLevels.put(surfspeciesInfo[0], new int[] {
-						Integer.parseInt(surflevelInfo[0]),
-						Integer.parseInt(surflevelInfo[1]) });
-
-			}
 		}
 	}	
 
 	private void getPlayerData(PlayerChar p2) {
 		for (PlayerChar p : m_players) {
 			synchronized (m_players) {
-				// clientHandler handler =
-				// handlers.
-				// (clientHandler)handlers.elementAt(i);
-				// if (handler.authed) {
-				
 				p2.getIoSession().write("mA" + p.getNo() + "," + p.getName() + ","
 						+ p.getFacing().toString() + "," + (p.isSurfing() ? "swim":p.getSprite()) + "," +
 						p.getX() + "," + p.getY());

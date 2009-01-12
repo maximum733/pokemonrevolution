@@ -206,6 +206,9 @@ public class ProtocolHandler extends IoHandlerAdapter {
         		//You cannot add anymore friends
         		JOptionPane.showMessageDialog(null, "You can only have 10 friends.");
         		break;
+        	case '3':
+        		//You cannot do this quest again
+        		JOptionPane.showMessageDialog(null, "You cannot do the same quest more than once.");
         	}
         	break;
         case 'm':
@@ -265,6 +268,15 @@ public class ProtocolHandler extends IoHandlerAdapter {
         		//Private Chat
         		details = message.substring(2).split(",");
         		thisGame.addPrivateChat(details[0], details[1]);
+        		break;
+        	case 'n':
+        		//Non-databased NPC speech
+        		break;
+        	case 'd':
+        		//Databased NPC speech
+        		break;
+        	case 's':
+        		//Shop
         		break;
         	}
         	break;

@@ -102,18 +102,6 @@ public class PlayerChar extends Char {
 	@Element(required = false)
 	private boolean m_muted = false;
 	
-	@Element(required=false)
-	private long m_muteExpiration = 0;
-	
-	@Element(required=false)
-	private long m_freezeExpiration = 0;
-	
-	@Element(required=false)
-	private long m_disableExpiration = 0;
-
-	@Element(required = false)
-	private boolean m_frozen = false;
-	
 	@ElementList(required = false)
 	private List<String> m_npcNames = new ArrayList<String>();
 	
@@ -121,13 +109,15 @@ public class PlayerChar extends Char {
 	private long m_lastLogin;
 	
 	@Element(required=false)
-	private boolean m_silentMuted = false;
-	
-	@Element(required=false)
 	private boolean m_POK = false;
 	
 	@ElementList(required=false)
 	private List<String> m_friends = new ArrayList<String>();
+	
+	@ElementList(required=false)
+	private List<Integer> m_quests = new ArrayList<Integer>();
+	
+	private int m_currentQuest = 0;
 	
 	private boolean m_bagInitialised = false;
 	private boolean m_isPropagated = false;
@@ -154,6 +144,49 @@ public class PlayerChar extends Char {
 
 	private Object m_target;
 	private int m_pvpRank;
+	
+	/**
+	 * Sets that the current quest is completed
+	 */
+	public void endQuest() {
+		if(m_currentQuest > 0) {
+			this.completeQuest(m_currentQuest);
+			m_currentQuest = 0;
+		}	
+	}
+	
+	/**
+	 * Sets the current quest the player is on
+	 * @param id
+	 */
+	public void setQuestId(int id) {
+		m_currentQuest = id;
+	}
+	
+	/**
+	 * Returns the quest the player is currently on
+	 * @return
+	 */
+	public int getQuestId() {
+		return m_currentQuest;
+	}
+	
+	/**
+	 * Returns if the user has completed a specific quest
+	 * @param questId
+	 * @return
+	 */
+	public boolean hasCompletedQuest(int questId) {
+		return m_quests.contains(questId);
+	}
+	
+	/**
+	 * Adds a quest to the list of completed quests
+	 * @param questId
+	 */
+	private void completeQuest(int questId) {
+		m_quests.add(questId);
+	}
 	
 	/**
 	 * Returns the player player versus player rank
@@ -242,8 +275,9 @@ public class PlayerChar extends Char {
 	 * @param username
 	 */
 	public void addFriend(String username) {
-		if(m_friends.size() < 10) {
-			m_friends.add(username);
+		if(m_friends.size() < 10 && !m_friends.contains(username)) {
+			String name = username;
+			m_friends.add(name);
 			this.getIoSession().write("fa" + username);
 		} else {
 			this.getIoSession().write("!2");
@@ -561,7 +595,7 @@ public class PlayerChar extends Char {
 	}
 
 	public boolean isBlocked() {
-		return (isBattling()) || (isTalking()) || (isFrozen());
+		return (isBattling()) || (isTalking());
 	}
 
 	/**
@@ -931,7 +965,7 @@ public class PlayerChar extends Char {
 	 * @param dir
 	 */
 	public void queueMovement(Directions dir) {
-		if(System.currentTimeMillis() - m_lastMovement > 125)
+		if(System.currentTimeMillis() - m_lastMovement > 100)
 			m_movements = dir;
 	}
 	
@@ -993,10 +1027,10 @@ public class PlayerChar extends Char {
 					facing = Directions.right;
 					getMap().sendToAll("R" + m_no);
 				}
-				if (getMap().isWildEncounter(x, y + 8))
+				/*if (getMap().isWildEncounter(x, y + 8))
 					startWildBattle();
 				if (getMap().isSurfEncounter(x, y + 8))
-					startSurfBattle();
+					startSurfBattle();*/
 				if(m_challenges.size() > 0)
 					clearChallenges();
 				if(m_tradeReq.size() > 0)
@@ -1290,52 +1324,12 @@ public class PlayerChar extends Char {
 		return m_muted;
 	}
 	
-	public long getMuteExpiration() {
-		return m_muteExpiration;
-	}
-	
-	public void setMuteExpiration(long time) {
-		this.m_muteExpiration = time;
-	}
-	
-	public void setSilentMuted(boolean m_silentMuted) {
-		this.m_silentMuted = m_silentMuted;
-	}
-	
-	public boolean isSilentMuted() {
-		return m_silentMuted;
-	}
-	
 	public void setPOK(boolean m_POK) {
 		this.m_POK = m_POK;
 	}
 	
 	public boolean isPOK() {
 		return m_POK;
-	}
-
-	public void setFrozen(boolean m_frozen) {
-		this.m_frozen = m_frozen;
-	}
-
-	public boolean isFrozen() {
-		return m_frozen;
-	}
-	
-	public long getFreezeExpiration() {
-		return m_freezeExpiration;
-	}
-
-	public void setFreezeExpiration(long freezeExpiration) {
-		this.m_freezeExpiration = freezeExpiration;
-	}
-	
-	public long getDisableExpiration() {
-		return m_disableExpiration;
-	}
-	
-	public void setDisableExpiration(long disableExpiration) {
-		this.m_disableExpiration = disableExpiration;
 	}
 	
 	public void startTrainerBattle(NonPlayerChar opponent) {

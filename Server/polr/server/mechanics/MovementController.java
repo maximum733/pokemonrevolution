@@ -14,8 +14,10 @@ public class MovementController implements Runnable {
 		while(true) {
 			it = ClientHandler.getPlayerList().values().iterator();
 			while(it.hasNext()) {
-				p = (PlayerChar) it.next();
-				p.move();
+				try {
+					p = (PlayerChar) it.next();
+					p.move();
+				} catch (Exception e) {}
 			}
 			i = 0;
 			try {
