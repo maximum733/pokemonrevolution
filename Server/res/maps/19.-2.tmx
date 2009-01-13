@@ -22,7 +22,7 @@
  <tileset firstgid="7169" source="normal2.tsx"/>
  <layer name="Walkable" width="46" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGPiYGBgohA/5GRgeATEjzkpN4ueeNTdo+4eyu7ukKXM3cpyxNsVJMnAECxJuZsPAt1yCIgP4wlLfO4+SEAvperJDUuQPU+gap5isfMhiemHFPWwMMWGkd2ET/4RDnVP8OjFZR6yenxhz8gFpEnALEDMSqIecvUzc1GeZsiNe2rrp7a9MDCS3U2MOcTgixSEF7p/8Pmb1DCgRniDsJI4pBxAFmuWxa8fpAcZILubmm5nRMrn+MpQYss6QuUdLcIfVi9RUi4SKu/QATXdTcvyYSi4m1hAjbRObL1GrH3EAACvcw2lYA4AAA==
+   H4sIAAAAAAAAANWWXQ6CMAzHC2oiXMCQiA96Iz2SL14LPYFHAPHRO7hFllTcuq9Occk/kK1df+tGR74EyAc91u9P9a7rx2oLgE7oVujHU8vGZ9IvuTEzxa0bm0K+fXM9Be5QTZX7VMdx7zbusfYVwKGKZ24Ey1noQuSS4m4svrH2obmUcfrB5q6J2XqeHx97lVOdMBM13hnsesLXNB+2p3KfleLpobnQwtMn1H9WfvKG1LyQvef0D2Wm4qqWet0c3OqukuLkdpnHRdeIfI3XQ+2X795xnBOp7epVB3Dfsab9pQ9umJuTPUPfOVVDXWudrd6lyL+6l2LqoqnejZk52b/xT/UP3K6N46zb9hkzcbE/AY3GBnpgDgAA
   </data>
  </layer>
  <layer name="Water" width="46" height="20">
