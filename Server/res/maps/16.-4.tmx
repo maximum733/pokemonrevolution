@@ -15,7 +15,7 @@
  <tileset firstgid="6955" source="normal7.tsx"/>
  <layer name="Layer 0" width="34" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwASHOCnDanxYDCUAKLUTmxsOkuE+eroBRNMD4HMDLjkYHkj30dsdo2AUjIJRMApGwSgYBaNg8AMAAqtpI8AMAAA=
+   H4sIAAAAAAAAAGNgwASHOCnDanxYDIUCB0Hs4pTaic0NB8lwHz3dAKLpAfC5AZccDA+k++jtjlEwCkbBKBgFo2AUjIJRMPgBADj2D1zADAAA
   </data>
  </layer>
  <layer name="Walkable" width="34" height="24">
