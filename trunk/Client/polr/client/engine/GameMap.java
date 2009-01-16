@@ -334,7 +334,7 @@ public class GameMap extends TiledMap {
 			if (layer == walkableLayer) {
 				synchronized (mapPlayers) {
 					for (Player p : mapPlayers) {
-						if ((p.y >= mapY * 32 - 39) && (p.y <= mapY * 32 + 32)
+						if (p.spriteType != 0 && (p.y >= mapY * 32 - 39) && (p.y <= mapY * 32 + 32)
 								&& (p.curImg != null)) {
 							p.curImg.draw(xOffset + p.x - 4, yOffset + p.y);
 							graphics.drawString(p.username, xOffset + (p.x

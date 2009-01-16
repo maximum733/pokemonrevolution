@@ -20,17 +20,18 @@
 
 package polr.client.ui;
 
-import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.loading.LoadingList;
 
+import polr.client.GameClient;
 import polr.client.logic.OurPokemon;
 import polr.client.network.PacketGenerator;
 import polr.client.ui.base.Button;
 import polr.client.ui.base.Container;
+import polr.client.ui.base.Frame;
 import polr.client.ui.base.Label;
 import polr.client.ui.base.ProgressBar;
 import polr.client.ui.base.event.ActionEvent;
@@ -41,7 +42,7 @@ import polr.client.ui.base.skin.simple.SimpleArrowButton;
 /*
  * Displays information on pokemon currently in your party.
  */
-public class PartyInfo extends Container {
+public class PartyInfo extends Frame {
 	Container[] pokes = new Container[6];
 	Label[] pokeBall = new Label[6];
 	Label[] pokeIcon = new Label[6];
@@ -63,15 +64,18 @@ public class PartyInfo extends Container {
 		initGUI();
 	}
 	
+	public void setPokemon(OurPokemon[] ourPokes) {
+		m_pokes = ourPokes;
+		loadImages(ourPokes);
+		initGUI();
+	}
+	
 	public void initGUI(){
 		int y = 0;
-		try {
-			dpFont = new AngelCodeFont("res/fonts/dp-small.fnt", "res/fonts/dp-small.png");
-		}
-		catch(Exception e) {
-			System.out.println("Could not load TeamInfo font");
-		}
+		dpFont = GameClient.getDPFontSmall();
 		this.setFont(dpFont);
+		this.setResizable(false);
+		this.setTitle("My Pokemon");
 		this.setBackground(new Color(0, 0, 0, 85));
 		this.setForeground(new Color(255, 255, 255));
 		for (int i = 0; i < 6; i++){
@@ -182,37 +186,38 @@ public class PartyInfo extends Container {
 				pokeBall[i].setImage(new Image("res/Pokeball.gif"));
 				pokeBall[i].setSize(30, 30);
 			} catch (SlickException e){}
-			try {	
-				if (pokes[i] != null) {
+			try {
+				if(pokes != null) {
+					if (pokes[i] != null) {
+						level[i].setText("Lv: " + String.valueOf(pokes[i].getLevel()));
+						level[i].pack();
+						pokeName[i].setText(pokes[i].getName());
+						pokeIcon[i].setImage(pokes[i].getIcon());
+						pokes[i].setIcon();
+					hp[i].setMaximum(pokes[i].getMaxHP());
+					hp[i].setForeground(Color.green);
+					hp[i].setValue(pokes[i].getCurHP());
+					if(pokes[i].getCurHP() > pokes[i].getMaxHP() / 2){
+						hp[i].setForeground(Color.green);
+					}
+					else if(pokes[i].getCurHP() < pokes[i].getMaxHP() / 2 && pokes[i].getCurHP() > pokes[i].getMaxHP() / 3){
+						hp[i].setForeground(Color.orange);
+					}
+					else if(pokes[i].getCurHP() < pokes[i].getMaxHP() / 3){
+						hp[i].setForeground(Color.red);
+					}
+					pokes[i].setIcon();
+					pokeIcon[i].setImage(pokes[i].getIcon());
+					pokeIcon[i].setSize(32, 32);
+					pokeName[i].setText(pokes[i].getName());
+					pokeName[i].pack();
 					level[i].setText("Lv: " + String.valueOf(pokes[i].getLevel()));
 					level[i].pack();
-					pokeName[i].setText(pokes[i].getName());
-					pokeIcon[i].setImage(pokes[i].getIcon());
-					pokes[i].setIcon();
-				hp[i].setMaximum(pokes[i].getMaxHP());
-				hp[i].setForeground(Color.green);
-				hp[i].setValue(pokes[i].getCurHP());
-				if(pokes[i].getCurHP() > pokes[i].getMaxHP() / 2){
-					hp[i].setForeground(Color.green);
-				}
-				else if(pokes[i].getCurHP() < pokes[i].getMaxHP() / 2 && pokes[i].getCurHP() > pokes[i].getMaxHP() / 3){
-					hp[i].setForeground(Color.orange);
-				}
-				else if(pokes[i].getCurHP() < pokes[i].getMaxHP() / 3){
-					hp[i].setForeground(Color.red);
-				}
-				pokes[i].setIcon();
-				pokeIcon[i].setImage(pokes[i].getIcon());
-				pokeIcon[i].setSize(32, 32);
-				pokeName[i].setText(pokes[i].getName());
-				pokeName[i].pack();
-				level[i].setText("Lv: " + String.valueOf(pokes[i].getLevel()));
-				level[i].pack();
-				} else {
-					hp[i].setVisible(false);
+					} else {
+						hp[i].setVisible(false);
+					}
 				}
 			} catch (NullPointerException e){ e.printStackTrace(); }
-			//System.out.println(i);
 		}
 		LoadingList.setDeferredLoading(false);
 	}

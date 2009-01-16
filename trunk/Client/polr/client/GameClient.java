@@ -68,6 +68,7 @@ import polr.client.ui.base.theme.RedTheme;
 import polr.client.ui.chat.PrivateChat;
 import polr.client.ui.screen.LoadingScreen;
 import polr.client.ui.screen.StartScreen;
+import polr.client.ui.window.BattleWindow;
 
 /**
  * GlobalGame launches the game client.
@@ -108,13 +109,12 @@ public class GameClient extends BasicGame {
 	private LoadingScreen loading;
 	private Settings m_settings;
 	private UserInterface m_ui;
+	private BattleWindow m_battleWindow;
 	
 	PartyInfo teamInfo;
 	public static final String CHARSEP = new String(new char[] { 27 });
 	private boolean isPlaying = false;
 	public boolean showHUD = false;
-	private static boolean updateTeamGUI = false;
-	private static boolean updateBattle = false;
 	
 	/**
 	 * Default constructor
@@ -141,7 +141,7 @@ public class GameClient extends BasicGame {
 			container.setDisplayMode(settings.getScreenWidth(), settings.getScreenHeight(), false);
 			container.start();
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "An error occurred! \n"+ e.getLocalizedMessage());
+			JOptionPane.showMessageDialog(null, "An error occurred! \n"+ e.getMessage());
 			e.printStackTrace();
 			System.exit(32);
 		}
@@ -369,6 +369,11 @@ public class GameClient extends BasicGame {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void startBattle(boolean isWild, String enemyName) {
+		m_battleWindow = new BattleWindow(isWild, enemyName);
+		display.add(m_battleWindow);
 	}
 	
 	public LoadingScreen getLoading() {

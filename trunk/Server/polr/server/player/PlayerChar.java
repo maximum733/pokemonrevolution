@@ -761,21 +761,6 @@ public class PlayerChar extends Char {
 			Pokemon wildPokemon = getMap().generateWildPokemon(GameServer.getMechanics(),
 					GameServer.getPOLRDB(), GameServer.getSpeciesData());
 			this.getIoSession().write("bi" + wildPokemon.getName() + ",w,0");
-			/*this.getIoSession().write(
-					"w"
-							+ wildPokemon.getName()
-							+ ";"
-							+ GameServer.getSpeciesData().getPokemonByName(
-									wildPokemon.getSpeciesName())
-							+ ";"
-							+ wildPokemon.getTypes()[0].toString()
-							+ ";"
-							+ ((wildPokemon.getTypes().length > 1) ? wildPokemon
-									.getTypes()[1].toString() : "") + ";"
-							+ wildPokemon.getGender() + ";"
-							+ +wildPokemon.getRawStat(Pokemon.S_HP) + ";"
-							+ wildPokemon.getRawStat(Pokemon.S_HP) + ";"
-							+ wildPokemon.getLevel());*/
 			this.getIoSession().write(
 					"w" + ";"
 					+ wildPokemon.getName()	+ ";"
@@ -1028,9 +1013,7 @@ public class PlayerChar extends Char {
 					getMap().sendToAll("R" + m_no);
 				}
 				/*if (getMap().isWildEncounter(x, y + 8))
-					startWildBattle();
-				if (getMap().isSurfEncounter(x, y + 8))
-					startSurfBattle();*/
+					startWildBattle();*/
 				if(m_challenges.size() > 0)
 					clearChallenges();
 				if(m_tradeReq.size() > 0)
@@ -1193,11 +1176,11 @@ public class PlayerChar extends Char {
 		int i = 0;
 		for (Pokemon p : getParty()) {
 			if (p != null)
-				this.getIoSession().write("P"
+				this.getIoSession().write("Pi" + i + ","
 						+ p.getName()
 						+ ","
 						+ GameServer.getSpeciesData().getPokemonByName(p.getSpeciesName())
-						+ "," + i + "," + p.getHealth() + "," + p.getRawStat(Pokemon.S_HP) + ","
+						+ "," + p.getHealth() + "," + p.getRawStat(Pokemon.S_HP) + ","
 						+ p.getRawStat(Pokemon.S_ATTACK) + "," + p.getRawStat(Pokemon.S_DEFENCE) + ","
 						+ p.getRawStat(Pokemon.S_SPEED) + "," + p.getRawStat(Pokemon.S_SPATTACK) + ","
 						+ p.getRawStat(Pokemon.S_SPDEFENCE) + "," + p.getTypes()[0].toString() + ","

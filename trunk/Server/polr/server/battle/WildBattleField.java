@@ -79,7 +79,7 @@ public final class WildBattleField extends BattleField {
 				player.getParty(),
 				new Pokemon[] { wildPokemon }});
 		m_humanPlayer = player;
-		m_polrDB = m_humanPlayer.getPOLRdb();
+		m_polrDB = GameServer.getPOLRDB();
 		beginBattle();
 	}
 

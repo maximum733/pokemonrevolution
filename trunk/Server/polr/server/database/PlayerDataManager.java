@@ -156,7 +156,7 @@ public class PlayerDataManager implements Runnable {
 					player.reinitialise();
 					m_playerList.put(player.getName(), player);
 					session.write("ls");
-					//player.initialiseClientParty();
+					player.initialiseClientParty();
 					//player.initialiseClientBag();
 					player.initialiseClientFriendList();
 					player.getIoSession().write("CT" + WorldClock.getHourOfDay() + "," + WorldClock.getMinuteOfDay());
