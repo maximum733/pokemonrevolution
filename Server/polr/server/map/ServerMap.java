@@ -667,7 +667,7 @@ public class ServerMap {
 		NonPlayerChar n;
 		for(int i = 0; i < m_npcs.size(); i++) {
 			n = m_npcs.get(i);
-			if (n.getX() == x && n.getY() == y)
+			if (n.getX() / 32 == x && (n.getY() + 8) /32 == y)
 				return n;
 		}
 		n = null;
