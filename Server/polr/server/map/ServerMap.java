@@ -565,7 +565,6 @@ public class ServerMap {
 				m_npcs.add(n);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			m_pvpType = MapPvPType.PVP;
 			m_wildProbability = 0;
 		}
@@ -754,7 +753,7 @@ public class ServerMap {
 						if(p.isSurfing())
 							p.setSurfing(false);
 						WarpTile warpTile = isWarped(newX, newY);
-						if(p instanceof PlayerChar) {
+						if(p instanceof PlayerChar && warpTile != null) {
 							PlayerChar pl = (PlayerChar) p;
 							warpTile.warpPlayer(pl);
 							return false;
@@ -793,7 +792,7 @@ public class ServerMap {
 						if(p.isSurfing())
 							p.setSurfing(false);
 						WarpTile warpTile = isWarped(newX, newY);
-						if(p instanceof PlayerChar) {
+						if(p instanceof PlayerChar && warpTile != null) {
 							PlayerChar pl = (PlayerChar) p;
 							warpTile.warpPlayer(pl);
 							return false;
@@ -832,7 +831,7 @@ public class ServerMap {
 						if(p.isSurfing())
 							p.setSurfing(false);
 						WarpTile warpTile = isWarped(newX, newY);
-						if(p instanceof PlayerChar) {
+						if(p instanceof PlayerChar && warpTile != null) {
 							PlayerChar pl = (PlayerChar) p;
 							warpTile.warpPlayer(pl);
 							return false;
@@ -871,7 +870,7 @@ public class ServerMap {
 						if(p.isSurfing())
 							p.setSurfing(false);
 						WarpTile warpTile = isWarped(newX, newY);
-						if(p instanceof PlayerChar) {
+						if(p instanceof PlayerChar && warpTile != null) {
 							PlayerChar pl = (PlayerChar) p;
 							warpTile.warpPlayer(pl);
 							return false;

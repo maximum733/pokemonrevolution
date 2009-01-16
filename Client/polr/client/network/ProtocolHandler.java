@@ -299,6 +299,45 @@ public class ProtocolHandler extends IoHandlerAdapter {
         		break;
         	}
         	break;
+        case 'b':
+        	//Battle!!!
+        	switch(message.charAt(1)) {
+        	case 'i':
+        		//Initialise the battle
+        		details = message.substring(2).split(",");
+        		thisGame.startBattle(details[0].equalsIgnoreCase("w"), details[1]);
+        		break;
+        	}
+        	break;
+        case 'P':
+        	//Pokemon information
+        	switch(message.charAt(1)) {
+        	case 'i':
+        		//Initialise an entire Pokemon
+        		details = message.substring(2).split(",");
+        		thisGame.thisPlayer.initPokemon(details);
+        		break;
+        	case 'h':
+        		switch(message.charAt(2)) {
+        		case 'a':
+        			//Heal all
+        			break;
+        		default:
+        			//Heal a specific Pokemon
+        			break;
+        		}
+        		break;
+        	case 'u':
+        		switch(message.charAt(2)) {
+        		case 'm':
+        			//Update a move of a specific Pokemon
+        			break;
+        		case 'e':
+        			//Update exp of a specific Pokemon
+        			break;
+        		}
+        	}
+        	break;
         }
 	}
     

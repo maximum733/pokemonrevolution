@@ -86,37 +86,38 @@ public class OurPlayer extends Player {
 	public void initPokemon(String[] pdata) {
 		if(m_pokemons == null)
 			m_pokemons = new OurPokemon[6];
-		m_pokemons[Integer.parseInt(pdata[2])] = new OurPokemon();
-		m_pokemons[Integer.parseInt(pdata[2])].setName(pdata[0]);
-		m_pokemons[Integer.parseInt(pdata[2])].setSpecies(Enums.Pokenum.values()[Short
+		int i = Integer.parseInt(pdata[0]);
+		m_pokemons[i] = new OurPokemon();
+		m_pokemons[i].setName(pdata[1]);
+		m_pokemons[i].setSpecies(Enums.Pokenum.values()[Short
 					.parseShort(pdata[1])]);
-		m_pokemons[Integer.parseInt(pdata[2])].setCurHP(Integer.parseInt(pdata[3]));
-		m_pokemons[Integer.parseInt(pdata[2])].setMaxHP(Integer.parseInt(pdata[4]));
-		m_pokemons[Integer.parseInt(pdata[2])].setAtk(Integer.parseInt(pdata[5]));
-		m_pokemons[Integer.parseInt(pdata[2])].setDef(Integer.parseInt(pdata[6]));
-		m_pokemons[Integer.parseInt(pdata[2])].setSpeed(Integer.parseInt(pdata[7]));
-		m_pokemons[Integer.parseInt(pdata[2])].setSpatk(Integer.parseInt(pdata[8]));
-		m_pokemons[Integer.parseInt(pdata[2])].setSpdef(Integer.parseInt(pdata[9]));
-		m_pokemons[Integer.parseInt(pdata[2])].setType1(Enums.Poketype.valueOf(pdata[10]));
+		m_pokemons[i].setCurHP(Integer.parseInt(pdata[3]));
+		m_pokemons[i].setMaxHP(Integer.parseInt(pdata[4]));
+		m_pokemons[i].setAtk(Integer.parseInt(pdata[5]));
+		m_pokemons[i].setDef(Integer.parseInt(pdata[6]));
+		m_pokemons[i].setSpeed(Integer.parseInt(pdata[7]));
+		m_pokemons[i].setSpatk(Integer.parseInt(pdata[8]));
+		m_pokemons[i].setSpdef(Integer.parseInt(pdata[9]));
+		m_pokemons[i].setType1(Enums.Poketype.valueOf(pdata[10]));
 		try {
-			m_pokemons[Integer.parseInt(pdata[2])].setType1(Enums.Poketype.valueOf(pdata[11]));
+			m_pokemons[i].setType1(Enums.Poketype.valueOf(pdata[11]));
 		} catch (Exception e) {}
-		m_pokemons[Integer.parseInt(pdata[2])].setLevel(Integer.parseInt(pdata[12]));
-		m_pokemons[Integer.parseInt(pdata[2])].setExp((int) Double.parseDouble(pdata[12]));
-		m_pokemons[Integer.parseInt(pdata[2])].setNature(pdata[14]);
-		m_pokemons[Integer.parseInt(pdata[2])].setGender(Integer.valueOf(pdata[15]));
-		m_pokemons[Integer.parseInt(pdata[2])].getMoves()[0] = pdata[16];
-		m_pokemons[Integer.parseInt(pdata[2])].getMovemaxPP()[0] = Integer.valueOf(pdata[17]);
-		m_pokemons[Integer.parseInt(pdata[2])].getMoves()[1] = pdata[18];
-		m_pokemons[Integer.parseInt(pdata[2])].getMovemaxPP()[1] = Integer.valueOf(pdata[19]);
-		m_pokemons[Integer.parseInt(pdata[2])].getMoves()[2] = pdata[20];
-		m_pokemons[Integer.parseInt(pdata[2])].getMovemaxPP()[2] = Integer.valueOf(pdata[21]);
-		m_pokemons[Integer.parseInt(pdata[2])].getMoves()[3] = pdata[22];
-		m_pokemons[Integer.parseInt(pdata[2])].getMovemaxPP()[3] = Integer.valueOf(pdata[23]);
-		m_pokemons[Integer.parseInt(pdata[2])].setAbility(pdata[24]);
-		m_pokemons[Integer.parseInt(pdata[2])].setSprite();
-		m_pokemons[Integer.parseInt(pdata[2])].setIcon();
-		m_pokemons[Integer.parseInt(pdata[2])].setBackSprite();
+		m_pokemons[i].setLevel(Integer.parseInt(pdata[12]));
+		m_pokemons[i].setExp((int) Double.parseDouble(pdata[12]));
+		m_pokemons[i].setNature(pdata[14]);
+		m_pokemons[i].setGender(Integer.valueOf(pdata[15]));
+		m_pokemons[i].getMoves()[0] = pdata[16];
+		m_pokemons[i].getMovemaxPP()[0] = Integer.valueOf(pdata[17]);
+		m_pokemons[i].getMoves()[1] = pdata[18];
+		m_pokemons[i].getMovemaxPP()[1] = Integer.valueOf(pdata[19]);
+		m_pokemons[i].getMoves()[2] = pdata[20];
+		m_pokemons[i].getMovemaxPP()[2] = Integer.valueOf(pdata[21]);
+		m_pokemons[i].getMoves()[3] = pdata[22];
+		m_pokemons[i].getMovemaxPP()[3] = Integer.valueOf(pdata[23]);
+		m_pokemons[i].setAbility(pdata[24]);
+		m_pokemons[i].setSprite();
+		m_pokemons[i].setIcon();
+		m_pokemons[i].setBackSprite();
 	}
 	
 	public void setMap(GameMap currentMap) {

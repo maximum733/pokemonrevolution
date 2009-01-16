@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 
+import polr.client.GameClient;
 import polr.client.logic.Item;
 import polr.client.logic.OurPokemon;
 import polr.client.ui.base.Clock;
@@ -202,7 +203,17 @@ public class UserInterface extends Frame {
 	 * Opens Pokemon info window.
 	 */
 	public void openPartyWindow() {
-		
+		for(int i = 0; i < m_display.getChildren().length; i++) {
+			if(m_display.getChild(i).getName() != null && 
+					m_display.getChild(i).getName().equalsIgnoreCase("PartyWindow")) {
+				PartyInfo w = (PartyInfo) m_display.getChild(i);
+				w.setPokemon(m_pokemon);
+				w.setVisible(true);
+				return;
+			}
+		}
+		PartyInfo x = new PartyInfo(m_pokemon, GameClient.getPacketGenerator());
+		m_display.add(x);
 	}
 
 	/**
