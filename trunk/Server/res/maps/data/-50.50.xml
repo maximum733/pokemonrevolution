@@ -1,0 +1,47 @@
+<mapData>
+   <m_npcs class="java.util.ArrayList">
+      <npcData>
+         <m_x>544</m_x>
+         <m_y>504</m_y>
+         <m_sprite>172</m_sprite>
+         <m_name>Ivy</m_name>
+         <m_type>NORMAL</m_type>
+         <m_potentialPokemon length="6">Bulbasaur, Charmander, Squirtle, Caterpie, Pikachu, Riachu</m_potentialPokemon>
+         <m_minimalLevel>1</m_minimalLevel>
+         <m_speech>Hello my dear new Pokemon trainer</m_speech>
+         <m_questSpeech></m_questSpeech>
+         <m_endSpeech></m_endSpeech>
+         <m_startsQuest>false</m_startsQuest>
+         <m_endsQuest>false</m_endsQuest>
+         <m_questId>0</m_questId>
+         <m_badgeReq>0</m_badgeReq>
+         <m_itemReq>0</m_itemReq>
+         <m_pokeReq>0</m_pokeReq>
+         <m_questReq>0</m_questReq>
+         <m_pokeLevelReq>0</m_pokeLevelReq>
+         <m_money>0</m_money>
+         <m_badge></m_badge>
+      </npcData>
+   </m_npcs>
+   <m_warps class="java.util.ArrayList">
+      <warpData>
+         <m_x>0</m_x>
+         <m_y>0</m_y>
+         <m_warpMapX>0</m_warpMapX>
+         <m_warpMapY>0</m_warpMapY>
+         <m_warpX>0</m_warpX>
+         <m_warpY>0</m_warpY>
+         <m_reqItem>0</m_reqItem>
+         <m_reqQuest>0</m_reqQuest>
+         <m_reqBadge>0</m_reqBadge>
+      </warpData>
+   </m_warps>
+   <m_dayPokemon class="java.util.ArrayList">
+   </m_dayPokemon>
+   <m_nightPokemon class="java.util.ArrayList">
+   </m_nightPokemon>
+   <m_surfPokemon class="java.util.ArrayList">
+   </m_surfPokemon>
+   <m_pvpType>PVP</m_pvpType>
+   <m_wildProbability>30</m_wildProbability>
+</mapData>
