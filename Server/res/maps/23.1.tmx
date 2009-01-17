@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="24" height="26" tilewidth="16" tileheight="16">
-<properties>
+ <properties>
   <property name="pvp" value="yes"/>
   <property name="surfLevels" value="5-35;10-30;20-30;25-30;20-30;20-30;"/>
   <property name="surfProbability" value="28"/>
@@ -39,12 +39,12 @@
  </layer>
  <layer name="Layer 4" width="24" height="26">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC14wouJF/GSbs5CLOY8wWEOOx92tfgwBx9l/hwFo2AUjIJRMApGwSigFwAAhK3macAJAAA=
+   H4sIAAAAAAAAAGNgoC14wouJF/GSbs5CLOY8wWEOOx92tfgwBx9l/hwFo2AUjIJRMApGwSggBSzlJk4MGwAAo4RQ28AJAAA=
   </data>
  </layer>
  <layer name="Collisions" width="24" height="26">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANMVZmDQBWJ9IPZFwu+5MMWwYQMgfseFKaYLxbgAMWYjm0cvsI+PgeEAH+3M/wcym5965p1mZmA4A8RnmamjDh28hqp/S0AfLnXabAwMOkCsC8R6bKTZTQzwBprpA8S+QOxHA/OzoWbmAuk8GpifwUF9M0fBwABy8xixeonNi9TWiwwo8SMxgFruHAX0BYO93iTWfauBbZk1JOK1XLjdR6pZpGIA3cCtKMAJAAA=
+   H4sIAAAAAAAAADvEzcBwCIgfAvEjJNyCRQwbfgzEzVjEDkExLkCM2cjm0QssAdq1jIb2PQGa/YyK5p9mZmA4A8RnmamjDh28hqp/S0AfLnXabAwMOkCsC8R6bKTZTQzwBprpA8S+QOxHA/OzoWbmAuk8GpifwUF9M0fBwABy8xixeonNi9TWiwwo8SMxgFruHAX0BYO93iTWfSB1S0nEIHNxuY8Y/SA7F6HhZUhsfHoBgI7HPMAJAAA=
   </data>
  </layer>
  <layer name="WalkBehind" width="24" height="26">
