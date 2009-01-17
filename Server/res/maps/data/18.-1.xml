@@ -36,12 +36,39 @@
          <m_reqBadge>0</m_reqBadge>
       </warpData>
    </m_warps>
-   <m_dayPokemon class="java.util.ArrayList">
-   </m_dayPokemon>
-   <m_nightPokemon class="java.util.ArrayList">
-   </m_nightPokemon>
+   <m_dayPokemon class="java.util.ArrayList"></m_dayPokemon>
+   <m_nightPokemon class="java.util.ArrayList"></m_nightPokemon>
    <m_surfPokemon class="java.util.ArrayList">
-   </m_surfPokemon>
+   <wildPokemonData>
+   	<m_species>Tentacool</m_species>
+   	<m_minimalLevel>10</m_minimalLevel>
+   	<m_maximumLevel>30</m_maximumLevel>
+   	<m_encounterRate>60</m_encounterRate></wildPokemonData>
+   <wildPokemonData>
+   	<m_species>Wingull</m_species>
+   	<m_minimalLevel>10</m_minimalLevel>
+   	<m_maximumLevel>30</m_maximumLevel>
+   	<m_encounterRate>20</m_encounterRate></wildPokemonData>
+   <wildPokemonData>
+   	<m_species>Magikarp</m_species>
+   	<m_minimalLevel>10</m_minimalLevel>
+   	<m_maximumLevel>30</m_maximumLevel>
+   	<m_encounterRate>15</m_encounterRate></wildPokemonData>
+   <wildPokemonData>
+   	<m_species>Pelipper</m_species>
+   	<m_minimalLevel>25</m_minimalLevel>
+   	<m_maximumLevel>30</m_maximumLevel>
+   	<m_encounterRate>3</m_encounterRate></wildPokemonData>
+   <wildPokemonData>
+   	<m_species>Wailmer</m_species>
+   	<m_minimalLevel>25</m_minimalLevel>
+   	<m_maximumLevel>45</m_maximumLevel>
+   	<m_encounterRate>1</m_encounterRate></wildPokemonData>
+   <wildPokemonData>
+   	
+   	<m_species>Sharpedo</m_species>
+   	<m_minimalLevel>30</m_minimalLevel>
+   	<m_maximumLevel>35</m_maximumLevel><m_encounterRate>1</m_encounterRate></wildPokemonData></m_surfPokemon>
    <m_pvpType>PVP</m_pvpType>
    <m_wildProbability>30</m_wildProbability>
 </mapData>
