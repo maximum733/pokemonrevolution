@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="23" height="21" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="xOffsetModifier" value="0"/>
+  <property name="yOffsetModifier" value="0"/>
+ </properties>
+ <tileset firstgid="1" source="normal1.tsx"/>
+ <tileset firstgid="1025" source="normal18.tsx"/>
+ <layer name="Walkable" width="23" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAW4wFEWVDxUzEY2fxSMgpEAaJ2PRvPTKKA1AACLyrpIjAcAAA==
+  </data>
+ </layer>
+ <layer name="Grass" width="23" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBQAIAehkw8YwHAAA=
+  </data>
+ </layer>
+ <layer name="Water" width="23" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAHvEwsDwaIjiJUC8FA0vo5LZR4AYHRwbAmY/wWI2CFArzGll7ige3hg5r5KbR7HpA5mbyoJIj+lkmo8t/xGTT4nx1zMsYqB8+hQNo6sDgaMsEEztvEZLs5H9hs3voxg7BgApNjYqjAcAAA==
+  </data>
+ </layer>
+ <layer name="LedgesDown" width="23" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBQAIAehkw8YwHAAA=
+  </data>
+ </layer>
+ <layer name="LedgesRight" width="23" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBQAIAehkw8YwHAAA=
+  </data>
+ </layer>
+ <layer name="LedgesLeft" width="23" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBQAIAehkw8YwHAAA=
+  </data>
+ </layer>
+ <layer name="Collisions" width="23" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2Ubw5AMAzFy3YRDicOJk4ivrgGzmFCk6fWmT8fRDRZUrP+vFpeib4diSVK7bXayhDVZsm7ZP8+c9w8ki119I47mj1X04taOOezUkcBeeny0W71Igu1YC6Z/K3erWFdM1frC/eP7kD7jzH7Z+7gj++Gz59vY0vfacF+acCrrcdrGD7fIYs57JeZzTUtzBCsl3rlGX7G+RHqB72q1YT87Osfz9+Z9Uecp+ZMiDMBIrhZqYwHAAA=
+  </data>
+ </layer>
+ <layer name="WalkBehind" width="23" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBQAIAehkw8YwHAAA=
+  </data>
+ </layer>
+</map>

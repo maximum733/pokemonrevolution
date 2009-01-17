@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="22" height="21" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="xOffsetModifier" value="0"/>
+  <property name="yOffsetModifier" value="0"/>
+ </properties>
+ <tileset firstgid="1" source="normal1.tsx"/>
+ <tileset firstgid="1025" source="normal18.tsx"/>
+ <layer name="Walkable" width="22" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGPrgKAtpmBZmDrS55NhDLqCVudjMHwWjYLCC0fQ5cgEAoPVg2zgHAAA=
+  </data>
+ </layer>
+ <layer name="Grass" width="22" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkYBsQAAQ3pE4DgHAAA=
+  </data>
+ </layer>
+ <layer name="Water" width="22" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAHvEwsDwiA54CRAvJREvI8LMVCAmFRwjYO4RMswcSHNB4CkLAqcRaQ8hc9HxEyLNJtVcmNnY3J6B5C8QIDf9PWFBDaNnNE7vo5h+GLlswSZGTFmCK82A0uNRHGLkpnWYOU9xiI2mz8GPAfA/6Q44BwAA
+  </data>
+ </layer>
+ <layer name="LedgesDown" width="22" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkYBsQAAQ3pE4DgHAAA=
+  </data>
+ </layer>
+ <layer name="LedgesRight" width="22" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkYBsQAAQ3pE4DgHAAA=
+  </data>
+ </layer>
+ <layer name="LedgesLeft" width="22" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkYBsQAAQ3pE4DgHAAA=
+  </data>
+ </layer>
+ <layer name="Collisions" width="22" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2UWQ7CMAxEXWK2Y4BY78F6T8RluEbVczD9sGJNUgjQD4QY6Ul1ktqO40TkN3Sr4vcliFxDHPd2lyoVGWi3j5YadhNiLG/7+N7fDMydX/uH4yjWDMEIjMEETDX16/1ZjFolkcVZYG4JVmANNmBL67k+nHNOO8zvwQEcwQmcKV/e66dqND2nvlSy579Sldytd9R37+TEvfRKb/G9bGW1sF5iuySH3BzXwttc/9y7Y2Ml+XCMR/5sLHdWz2qZy6Ekr2+5p3dHFSgrOAcAAA==
+  </data>
+ </layer>
+ <layer name="WalkBehind" width="22" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkYBsQAAQ3pE4DgHAAA=
+  </data>
+ </layer>
+</map>
