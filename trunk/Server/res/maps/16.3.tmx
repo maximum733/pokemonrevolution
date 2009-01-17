@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="22" height="21" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="xOffsetModifier" value="0"/>
+  <property name="yOffsetModifier" value="0"/>
+ </properties>
+ <tileset firstgid="1" source="normal1.tsx"/>
+ <tileset firstgid="1025" source="normal18.tsx"/>
+ <layer name="Walkable" width="22" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAXYwFEWCB4q5o6CUTAKRsEooA8AAAOIlpE4BwAA
+  </data>
+ </layer>
+ <layer name="Grass" width="22" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkYBsQAAQ3pE4DgHAAA=
+  </data>
+ </layer>
+ <layer name="Water" width="22" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAHvEwsDwaBRjYBgYCHOPQjG17aaVuaN4FI9i+uMlQLwUipdR0dwjLIiy4hgVzQUBmLnULFufAPFTKH5Gp7AHAJyMNDc4BwAA
+  </data>
+ </layer>
+ <layer name="LedgesDown" width="22" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkYBsQAAQ3pE4DgHAAA=
+  </data>
+ </layer>
+ <layer name="LedgesRight" width="22" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkYBsQAAQ3pE4DgHAAA=
+  </data>
+ </layer>
+ <layer name="LedgesLeft" width="22" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkYBsQAAQ3pE4DgHAAA=
+  </data>
+ </layer>
+ <layer name="Collisions" width="22" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO1UUQ6AIAil8iJ1duskrZOY54g2WI5hWlpfvo0pCu8xJwB8g84A9KY+z4j7iXyL60y2mHiOhpBH5q1odkBOtM1c5znaWg2cd/I65PTEG/KltO/qdujvZF7cpbRZ6y1i2qzV0JBCrVkhofVKCWSd7Jf2kKyTfe4hyZ/zXjkxzK/Ot4jmkzeVsXIGaTE18Md/OgBbR+yuOAcAAA==
+  </data>
+ </layer>
+ <layer name="WalkBehind" width="22" height="21">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkYBsQAAQ3pE4DgHAAA=
+  </data>
+ </layer>
+</map>
