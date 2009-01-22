@@ -1,13 +1,14 @@
 Orange Islands
 
 Exteriors
-25.-25 Valencia island
-24.-25 Valencia island part2
+25.25 Valencia island
+24.25 Valencia island part2
 
 Interiors
--50.-50 Valecia house
--50.-49 Valecia Lab
--50.-48 Valecia cave
+-50.50 Valecia house
+-50.49 Valecia Lab
+-50.48 Valecia cave.
+-49.50 Petalburg Woods
 
 Hoenn
 17.-2 Litteroot
