@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="46" height="46" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="xOffsetModifier" value="0"/>
+  <property name="yOffsetModifier" value="0"/>
+ </properties>
+ <tileset firstgid="1" source="normal1.tsx"/>
+ <layer name="Walkable" width="46" height="46">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3DAQkAAAwEoeP7h16PoeCqqaqqqqqqqqo+enFVyOcQIQAA
+  </data>
+ </layer>
+ <layer name="Grass" width="46" height="46">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2W0Q6AIAgA/ZX+/ydbb82lgp4Ijdt6IzxDsFKSJLHiajyeaTl7966J7q2JXa2T5Xciz5ZVjVd7ovf+Vw5qX1Qvj3LQ84I+19I8mrXqGHpuznpL4nrve8OzW4+/e3vb18jb6z+N9B6gZwEB5T26H3fsQ+PSy3HCPdmLt5pJfbydN6037T7blzN9L/XQQK5Dz2SKUW6Ng/U8nvWWxu5C+x2leSzmj+bcSnJY39Mr60T+xyD68uSeKecItXog62TdXytrv+Ot60XPhihE9U6SJC43FjxdaBAhAAA=
+  </data>
+ </layer>
+ <layer name="LedgesDown" width="46" height="46">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3WsQnAMAwEQOH95/Ao2cR7uDWBNCEQW7oD9a/mpQgA+FZvEWOZq/2d6L1xcHYgh0ydCtTSi3ZX1b0Bsrn/4Xp9b+4vAPBkAroWmFkQIQAA
+  </data>
+ </layer>
+ <layer name="Collisions" width="46" height="46">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2W3Q2DMAyE89JuQjdpN2H/FcqLVQnh3J1jQ6r2pMhC/oF8CgdLa+2xrQXE27bu7SO7Rn1V0e6PotWb1P7sqO7v13k/t/USYpS39ZvsOspLVZS3pyhXVXvuo3yYvuisXg173jwhzk2YxdR579uR1k4u6/wezerVoPOLlHV+j2YdSeE9k7J4n62zeWf7+Fm8s94DxJvlU/X/4QnxZvmo/xls9JTFu1dbwTyLd6+2gvksfqIyn8VPVOZ/3pyqeEf3zfaN5vd19vzqvlVeo3nT1bw9zc7bU5R3lbLu4/GuEssb6Wr/9vLsnKv828sjsbxZf0H1qj+hPOLN+guqV/3Jy8/OG8VZeXsx6ierUNvadbxHVc37LB9XhXhXfy+jYnmrPmBS56jfR8Rb9QET26/+p3wbb9ZPZuOt+onKKdo/Ok/lvecU5Ryd9+28q/lUzXsDzLpR3BAhAAA=
+  </data>
+ </layer>
+ <layer name="WalkBehind" width="46" height="46">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3Yyw5AMBBA0e74/y8msVGppPPoqM49iVh4hKsIpQDIaDun/Ta3rgcf9MZfPccuY7jW2+dtPes8G0kHms+H5rHoXZOet7SXdflqonv3Hgd06Bir937JTvpc1b4HuR6Xr3pne396oXfbrOezem/t+Br1PUNv2/bW/a1C28n731S25ze90XIA12bTOBAhAAA=
+  </data>
+ </layer>
+</map>
