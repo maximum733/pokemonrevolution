@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="80" height="8" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="xOffsetModifier" value="0"/>
+  <property name="yOffsetModifier" value="0"/>
+ </properties>
+ <tileset firstgid="1" source="normal1.tsx"/>
+ <tileset firstgid="1025" source="normal18.tsx"/>
+ <tileset firstgid="2049" source="normal5.tsx"/>
+ <layer name="Walkable" width="80" height="8">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQDwZEoWcfMACgAA
+  </data>
+ </layer>
+ <layer name="Grass" width="80" height="8">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQDwZEoWcfMACgAA
+  </data>
+ </layer>
+ <layer name="Water" width="80" height="8">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAHvEwsDwaBSP4lE8ikfxKB7Fo3gUjxgMAA+546oACgAA
+  </data>
+ </layer>
+ <layer name="LedgesDown" width="80" height="8">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQDwZEoWcfMACgAA
+  </data>
+ </layer>
+ <layer name="LedgesRight" width="80" height="8">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQDwZEoWcfMACgAA
+  </data>
+ </layer>
+ <layer name="LedgesLeft" width="80" height="8">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQDwZEoWcfMACgAA
+  </data>
+ </layer>
+ <layer name="Collisions" width="80" height="8">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAMWWSw6CQBBEW+IKFnoF3RO9hwsPqp4EOQk/j2BPnI5lpwcGmMRKKuEzfPpR0wMRUZURlcXHQ050LWy/8u84yz3fp2UP7Ce4Zmvd+Ngd/GBvtkQZu/H36fx1DWxP6cDXH7dxY2Ol3xXf2Z27ZL/cQnymGNZQbwvu/HMewKAyGK+tXfinEDK7ZGEeFbCLyd9YFmuDk0hnqFE5tTI6VymzJ1ywTr1fen67Ij5/YxwdgzlzrVEZXarQN1sjx+XENZ2hfr2P/HaBXmb5rJgKwxQZWqI53ywknPvS08Z6vcWvV3mYYjn4Mfviv/x0/UuEcz92Pb0qfq5+i5XLG/Z6sWT2n/yEW6reh9nDdSEmf65+xyI0b3X2UvETBrLmYS8bO+eU+n8Fs6d7muU37NE+YwAKAAA=
+  </data>
+ </layer>
+ <layer name="WalkBehind" width="80" height="8">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQDwZEoWcfMACgAA
+  </data>
+ </layer>
+</map>
