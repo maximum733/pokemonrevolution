@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="72" height="20" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="xOffsetModifier" value="0"/>
+  <property name="yOffsetModifier" value="0"/>
+ </properties>
+ <tileset firstgid="1" source="normal1.tsx"/>
+ <tileset firstgid="1025" source="normal2.tsx"/>
+ <layer name="Walkable" width="72" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3VwQmAMBBE0SXYmLES10pcsRPbswdz8BgM4oA4zuGRS0jgB7LJzJKIiFDqi0xoAPUZCyc0gfrMRRBaQH3kvzLQ1X+2d/X1qdZ5d+6r7XWg1n/2xUYBsJ19Vnt/JqMh3o91vjuoD+t8D1AfERHBOwCptHbxgBYAAA==
+  </data>
+ </layer>
+ <layer name="Grass" width="72" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3QUQYAQAhAwa7S/S+5J1haRZYZ+ouXIgAAgC15man9136112l27vMfAIC/HEslazKAFgAA
+  </data>
+ </layer>
+ <layer name="LedgesDown" width="72" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3QAQkAIBAEweP75zDKN7GHJQTxmYEtsAkAANy1KtkD63p9FgAA/nIAoXBk/oAWAAA=
+  </data>
+ </layer>
+ <layer name="Collisions" width="72" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2YSwqAMBBDC+LnIP7OIf7OoRvvfwJnPTQwUrAlTCC8bRvSaekQQhjFg2ItbpyQOi+n98f7839/NvFOzNT+3FWgFtq3Nd+FPB/UH6vY84H9qWxeyfNB58blYtGTewEuKOscRu7J5/MkniO0iv1+P8RnhCg3zSuxf6Ub7RvlptmKO2J+7Y9+R1p7xsbc/yulEPUn9/9KKXwBZwCgiYAWAAA=
+  </data>
+ </layer>
+ <layer name="WalkBehind" width="72" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3QsQ0AMAgDQbqw/8QwQKBNijvJcv8RAAAA8N7p5eXZTd10BOAHBWMgOW+AFgAA
+  </data>
+ </layer>
+</map>

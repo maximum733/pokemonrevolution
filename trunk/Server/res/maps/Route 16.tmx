@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="48" height="20" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="xOffsetModifier" value="0"/>
+  <property name="yOffsetModifier" value="0"/>
+ </properties>
+ <tileset firstgid="1" source="normal1.tsx"/>
+ <tileset firstgid="1025" source="normal3.tsx"/>
+ <tileset firstgid="2049" source="normal18.tsx"/>
+ <layer name="Walkable" width="48" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2WaQqAIBBGpZtVJ6lO0naTumeGDIhMQ7OEbcL7lebDGb9yLoziocDI7fFl/9wOv3+g9FQJNbEWm8+Fej/Xv/G0CTOx94TM59Jd7H+G1TMwWS7w7wUeO6NgXzgrqr4A1WOOsaclnFpTNcrlz6k1Vd9c/laAP2Qh1msWORmjzczYC/yhH7Fek+bSEdrMib2k/pLMBCR5hdEr/K3OUMvb/LHvCfafcFf/s9zV/+heLslzqzuoZQNVUU+CAA8AAA==
+  </data>
+ </layer>
+ <layer name="Grass" width="48" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OsQkAAAgEsV/F/Zd0BbESTOD6SwD2atBl/gEA/miKD4ecAA8AAA==
+  </data>
+ </layer>
+ <layer name="Water" width="48" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3OsQkAAAjEQEv33+g3U6cIQg7SJ12V7av4j/r8fvxn+c/yn+U/y3+W/yz/Wf6zBjA0EcQADwAA
+  </data>
+ </layer>
+ <layer name="Layer 1" width="48" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3SMQ0AMBDDwCxfJs8fVmkURAcrko3gBifJnFTX7t9i/x1a8Ff7O/rZ9LPpZ9PPpp9NP5t+tnb/Aw8dKKQADwAA
+  </data>
+ </layer>
+ <layer name="Collisions" width="48" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2WWwrCMBRELxTNOqRY3YaIjy34/PKjW/C5j/paqxMkUEpzG03bJOjAYT6aC3OH0oborQEYeux9kORcodQB3QBdqbhfKK40AVONLwTREqzAGmzAVujPN+Fc/3GEcwx7ZD2AIziBM7gIfqZuuP5HEbHKkPUKbuAOHuAp+Jm6xfVfld8H2fTvg/79uxXXf6/F74hk90VfPvU/LuyTEr+vlO6/4CK/VJzDViG8/5x+tf+qe0cb2OSXcyb396TiuY2X5U8/yD+Dz8mdl+U3lWn/Tbptftf9vwAjxvUoAA8AAA==
+  </data>
+ </layer>
+ <layer name="WalkBehind" width="48" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3Wuw0AIAwDUXdhJb77j4VZgSZI3JNOaV1GwutqSM11N9x0K7JXAQAA4MZ540riBX62ARhRjoYADwAA
+  </data>
+ </layer>
+</map>
